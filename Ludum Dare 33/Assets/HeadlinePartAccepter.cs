@@ -12,7 +12,7 @@ public class HeadlinePartAccepter : MonoBehaviour {
 		    	&& transform.parent.FindChild("headlineTakable") == null
 		    	&& col.GetComponent<TakableController>().takableId == takableToAccept) {
 
-			col.transform.parent = transform.parent;
+			col.transform.SetParent(transform.parent);
 			col.transform.position = transform.position;
 			col.transform.GetComponent<TakableController>().takableInTargetPosition = true;
 
