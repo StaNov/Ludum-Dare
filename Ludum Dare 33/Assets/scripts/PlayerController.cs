@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	private bool movingRight;
 	private bool movingLeft;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponentInChildren<Animator>();
 		movingRight = false;
 		movingLeft = false;
 	}
@@ -19,16 +21,21 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.RightArrow)) {
 			movingLeft = false;
 			movingRight = true;
+			animator.SetTrigger("walkRight");
 		}
 		if (Input.GetKeyUp(KeyCode.RightArrow)) {
 			movingRight = false;
+			//animator.ResetTrigger("walkRight"); // TODO je potřeba?
+			animator.SetTrigger("stop");
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			movingRight = false;
 			movingLeft = true;
+			animator.SetTrigger("walkLeft");
 		}
 		if (Input.GetKeyUp(KeyCode.LeftArrow)) {
 			movingLeft = false;
+			animator.SetTrigger("stop");
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {

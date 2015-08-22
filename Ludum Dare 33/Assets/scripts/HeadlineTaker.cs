@@ -7,7 +7,7 @@ public class HeadlineTaker : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag("headlineTakable")
 			    && ! col.GetComponent<TakableController>().takableInTargetPosition) {			
-			col.transform.SetParent(transform);
+			col.transform.SetParent(transform.parent);
 		}
 	}
 }
