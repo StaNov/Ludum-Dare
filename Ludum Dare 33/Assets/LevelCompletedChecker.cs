@@ -7,7 +7,6 @@ public class LevelCompletedChecker : MonoBehaviour {
 
 	public void checkIfLevelIsCompleted() {
 		if (LevelIsCompleted()) {
-			Debug.Log("done!");
 			Instantiate(gameOverText);
 		};
 	}
