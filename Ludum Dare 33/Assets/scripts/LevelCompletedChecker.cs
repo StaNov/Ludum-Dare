@@ -7,7 +7,7 @@ public class LevelCompletedChecker : MonoBehaviour {
 
 	public void checkIfLevelIsCompleted() {
 		if (LevelIsCompleted()) {
-			if (Application.loadedLevel == Application.levelCount) {
+			if (Application.loadedLevel == Application.levelCount - 1) {
 				Instantiate(gameOverText);
 			} else {
 				Application.LoadLevel(Application.loadedLevel + 1);
