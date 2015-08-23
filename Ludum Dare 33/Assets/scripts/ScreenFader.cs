@@ -25,8 +25,10 @@ public class ScreenFader : MonoBehaviour {
 	private IEnumerator fadeInPlayAnimationFadeOut() {
 
 		// fade in
-		while (Time.time <= 3) {
-			panel.color = Color.Lerp(Color.black, Color.clear, Time.time / FADE_DURATION);
+		float timeOfFadeInStart = Time.time;
+
+		while (Time.time <= timeOfFadeInStart + FADE_DURATION) {
+			panel.color = Color.Lerp(Color.black, Color.clear, (Time.time - timeOfFadeInStart) / FADE_DURATION);
 			yield return null;
 		}
 
