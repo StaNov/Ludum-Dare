@@ -11,6 +11,9 @@ public class CutsceneBackgroundMusicController : MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(this);
+		} else if (Application.loadedLevelName == "cutscene9") {
+			Destroy(gameObject);
+			Destroy(instance.gameObject);
 		} else {
 			Destroy(gameObject);
 		}

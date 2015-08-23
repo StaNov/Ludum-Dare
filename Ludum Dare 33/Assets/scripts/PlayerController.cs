@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) {
-			rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+			rb.AddForce(Vector2.up * 11, ForceMode2D.Impulse);
 		}
 	}
 	
