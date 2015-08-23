@@ -6,28 +6,32 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/scenes/cutscene1.unity
+    path: Assets/scenes/cutscenes/cutscene1.unity
   - enabled: 1
-    path: Assets/scenes/cutscene2.unity
+    path: Assets/scenes/cutscenes/cutscene2.unity
   - enabled: 1
-    path: Assets/scenes/cutscene3.unity
+    path: Assets/scenes/cutscenes/cutscene3.unity
   - enabled: 1
-    path: Assets/scenes/level1.unity
+    path: Assets/scenes/levels/level1.unity
   - enabled: 1
-    path: Assets/scenes/cutscene4.unity
+    path: Assets/scenes/cutscenes/cutscene4.unity
   - enabled: 1
-    path: Assets/scenes/level2.unity
+    path: Assets/scenes/levels/level2.unity
   - enabled: 1
-    path: Assets/scenes/cutscene5.unity
+    path: Assets/scenes/cutscenes/cutscene5.unity
   - enabled: 1
-    path: Assets/scenes/level3.unity
+    path: Assets/scenes/levels/level3.unity
   - enabled: 1
-    path: Assets/scenes/cutscene6.unity
+    path: Assets/scenes/cutscenes/cutscene6.unity
   - enabled: 1
-    path: Assets/scenes/level4.unity
+    path: Assets/scenes/levels/level4.unity
   - enabled: 1
-    path: Assets/scenes/cutscene7.unity
+    path: Assets/scenes/cutscenes/cutscene7.unity
   - enabled: 1
-    path: Assets/scenes/cutscene8.unity
+    path: Assets/scenes/cutscenes/cutscene8.unity
   - enabled: 1
-    path: Assets/scenes/cutscene9.unity
+    path: Assets/scenes/cutscenes/cutscene9.unity
+  - enabled: 1
+    path: Assets/scenes/credits.unity
+  - enabled: 1
+    path: Assets/scenes/gameOverScreen.unity
