@@ -16,7 +16,7 @@ public class ScreenFader : MonoBehaviour {
 		audioClip = GetComponent<AudioSource>().clip;
 		animator = GetComponent<Animator>();
 		panel.color = Color.black;
-		animator.speed = 1/audioClip.length;
+		animator.speed = 1/(audioClip.length + FADE_DURATION);
 
 		StartCoroutine(fadeInPlayAnimationFadeOut());
 	}
@@ -32,7 +32,7 @@ public class ScreenFader : MonoBehaviour {
 
 
 		// wait for audioClip end
-		yield return new WaitForSeconds(audioClip.length - 2*FADE_DURATION);
+		yield return new WaitForSeconds(audioClip.length - FADE_DURATION);
 
 
 		// fade out

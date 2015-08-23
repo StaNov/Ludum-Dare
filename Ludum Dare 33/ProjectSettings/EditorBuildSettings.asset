@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/cutscene1.unity
   - enabled: 1
+    path: Assets/scenes/cutscene2.unity
+  - enabled: 1
     path: Assets/scenes/level1.unity
   - enabled: 1
     path: Assets/scenes/level2.unity
