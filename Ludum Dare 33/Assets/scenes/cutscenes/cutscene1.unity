@@ -188,6 +188,10 @@ Prefab:
 
         passing by the Earth.'
       objectReference: {fileID: 0}
+    - target: {fileID: 8283112, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ef289d90e3c7aa4eacbc85282a467e8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
   m_IsPrefabParent: 0

@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41cb73e21c2f2f45920aed5559fe77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intro: {fileID: 8300000, guid: cd7a82be863513446a6ed9a3c14bfc2d, type: 3}
-  song: {fileID: 8300000, guid: 56325ce299456bc4494b8bc6aef8f7fa, type: 3}
+  intro: {fileID: 8300000, guid: fa3f50c83d5a935419c8636298a0ffcf, type: 3}
+  song: {fileID: 8300000, guid: a92e73bb0f0b90243acfab57e48e2929, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

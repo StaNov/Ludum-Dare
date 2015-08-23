@@ -137,7 +137,7 @@ Prefab:
     - target: {fileID: 8283112, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 590d435fbad729146bfc21710cace173, type: 3}
+      objectReference: {fileID: 8300000, guid: f89f040bc96c82a4ca81c48f232f4728, type: 3}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.r
       value: 1
