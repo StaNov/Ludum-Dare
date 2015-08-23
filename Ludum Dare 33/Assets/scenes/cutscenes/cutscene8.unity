@@ -94,6 +94,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -145,6 +149,14 @@ Prefab:
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.b
       value: .886274576
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[0]
+      value: You, you are the monster!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[1]
+      value: Yes, yes I am!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}

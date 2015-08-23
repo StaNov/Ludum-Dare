@@ -94,6 +94,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -134,6 +138,20 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 828d9c8d6e8893c4eb07ae7d8fd9976a, type: 3}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[0]
+      value: 'He was mad at Earthlings,
+
+        because he blamed them for his loss.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[1]
+      value: He wanted to harm people, so he started swapping letters in books.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[2]
+      value: "People used to call him\n\u201CThe Letterpress Imp\u201D."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
   m_IsPrefabParent: 0

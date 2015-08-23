@@ -569,34 +569,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 12.7799997
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5.71999979
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -2.24000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 486858, guid: 9971a81a09959c04690fa33110ec6513, type: 2}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
@@ -725,8 +697,8 @@ Transform:
   - {fileID: 996769288}
   - {fileID: 1775186165}
   - {fileID: 752390633}
-  - {fileID: 361835002}
   - {fileID: 1641905702}
+  - {fileID: 361835002}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1 &1463637801

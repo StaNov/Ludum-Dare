@@ -94,6 +94,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -134,6 +138,28 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f1aeeef6200cc2043bdce22196108714, type: 3}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[0]
+      value: And now, in 2015, he wants to get back home.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[1]
+      value: "\u201CHow do I get there?\nI only can swap letters in sentences\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[2]
+      value: 'Umm, what if I start swapping
+
+        whole words?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[3]
+      value: "I will let Earthlings suffer for taking my rocket down!\u201D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[4]
+      value: So he started trying to do some damage.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
   m_IsPrefabParent: 0

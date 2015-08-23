@@ -136,6 +136,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -168,16 +172,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9547588, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2764f31eff7f8cd45a8e150eee864ec7, type: 2}
-    - target: {fileID: 8283112, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 22f7a4f025e90884ca787721c480d9b5, type: 3}
-    m_RemovedComponents:
-    - {fileID: 11410442, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[1]
+      value: The rocket had a malfunction and crashed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[2]
+      value: 'It was around year 1448, right after invention
+
+        of the letterpress machine.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
+      propertyPath: subtitles.Array.data[0]
+      value: 'A Long long time ago there was an alien imp in his rocket
+
+        passing by the Earth.'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1216325636 stripped

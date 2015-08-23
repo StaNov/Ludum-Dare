@@ -210,6 +210,7 @@ MonoBehaviour:
   takableToAccept: 2
   levelCompletedChecker: {fileID: 11464764, guid: e98d711e84a9020439c3504c019f0aa3,
     type: 2}
+  backgroundColor: {r: .839215755, g: .831372619, b: .752941251, a: 1}
 --- !u!114 &11447202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +468,22 @@ Prefab:
       value: 
       objectReference: {fileID: 11464764, guid: e98d711e84a9020439c3504c019f0aa3,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: backgroundColor.r
+      value: .839215755
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundColor.g
+      value: .831372619
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundColor.b
+      value: .752941251
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194974}
