@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 			animator.SetTrigger("stop");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) {
 			rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
 		}
 	}
