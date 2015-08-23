@@ -166,7 +166,7 @@ Prefab:
       propertyPath: subtitles.Array.data[2]
       value: 'What kind of monster would do this?
 
-        By the way, where is the rocket going?'
+        And by the way, where is the rocket going?'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}

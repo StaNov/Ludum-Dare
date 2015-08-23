@@ -146,7 +146,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[1]
-      value: He wanted to harm people, so he started swapping letters in books.
+      value: 'He wanted to harm people,
+
+        so he started swapping letters in books.'
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[2]

@@ -152,7 +152,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[0]
-      value: You, you are the monster!
+      value: You, YOU ARE THE MONSTER!
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[1]
