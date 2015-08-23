@@ -129,22 +129,22 @@ Prefab:
     - target: {fileID: 9547588, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 083daa6ce4567454988baddd2997c123, type: 2}
+      objectReference: {fileID: 9100000, guid: 5f4b6cbefaf0290438bd3bfbc126f2a8, type: 2}
     - target: {fileID: 8283112, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 590d435fbad729146bfc21710cace173, type: 3}
+      objectReference: {fileID: 8300000, guid: f0033b055eed04d4da32a9ef440ee0ab, type: 3}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 1
+      value: .898039281
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.g
-      value: .886274576
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: .847058892
+      value: .886274576
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
@@ -233,7 +233,7 @@ Prefab:
     - target: {fileID: 21259950, guid: 4ebca5c221b1dbb44ab4f5016a375c9a, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9fbc1f88d2b7ad649b1d097f3c7d1a75,
+      objectReference: {fileID: 21300000, guid: bf5cf12aa3326ad4a9da49d0725a29e9,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ebca5c221b1dbb44ab4f5016a375c9a, type: 2}
