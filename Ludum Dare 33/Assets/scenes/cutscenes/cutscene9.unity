@@ -136,10 +136,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: subtitles.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -171,38 +167,6 @@ Prefab:
     - target: {fileID: 484106, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9547588, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3f984ef623036dd43a5082bf4ff532b6, type: 2}
-    - target: {fileID: 8283112, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0131fefc3ddc8ea468d4d94e2fe8b75e, type: 3}
-    - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: subtitles.Array.data[0]
-      value: "So there was this little imp\nDoing some bad stuff\r"
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: subtitles.Array.data[1]
-      value: "And then destroyed the world\r\nAnd went home to the space\u2026"
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
-      propertyPath: subtitles.Array.data[2]
-      value: The End!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}

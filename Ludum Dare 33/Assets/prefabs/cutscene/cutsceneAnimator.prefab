@@ -185,7 +185,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22f7a4f025e90884ca787721c480d9b5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0131fefc3ddc8ea468d4d94e2fe8b75e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -261,7 +261,7 @@ Animator:
   m_GameObject: {fileID: 146918}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2764f31eff7f8cd45a8e150eee864ec7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3f984ef623036dd43a5082bf4ff532b6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -308,12 +308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitles:
-  - 'A Long long time ago there was an alien imp in his rocket
-
-    passing by the Earth.'
-  - 
-  - 
-  - 
+  - "So there was this little imp\nDoing some bad stuff\r"
+  - "And then destroyed the world\r\nAnd went home to the space\u2026"
+  - The End!
 --- !u!114 &11437394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,7 +363,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: b0545f88e39b01f4682427a5254b7058, type: 3}
-    m_FontSize: 55
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -412,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: .5}
-  m_EffectDistance: {x: .5, y: .5}
+  m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
 --- !u!114 &11495512
 MonoBehaviour:
@@ -503,7 +500,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 0, y: 186.910004}
   m_Pivot: {x: .5, y: 0}
 --- !u!224 &22424078
 RectTransform:
