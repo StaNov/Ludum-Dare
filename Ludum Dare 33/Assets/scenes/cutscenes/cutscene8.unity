@@ -140,7 +140,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: f4fb75df62267e7418a61944a52c8805, type: 3}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: .898039281
+      value: .737254918
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.g
@@ -148,7 +148,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: .886274576
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[0]

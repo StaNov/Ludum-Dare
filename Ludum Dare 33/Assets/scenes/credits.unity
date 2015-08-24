@@ -506,10 +506,12 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 2
   m_Text: "\"The Letterpress Imp\"\nby Standa Nov\xE1k\n\n\n\nCreated in 48 hours\n22.
-    and 23.8.2015\nfor Ludum Dare 33\n\n\n\nSpecial thanks goes to my wife J\xED\u0165a\nfor
-    giving me the time\nfor creating this game\nand taking care of our baby\nduring
-    that time. Thank you :)\n\n\n\nLicenced by WTFPL\nall parts can be modified\nand
-    used commercially\n... or whatever else.\n\n\n\nThanks for playing!\n\n\nwww.StaNov.cz"
+    and 23.8.2015\nfor Ludum Dare 33\n\n\n\nEnglish supervision:\nRobert Antonio\n\nMood
+    supervision:\nPe Pe, Jan Fleissig, Daniel Matys, David Bro\u010Dek\nand others\n\n\n\nSpecial
+    thanks goes to my wife J\xED\u0165a\nfor giving me the time\nfor creating this
+    game\nand taking care of our baby\nduring that time. Thank you :)\n\n\n\nLicenced
+    by WTFPL\nall parts can be modified\nand used commercially\n... or whatever else.\n\n\n\nThanks
+    for playing!\n\n\nwww.StaNov.cz"
 --- !u!222 &1347655771
 CanvasRenderer:
   m_ObjectHideFlags: 0

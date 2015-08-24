@@ -7,7 +7,7 @@ public class CutsceneBackgroundMusicController : MonoBehaviour {
 
 	void Start () {
 
-		if (instance == null) {
+		if (instance == null && Application.loadedLevelName != "cutscene9") {
 			instance = this;
 			DontDestroyOnLoad(this);
 			return;
@@ -15,7 +15,11 @@ public class CutsceneBackgroundMusicController : MonoBehaviour {
 
 		if (Application.loadedLevelName == "cutscene9") {
 			Destroy(gameObject);
-			Destroy(instance.gameObject);
+			if (instance != null) {
+				Destroy(instance.gameObject);
+				instance = null;
+			}
+
 			return;
 		}
 

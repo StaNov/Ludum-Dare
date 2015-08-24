@@ -182,15 +182,15 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 5837bdd8b166d3749945cbc452c9364d, type: 3}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: .898039281
+      value: .56078434
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 1
+      value: .82745105
       objectReference: {fileID: 0}
     - target: {fileID: 2099036, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: .886274576
+      value: .607843161
       objectReference: {fileID: 0}
     - target: {fileID: 11435394, guid: 083e1b8b1e873fd4e9b01894297180c0, type: 2}
       propertyPath: subtitles.Array.data[0]
