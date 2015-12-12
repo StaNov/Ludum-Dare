@@ -9,6 +9,8 @@ public class EndLocationManager : MonoBehaviour {
 			return;
 		}
 
+		BeeCountStore.GetInstance().beesAtStartOfLevel = GameObject.Find("bees").transform.childCount;
+
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 }
