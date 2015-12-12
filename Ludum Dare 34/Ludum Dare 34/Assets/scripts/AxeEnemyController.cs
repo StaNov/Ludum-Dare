@@ -10,8 +10,4 @@ public class AxeEnemyController : AbstractEnemyController {
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 	}
 
-	protected override void OnPlayerTouch() {
-		Debug.Log("player killed!");
-	}
-
 }

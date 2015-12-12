@@ -26,12 +26,7 @@ public abstract class AbstractEnemyController : MonoBehaviour {
 		if (!shouldMove && col.collider.CompareTag("Bee")) {
 			shouldMove = true;
 		}
-
-		if (col.collider.CompareTag("Player")) {
-			OnPlayerTouch();
-		}
 	}
 
 	abstract protected void MoveEnemy();
-	abstract protected void OnPlayerTouch();
 }

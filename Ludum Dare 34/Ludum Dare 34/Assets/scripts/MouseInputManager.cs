@@ -11,6 +11,8 @@ public class MouseInputManager : MonoBehaviour {
 	private bool attacking = false;
 	private Transform targetedEnemy = null;
 
+	private bool gameOver = false;
+
 	void Start () {
 		player = GameObject.FindWithTag("Player").transform;
 		playerTarget = GameObject.FindWithTag("PlayerTarget").transform;
@@ -18,6 +20,11 @@ public class MouseInputManager : MonoBehaviour {
 	}
 
 	void Update () {
+
+		if (gameOver) {
+			return;
+		}
+
 		Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 mousePointPosition = new Vector3(mousePoint.x, mousePoint.y, transform.position.z);
 		Transform enemyUnderMouse = GetEnemyUnderMouse(mousePointPosition);
