@@ -32,7 +32,7 @@ public class MouseInputManager : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetMouseButtonUp(0) || (!moving && (targetedEnemy == null || !targetedEnemy.GetComponent<AbstractEnemyController>().IsVisible()))) {
+		if (Input.GetMouseButtonUp(0) || (!moving && targetedEnemy == null)) {
 			attacking = false;
 			moving = false;
 			targetedEnemy = null;
