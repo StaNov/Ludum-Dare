@@ -20,9 +20,10 @@ public class MouseInputManager : MonoBehaviour {
 	void Update () {
 		Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 mousePointPosition = new Vector3(mousePoint.x, mousePoint.y, transform.position.z);
+		Transform enemyUnderMouse = GetEnemyUnderMouse(mousePointPosition);
 
 		if (Input.GetMouseButtonDown(0)) {
-			targetedEnemy = GetEnemyClicked(mousePointPosition);
+			targetedEnemy = enemyUnderMouse;
 
 			if (targetedEnemy != null) {
 				attacking = true;
@@ -41,7 +42,8 @@ public class MouseInputManager : MonoBehaviour {
 
 		if (attacking) {
 			playerTarget.position = Vector3.zero;
-			beesTarget.position = targetedEnemy.position;
+			beesTarget.position = mousePointPosition;
+
 		}
 
 		if (moving) {
@@ -52,7 +54,7 @@ public class MouseInputManager : MonoBehaviour {
 
 	}
 
-	private Transform GetEnemyClicked(Vector3 mousePointPosition) {
+	private Transform GetEnemyUnderMouse(Vector3 mousePointPosition) {
 		Collider2D col = Physics2D.OverlapPoint(new Vector2(mousePointPosition.x, mousePointPosition.y));
 
 		if (col == null || !col.gameObject.CompareTag("Enemy")) {
