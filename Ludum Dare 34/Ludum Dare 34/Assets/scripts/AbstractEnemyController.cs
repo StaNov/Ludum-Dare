@@ -5,6 +5,7 @@ public abstract class AbstractEnemyController : MonoBehaviour {
 
 	public int enemySpeed = 5;
 
+	private bool isVisible;
 	private bool shouldMove;
 
 	protected Transform player;
@@ -30,6 +31,18 @@ public abstract class AbstractEnemyController : MonoBehaviour {
 		if (col.collider.CompareTag("Player")) {
 			OnPlayerTouch();
 		}
+	}
+
+	void OnBecameInvisible() {
+		isVisible = false;
+	}
+
+	void OnBecameVisible() {
+		isVisible = true;
+	}
+
+	public bool IsVisible() {
+		return isVisible;
 	}
 
 	abstract protected void MoveEnemy();
