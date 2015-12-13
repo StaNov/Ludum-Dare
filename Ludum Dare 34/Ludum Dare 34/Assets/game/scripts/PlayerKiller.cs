@@ -17,6 +17,8 @@ public class PlayerKiller : MonoBehaviour {
 		gameOverMenu.SetActive(true);
 
 		Camera camera = col.gameObject.GetComponentInChildren<Camera>();
+		AudioSource audioSource = col.gameObject.GetComponentInChildren<AudioSource>();
+		audioSource.Play();
 
 		if (camera != null) {
 			camera.transform.parent = null;
