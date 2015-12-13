@@ -11,6 +11,8 @@ public class BossFightStarter : MonoBehaviour {
 	private Animator bossAnimator;
 	private AudioSource musicPlayer;
 
+	private bool visited = false;
+
 	void Start () {
 		playerCamera = GameObject.FindWithTag("Player").GetComponentInChildren<Camera>();
 		cameraTargetPosition = transform.GetChild(0).position;
@@ -19,7 +21,7 @@ public class BossFightStarter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		if (!col.CompareTag("Player")) {
+		if (visited || !col.CompareTag("Player")) {
 			return;
 		}
 
@@ -29,6 +31,7 @@ public class BossFightStarter : MonoBehaviour {
 		musicPlayer.Play();
 
 		StartCoroutine(LerpCameraAndStartFight());
+		visited = true;
 	}
 
 	private IEnumerator LerpCameraAndStartFight() {
