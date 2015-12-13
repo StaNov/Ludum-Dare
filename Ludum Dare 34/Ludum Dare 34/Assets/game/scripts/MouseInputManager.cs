@@ -44,18 +44,18 @@ public class MouseInputManager : MonoBehaviour {
 			moving = false;
 			targetedEnemy = null;
 			playerTarget.position = Vector3.zero;
-			beesTarget.position = player.position;
+			beesTarget.position = new Vector3(player.position.x, player.position.y, beesTarget.position.z);
 		}
 
 		if (attacking) {
 			playerTarget.position = Vector3.zero;
-			beesTarget.position = mousePointPosition;
+			beesTarget.position = new Vector3(mousePointPosition.x, mousePointPosition.y, beesTarget.position.z);
 
 		}
 
 		if (moving) {
 			playerTarget.position = mousePointPosition;
-			beesTarget.position = player.position;
+			beesTarget.position = new Vector3(player.position.x, player.position.y, beesTarget.position.z);
 		}
 
 

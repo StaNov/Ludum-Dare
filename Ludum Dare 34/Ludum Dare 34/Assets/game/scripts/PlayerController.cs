@@ -20,6 +20,6 @@ public class PlayerController : MonoBehaviour {
 		moveDirection.Normalize();
 
 		transform.Translate(moveDirection * playerSpeed * Time.deltaTime);
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+		transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
 	}
 }

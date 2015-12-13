@@ -10,7 +10,7 @@ public class BeeCreator : MonoBehaviour {
 		Transform beesParent = GameObject.Find("bees").transform;
 
 		for (int i = 0; i < store.beesAtStartOfLevel; i++) {
-			Vector3 beePosition = new Vector3(transform.position.x + (Random.value*2-1), transform.position.y + (Random.value*2-1), transform.position.z);
+			Vector3 beePosition = new Vector3(transform.position.x + (Random.value*2-1), transform.position.y + (Random.value*2-1), 0f);
 			GameObject bee = (GameObject) Instantiate(beePrefab, beePosition, Quaternion.identity);
 			bee.transform.parent = beesParent;
 		}
