@@ -12,12 +12,14 @@ public class EnemyLife : MonoBehaviour {
 	private AudioSource deathAudioSource;
 
 	private GameObject deathAudioPlayer;
+	private AudioSource musicPlayer;
 
 	void Start() {
 		currentLife = startLife;
 		healthBar = transform.Find("healthBarWrapper/healthBar");
 		deathAudioPlayer = transform.Find("deathAudioPlayer").gameObject;
 		deathAudioSource = deathAudioPlayer.GetComponent<AudioSource>();
+		musicPlayer = GameObject.Find("musicPlayer").GetComponent<AudioSource>();
 	}
 
 	public void Hurt() {
@@ -27,6 +29,7 @@ public class EnemyLife : MonoBehaviour {
 			deathAudioPlayer.transform.parent = null;
 
 			if (boss) {
+				musicPlayer.Stop();
 				BossFightEnder.GetInstance().WaitForSecondsAndLoadNextScene(deathAudioSource.clip.length);
 			}
 

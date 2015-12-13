@@ -3,14 +3,19 @@ using System.Collections;
 
 public class BossFightStarter : MonoBehaviour {
 
+	public AudioClip bossIntro;
+	public AudioClip bossFight;
+
 	private Camera playerCamera;
 	private Vector3 cameraTargetPosition;
 	private Animator bossAnimator;
+	private AudioSource musicPlayer;
 
 	void Start () {
 		playerCamera = GameObject.FindWithTag("Player").GetComponentInChildren<Camera>();
 		cameraTargetPosition = transform.GetChild(0).position;
 		bossAnimator = GameObject.Find("boss").GetComponent<Animator>();
+		musicPlayer = GameObject.Find("musicPlayer").GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
@@ -19,6 +24,9 @@ public class BossFightStarter : MonoBehaviour {
 		}
 
 		playerCamera.transform.parent = null;
+		musicPlayer.clip = bossIntro;
+		musicPlayer.volume = 0.65f;
+		musicPlayer.Play();
 
 		StartCoroutine(LerpCameraAndStartFight());
 	}
@@ -30,5 +38,7 @@ public class BossFightStarter : MonoBehaviour {
 		}
 
 		bossAnimator.SetTrigger("StartFight");
+		musicPlayer.clip = bossFight;
+		musicPlayer.Play();
 	}
 }
