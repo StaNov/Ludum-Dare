@@ -12,7 +12,11 @@ public class EnemyLife : MonoBehaviour {
 
 	void Start() {
 		currentLife = startLife;
-		healthBar = transform.Find("healthBar").transform;
+		healthBar = transform.Find("healthBar");
+
+		if (healthBar == null) {
+			healthBar = transform.Find("healthBarWrapper/healthBar");
+		}
 	}
 
 	public void Hurt() {
