@@ -24,6 +24,8 @@ public class PlayerKiller : MonoBehaviour {
 			camera.transform.parent = null;
 		}
 
+		audioSource.transform.parent = null;
+
 		Destroy(col.gameObject);
 	}
 }
