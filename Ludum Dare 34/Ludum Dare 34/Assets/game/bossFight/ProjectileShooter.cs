@@ -7,13 +7,15 @@ public class ProjectileShooter : MonoBehaviour {
 	public int projectileSpeed;
 
 	private Transform player;
+	private Transform hand;
 
 	void Start () {
 		player = GameObject.FindWithTag("Player").transform;
+		hand = transform.Find("hand");
 	}
 
 	public void ShootProjectile () {
-		GameObject projectile = (GameObject) Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		GameObject projectile = (GameObject) Instantiate(projectilePrefab, hand.position, Quaternion.identity);
 		Vector2 projectileVelocity = player.position - transform.position;
 		projectileVelocity.Normalize();
 		projectileVelocity *= projectileSpeed;
