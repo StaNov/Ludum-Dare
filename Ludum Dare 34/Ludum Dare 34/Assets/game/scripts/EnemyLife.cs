@@ -15,13 +15,9 @@ public class EnemyLife : MonoBehaviour {
 
 	void Start() {
 		currentLife = startLife;
-		healthBar = transform.Find("healthBar");
+		healthBar = transform.Find("healthBarWrapper/healthBar");
 		deathAudioPlayer = transform.Find("deathAudioPlayer").gameObject;
 		deathAudioSource = deathAudioPlayer.GetComponent<AudioSource>();
-
-		if (healthBar == null) {
-			healthBar = transform.Find("healthBarWrapper/healthBar");
-		}
 	}
 
 	public void Hurt() {
