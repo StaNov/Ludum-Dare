@@ -11,8 +11,6 @@ public class MouseInputManager : MonoBehaviour {
 	private bool attacking = false;
 	private Transform targetedEnemy = null;
 
-	private bool gameOver = false;
-
 	void Start () {
 		player = GameObject.FindWithTag("Player").transform;
 		playerTarget = GameObject.FindWithTag("PlayerTarget").transform;
@@ -21,7 +19,7 @@ public class MouseInputManager : MonoBehaviour {
 
 	void Update () {
 
-		if (gameOver) {
+		if (player == null) {
 			return;
 		}
 
