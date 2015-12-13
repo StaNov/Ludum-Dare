@@ -18,5 +18,6 @@ public class CapturedBee : MonoBehaviour {
 		GameObject bee = (GameObject) Instantiate(beePrefab, transform.position, Quaternion.identity);
 		bee.transform.parent = beesParent;
 		Destroy(gameObject);
+		BeeCountUpdater.GetInstance().UpdateBeeCount();
 	}
 }

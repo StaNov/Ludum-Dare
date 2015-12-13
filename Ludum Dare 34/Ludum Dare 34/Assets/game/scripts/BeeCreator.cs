@@ -14,5 +14,7 @@ public class BeeCreator : MonoBehaviour {
 			GameObject bee = (GameObject) Instantiate(beePrefab, beePosition, Quaternion.identity);
 			bee.transform.parent = beesParent;
 		}
+
+		BeeCountUpdater.GetInstance().UpdateBeeCount();
 	}
 }
