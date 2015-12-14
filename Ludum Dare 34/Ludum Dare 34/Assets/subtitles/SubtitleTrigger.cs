@@ -10,7 +10,11 @@ public class SubtitleTrigger : MonoBehaviour {
 			return;
 		}
 
-		Subtitles.GetInstance().ShowNextSubtitle();
+		ShowNextSubtitle();
 		visited = true;
+	}
+
+	public void ShowNextSubtitle() {
+		Subtitles.GetInstance().ShowNextSubtitle();
 	}
 }
