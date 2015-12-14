@@ -11,7 +11,7 @@ public abstract class AbstractEnemyController : MonoBehaviour {
 	protected Transform player;
 
 	void Start() {
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.Find("player").transform;
 		audioSource = GetComponent<AudioSource>();
 	}
 

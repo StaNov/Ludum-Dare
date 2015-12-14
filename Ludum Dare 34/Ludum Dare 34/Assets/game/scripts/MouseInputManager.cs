@@ -12,7 +12,7 @@ public class MouseInputManager : MonoBehaviour {
 	private Transform targetedEnemy = null;
 
 	void Start () {
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.Find("player").transform;
 		playerTarget = GameObject.FindWithTag("PlayerTarget").transform;
 		beesTarget = GameObject.FindWithTag("BeesTarget").transform;
 	}

@@ -11,7 +11,7 @@ public class ProjectileShooter : MonoBehaviour {
 	private Transform hand;
 
 	void Start () {
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.Find("player").transform;
 		hand = transform.Find("hand");
 		audioSource = GetComponent<AudioSource>();
 	}

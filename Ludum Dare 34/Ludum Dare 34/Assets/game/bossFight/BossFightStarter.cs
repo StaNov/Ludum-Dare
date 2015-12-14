@@ -14,7 +14,7 @@ public class BossFightStarter : MonoBehaviour {
 	private bool visited = false;
 
 	void Start () {
-		playerCamera = GameObject.FindWithTag("Player").GetComponentInChildren<Camera>();
+		playerCamera = GameObject.Find("player").GetComponentInChildren<Camera>();
 		cameraTargetPosition = transform.GetChild(0).position;
 		bossAnimator = GameObject.Find("boss").GetComponent<Animator>();
 		musicPlayer = GameObject.Find("musicPlayer").GetComponent<AudioSource>();
