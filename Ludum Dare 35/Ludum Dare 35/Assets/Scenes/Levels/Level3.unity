@@ -378,7 +378,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[3].line
-      value: "Wait a second\u2026 I think I have an USE for you.\n"
+      value: "Wait a second\u2026 I think I have a USE for you.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[4].line

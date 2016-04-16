@@ -479,6 +479,163 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 468526, guid: ded4063620d369a4d991753030c0fb51, type: 2}
   m_PrefabInternal: {fileID: 1849694898}
+--- !u!1001 &532652928
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1676829216}
+    m_Modifications:
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[0].line
+      value: Look a key! I guess it fits into that door.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[1].line
+      value: Damn, I cannot grab it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[2].line
+      value: But wait... I can somehow...
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[3].line
+      value: Fill into it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[4].line
+      value: (Press ENTER to Shapeshift into objects to move them)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[5].line
+      value: (Press Space to jump)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[6].line
+      value: (You have to reach and unlock the door to progress further)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130586, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_Name
+      value: Dialog (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[4].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.r
+      value: 0.71323526
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[5].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[6].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[7].line
+      value: (You have to reach and unlock the door to progress further)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[7].actor
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &532652929 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+  m_PrefabInternal: {fileID: 532652928}
+--- !u!1 &532652930 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 130586, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+  m_PrefabInternal: {fileID: 532652928}
+--- !u!61 &532652931
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532652930}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.39751816, y: -0.56788206}
+  serializedVersion: 2
+  m_Size: {x: 1.0378591, y: 2.1357641}
 --- !u!4 &554039779 stripped
 Transform:
   m_PrefabParentObject: {fileID: 468526, guid: ded4063620d369a4d991753030c0fb51, type: 2}
@@ -810,7 +967,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 441850, guid: 0f8ca05da3c891845a2d5e94106f0690, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: -5.22
       objectReference: {fileID: 0}
     - target: {fileID: 441850, guid: 0f8ca05da3c891845a2d5e94106f0690, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1614,6 +1771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1945081813}
+  - {fileID: 532652929}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1001 &1688278479
