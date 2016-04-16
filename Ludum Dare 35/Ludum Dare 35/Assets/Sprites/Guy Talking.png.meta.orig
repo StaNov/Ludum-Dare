@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 9af3c027e330fd4429baf1cc77622461
+timeCreated: 1460816295
+=======
 guid: af20a53e5b16743adbf52ca4d852e881
 timeCreated: 1460817092
+>>>>>>> Added dialogue triggers
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
