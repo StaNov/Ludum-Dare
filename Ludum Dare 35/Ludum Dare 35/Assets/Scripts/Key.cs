@@ -3,18 +3,6 @@ using System.Collections;
 
 public class Key : MonoBehaviour {
 
-	public int doorId = 0;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void OnCollisionEnter2D (Collision2D col) {
 		Door door = col.collider.GetComponent<Door> ();
 
@@ -22,10 +10,8 @@ public class Key : MonoBehaviour {
 			return;
 		}
 
-		if (door.keyId == doorId) {
-			door.Open ();
-			GetComponent<ShapeShiftController> ().ReleaseGhost ();
-			Destroy (gameObject);
-		}
+		door.Open ();
+		GetComponent<ShapeShiftController> ().ReleaseGhost ();
+		Destroy (gameObject);
 	}
 }
