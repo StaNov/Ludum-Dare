@@ -5,20 +5,12 @@ public class ShapeShiftController : MonoBehaviour {
 
 	public float speed = 10;
 	public float jumpSpeed = 15;
+	public float maxSpeed = 2;
 
 	private Rigidbody2D rb;
 
 	void Awake() {
 		rb = GetComponent<Rigidbody2D> ();
-		rb.isKinematic = true;
-	}
-
-	void OnEnable() {
-		rb.isKinematic = false;
-	}
-
-	void OnDisable() {
-		rb.isKinematic = true;
 	}
 
 	void Update () {
@@ -31,6 +23,10 @@ public class ShapeShiftController : MonoBehaviour {
 		}
 
 		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), 0) * speed);
+		rb.velocity = new Vector2 (
+			Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed),
+			rb.velocity.y
+		);
 	}
 
 	public void ReleaseGhost() {
