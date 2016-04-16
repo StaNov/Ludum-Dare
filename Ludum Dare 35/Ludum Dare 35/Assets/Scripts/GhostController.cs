@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GhostController : MonoBehaviour {
 
 	public float ghostSpeed = 3;
 
 	private Rigidbody2D rb;
-	private ShapeShiftController currentCollidingShapeShiftable;
+	private List<ShapeShiftController> currentCollidingShiftables;
 
 	public static GhostController instance;
 
@@ -16,12 +17,14 @@ public class GhostController : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		currentCollidingShiftables = new List<ShapeShiftController> ();
 	}
 
 	void Update () {
-		if (currentCollidingShapeShiftable && Input.GetKeyDown (KeyCode.Return)) {
+		if (currentCollidingShiftables.Count > 0 && Input.GetKeyDown (KeyCode.Return)) {
 			gameObject.SetActive (false);
-			currentCollidingShapeShiftable.GetComponent<ShapeShiftController>().enabled = true;
+			currentCollidingShiftables[0].GetComponent<ShapeShiftController>().enabled = true;
+			currentCollidingShiftables.Clear ();
 		}
 
 		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * ghostSpeed);
@@ -34,10 +37,10 @@ public class GhostController : MonoBehaviour {
 			return;
 		}
 
-		currentCollidingShapeShiftable = shapeShiftable;
+		currentCollidingShiftables.Add(shapeShiftable);
 	}
 
 	void OnTriggerExit2D (Collider2D col) {
-		currentCollidingShapeShiftable = null;
+		currentCollidingShiftables.Remove(col.GetComponent<ShapeShiftController>());
 	}
 }
