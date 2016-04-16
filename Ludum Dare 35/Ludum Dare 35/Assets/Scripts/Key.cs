@@ -10,8 +10,10 @@ public class Key : MonoBehaviour {
 			return;
 		}
 
-		door.Open ();
-		GetComponent<ShapeShiftController> ().ReleaseGhost ();
+		door.Open();
+		if (GetComponent<ShapeShiftController> ().enabled) {
+			GetComponent<ShapeShiftController> ().ReleaseGhost ();
+		}
 		Destroy (gameObject);
 	}
 }
