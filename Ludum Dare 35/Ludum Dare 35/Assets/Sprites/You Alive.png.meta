@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 13beca64bf9390744909766ef9064b2f
-timeCreated: 1460811560
+timeCreated: 1460825084
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: You Alive_0
+    21300002: You Alive_1
+    21300004: You Alive_2
+    21300006: You Alive_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +42,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +53,83 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: You Alive_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 12}
+        - {x: -13, y: 6}
+        - {x: -13, y: -9}
+        - {x: -6, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -4}
+        - {x: 7, y: 8}
+        - {x: 6, y: 12}
+    - name: You Alive_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 11}
+        - {x: -13, y: 4}
+        - {x: -13, y: -13}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -11}
+        - {x: 7, y: 9}
+        - {x: 5, y: 11}
+    - name: You Alive_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 12}
+        - {x: -13, y: 6}
+        - {x: -13, y: -9}
+        - {x: -6, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -4}
+        - {x: 7, y: 8}
+        - {x: 6, y: 12}
+    - name: You Alive_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 11}
+        - {x: -13, y: 3}
+        - {x: -13, y: -9}
+        - {x: -6, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -6}
+        - {x: 7, y: 7}
+        - {x: 5, y: 11}
     outline: []
   spritePackingTag: 
   userData: 
