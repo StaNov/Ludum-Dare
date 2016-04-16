@@ -7,7 +7,7 @@ public class GhostController : MonoBehaviour {
 	public float ghostSpeed = 3;
 
 	private Rigidbody2D rb;
-	private List<ShapeShiftController> currentCollidingShiftables;
+	private ShapeShiftController currentCollidingShiftable;
 
 	public static GhostController instance;
 
@@ -17,30 +17,31 @@ public class GhostController : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-		currentCollidingShiftables = new List<ShapeShiftController> ();
 	}
 
 	void Update () {
-		if (currentCollidingShiftables.Count > 0 && Input.GetKeyDown (KeyCode.Return)) {
+		SetCurrentCollidingShiftable ();
+
+		if (currentCollidingShiftable != null && Input.GetKeyDown (KeyCode.Return)) {
 			gameObject.SetActive (false);
-			currentCollidingShiftables[0].GetComponent<ShapeShiftController>().enabled = true;
-			currentCollidingShiftables.Clear ();
+			currentCollidingShiftable.GetComponent<ShapeShiftController>().enabled = true;
+			currentCollidingShiftable = null;
 		}
 
 		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * ghostSpeed);
 	}
 
-	void OnTriggerEnter2D (Collider2D col) {
-		ShapeShiftController shapeShiftable = col.GetComponent<ShapeShiftController> ();
+	private void SetCurrentCollidingShiftable() {
+		Collider2D[] cols = Physics2D.OverlapPointAll (transform.position);
 
-		if (shapeShiftable == null) {
-			return;
+		currentCollidingShiftable = null;
+
+		foreach (Collider2D col in cols) {
+			ShapeShiftController controller = col.GetComponent<ShapeShiftController> ();
+			if (controller != null) {
+				currentCollidingShiftable = controller;
+				break;
+			}
 		}
-
-		currentCollidingShiftables.Add(shapeShiftable);
-	}
-
-	void OnTriggerExit2D (Collider2D col) {
-		currentCollidingShiftables.Remove(col.GetComponent<ShapeShiftController>());
 	}
 }
