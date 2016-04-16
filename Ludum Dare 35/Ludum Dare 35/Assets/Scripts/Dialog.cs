@@ -45,6 +45,7 @@ public class Dialog : MonoBehaviour {
 	}
 
 	private void StartDialog() {
+		Time.timeScale = 0;
 		currentLineIndex = 0;
 		Vector3 position = new Vector3 (transform.position.x, transform.position.y, dialogWindowPrefab.transform.position.z);
 		GameObject dialogWindowObject = (GameObject) Instantiate (dialogWindowPrefab, position, Quaternion.identity);
@@ -54,6 +55,13 @@ public class Dialog : MonoBehaviour {
 	}
 
 	private void ShowNextLine() {
+		if (currentLineIndex == dialogLines.Length) {
+			Time.timeScale = 1;
+			Destroy (dialogWindow.gameObject);
+			Destroy (gameObject);
+			return;
+		}
+
 		DialogLine currentLine = dialogLines [currentLineIndex];
 
 		if (currentLine.actor == DialogActor.ACTOR_1) {
@@ -63,11 +71,6 @@ public class Dialog : MonoBehaviour {
 		}
 
 		currentLineIndex++;
-
-		if (currentLineIndex == dialogLines.Length) {
-			Destroy (dialogWindow.gameObject);
-			Destroy (gameObject);
-		}
 	}
 
 
