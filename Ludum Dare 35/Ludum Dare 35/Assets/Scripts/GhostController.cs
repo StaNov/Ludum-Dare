@@ -20,6 +20,10 @@ public class GhostController : MonoBehaviour {
 	}
 
 	void Update () {
+		if (Time.timeScale == 0) {
+			return;
+		}
+
 		SetCurrentCollidingShiftable ();
 
 		if (currentCollidingShiftable != null && Input.GetKeyDown (KeyCode.Return)) {
