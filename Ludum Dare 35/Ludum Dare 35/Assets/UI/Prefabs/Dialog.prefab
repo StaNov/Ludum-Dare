@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogWindowPrefab: {fileID: 154526, guid: 1347850f4555d3f43aa6f16a20eaa1ad, type: 2}
-  color1: {r: 1, g: 0, b: 0, a: 0}
-  color2: {r: 0, g: 0, b: 1, a: 0}
+  color1: {r: 1, g: 0, b: 0, a: 1}
+  color2: {r: 0, g: 0, b: 1, a: 1}
   dialogLines: []
 --- !u!1001 &100100000
 Prefab:
@@ -69,6 +69,14 @@ Prefab:
       propertyPath: dialogWindowPrefab
       value: 
       objectReference: {fileID: 154526, guid: 1347850f4555d3f43aa6f16a20eaa1ad, type: 2}
+    - target: {fileID: 0}
+      propertyPath: color1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color2.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130586}
