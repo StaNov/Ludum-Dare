@@ -1951,7 +1951,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[0].line
-      value: " You: I don\u2019t know what to do with my life."
+      value: "I don\u2019t know what to do with my life."
       objectReference: {fileID: 0}
     - target: {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_Enabled
@@ -1959,24 +1959,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[1].line
-      value: "You: Why do I do this? Why don\u2019t I work anywhere else. I am a programmer
+      value: "Why do I do this? Why don\u2019t I work anywhere else. I am a programmer
         for god sakes.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[2].line
-      value: "You: This job has no meaning for me\u2026 My life has no meaning\n"
+      value: "This job has no meaning for me\u2026 My life has no meaning\n"
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[3].line
-      value: "You: Wait\u2026 I GOT IT!\n"
+      value: "Wait\u2026 I GOT IT!\n"
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[4].line
-      value: 'You: I know what is the meaning of life now!'
+      value: I know what is the meaning of life now!
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[5].line
-      value: 'You: I have to go tell everyone.'
+      value: I have to go tell everyone.
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[6].line
@@ -1989,6 +1989,18 @@ Prefab:
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: color2.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
