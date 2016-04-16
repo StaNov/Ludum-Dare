@@ -58,6 +58,7 @@ GameObject:
   - 223: {fileID: 22344302}
   - 114: {fileID: 11471658}
   - 114: {fileID: 11484984}
+  - 114: {fileID: 11487078}
   m_Layer: 5
   m_Name: DialogWindow
   m_TagString: Untagged
@@ -162,10 +163,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left Text
+  m_Text: Left Text long long text
 --- !u!114 &11410008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,10 +196,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Right Text
+  m_Text: Right Text long long text
 --- !u!114 &11412184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,6 +318,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11487078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7415847cd2c1c2e43894b2bb99d3bbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftPanel: {fileID: 156362}
+  leftText: {fileID: 11401568}
+  rightPanel: {fileID: 149506}
+  rightText: {fileID: 11410008}
 --- !u!222 &22226134
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -435,7 +451,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.26, y: -2.11}
+  m_AnchoredPosition: {x: -12.73, y: -1.9}
   m_SizeDelta: {x: 141.91, y: 84.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22447422
