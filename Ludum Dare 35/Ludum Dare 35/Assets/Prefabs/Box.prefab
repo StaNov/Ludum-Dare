@@ -73,7 +73,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139290}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb81dea008fe154c82f57bbda930ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  jumpSpeed: 15
+  speed: 300
+  jumpSpeed: 100
   maxSpeed: 2
 --- !u!1001 &100100000
 Prefab:
@@ -132,6 +132,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpSpeed
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
