@@ -16,6 +16,7 @@ public enum DialogActor {
 
 public class Dialog : MonoBehaviour {
 
+	public bool nextSceneAfterDialog = false;
 	public GameObject dialogWindowPrefab;
 	public Color color1;
 	public Color color2;
@@ -60,6 +61,11 @@ public class Dialog : MonoBehaviour {
 			Time.timeScale = 1;
 			Destroy (dialogWindow.gameObject);
 			Destroy (gameObject);
+
+			if (nextSceneAfterDialog) {
+				Fader.instance.FadeOutAndPlayNextScene ();
+			}
+
 			return;
 		}
 
