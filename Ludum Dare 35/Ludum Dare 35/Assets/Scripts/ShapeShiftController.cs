@@ -40,5 +40,6 @@ public class ShapeShiftController : MonoBehaviour {
 			transform.position.y,
 			GhostController.instance.transform.position.z);
 		enabled = false;
+		tag = "Untagged";
 	}
 }

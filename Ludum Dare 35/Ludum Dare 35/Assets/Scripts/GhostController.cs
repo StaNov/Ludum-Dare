@@ -29,6 +29,7 @@ public class GhostController : MonoBehaviour {
 		if (currentCollidingShiftable != null && Input.GetKeyDown (KeyCode.Return)) {
 			gameObject.SetActive (false);
 			currentCollidingShiftable.GetComponent<ShapeShiftController>().enabled = true;
+			currentCollidingShiftable.tag = "Player";
 			currentCollidingShiftable = null;
 		}
 
