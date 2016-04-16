@@ -15,7 +15,10 @@ public class ShapeShiftableController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Return)) {
 			GhostController.instance.gameObject.SetActive (true);
-			GhostController.instance.transform.position = transform.position;
+			GhostController.instance.transform.position = new Vector3 (
+				transform.position.x,
+				transform.position.y,
+				GhostController.instance.transform.position.z);
 			enabled = false;
 		}
 
