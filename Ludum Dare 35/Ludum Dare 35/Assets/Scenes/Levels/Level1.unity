@@ -1554,7 +1554,7 @@ Transform:
   m_Children:
   - {fileID: 1945081813}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &1688278479
 Prefab:
   m_ObjectHideFlags: 0
@@ -1852,6 +1852,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1676829216}
     m_Modifications:
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.08
@@ -1884,7 +1888,41 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[0].line
+      value: " You: I don\u2019t know what to do with my life."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[1].line
+      value: "You: Why do I do this? Why don\u2019t I work anywhere else. I am a programmer
+        for god sakes.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[2].line
+      value: "You: This job has no meaning for me\u2026 My life has no meaning\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[3].line
+      value: "You: Wait\u2026 I GOT IT!\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[4].line
+      value: 'You: I know what is the meaning of life now!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[5].line
+      value: 'You: I have to go tell everyone.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[6].line
+      value: I have to go tell everyone.
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1945081813 stripped
