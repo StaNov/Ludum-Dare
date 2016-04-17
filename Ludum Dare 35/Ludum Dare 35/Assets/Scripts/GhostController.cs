@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GhostController : MonoBehaviour {
 
 	public float ghostSpeed = 3;
+	public float maxSpeed = 3;
 	public LayerMask onlyShiftables;
 
 	private Rigidbody2D rb;
@@ -35,7 +36,11 @@ public class GhostController : MonoBehaviour {
 			currentCollidingShiftables.Clear ();
 		}
 
-		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * ghostSpeed);
+		if (rb.velocity.magnitude < maxSpeed) {
+			rb.AddForce (new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")) * ghostSpeed);
+		} else {
+			rb.velocity = rb.velocity.normalized * maxSpeed;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {

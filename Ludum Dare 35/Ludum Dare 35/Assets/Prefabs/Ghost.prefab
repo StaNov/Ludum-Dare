@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostSpeed: 30
+  maxSpeed: 6
   onlyShiftables:
     serializedVersion: 2
     m_Bits: 2048
@@ -317,6 +318,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: onlyShiftables.m_Bits
       value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
