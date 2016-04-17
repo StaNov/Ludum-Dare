@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 
@@ -40,8 +40,10 @@ public class Dialog : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		GetComponent<Collider2D> ().enabled = false;
-		StartDialog ();
+		if (col.CompareTag ("Player")) {
+			GetComponent<Collider2D> ().enabled = false;
+			StartDialog ();
+		}
 	}
 
 	private void StartDialog() {
