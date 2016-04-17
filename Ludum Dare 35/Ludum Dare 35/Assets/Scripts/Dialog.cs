@@ -63,7 +63,7 @@ public class Dialog : MonoBehaviour {
 			Destroy (gameObject);
 
 			if (nextSceneAfterDialog) {
-				Fader.instance.FadeOutAndPlayNextScene ();
+				FaderAndMusicPlayer.instance.FadeOutAndPlayNextScene ();
 			}
 
 			return;

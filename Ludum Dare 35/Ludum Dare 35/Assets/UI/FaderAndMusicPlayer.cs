@@ -2,11 +2,11 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class Fader : MonoBehaviour {
+public class FaderAndMusicPlayer : MonoBehaviour {
 
 	private Animator animator;
 
-	public static Fader instance;
+	public static FaderAndMusicPlayer instance;
 
 	void Awake() {
 		instance = this;
