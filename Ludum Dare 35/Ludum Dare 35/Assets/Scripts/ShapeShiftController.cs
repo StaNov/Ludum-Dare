@@ -8,9 +8,11 @@ public class ShapeShiftController : MonoBehaviour {
 	public float maxSpeed = 2;
 
 	private Rigidbody2D rb;
+	private Animator animator;
 
 	void Awake() {
 		rb = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	void Update () {
@@ -33,7 +35,15 @@ public class ShapeShiftController : MonoBehaviour {
 		);
 	}
 
+	public void CaptureGhost() {
+		animator.SetTrigger ("Shapeshift");
+		GhostController.instance.gameObject.SetActive (false);
+		enabled = true;
+		tag = "Player";
+	}
+
 	public void ReleaseGhost() {
+		animator.SetTrigger ("Shapeshift");
 		GhostController.instance.gameObject.SetActive (true);
 		GhostController.instance.transform.position = new Vector3 (
 			transform.position.x,

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: eb39dbfc816edd54eba2817a0bd49f3a
-timeCreated: 1460805450
+guid: 156ddffaf08bd09488849f06cdb7c5b1
+timeCreated: 1460871033
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Key Shapeshifted Walking_0
-    21300002: Key Shapeshifted Walking_1
-    21300004: Key Shapeshifted Walking_2
-    21300006: Key Shapeshifted Walking_3
+    21300000: Key_0
+    21300002: Key_1
+    21300004: Key_2
+    21300006: Key_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Key Shapeshifted Walking_0
+    - name: Key_0
       rect:
         serializedVersion: 2
         x: 0
@@ -65,14 +65,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 11, y: -2}
-        - {x: 8, y: 5}
+      - - {x: -4, y: 5}
         - {x: -10, y: 5}
         - {x: -12, y: 4}
-        - {x: -12, y: -6}
-        - {x: -8, y: -8}
-        - {x: 11, y: -8}
-    - name: Key Shapeshifted Walking_1
+        - {x: -12, y: -2}
+        - {x: -11, y: -5}
+        - {x: 9, y: -5}
+        - {x: 10, y: -2}
+        - {x: 10, y: 1}
+        - {x: 8, y: 4}
+    - name: Key_1
       rect:
         serializedVersion: 2
         x: 32
@@ -83,14 +85,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10, y: 5}
+      - - {x: -4, y: 5}
+        - {x: -10, y: 5}
         - {x: -12, y: 4}
-        - {x: -12, y: -5}
-        - {x: -9, y: -8}
-        - {x: 10, y: -8}
-        - {x: 10, y: 2}
-        - {x: 9, y: 5}
-    - name: Key Shapeshifted Walking_2
+        - {x: -12, y: -2}
+        - {x: -11, y: -5}
+        - {x: 9, y: -5}
+        - {x: 10, y: -2}
+        - {x: 10, y: 1}
+        - {x: 8, y: 4}
+    - name: Key_2
       rect:
         serializedVersion: 2
         x: 64
@@ -101,16 +105,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 5}
-        - {x: -11, y: 5}
-        - {x: -12, y: 3}
-        - {x: -12, y: -5}
-        - {x: -9, y: -8}
-        - {x: 9, y: -8}
-        - {x: 10, y: -3}
-        - {x: 10, y: 2}
+      - - {x: -4, y: 5}
+        - {x: -10, y: 5}
+        - {x: -12, y: 4}
+        - {x: -12, y: -2}
+        - {x: -11, y: -5}
+        - {x: 9, y: -5}
+        - {x: 10, y: -2}
+        - {x: 10, y: 1}
         - {x: 8, y: 4}
-    - name: Key Shapeshifted Walking_3
+    - name: Key_3
       rect:
         serializedVersion: 2
         x: 96
@@ -121,13 +125,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10, y: 5}
+      - - {x: -4, y: 5}
+        - {x: -10, y: 5}
         - {x: -12, y: 4}
-        - {x: -12, y: -5}
-        - {x: -9, y: -8}
-        - {x: 10, y: -8}
-        - {x: 10, y: 2}
-        - {x: 9, y: 5}
+        - {x: -12, y: -2}
+        - {x: -11, y: -5}
+        - {x: 9, y: -5}
+        - {x: 10, y: -2}
+        - {x: 10, y: 1}
+        - {x: 8, y: 4}
     outline: []
   spritePackingTag: 
   userData: 
