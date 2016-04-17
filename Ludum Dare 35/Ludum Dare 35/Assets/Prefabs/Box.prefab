@@ -104,7 +104,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f8be8bcd0e02f3e459538175ddff181c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -134,7 +134,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5679b62db6daac54baabc3b10a8a88d2, type: 2}
+      objectReference: {fileID: 2100000, guid: f8be8bcd0e02f3e459538175ddff181c, type: 2}
     - target: {fileID: 0}
       propertyPath: m_LinearDrag
       value: 0

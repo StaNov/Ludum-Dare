@@ -134,8 +134,8 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 0.747, g: 1, b: 1, a: 1}
-  m_Intensity: 3.03
-  m_Range: 2.58
+  m_Intensity: 3.3
+  m_Range: 8.57
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f8be8bcd0e02f3e459538175ddff181c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -209,7 +209,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 83aefc564a6cb374197e45249f2f1f9f, type: 2}
+      objectReference: {fileID: 2100000, guid: f8be8bcd0e02f3e459538175ddff181c, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 4
@@ -229,7 +229,7 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Range
-      value: 2.58
+      value: 8.57
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.r
@@ -245,7 +245,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Intensity
-      value: 3.03
+      value: 3.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
