@@ -8,6 +8,8 @@ public class ShapeShiftController : MonoBehaviour {
 	public float maxSpeed = 2;
 	public Color highlightColor;
 
+	public bool shapeshiftPermanent = false;
+
 	private Rigidbody2D rb;
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
@@ -47,6 +49,9 @@ public class ShapeShiftController : MonoBehaviour {
 	}
 
 	public void ReleaseGhost() {
+		if (shapeshiftPermanent)
+			return;
+		
 		animator.SetTrigger ("Shapeshift");
 		GhostController.instance.gameObject.SetActive (true);
 		GhostController.instance.transform.position = new Vector3 (

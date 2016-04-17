@@ -46,7 +46,7 @@ public class Dialog : MonoBehaviour {
 		}
 	}
 
-	private void StartDialog() {
+	public void StartDialog() {
 		Time.timeScale = 0;
 		currentLineIndex = 0;
 		Vector3 position = new Vector3 (transform.position.x, transform.position.y, dialogWindowPrefab.transform.position.z);
