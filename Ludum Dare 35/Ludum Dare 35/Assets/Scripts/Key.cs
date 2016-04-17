@@ -12,7 +12,7 @@ public class Key : MonoBehaviour {
 
 		door.Open();
 		if (GetComponent<ShapeShiftController> ().enabled) {
-			GetComponent<ShapeShiftController> ().ReleaseGhost ();
+			GetComponent<ShapeShiftController> ().ReleaseGhost (true);
 		}
 		Destroy (gameObject);
 	}

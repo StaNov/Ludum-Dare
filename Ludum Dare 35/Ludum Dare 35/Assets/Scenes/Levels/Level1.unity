@@ -210,7 +210,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[1].line
-      value: (When you get stuck, there is a Restart button in the top left corner)
+      value: (When you get stuck, there is a Restart button in the top left corner
+        of the screen)
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[2].line
@@ -581,7 +582,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!4 &206409828 stripped
 Transform:
   m_PrefabParentObject: {fileID: 468526, guid: ded4063620d369a4d991753030c0fb51, type: 2}
@@ -1303,6 +1304,7 @@ Transform:
   - {fileID: 1504785340}
   - {fileID: 206409828}
   - {fileID: 691033951}
+  - {fileID: 502996663}
   - {fileID: 1598428968}
   - {fileID: 1783499155}
   - {fileID: 507126310}
@@ -1311,14 +1313,13 @@ Transform:
   - {fileID: 1665329241}
   - {fileID: 1358897095}
   - {fileID: 1289426670}
-  - {fileID: 162769260}
-  - {fileID: 1282937085}
-  - {fileID: 1588295016}
   - {fileID: 1173359524}
-  - {fileID: 502996663}
+  - {fileID: 1282937085}
+  - {fileID: 162769260}
+  - {fileID: 1588295016}
   - {fileID: 1132078946}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1001 &709445614
 Prefab:
   m_ObjectHideFlags: 0
@@ -2373,6 +2374,48 @@ Prefab:
     - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1278362448
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 416814, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d5be2a69a20c651419a2c95e175c4869, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &1280261715 stripped
 Transform:
   m_PrefabParentObject: {fileID: 468526, guid: ded4063620d369a4d991753030c0fb51, type: 2}
@@ -2512,7 +2555,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
 --- !u!1001 &1301111358
 Prefab:
   m_ObjectHideFlags: 0
@@ -3115,7 +3158,7 @@ Transform:
   - {fileID: 882990894}
   - {fileID: 112813224}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1001 &1679092839
 Prefab:
   m_ObjectHideFlags: 0
@@ -4027,7 +4070,7 @@ Transform:
   - {fileID: 1267989021}
   - {fileID: 2118095945}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &2017808915 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 130586, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
@@ -4444,4 +4487,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12

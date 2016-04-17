@@ -44,6 +44,7 @@ public class ShapeShiftController : MonoBehaviour {
 		if ((Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1) ) && can_jump) {
 			can_jump = false;
 			rb.AddForce (Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+			EffectsPlayer.instance.Play (EffectsPlayer.instance.jump);
 		}
 
 		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), 0) * speed);
@@ -59,12 +60,17 @@ public class ShapeShiftController : MonoBehaviour {
 		enabled = true;
 		tag = "Player";
 		Unhighlight ();
+		EffectsPlayer.instance.Play (EffectsPlayer.instance.shapeshiftIn);
 	}
 
 	public void ReleaseGhost() {
+		ReleaseGhost (false);
+	}
+
+	public void ReleaseGhost(bool releasingByDoor) {
 		if (shapeshiftPermanent)
 			return;
-		
+
 		animator.SetTrigger ("Shapeshift");
 		GhostController.instance.gameObject.SetActive (true);
 		GhostController.instance.transform.position = new Vector3 (
@@ -74,6 +80,9 @@ public class ShapeShiftController : MonoBehaviour {
 		enabled = false;
 		tag = "Untagged";
 		Highlight ();
+		EffectsPlayer.instance.Play (
+			releasingByDoor ? EffectsPlayer.instance.openDoor : EffectsPlayer.instance.shapeshiftOut
+		);
 	}
 
 	public void Highlight() {
