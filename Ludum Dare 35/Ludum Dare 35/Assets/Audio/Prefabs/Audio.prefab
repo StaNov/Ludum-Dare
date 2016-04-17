@@ -68,7 +68,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   shapeshift: {fileID: 8300000, guid: 2a83cd42f92bbb54481ba8213c519861, type: 3}
   openDoor: {fileID: 8300000, guid: 4556e5f479b6439498c8b96c0912da65, type: 3}
   endLevel: {fileID: 8300000, guid: 7cc194045a20c8e469255f7231892f26, type: 3}
-  rockFall: {fileID: 0}
+  busHit: {fileID: 8300000, guid: 8c9008870d007294888464f8f81e9d4e, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -178,6 +178,14 @@ Prefab:
       propertyPath: shapeshift
       value: 
       objectReference: {fileID: 8300000, guid: 2a83cd42f92bbb54481ba8213c519861, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: busHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c9008870d007294888464f8f81e9d4e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137624}

@@ -7,7 +7,7 @@ public class EffectsPlayer : MonoBehaviour {
 	public AudioClip shapeshift;
 	public AudioClip openDoor;
 	public AudioClip endLevel;
-	public AudioClip rockFall;
+	public AudioClip busHit;
 
 	private AudioSource source;
 	public static EffectsPlayer instance;
