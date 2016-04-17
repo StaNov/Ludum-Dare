@@ -276,7 +276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENTER to continue
+  m_Text: SPACE to continue
 --- !u!114 &11467986
 MonoBehaviour:
   m_ObjectHideFlags: 1

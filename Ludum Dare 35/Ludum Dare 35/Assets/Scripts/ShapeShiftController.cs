@@ -8,6 +8,10 @@ public class ShapeShiftController : MonoBehaviour {
 	public float maxSpeed = 2;
 	public Color highlightColor;
 
+	private bool can_jump = true;
+	private bool falling = false;
+
+
 	public bool shapeshiftPermanent = false;
 
 	private Rigidbody2D rb;
@@ -25,11 +29,20 @@ public class ShapeShiftController : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton1)) {
+		if (!can_jump && rb.velocity.y < 0) {
+			falling = true;
+		}
+		if (!can_jump && falling && rb.velocity.y == 0 ) {
+			can_jump = true;
+			falling = false;
+		}
+
+		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0)) {
 			ReleaseGhost ();
 		}
 
-		if ((Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) ) && rb.velocity.y == 0) {
+		if ((Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1) ) && can_jump) {
+			can_jump = false;
 			rb.AddForce (Vector2.up * jumpSpeed, ForceMode2D.Impulse);
 		}
 
