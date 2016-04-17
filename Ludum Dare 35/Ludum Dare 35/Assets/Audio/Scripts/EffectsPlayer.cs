@@ -4,9 +4,9 @@ using System.Collections;
 public class EffectsPlayer : MonoBehaviour {
 
 	public AudioClip jump;
-	public AudioClip shapeshiftIn;
-	public AudioClip shapeshiftOut;
+	public AudioClip shapeshift;
 	public AudioClip openDoor;
+	public AudioClip endLevel;
 
 	private AudioSource source;
 	public static EffectsPlayer instance;

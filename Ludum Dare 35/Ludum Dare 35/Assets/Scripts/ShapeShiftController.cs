@@ -60,7 +60,7 @@ public class ShapeShiftController : MonoBehaviour {
 		enabled = true;
 		tag = "Player";
 		Unhighlight ();
-		EffectsPlayer.instance.Play (EffectsPlayer.instance.shapeshiftIn);
+		EffectsPlayer.instance.Play (EffectsPlayer.instance.shapeshift);
 	}
 
 	public void ReleaseGhost() {
@@ -81,7 +81,7 @@ public class ShapeShiftController : MonoBehaviour {
 		tag = "Untagged";
 		Highlight ();
 		EffectsPlayer.instance.Play (
-			releasingByDoor ? EffectsPlayer.instance.openDoor : EffectsPlayer.instance.shapeshiftOut
+			releasingByDoor ? EffectsPlayer.instance.openDoor : EffectsPlayer.instance.shapeshift
 		);
 	}
 
