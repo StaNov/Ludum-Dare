@@ -164,15 +164,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.1
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.43
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_LocalPosition.z
@@ -210,12 +210,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[1].line
-      value: (Shapeshift back to ghost by pressing ENTER, then shapeshift into the
-        chest to get it away)
+      value: (When you get stuck, there is a Restart button in the top left corner)
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[2].line
-      value: (Press Space to jump)
+      value: Good luck!
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[3].line
@@ -328,7 +327,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.39751816, y: -0.7101898}
+  m_Offset: {x: 1.42, y: -1.07}
   serializedVersion: 2
   m_Size: {x: 1.0378591, y: 1.8511486}
 --- !u!1001 &123289859

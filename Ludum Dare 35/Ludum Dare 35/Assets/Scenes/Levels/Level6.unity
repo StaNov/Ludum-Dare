@@ -789,6 +789,18 @@ Prefab:
       propertyPath: color2.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.r
+      value: 0.21108015
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.g
+      value: 0.7758621
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color1.b
+      value: 0.7758621
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
@@ -1413,14 +1425,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneAfterDialog: 0
   dialogWindowPrefab: {fileID: 154526, guid: 1347850f4555d3f43aa6f16a20eaa1ad, type: 2}
-  color1: {r: 1, g: 0, b: 0, a: 1}
+  color1: {r: 0.86551726, g: 0.86551726, b: 0.86551726, a: 1}
   color2: {r: 0, g: 0, b: 1, a: 1}
   dialogLines:
-  - line: Ehm.. Ehm... Listen people!
+  - line: Ehm.. Ehm...
     actor: 0
-  - line: I know the meaning of life!
+  - line: <b>Listen people!</b>
     actor: 0
-  - line: Its...
+  - line: <b>I know the meaning of life!</b>
+    actor: 0
+  - line: <b>Its...</b>
     actor: 0
 --- !u!1001 &1159185934
 Prefab:

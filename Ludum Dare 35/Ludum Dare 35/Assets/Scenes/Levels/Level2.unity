@@ -2229,7 +2229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[6].line
-      value: " Yeah sure... Don\u2019t you think I would have noticed that?"
+      value: "Yeah sure... Don\u2019t you think I would have noticed that?"
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: color1.a
