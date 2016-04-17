@@ -6,13 +6,16 @@ public class ShapeShiftController : MonoBehaviour {
 	public float speed = 10;
 	public float jumpSpeed = 15;
 	public float maxSpeed = 2;
+	public Color highlightColor;
 
 	private Rigidbody2D rb;
 	private Animator animator;
+	private SpriteRenderer spriteRenderer;
 
 	void Awake() {
 		rb = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
 
 	void Update () {
@@ -40,6 +43,7 @@ public class ShapeShiftController : MonoBehaviour {
 		GhostController.instance.gameObject.SetActive (false);
 		enabled = true;
 		tag = "Player";
+		Unhighlight ();
 	}
 
 	public void ReleaseGhost() {
@@ -51,5 +55,14 @@ public class ShapeShiftController : MonoBehaviour {
 			GhostController.instance.transform.position.z);
 		enabled = false;
 		tag = "Untagged";
+		Highlight ();
+	}
+
+	public void Highlight() {
+		spriteRenderer.material.color = highlightColor;
+	}
+
+	public void Unhighlight() {
+		spriteRenderer.material.color = Color.white;
 	}
 }

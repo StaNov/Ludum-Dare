@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11441586}
   - 212: {fileID: 21298478}
   - 95: {fileID: 9598014}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +94,7 @@ MonoBehaviour:
   speed: 10
   jumpSpeed: 7.5
   maxSpeed: 3
+  highlightColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!212 &21298478
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -156,6 +157,26 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c1b8f7b0b2246224b8437293282eb048, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118122}

@@ -14,7 +14,7 @@ GameObject:
   - 212: {fileID: 21230274}
   - 95: {fileID: 9539614}
   - 58: {fileID: 5834924}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   speed: 10
   jumpSpeed: 7.5
   maxSpeed: 3
+  highlightColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!212 &21230274
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -192,6 +193,26 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b483d53fa00fe2b469e9bec818d32f0a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184112}

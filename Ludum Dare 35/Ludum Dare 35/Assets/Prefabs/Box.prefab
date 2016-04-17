@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11438176}
   - 212: {fileID: 21251436}
   - 95: {fileID: 9547422}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +94,7 @@ MonoBehaviour:
   speed: 300
   jumpSpeed: 100
   maxSpeed: 2
+  highlightColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!212 &21251436
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -184,6 +185,26 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9bf4391a8cbd3084eace2a6dfd31587f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highlightColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 139290}

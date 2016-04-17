@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class GhostController : MonoBehaviour {
 
 	public float ghostSpeed = 3;
+	public LayerMask onlyShiftables;
 
 	private Rigidbody2D rb;
 	private ShapeShiftController currentCollidingShiftable;
+	private List<ShapeShiftController> currentCollidingShiftables;
 
 	public static GhostController instance;
 
@@ -17,6 +19,7 @@ public class GhostController : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		currentCollidingShiftables = new List<ShapeShiftController>();
 	}
 
 	void Update () {
@@ -29,22 +32,37 @@ public class GhostController : MonoBehaviour {
 		if (currentCollidingShiftable != null && ( Input.GetKeyDown (KeyCode.Return)  || Input.GetKeyDown(KeyCode.JoystickButton1))) {
 			currentCollidingShiftable.GetComponent<ShapeShiftController> ().CaptureGhost ();
 			currentCollidingShiftable = null;
+			currentCollidingShiftables.Clear ();
 		}
 
 		rb.AddForce (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * ghostSpeed);
 	}
 
+	void OnTriggerEnter2D(Collider2D col) {
+		currentCollidingShiftables.Add(col.GetComponent<ShapeShiftController>());
+	}
+
+	void OnTriggerExit2D(Collider2D col) {
+		currentCollidingShiftables.Remove(col.GetComponent<ShapeShiftController>());
+	}
+
 	private void SetCurrentCollidingShiftable() {
-		Collider2D[] cols = Physics2D.OverlapPointAll (transform.position);
+		if (currentCollidingShiftable == null && currentCollidingShiftables.Count == 0) {
+			return;
+		}
 
-		currentCollidingShiftable = null;
+		if (currentCollidingShiftables.Count != 0 && currentCollidingShiftable == currentCollidingShiftables [0]) {
+			return;
+		}
 
-		foreach (Collider2D col in cols) {
-			ShapeShiftController controller = col.GetComponent<ShapeShiftController> ();
-			if (controller != null) {
-				currentCollidingShiftable = controller;
-				break;
-			}
+		if (currentCollidingShiftable != null) {
+			currentCollidingShiftable.Unhighlight ();
+			currentCollidingShiftable = null;
+		}
+
+		if (currentCollidingShiftables.Count != 0) {
+			currentCollidingShiftable = currentCollidingShiftables[0];
+			currentCollidingShiftable.Highlight ();
 		}
 	}
 }
