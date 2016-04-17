@@ -15,8 +15,6 @@ GameObject:
   - 95: {fileID: 9547422}
   - 58: {fileID: 5884122}
   - 58: {fileID: 5840536}
-  - 58: {fileID: 5822782}
-  - 58: {fileID: 5872372}
   m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
@@ -31,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.231563, y: -0.19289368, z: 0}
+  m_LocalPosition: {x: 0.5, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,20 +51,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &5822782
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139290}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.82, y: 0.87}
-  serializedVersion: 2
-  m_Radius: 0.03
 --- !u!58 &5840536
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -79,20 +63,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: -0.82, y: -0.69}
-  serializedVersion: 2
-  m_Radius: 0.03
---- !u!58 &5872372
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139290}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.74, y: 0.87}
   serializedVersion: 2
   m_Radius: 0.03
 --- !u!58 &5884122
@@ -155,6 +125,7 @@ MonoBehaviour:
   jumpSpeed: 100
   maxSpeed: 2
   highlightColor: {r: 0, g: 1, b: 1, a: 1}
+  shapeshiftPermanent: 0
 --- !u!212 &21251436
 SpriteRenderer:
   m_ObjectHideFlags: 1
