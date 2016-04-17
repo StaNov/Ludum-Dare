@@ -787,7 +787,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.size
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 469724, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_LocalPosition.x
@@ -831,27 +831,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[1].line
-      value: "Oh wait, I cannot speak as a ghost, I have to use someone\u2019s body."
+      value: Oh wait, I cannot speak as a ghost.
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[2].line
-      value: "You: This job has no meaning for me\u2026 My life has no meaning\n"
+      value: "I have to use someone\u2019s body."
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[3].line
-      value: "You: Wait\u2026 I GOT IT!\n"
+      value: But...
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[4].line
-      value: 'You: I know what is the meaning of life now!'
+      value: When I shapeshift into a person...
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[5].line
-      value: 'You: I have to go tell everyone.'
+      value: '... it cannot be undone.'
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[6].line
-      value: I have to go tell everyone.
+      value: I won't be able to turn into a ghost again.
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: color1.a
@@ -872,6 +872,18 @@ Prefab:
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: color1.b
       value: 0.7758621
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[7].line
+      value: Well, I'm going to miss being a walking key...
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[8].line
+      value: But well-being of the World is the priority.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[9].line
+      value: Let's do this!
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
@@ -1465,7 +1477,7 @@ MonoBehaviour:
     actor: 0
   - line: <b>I know the meaning of life!</b>
     actor: 0
-  - line: <b>Its...</b>
+  - line: <b>It's - ...</b>
     actor: 0
 --- !u!1001 &1159185934
 Prefab:
