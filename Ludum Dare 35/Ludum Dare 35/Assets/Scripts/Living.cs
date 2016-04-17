@@ -25,7 +25,6 @@ public class Living : MonoBehaviour {
 			ending_scene = true;
 			anim.enabled = true;
 			dia.enabled = true;
-			rb.AddForce (new Vector2 (-10000, 0));
 		}
 	}
 
