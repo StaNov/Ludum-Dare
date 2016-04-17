@@ -15,11 +15,11 @@ TagManager:
   - 
   - Ghost
   - Borders
-  - GhostColliders
+  - GhostCollider
   - ShapeShiftables
   - Door
   - EndLocation
-  - 
+  - Dialogs
   - 
   - 
   - 

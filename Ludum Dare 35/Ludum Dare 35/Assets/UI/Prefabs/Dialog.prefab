@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 469724}
   - 114: {fileID: 11408696}
   - 61: {fileID: 6124582}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c9e5604184a294981bdd7e093e69b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneAfterDialog: 0
   dialogWindowPrefab: {fileID: 154526, guid: 1347850f4555d3f43aa6f16a20eaa1ad, type: 2}
   color1: {r: 1, g: 0, b: 0, a: 1}
   color2: {r: 0, g: 0, b: 1, a: 1}
@@ -76,6 +77,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: color2.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

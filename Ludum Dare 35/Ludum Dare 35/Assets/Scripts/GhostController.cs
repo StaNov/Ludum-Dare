@@ -39,7 +39,11 @@ public class GhostController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		currentCollidingShiftables.Add(col.GetComponent<ShapeShiftController>());
+		ShapeShiftController controller = col.GetComponent<ShapeShiftController> ();
+
+		if (controller != null) {
+			currentCollidingShiftables.Add (col.GetComponent<ShapeShiftController> ());
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D col) {

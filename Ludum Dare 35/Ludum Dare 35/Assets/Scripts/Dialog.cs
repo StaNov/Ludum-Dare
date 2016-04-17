@@ -40,10 +40,8 @@ public class Dialog : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		if (col.CompareTag ("Player")) {
-			GetComponent<Collider2D> ().enabled = false;
-			StartDialog ();
-		}
+		GetComponent<Collider2D> ().enabled = false;
+		StartDialog ();
 	}
 
 	private void StartDialog() {
