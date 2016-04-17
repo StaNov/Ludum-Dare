@@ -2229,7 +2229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[0].line
-      value: He-hey, I'm a key now! That's cool!
+      value: He-hey, I'm a walking key now! That's cool!
       objectReference: {fileID: 0}
     - target: {fileID: 6124582, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: m_Enabled
