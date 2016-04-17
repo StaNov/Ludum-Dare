@@ -26,7 +26,7 @@ public class GhostController : MonoBehaviour {
 
 		SetCurrentCollidingShiftable ();
 
-		if (currentCollidingShiftable != null && Input.GetKeyDown (KeyCode.Return)) {
+		if (currentCollidingShiftable != null && ( Input.GetKeyDown (KeyCode.Return)  || Input.GetKeyDown(KeyCode.JoystickButton1))) {
 			currentCollidingShiftable.GetComponent<ShapeShiftController> ().CaptureGhost ();
 			currentCollidingShiftable = null;
 		}

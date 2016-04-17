@@ -20,11 +20,11 @@ public class ShapeShiftController : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Return)) {
+		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton1)) {
 			ReleaseGhost ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space) && rb.velocity.y == 0) {
+		if ((Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) ) && rb.velocity.y == 0) {
 			rb.AddForce (Vector2.up * jumpSpeed, ForceMode2D.Impulse);
 		}
 

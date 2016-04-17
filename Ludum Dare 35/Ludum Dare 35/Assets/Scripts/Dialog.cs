@@ -34,7 +34,7 @@ public class Dialog : MonoBehaviour {
 	}
 
 	void Update () {
-		if (currentLineIndex >= 0 && Input.GetKeyDown (KeyCode.Return)) {
+		if (currentLineIndex >= 0 && (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton1))) {
 			ShowNextLine ();
 		}
 	}
