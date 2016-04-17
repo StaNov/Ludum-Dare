@@ -102,6 +102,78 @@ Transform:
   - {fileID: 1027033323}
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!1 &59500517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 59500521}
+  - 61: {fileID: 59500520}
+  - 61: {fileID: 59500519}
+  - 61: {fileID: 59500518}
+  m_Layer: 15
+  m_Name: InvisibleBorders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!61 &59500518
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 59500517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 5.4}
+  serializedVersion: 2
+  m_Size: {x: 19.4, y: 1}
+--- !u!61 &59500519
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 59500517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 8.69, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10.52}
+--- !u!61 &59500520
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 59500517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -9.95, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10.41}
+--- !u!4 &59500521
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 59500517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &64481512
 GameObject:
   m_ObjectHideFlags: 1
@@ -1519,7 +1591,7 @@ GameObject:
   - 58: {fileID: 1522769279}
   - 58: {fileID: 1522769278}
   - 114: {fileID: 1522769280}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Bus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
