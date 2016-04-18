@@ -1658,17 +1658,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneAfterDialog: 0
+  startOnlyWithShiftable: 0
   dialogWindowPrefab: {fileID: 154526, guid: 1347850f4555d3f43aa6f16a20eaa1ad, type: 2}
   color1: {r: 0.86551726, g: 0.86551726, b: 0.86551726, a: 1}
   color2: {r: 0, g: 0, b: 1, a: 1}
   dialogLines:
   - line: Ehm.. Ehm...
     actor: 0
-  - line: <b>Listen people!</b>
+  - line: Listen people!
     actor: 0
-  - line: <b>I know the meaning of life!</b>
+  - line: I know the meaning of life!
     actor: 0
-  - line: <b>It's - ...</b>
+  - line: It's - ...
     actor: 0
 --- !u!1001 &1138725491
 Prefab:

@@ -177,8 +177,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 128.1}
-  m_SizeDelta: {x: 320, y: 744.7}
+  m_AnchoredPosition: {x: 0, y: 82}
+  m_SizeDelta: {x: 320, y: 838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &774347204
 Animator:
@@ -347,7 +347,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9ce739c779707ea46a595e9ef3742459, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -359,11 +359,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<i><b>\"The Mining of Life\"</b></i>\n\nTheme: Shapeshift\n\n\n\nCreated
-    in 72 hours\nfor Ludum Dare 35\n15. - 18.4.2016\n\n\n\nCreated by:\n\n\n\n<b>David
-    Bro\u010Dek</b>\nStory, dialogs, graphics\n\n\n\n<b>P\xE1ja Grochal</b>\nMusic,
-    level-design, graphics\n\n\n\n<b>Standa Nov\xE1k</b>\nTeamlead, programming, sound
-    effects\n\n\n\n\n<b>Maka Grochalov\xE1, Anita Jadrn\xE1</b>\nCatering, playtesting\n\n\n\n\nwww.StaNov.cz\n\nwww.thanyxstudio.jdem.cz\n\n\n\n\nThanks
+  m_Text: "<i>\"The Mining of Life\"</i>\n\nTheme: Shapeshift\n\n\n\nCreated in 72
+    hours\nfor Ludum Dare 35\n15. - 18.4.2016\n\n\n\nCreated by:\n\n\n\nDavid Bro\u010Dek\nStory,
+    dialogs, graphics\n\n\n\nP\xE1ja Grochal\nMusic, level-design, graphics\n\n\n\nStanda
+    Nov\xE1k\nTeamlead, programming, sound effects\n\n\n\n\nMaka Grochalov\xE1, Anita
+    Jadrn\xE1\nCatering, playtesting\n\n\n\n\nwww.StaNov.cz\n\nwww.thanyxstudio.jdem.cz\n\n\n\n\nThanks
     for playing!"
 --- !u!222 &1035313443
 CanvasRenderer:
