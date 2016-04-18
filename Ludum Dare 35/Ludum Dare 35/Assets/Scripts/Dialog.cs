@@ -17,6 +17,7 @@ public enum DialogActor {
 public class Dialog : MonoBehaviour {
 
 	public bool nextSceneAfterDialog = false;
+	public bool startOnlyWithShiftable = false;
 	public GameObject dialogWindowPrefab;
 	public Color color1;
 	public Color color2;
@@ -40,7 +41,8 @@ public class Dialog : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		if (col.CompareTag ("Player")) {
+		Debug.Log (LayerMask.LayerToName(col.gameObject.layer));
+		if (col.CompareTag ("Player") && (!startOnlyWithShiftable || LayerMask.LayerToName(col.gameObject.layer) == "ShapeShiftables")) {
 			GetComponent<Collider2D> ().enabled = false;
 			StartDialog ();
 		}

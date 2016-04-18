@@ -567,34 +567,50 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: color1.r
-      value: 0.21108015
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
-      propertyPath: color1.g
-      value: 0.7758621
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
-      propertyPath: color1.b
-      value: 0.7758621
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
-      propertyPath: color2.r
       value: 0.7097871
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
-      propertyPath: color2.g
+      propertyPath: color1.g
       value: 0.4414679
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
-      propertyPath: color2.b
+      propertyPath: color1.b
       value: 0.229637
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.r
+      value: 0.21108015
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.g
+      value: 0.7758621
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: color2.b
+      value: 0.7758621
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[0].actor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
       propertyPath: dialogLines.Array.data[2].actor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[1].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[3].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[4].actor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408696, guid: dd1accbe17b11b2499dfcf6e3c983761, type: 2}
+      propertyPath: dialogLines.Array.data[5].actor
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -2888,7 +2904,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 454424, guid: b24f0c56808992a4daa334f6de56221a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.83
+      value: -9.09
       objectReference: {fileID: 0}
     - target: {fileID: 454424, guid: b24f0c56808992a4daa334f6de56221a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3779,7 +3795,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 433584, guid: 35c2747ed4355734dba0e8125d850396, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.55
+      value: -7.22
       objectReference: {fileID: 0}
     - target: {fileID: 433584, guid: 35c2747ed4355734dba0e8125d850396, type: 2}
       propertyPath: m_LocalPosition.y
