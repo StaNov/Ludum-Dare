@@ -7,7 +7,8 @@ public class InfoShower : MonoBehaviour {
 	public string InfoText = "Test Text!";
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.GetComponent<Collector>().HasCollectible) {
+		Collector collector = col.GetComponent<Collector>();
+		if (collector != null && collector.HasCollectible) {
 			return;
 		}
 
