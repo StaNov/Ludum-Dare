@@ -101,9 +101,10 @@ GameObject:
   - component: {fileID: 208595959}
   - component: {fileID: 208595958}
   - component: {fileID: 208595956}
+  - component: {fileID: 208595957}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: StarDestination
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +140,20 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!61 &208595957
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208595955}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!33 &208595958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -287,7 +302,7 @@ GameObject:
   - component: {fileID: 523818956}
   m_Layer: 0
   m_Name: Star
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 446236994}
+  current: {fileID: 0}
 --- !u!1 &1716110213
 GameObject:
   m_ObjectHideFlags: 0
