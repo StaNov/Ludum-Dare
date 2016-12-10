@@ -6,6 +6,7 @@ public class PernicekController : MonoBehaviour {
 
 	public float JumpForce = 100;
 	public float MoveForce = 100;
+	public float MaxSpeed = 10;
 
 	private Rigidbody2D rb;
 	
@@ -19,5 +20,7 @@ public class PernicekController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) {
 			rb.AddForce(new Vector2(0, JumpForce));
 		}
+
+		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -MaxSpeed, MaxSpeed), rb.velocity.y);
 	}
 }
