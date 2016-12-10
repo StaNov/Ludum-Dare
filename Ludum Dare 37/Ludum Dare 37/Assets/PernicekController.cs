@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PernicekController : MonoBehaviour {
 
+	public float JumpForce = 100;
+	public float MoveForce = 100;
+
 	private Rigidbody2D rb;
 	
 	void Awake () {
@@ -14,7 +17,7 @@ public class PernicekController : MonoBehaviour {
 		rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * 100, 0));
 
 		if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) {
-			rb.AddForce(new Vector2(0, 1000));
+			rb.AddForce(new Vector2(0, 100));
 		}
 	}
 }
