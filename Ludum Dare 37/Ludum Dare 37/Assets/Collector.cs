@@ -7,6 +7,8 @@ public class Collector : MonoBehaviour {
 	public Transform slot;
 	public Collectible current = null;
 
+	public bool HasCollectible { get { return current != null; } }
+
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.CompareTag(Tags.COLLECTIBLE) && current == null && (col.transform.parent == null || ! col.transform.parent.CompareTag(Tags.DESTINATION))) {
 			current = col.transform.GetComponent<Collectible>();
@@ -22,7 +24,18 @@ public class Collector : MonoBehaviour {
 			current.transform.localPosition = Vector3.zero;
 			current.transform.localRotation = Quaternion.identity;
 
+			current.DisableTrigger();
+
 			current = null;
 		}
+	}
+
+	public void ReturnCollectible() {
+		if (current == null) {
+			return;
+		}
+
+		current.ReturnToOrigin();
+		current = null;
 	}
 }
