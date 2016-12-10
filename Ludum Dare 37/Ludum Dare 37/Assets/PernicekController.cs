@@ -14,10 +14,10 @@ public class PernicekController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * 100, 0));
+		rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * MoveForce, 0));
 
 		if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) {
-			rb.AddForce(new Vector2(0, 100));
+			rb.AddForce(new Vector2(0, JumpForce));
 		}
 	}
 }
