@@ -11,5 +11,6 @@ public enum CollectibleType {
 	STAR,
 	TREE,
 	SNOWFLAKE,
-	LAMP
+	LAMP,
+	CANDLES
 }
