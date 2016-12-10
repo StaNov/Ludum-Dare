@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PernicekRespawner : MonoBehaviour {
 
+	public CameraMover Mover;
+
 	private Vector3 m_StartPosition;
 	private Rigidbody2D rb;
 	private Collector Collector;
@@ -21,5 +23,6 @@ public class PernicekRespawner : MonoBehaviour {
 		transform.position = m_StartPosition;
 		rb.velocity = Vector2.zero;
 		Collector.ReturnCollectible();
+		Mover.SetFloorFirst(true);
 	}
 }
