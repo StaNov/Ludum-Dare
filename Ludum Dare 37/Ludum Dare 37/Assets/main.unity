@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 52879406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.98, y: 0.69, z: 0}
+  m_LocalPosition: {x: -21.76, y: 0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 231567934}
@@ -9100,7 +9100,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1640680201}
-  - component: {fileID: 1640680203}
   - component: {fileID: 1640680202}
   m_Layer: 10
   m_Name: Lamp (1)
@@ -9157,20 +9156,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
---- !u!61 &1640680203
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1640680200}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
 --- !u!1 &1654237765
 GameObject:
   m_ObjectHideFlags: 0
@@ -10280,7 +10265,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1839930312}
-  - component: {fileID: 1839930314}
   - component: {fileID: 1839930313}
   m_Layer: 10
   m_Name: Candles (1)
@@ -10337,20 +10321,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!61 &1839930314
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839930311}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.0145635605, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1.9612318, y: 1}
 --- !u!1 &1872486563
 GameObject:
   m_ObjectHideFlags: 0
