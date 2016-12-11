@@ -5880,6 +5880,8 @@ GameObject:
   - component: {fileID: 1604276575}
   - component: {fileID: 1604276574}
   - component: {fileID: 1604276569}
+  - component: {fileID: 1604276576}
+  - component: {fileID: 1604276571}
   m_Layer: 0
   m_Name: Kip
   m_TagString: Untagged
@@ -5942,6 +5944,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1604276571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604276568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f091787cc86b4140842e0e4fa76f16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1604276572
 Transform:
   m_ObjectHideFlags: 0
@@ -5996,6 +6009,23 @@ BoxCollider2D:
   m_Offset: {x: -0.031756163, y: 0.05292827}
   serializedVersion: 2
   m_Size: {x: 1.3175634, y: 2.7571883}
+--- !u!95 &1604276576
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604276568}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b1ac96a29ade7b40b6d2469bcfc1790, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1609206476
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,6 +6498,8 @@ GameObject:
   - component: {fileID: 1689400857}
   - component: {fileID: 1689400858}
   - component: {fileID: 1689400853}
+  - component: {fileID: 1689400854}
+  - component: {fileID: 1689400859}
   m_Layer: 8
   m_Name: Pernicek
   m_TagString: Player
@@ -6544,6 +6576,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1689400854
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689400850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b1ac96a29ade7b40b6d2469bcfc1790, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1689400855
 Transform:
   m_ObjectHideFlags: 0
@@ -6606,6 +6655,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mover: {fileID: 507479771}
+--- !u!114 &1689400859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689400850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f091787cc86b4140842e0e4fa76f16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704599487
 GameObject:
   m_ObjectHideFlags: 0
