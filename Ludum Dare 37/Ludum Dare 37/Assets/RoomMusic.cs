@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class RoomMusic : MonoBehaviour {
 	
@@ -10,10 +11,10 @@ public class RoomMusic : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		source.volume = 1;
+		source.DOFade(1, 1);
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		source.volume = 0;
+		source.DOFade(0, 1);
 	}
 }
