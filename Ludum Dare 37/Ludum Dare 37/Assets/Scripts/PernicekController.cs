@@ -28,7 +28,6 @@ public class PernicekController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * MoveForce, 0));
 
 		if (m_DesireJump) {
 			m_DesireJump = false;
@@ -39,6 +38,11 @@ public class PernicekController : MonoBehaviour {
 			}
 		}
 
+		float axis = Input.GetAxisRaw("Horizontal");
+		if (rb.velocity.x >= -MaxSpeed && axis < 0 || rb.velocity.x <= MaxSpeed && axis > 0) {
+			rb.AddForce(new Vector2(axis * MoveForce, 0));
+		}
+		
 		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -MaxSpeed, MaxSpeed), rb.velocity.y);
 	}
 }
