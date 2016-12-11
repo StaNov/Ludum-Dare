@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Collector : MonoBehaviour {
 
 	public Transform slot;
 	public Collectible current = null;
 	public MusicPlayer musicPlayer;
+	public float tweenTime = 0.5f;
 
 	public bool HasCollectible { get { return current != null; } }
 
@@ -15,8 +15,8 @@ public class Collector : MonoBehaviour {
 			current = col.transform.GetComponent<Collectible>();
 
 			current.transform.SetParent(slot);
-			current.transform.localPosition = Vector3.zero;
-			current.transform.localRotation = Quaternion.identity;
+			current.transform.DOLocalMove(Vector3.zero, tweenTime);
+			current.transform.DOLocalRotateQuaternion(Quaternion.identity, tweenTime);
 
 			musicPlayer.StartPlaying(current.Type);
 		}
@@ -24,8 +24,8 @@ public class Collector : MonoBehaviour {
 		Destination dest = col.GetComponent<Destination>();
 		if (dest != null && current != null && dest.Type == current.Type) {
 			current.transform.parent = col.transform;
-			current.transform.localPosition = Vector3.zero;
-			current.transform.localRotation = Quaternion.identity;
+			current.transform.DOLocalMove(Vector3.zero, tweenTime);
+			current.transform.DOLocalRotateQuaternion(Quaternion.identity, tweenTime);
 
 			current.DisableTrigger();
 
