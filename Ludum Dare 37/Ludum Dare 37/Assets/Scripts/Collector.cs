@@ -23,6 +23,7 @@ public class Collector : MonoBehaviour {
 
 		Destination dest = col.GetComponent<Destination>();
 		if (dest != null && current != null && dest.Type == current.Type) {
+			dest.Hide();
 			current.transform.parent = col.transform;
 			current.transform.DOLocalMove(Vector3.zero, tweenTime);
 			current.transform.DOLocalRotateQuaternion(Quaternion.identity, tweenTime);
