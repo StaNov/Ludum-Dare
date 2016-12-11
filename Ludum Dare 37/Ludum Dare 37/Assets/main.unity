@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 131695347}
   - component: {fileID: 131695346}
   - component: {fileID: 131695348}
+  - component: {fileID: 131695349}
   m_Layer: 11
   m_Name: CandlesDestination
   m_TagString: Destination
@@ -505,6 +506,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &131695349
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131695344}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86c1bcdf68e4bee4ab689370a8a00be7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &144126324
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +708,7 @@ GameObject:
   - component: {fileID: 208595957}
   - component: {fileID: 208595960}
   - component: {fileID: 208595956}
+  - component: {fileID: 208595958}
   m_Layer: 11
   m_Name: StarDestination
   m_TagString: Destination
@@ -746,6 +765,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!95 &208595958
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208595955}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86c1bcdf68e4bee4ab689370a8a00be7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &208595959
 Transform:
   m_ObjectHideFlags: 0
@@ -1940,6 +1976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  Destination: {fileID: 208595960}
 --- !u!1 &532280782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,6 +2355,7 @@ GameObject:
   - component: {fileID: 646526509}
   - component: {fileID: 646526508}
   - component: {fileID: 646526510}
+  - component: {fileID: 646526511}
   m_Layer: 11
   m_Name: SnowflakeDestination
   m_TagString: Destination
@@ -2399,6 +2437,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &646526511
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646526506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86c1bcdf68e4bee4ab689370a8a00be7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &652517331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,6 +2498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
+  Destination: {fileID: 646526508}
 --- !u!61 &652517334
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2487,7 +2543,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b04d587537a05d84489eeb34fd1e1467, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2536,6 +2592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 3
+  Destination: {fileID: 1609206478}
 --- !u!61 &669202776
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2580,7 +2637,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fe737d9684e85c3438822dbfbf123bb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3422,6 +3479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 4
+  Destination: {fileID: 131695346}
 --- !u!61 &926543196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3466,7 +3524,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 2bca3a2e01086aa4183f31f5a11ce4c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5624,6 +5682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
+  Destination: {fileID: 1664646543}
 --- !u!61 &1548282182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5668,7 +5727,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ee4065ae7c202214da6d7ee1b5488592, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6038,6 +6097,7 @@ GameObject:
   - component: {fileID: 1609206479}
   - component: {fileID: 1609206478}
   - component: {fileID: 1609206480}
+  - component: {fileID: 1609206481}
   m_Layer: 11
   m_Name: LampDestination
   m_TagString: Destination
@@ -6119,6 +6179,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1609206481
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609206476}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86c1bcdf68e4bee4ab689370a8a00be7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1619850218
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,6 +6383,7 @@ GameObject:
   - component: {fileID: 1664646544}
   - component: {fileID: 1664646543}
   - component: {fileID: 1664646545}
+  - component: {fileID: 1664646546}
   m_Layer: 11
   m_Name: TreeDestination
   m_TagString: Destination
@@ -6387,6 +6465,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1664646546
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664646541}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86c1bcdf68e4bee4ab689370a8a00be7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1670548616
 GameObject:
   m_ObjectHideFlags: 0

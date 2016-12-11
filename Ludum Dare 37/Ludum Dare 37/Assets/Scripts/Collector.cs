@@ -17,12 +17,14 @@ public class Collector : MonoBehaviour {
 			current.transform.SetParent(slot);
 			current.transform.DOLocalMove(Vector3.zero, tweenTime);
 			current.transform.DOLocalRotateQuaternion(Quaternion.identity, tweenTime);
+			current.Destination.GetComponent<Animator>().SetBool("Blinking", true);
 
 			musicPlayer.StartPlaying(current.Type);
 		}
 
 		Destination dest = col.GetComponent<Destination>();
 		if (dest != null && current != null && dest.Type == current.Type) {
+			Destroy(dest.GetComponent<Animator>());
 			dest.Hide();
 			current.transform.parent = col.transform;
 			current.transform.DOLocalMove(Vector3.zero, tweenTime);
@@ -39,6 +41,7 @@ public class Collector : MonoBehaviour {
 			return;
 		}
 
+		current.Destination.GetComponent<Animator>().SetBool("Blinking", false);
 		current.ReturnToOrigin();
 		musicPlayer.StopPlaying(current.Type);
 		current = null;

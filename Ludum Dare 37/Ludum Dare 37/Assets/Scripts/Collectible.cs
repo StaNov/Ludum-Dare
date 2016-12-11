@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectible : MonoBehaviour {
 
 	public CollectibleType Type;
+	public Destination Destination;
 
 	private Vector3 m_OriginalPosition;
 	private Transform m_CollectiblesParent;
