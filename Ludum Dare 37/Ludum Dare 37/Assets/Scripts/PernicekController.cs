@@ -13,6 +13,8 @@ public class PernicekController : MonoBehaviour {
 
 	public LayerMask GroundMask;
 
+	public bool TurnedOn = false;
+
 	private Rigidbody2D rb;
 	private bool m_DesireJump;
 	
@@ -22,12 +24,19 @@ public class PernicekController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (!TurnedOn) {
+			return;
+		}
+
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			m_DesireJump = true;
 		}
 	}
 	
 	void FixedUpdate () {
+		if (!TurnedOn) {
+			return;
+		}
 
 		if (m_DesireJump) {
 			m_DesireJump = false;
