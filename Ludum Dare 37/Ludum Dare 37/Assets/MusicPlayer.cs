@@ -6,11 +6,15 @@ using DG.Tweening;
 public class MusicPlayer : MonoBehaviour {
 
 	public CollectibleSource[] sources;
+	public AudioSource wind;
 
 	void Awake() {
 		foreach (var source in sources) {
 			source.source.volume = 0;
+			source.playing = false;
 		}
+
+		wind.DOFade(1, 1);
 	}
 
 	public void StartPlaying(CollectibleType type) {
@@ -18,7 +22,12 @@ public class MusicPlayer : MonoBehaviour {
 		foreach (var source in sources) {
 			if (source.type == type) {
 				source.source.DOFade(1, 1);
+				source.playing = true;
 			}
+		}
+
+		if (! NoSourcePlaying()) {
+			wind.DOFade(0, 1);
 		}
 	}
 
@@ -26,8 +35,23 @@ public class MusicPlayer : MonoBehaviour {
 		foreach (var source in sources) {
 			if (source.type == type) {
 				source.source.DOFade(0, 1);
+				source.playing = false;
 			}
 		}
+
+		if (NoSourcePlaying()) {
+			wind.DOFade(1, 1);
+		}
+	}
+
+	private bool NoSourcePlaying() {
+		foreach (var source in sources) {
+			if (source.playing) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
 
@@ -35,4 +59,5 @@ public class MusicPlayer : MonoBehaviour {
 public class CollectibleSource {
 	public CollectibleType type;
 	public AudioSource source;
+	public bool playing;
 }
