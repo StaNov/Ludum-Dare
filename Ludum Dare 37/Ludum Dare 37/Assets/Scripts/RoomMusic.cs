@@ -3,18 +3,17 @@ using DG.Tweening;
 
 public class RoomMusic : MonoBehaviour {
 	
-	private AudioSource source;
-
-	void Awake() {
-		source = GetComponent<AudioSource>();
-		source.volume = 0;
-	}
-
+	public CollectibleType Type;
+	public MusicPlayer MusicPlayer;
+	public Collector Collector;
+	
 	void OnTriggerEnter2D (Collider2D col) {
-		source.DOFade(1, 1);
+		MusicPlayer.StartPlaying(Type);
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		source.DOFade(0, 1);
+		if (Collector.current == null || Collector.current.Type != Type) {
+			MusicPlayer.StopPlaying(Type);
+		}
 	}
 }

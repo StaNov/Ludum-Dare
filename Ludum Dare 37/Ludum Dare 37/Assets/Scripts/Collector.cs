@@ -6,6 +6,7 @@ public class Collector : MonoBehaviour {
 
 	public Transform slot;
 	public Collectible current = null;
+	public MusicPlayer musicPlayer;
 
 	public bool HasCollectible { get { return current != null; } }
 
@@ -16,6 +17,8 @@ public class Collector : MonoBehaviour {
 			current.transform.SetParent(slot);
 			current.transform.localPosition = Vector3.zero;
 			current.transform.localRotation = Quaternion.identity;
+
+			musicPlayer.StartPlaying(current.Type);
 		}
 
 		Destination dest = col.GetComponent<Destination>();
@@ -36,6 +39,7 @@ public class Collector : MonoBehaviour {
 		}
 
 		current.ReturnToOrigin();
+		musicPlayer.StopPlaying(current.Type);
 		current = null;
 	}
 }
