@@ -5488,11 +5488,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1950428176}
-  - component: {fileID: 1950428175}
-  - component: {fileID: 1950428173}
   - component: {fileID: 1950428172}
   - component: {fileID: 1950428177}
   - component: {fileID: 1950428174}
+  - component: {fileID: 1950428173}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -5515,20 +5514,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!23 &1950428173
-MeshRenderer:
+--- !u!212 &1950428173
+SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1950428171}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: de698206700038c4ebf8f929a2be3c15, type: 2}
+  - {fileID: 2100000, guid: 9c81c9c99511a594e8d43d6ce5c2782b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5536,16 +5535,20 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 832cfe5299544a4469fd2bd9750178d5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!114 &1950428174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5557,13 +5560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db551a9f51f6f2a42acf10b439a61c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!33 &1950428175
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1950428171}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1950428176
 Transform:
   m_ObjectHideFlags: 0
@@ -5572,7 +5568,7 @@ Transform:
   m_GameObject: {fileID: 1950428171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.47, y: 6.54, z: 0}
-  m_LocalScale: {x: 3.043367, y: 1.4962467, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -5588,9 +5584,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.027090073, y: -0.021670341}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.8745217, y: 1.3684045}
 --- !u!1 &1959087389
 GameObject:
   m_ObjectHideFlags: 0
