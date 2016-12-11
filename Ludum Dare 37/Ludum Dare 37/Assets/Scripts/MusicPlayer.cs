@@ -7,6 +7,7 @@ public class MusicPlayer : MonoBehaviour {
 
 	public CollectibleSource[] sources;
 	public AudioSource wind;
+	public float fadeDuration = 2;
 
 	void Awake() {
 		foreach (var source in sources) {
@@ -21,26 +22,26 @@ public class MusicPlayer : MonoBehaviour {
 		
 		foreach (var source in sources) {
 			if (source.type == type) {
-				source.source.DOFade(1, 1);
+				source.source.DOFade(1, fadeDuration);
 				source.playing = true;
 			}
 		}
 
 		if (! NoSourcePlaying()) {
-			wind.DOFade(0, 1);
+			wind.DOFade(0, fadeDuration);
 		}
 	}
 
 	public void StopPlaying(CollectibleType type) {
 		foreach (var source in sources) {
 			if (source.type == type) {
-				source.source.DOFade(0, 1);
+				source.source.DOFade(0, fadeDuration);
 				source.playing = false;
 			}
 		}
 
 		if (NoSourcePlaying()) {
-			wind.DOFade(1, 1);
+			wind.DOFade(1, fadeDuration);
 		}
 	}
 
