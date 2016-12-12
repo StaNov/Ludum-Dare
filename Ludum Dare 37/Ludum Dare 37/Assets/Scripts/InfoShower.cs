@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class InfoShower : MonoBehaviour {
 
+	[Multiline]
 	public string InfoText = "Test Text!";
 
 	void OnTriggerEnter2D(Collider2D col) {
 		Collector collector = col.GetComponent<Collector>();
-		if (collector != null && collector.HasCollectible) {
+		if (collector == null || collector.HasCollectible) {
 			return;
 		}
 

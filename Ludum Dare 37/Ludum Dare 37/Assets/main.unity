@@ -2124,6 +2124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd039e9488155f43b1d301900d022c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipIntro: 1
   Pernicek: {fileID: 1689400855}
   FirstFloor: {fileID: 1161710247}
   SecondFloor: {fileID: 1197138672}
@@ -2410,8 +2411,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 532280783}
-  - component: {fileID: 532280785}
   - component: {fileID: 532280784}
+  - component: {fileID: 532280785}
   m_Layer: 10
   m_Name: InfoTrigger
   m_TagString: Untagged
@@ -2443,9 +2444,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &532280785
-CircleCollider2D:
+  InfoText: 'The star will be perfect on the top of the garage!
+
+    However, I have to distract the kid somehow...'
+--- !u!61 &532280785
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2455,9 +2458,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.010560989, y: -1.9759073}
   serializedVersion: 2
-  m_Radius: 3.33
+  m_Size: {x: 19.533375, y: 8.797971}
 --- !u!1 &539065527
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,8 +3252,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 773856435}
-  - component: {fileID: 773856437}
   - component: {fileID: 773856436}
+  - component: {fileID: 773856437}
   m_Layer: 10
   m_Name: InfoTrigger
   m_TagString: Untagged
@@ -3282,9 +3285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &773856437
-CircleCollider2D:
+  InfoText: 'This snowflake would be nice on the car''s antenna.
+
+    They have three of them here, they will not miss the one...'
+--- !u!61 &773856437
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -3294,9 +3299,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0797205, y: -1.0364275}
   serializedVersion: 2
-  m_Radius: 3.33
+  m_Size: {x: 6.9452286, y: 5.3507175}
 --- !u!1 &792313303
 GameObject:
   m_ObjectHideFlags: 0
@@ -7088,8 +7093,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1074653867}
-  - component: {fileID: 1074653869}
   - component: {fileID: 1074653868}
+  - component: {fileID: 1074653869}
   m_Layer: 10
   m_Name: InfoTrigger
   m_TagString: Untagged
@@ -7121,9 +7126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &1074653869
-CircleCollider2D:
+  InfoText: 'The lamp has nice green light!
+
+    Exactly what the garage needs!'
+--- !u!61 &1074653869
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -7133,9 +7140,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.18435144, y: -0.31728983}
   serializedVersion: 2
-  m_Radius: 3.33
+  m_Size: {x: 8.51236, y: 8.040822}
 --- !u!1 &1078931161
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,8 +10835,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1816518789}
-  - component: {fileID: 1816518791}
   - component: {fileID: 1816518790}
+  - component: {fileID: 1816518791}
   m_Layer: 10
   m_Name: InfoTrigger
   m_TagString: Untagged
@@ -10861,9 +10868,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &1816518791
-CircleCollider2D:
+  InfoText: 'These candles will create nice warm atmosphere,
+
+    exactly what the garage needs!'
+--- !u!61 &1816518791
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -10873,9 +10882,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -8.114963, y: -0.942227}
   serializedVersion: 2
-  m_Radius: 3.33
+  m_Size: {x: 19.639042, y: 7.5336523}
 --- !u!1 &1839930311
 GameObject:
   m_ObjectHideFlags: 0
@@ -12167,8 +12176,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2092705613}
-  - component: {fileID: 2092705615}
   - component: {fileID: 2092705614}
+  - component: {fileID: 2092705615}
   m_Layer: 10
   m_Name: InfoTrigger
   m_TagString: Untagged
@@ -12200,9 +12209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &2092705615
-CircleCollider2D:
+  InfoText: 'What Christmas would it be without a Christmas tree!
+
+    But I must be careful - the dog seems hungry...'
+--- !u!61 &2092705615
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -12212,9 +12223,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -7.660611, y: 3.4340634}
   serializedVersion: 2
-  m_Radius: 3.33
+  m_Size: {x: 19.068457, y: 7.8681335}
 --- !u!1 &2098647311
 GameObject:
   m_ObjectHideFlags: 0

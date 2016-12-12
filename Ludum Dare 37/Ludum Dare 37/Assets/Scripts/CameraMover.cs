@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class CameraMover : MonoBehaviour {
 
+	public bool skipIntro = false;
 	public Transform Pernicek;
 
 	public Transform FirstFloor;
@@ -34,25 +35,28 @@ public class CameraMover : MonoBehaviour {
 	}
 
 	private IEnumerator Intro() {
-		foreach (IntroItem item in IntroItems) {
-			audioSource.clip = item.clip;
+		if (!skipIntro) {
+
+			foreach (IntroItem item in IntroItems) {
+				audioSource.clip = item.clip;
+				audioSource.Play();
+				transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
+				camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
+				Subtitles.ShowText(item.subtitle);
+				yield return new WaitForSeconds(item.clip.length);
+			}
+
+			audioSource.clip = tutorialClip;
 			audioSource.Play();
-			transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
-			camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
-			Subtitles.ShowText(item.subtitle);
-			yield return new WaitForSeconds(item.clip.length);
+			Subtitles.ShowText(tutorialSubtitle);
+
+			yield return new WaitForSeconds(tutorialClip.length);
 		}
 
 		camera.DOOrthoSize(CameraSizeInGame, 1);
 
-		audioSource.clip = tutorialClip;
-		audioSource.Play();
-		Subtitles.ShowText(tutorialSubtitle);
-
-		m_InGame = true;
 		PernicekCtrl.TurnedOn = true;
-
-		yield return new WaitForSeconds(tutorialClip.length);
+		m_InGame = true;
 
 		Subtitles.HideText();
 	}
