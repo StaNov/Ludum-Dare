@@ -21,7 +21,7 @@ public class CameraMover : MonoBehaviour {
 	public string tutorialSubtitle;
 
 	private bool m_IsFirstFloor = true;
-	private bool m_InGame = false;
+	public bool InGame = false;
 	private AudioSource audioSource;
 	private Camera camera;
 
@@ -56,14 +56,14 @@ public class CameraMover : MonoBehaviour {
 		camera.DOOrthoSize(CameraSizeInGame, 1);
 
 		PernicekCtrl.TurnedOn = true;
-		m_InGame = true;
+		InGame = true;
 
 		Subtitles.HideText();
 	}
 
 
 	void LateUpdate () {
-		if (!m_InGame) {
+		if (!InGame) {
 			return;
 		}
 

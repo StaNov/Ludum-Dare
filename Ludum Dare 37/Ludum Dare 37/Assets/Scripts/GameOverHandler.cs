@@ -7,6 +7,7 @@ public class GameOverHandler : MonoBehaviour {
 
 	public IntroItem[] items;
 	public Camera camera;
+	public CameraMover mover;
 	public PernicekController PernicekCtrl;
 
 	public Transform finalPosition;
@@ -29,18 +30,21 @@ public class GameOverHandler : MonoBehaviour {
 			return;
 		}
 
-		foreach (GameObject dest in m_Destinations) {
+		/*foreach (GameObject dest in m_Destinations) {
 			if (dest.transform.childCount == 0) {
 				return;
 			}
-		}
-
-		PernicekCtrl.TurnedOn = false;
+		}*/
 		StartCoroutine(Ending());
 		ending = true;
 	}
 
 	private IEnumerator Ending() {
+
+		yield return new WaitForSeconds(2);
+
+		PernicekCtrl.TurnedOn = false;
+		mover.InGame = false;
 
 		foreach (IntroItem item in items) {
 			audioSource.clip = item.clip;
@@ -58,8 +62,8 @@ public class GameOverHandler : MonoBehaviour {
 
 		yield return new WaitForSeconds(1);
 
-		credits.DOMoveY(1000, 30);
-		yield return new WaitForSeconds(30);
+		credits.DOAnchorPosY(0, 50);
+		yield return new WaitForSeconds(50);
 
 		playAgainButton.gameObject.SetActive(true);
 	}
