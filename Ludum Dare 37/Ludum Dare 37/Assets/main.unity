@@ -2186,7 +2186,7 @@ MonoBehaviour:
     cameraSize: 12.06
     clip: {fileID: 8300000, guid: 059ab6741851dff48a12f9b2944576d4, type: 3}
     subtitle: "I\u2019m going to tell you a story about a little gingerbread who saved
-      christmas.\nEvery room in the house was beautifully decorated."
+      Christmas.\nEvery room in the house was beautifully decorated."
   - cameraEnd: {fileID: 167470582}
     cameraSize: 5.93
     clip: {fileID: 8300000, guid: 083e2f17f05b0534580280cd3eb537dc, type: 3}
@@ -8696,7 +8696,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cb3c6592b3b791549b174d11f487050a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8776,7 +8776,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 74ca603f5fb2e404581441efa2444e24, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8856,7 +8856,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0a474790b6c93d84985bb120a7d5b615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8936,7 +8936,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 728f298d344f63a44a4d21c93f975260, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9016,7 +9016,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: acf2e4cd5aec618409c042cdea4d8829, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9125,7 +9125,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: daf471e8f3093c94d8ee310abf50c076, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
