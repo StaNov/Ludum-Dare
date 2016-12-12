@@ -12,10 +12,10 @@ public class InfoShower : MonoBehaviour {
 			return;
 		}
 
-		InfoPanel.ShowText(InfoText);
+		Subtitles.ShowText(InfoText);
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		InfoPanel.HideText();
+		Subtitles.HideText();
 	}
 }

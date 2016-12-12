@@ -15,6 +15,9 @@ public class CameraMover : MonoBehaviour {
 
 	public float CameraSizeInGame = 6;
 	public IntroItem[] IntroItems;
+	public AudioClip tutorialClip;
+	[Multiline]
+	public string tutorialSubtitle;
 
 	private bool m_IsFirstFloor = true;
 	private bool m_InGame = false;
@@ -36,13 +39,22 @@ public class CameraMover : MonoBehaviour {
 			audioSource.Play();
 			transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
 			camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
+			Subtitles.ShowText(item.subtitle);
 			yield return new WaitForSeconds(item.clip.length);
 		}
 
 		camera.DOOrthoSize(CameraSizeInGame, 1);
 
+		audioSource.clip = tutorialClip;
+		audioSource.Play();
+		Subtitles.ShowText(tutorialSubtitle);
+
 		m_InGame = true;
 		PernicekCtrl.TurnedOn = true;
+
+		yield return new WaitForSeconds(tutorialClip.length);
+
+		Subtitles.HideText();
 	}
 
 
@@ -66,4 +78,6 @@ public class IntroItem {
 	public Transform cameraEnd;
 	public float cameraSize;
 	public AudioClip clip;
+	[Multiline]
+	public string subtitle;
 }
