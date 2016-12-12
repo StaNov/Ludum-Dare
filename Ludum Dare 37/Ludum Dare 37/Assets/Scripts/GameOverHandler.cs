@@ -30,18 +30,17 @@ public class GameOverHandler : MonoBehaviour {
 			return;
 		}
 
-		/*foreach (GameObject dest in m_Destinations) {
+		foreach (GameObject dest in m_Destinations) {
 			if (dest.transform.childCount == 0) {
 				return;
 			}
-		}*/
+		}
+
 		StartCoroutine(Ending());
 		ending = true;
 	}
 
 	private IEnumerator Ending() {
-
-		yield return new WaitForSeconds(2);
 
 		PernicekCtrl.TurnedOn = false;
 		mover.InGame = false;
@@ -49,7 +48,7 @@ public class GameOverHandler : MonoBehaviour {
 		foreach (IntroItem item in items) {
 			audioSource.clip = item.clip;
 			audioSource.Play();
-			transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
+			camera.transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
 			camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
 			Subtitles.ShowText(item.subtitle);
 			yield return new WaitForSeconds(item.clip.length);
@@ -62,7 +61,8 @@ public class GameOverHandler : MonoBehaviour {
 
 		yield return new WaitForSeconds(1);
 
-		credits.DOAnchorPosY(0, 50);
+		credits.gameObject.SetActive(true);
+		credits.DOAnchorPosY(0, 50).SetEase(Ease.Linear);
 		yield return new WaitForSeconds(50);
 
 		playAgainButton.gameObject.SetActive(true);

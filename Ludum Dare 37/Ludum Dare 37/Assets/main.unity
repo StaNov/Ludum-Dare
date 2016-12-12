@@ -659,118 +659,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &154097949
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 154097950}
-  - component: {fileID: 154097952}
-  - component: {fileID: 154097951}
-  m_Layer: 10
-  m_Name: InfoTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &154097950
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 154097949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 963055459}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &154097951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 154097949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &154097952
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 154097949}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.33
---- !u!1 &156154814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 156154815}
-  - component: {fileID: 156154817}
-  - component: {fileID: 156154816}
-  m_Layer: 10
-  m_Name: InfoTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &156154815
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 156154814}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 235046500}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &156154816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 156154814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce12ff671d102444b45e64aa93e8534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InfoText: Test Text!
---- !u!58 &156154817
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 156154814}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.33
 --- !u!1 &167470581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,8 +1055,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.11511059, w: 0.9933527}
   m_LocalPosition: {x: -2.38, y: 11.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 156154815}
+  m_Children: []
   m_Father: {fileID: 1310302780}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.22}
@@ -1469,8 +1356,8 @@ Transform:
   m_LocalPosition: {x: -11.4, y: 43.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 985303441}
-  m_RootOrder: 5
+  m_Father: {fileID: 2129210601}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391027857
 GameObject:
@@ -2248,7 +2135,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.099416
+  orthographic size: 11.00193
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2269,7 +2156,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 507479765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.4, y: 43.3, z: -10}
+  m_LocalPosition: {x: -11.1, y: 43.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1959087390}
@@ -2286,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd039e9488155f43b1d301900d022c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 1
+  skipIntro: 0
   Pernicek: {fileID: 1689400855}
   FirstFloor: {fileID: 1161710247}
   SecondFloor: {fileID: 1197138672}
@@ -2722,6 +2609,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &563780358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 563780359}
+  m_Layer: 8
+  m_Name: Ending1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &563780359
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563780358}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.4, y: 0.5, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2129210601}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592904110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,7 +2845,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 611218632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.38, y: 7.32, z: 0}
+  m_LocalPosition: {x: -29.4, y: 6.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1959087390}
@@ -2960,9 +2875,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.30415154, y: 0}
   serializedVersion: 2
-  m_Size: {x: 4.26, y: 1}
+  m_Size: {x: 4.8683014, y: 1}
 --- !u!1 &646526506
 GameObject:
   m_ObjectHideFlags: 0
@@ -6955,8 +6870,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.081764534, w: 0.9966517}
   m_LocalPosition: {x: -1.83, y: 10.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 154097950}
+  m_Children: []
   m_Father: {fileID: 1310302780}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.38}
@@ -7031,7 +6945,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 985303441}
-  - component: {fileID: 985303442}
   m_Layer: 10
   m_Name: Collectibles
   m_TagString: Untagged
@@ -7054,29 +6967,9 @@ Transform:
   - {fileID: 926543194}
   - {fileID: 1548282180}
   - {fileID: 652517332}
-  - {fileID: 334477360}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &985303442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 985303440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b4dbd2a3e9ff5b4d96ff83e64764f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  camera: {fileID: 507479769}
-  mover: {fileID: 507479771}
-  PernicekCtrl: {fileID: 1689400856}
-  finalPosition: {fileID: 334477360}
-  finalSize: 11.1
-  credits: {fileID: 1785931105}
-  playAgainButton: {fileID: 397914871}
 --- !u!1 &1009565857
 GameObject:
   m_ObjectHideFlags: 0
@@ -7468,7 +7361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoText: 'The lamp has nice green light!
 
-    Exactly what the garage needs!'
+    That''s something what could cheer the garage up!'
 --- !u!61 &1074653869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8666,6 +8559,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1393028810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1393028811}
+  m_Layer: 8
+  m_Name: Ending2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1393028811
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1393028810}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.6, y: 12.7, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2129210601}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404826411
 GameObject:
   m_ObjectHideFlags: 0
@@ -11126,7 +11047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785931105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11142,8 +11063,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -4715.33}
-  m_SizeDelta: {x: 0, y: 3620.33}
+  m_AnchoredPosition: {x: 0, y: -5254}
+  m_SizeDelta: {x: 0, y: 4159}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1785931106
 MonoBehaviour:
@@ -11202,7 +11123,9 @@ MonoBehaviour:
     Arthaqs, lidacek7, tracheotommy, Radimos1, luk3zz_plays, flyczeadventure, GibonHype,
     MrSades, Figgczech, jawdushraje, dominikderek, glockerino, slampisko, Mathas05,
     TichoCZ, wentoline, LaraxCZ, majklps, sejbiktv, kipash612, albijhf\n\n\nThanks
-    everyone, it's been amazing weekend!\n\nwww.StaNov.cz"
+    everyone, it's been amazing weekend!\n\nwww.StaNov.cz\n\n\nBtw, if you want bigger
+    challenge, try to collect the items from the last one to first one - star, tree,
+    candles, lamp, snowflake ;-)"
 --- !u!222 &1785931108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12730,6 +12653,150 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
+--- !u!1 &2129210598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2129210601}
+  - component: {fileID: 2129210600}
+  - component: {fileID: 2129210599}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2129210599
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2129210598}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &2129210600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2129210598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4dbd2a3e9ff5b4d96ff83e64764f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - cameraEnd: {fileID: 563780359}
+    cameraSize: 4.6
+    clip: {fileID: 8300000, guid: a0a5588c99441064095cc7db5c2ad466, type: 3}
+    subtitle: 'Thank you a lot for your help!
+
+      I can enjoy Christmas better this way!'
+  - cameraEnd: {fileID: 1393028811}
+    cameraSize: 18.5
+    clip: {fileID: 8300000, guid: bedddb6a0bc4d40438ca6075d00cee17, type: 3}
+    subtitle: 'No problem, dear garage, I like Christmas better too,
+
+      when everyone is happy! Merry Christmas everyone!'
+  camera: {fileID: 507479769}
+  mover: {fileID: 507479771}
+  PernicekCtrl: {fileID: 1689400856}
+  finalPosition: {fileID: 334477360}
+  finalSize: 11.1
+  credits: {fileID: 1785931105}
+  playAgainButton: {fileID: 397914871}
+--- !u!4 &2129210601
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2129210598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 334477360}
+  - {fileID: 563780359}
+  - {fileID: 1393028811}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2145729822
 Prefab:
   m_ObjectHideFlags: 0

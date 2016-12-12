@@ -35,28 +35,24 @@ public class CameraMover : MonoBehaviour {
 	}
 
 	private IEnumerator Intro() {
-		if (!skipIntro) {
-
-			foreach (IntroItem item in IntroItems) {
-				audioSource.clip = item.clip;
-				audioSource.Play();
-				transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
-				camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
-				Subtitles.ShowText(item.subtitle);
-				yield return new WaitForSeconds(item.clip.length);
-			}
-
-			audioSource.clip = tutorialClip;
+		foreach (IntroItem item in IntroItems) {
+			audioSource.clip = item.clip;
 			audioSource.Play();
-			Subtitles.ShowText(tutorialSubtitle);
-
-			yield return new WaitForSeconds(tutorialClip.length);
+			transform.DOMove(item.cameraEnd.position, item.clip.length).SetEase(Ease.InOutSine);
+			camera.DOOrthoSize(item.cameraSize, item.clip.length).SetEase(Ease.InOutSine);
+			Subtitles.ShowText(item.subtitle);
+			yield return new WaitForSeconds(item.clip.length);
 		}
 
+		audioSource.clip = tutorialClip;
+		audioSource.Play();
+		Subtitles.ShowText(tutorialSubtitle);
+		InGame = true;
 		camera.DOOrthoSize(CameraSizeInGame, 1);
 
+		yield return new WaitForSeconds(tutorialClip.length);
+
 		PernicekCtrl.TurnedOn = true;
-		InGame = true;
 
 		Subtitles.HideText();
 	}
