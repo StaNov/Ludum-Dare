@@ -19,14 +19,20 @@ public class AntController : MonoBehaviour {
 	
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
+	}
 
-		if (isLeader) {
+	void OnEnable()
+	{
+		if (isLeader)
+		{
 			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos = pos;
 			leaderCurrentPos = pos;
 		}
+
+		ResetCurrentPos();
 	}
-	
+
 	void FixedUpdate ()
 	{
 		if (isLeader) {
@@ -57,6 +63,7 @@ public class AntController : MonoBehaviour {
 
 	private void ControlFollower() {
 
+		// TODO mozna se da smazat, udela se v OnEnable
 		if (currentPos == null) {
 			ResetCurrentPos();
 		}
