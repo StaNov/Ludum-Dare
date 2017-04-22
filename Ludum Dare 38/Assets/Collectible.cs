@@ -4,6 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Collectible : MonoBehaviour {
+
+	private const float TWEEN_DURATION = 1f;
+
 	public int quantity = 30;
 	public CollectibleType type;
 
@@ -66,8 +69,12 @@ public class Collectible : MonoBehaviour {
 		position.Normalize();
 		position *= (GetComponent<CircleCollider2D>().radius + (ant.GetComponent<BoxCollider2D>().size.y / 2) / transform.localScale.x);
 		
-		ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, Vector3.zero - position).eulerAngles, 1f);
-		ant.transform.DOLocalMove(position, 1f);
+		DOTween.Sequence()
+			.Append(ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, position - ant.transform.localPosition).eulerAngles, TWEEN_DURATION * 0.3f).SetEase(Ease.InOutSine))
+			.AppendInterval(TWEEN_DURATION * 0.7f)
+			.Append(ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, Vector3.zero - position).eulerAngles, TWEEN_DURATION * 0.5f).SetEase(Ease.InOutSine))
+			.Play();
+		ant.transform.DOLocalMove(position, TWEEN_DURATION);
 	}
 }
 
