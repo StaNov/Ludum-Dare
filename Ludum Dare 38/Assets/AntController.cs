@@ -6,18 +6,27 @@ public class AntController : MonoBehaviour {
 
 	public float moveSpeed = 1;
 	public float rotateSpeed = 1;
-	public AntController followingAnt = null;
+	public bool isLeader = false;
 
 	private const float minimumDistance = 5;
+
+	private AntPosition currentPos;
+	private static AntPosition leaderCurrentPos;
 
 	private Rigidbody2D rb;
 	
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
+
+		if (isLeader) {
+			AntPosition pos = new AntPosition() { position = transform.position, rotation = transform.rotation };
+			currentPos = pos;
+			leaderCurrentPos = pos;
+		}
 	}
 	
 	void FixedUpdate () {
-		if (followingAnt == null) {
+		if (isLeader) {
 			ControlLeader();
 		} else {
 			ControlFollower();
@@ -26,6 +35,11 @@ public class AntController : MonoBehaviour {
 
 	private void ControlLeader() {
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon) {
+			AntPosition pos = new AntPosition() { position = transform.position, rotation = transform.rotation };
+			currentPos.next = pos;
+			currentPos = pos;
+			leaderCurrentPos = pos;
+
 			rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
 		}
 
@@ -34,17 +48,25 @@ public class AntController : MonoBehaviour {
 
 	private void ControlFollower() {
 
-		var lookPos = followingAnt.transform.position - transform.position;
-		var newRotation = Quaternion.LookRotation(lookPos, Vector3.back);
-		newRotation.y = 0;
-		newRotation.x = 0;
-		transform.rotation = newRotation;
-
-		if (Vector3.Distance(followingAnt.transform.position, transform.position) < minimumDistance) {
-			return;
+		if (currentPos == null) {
+			currentPos = leaderCurrentPos;
 		}
-		
 
-		rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
+		if ((transform.position - currentPos.position).magnitude < 0.01f && currentPos.next != null) {
+			currentPos = currentPos.next;
+		}
+
+		Vector3 direction = currentPos.position - transform.position;
+		float magnitude = Mathf.Min(direction.magnitude, moveSpeed * Time.deltaTime);
+		direction = direction.normalized * magnitude;
+
+		rb.MovePosition(transform.position + direction);
+		transform.rotation = currentPos.rotation;
+	}
+
+	private class AntPosition {
+		public Vector3 position;
+		public Quaternion rotation;
+		public AntPosition next;
 	}
 }

@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 4920184480179020}
   - component: {fileID: 114608233394208192}
   - component: {fileID: 50893483518226926}
-  - component: {fileID: 58194010226084490}
   m_Layer: 0
   m_Name: Ant
   m_TagString: Untagged
@@ -546,7 +545,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1238882399003432}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -558,22 +557,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &58194010226084490
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238882399003432}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.23}
-  serializedVersion: 2
-  m_Radius: 1.68
+  m_Constraints: 4
 --- !u!65 &65017491114857432
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -671,4 +655,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   rotateSpeed: 10
-  followingAnt: {fileID: 0}
+  isLeader: 0
