@@ -19,4 +19,9 @@ public class AntsManager : MonoBehaviour {
 	public static AntController[] GetActiveAnts () {
 		return instance.GetComponentsInChildren<AntController>();
 	}
+
+	public static int GetLiveAntsCount()
+	{
+		return 5; // TODO
+	}
 }

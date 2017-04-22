@@ -5,12 +5,22 @@ using UnityEngine;
 public class AntHill : MonoBehaviour {
 
 	public AntSpawner spawner;
+	public float startingFoodSupply = 100; // TODO pak dat nulu, az s prvnim donesenym jidlem naplnit
 
-	private float currentFoodSupply = 0;
+	public float currentFoodSupply { get { return m_CurrentFoodSupply; } }
+	public int level { get { return m_Level; } }
 
-	// Use this for initialization
-	void Start () {
-		
+	private float m_CurrentFoodSupply = 0;
+	private int m_Level = 0;
+
+	void Start()
+	{
+		m_CurrentFoodSupply = startingFoodSupply;
+	}
+
+	void Update () {
+		m_CurrentFoodSupply -= 1 * level * Time.deltaTime;
+		m_CurrentFoodSupply -= 1 * AntsManager.GetLiveAntsCount() * Time.deltaTime;
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
@@ -22,7 +32,7 @@ public class AntHill : MonoBehaviour {
 			return;
 		}
 
-		currentFoodSupply += food.quantity;
+		m_CurrentFoodSupply += food.quantity;
 
 		AntController[] ants = food.ReleaseAntsAndDestroy();
 

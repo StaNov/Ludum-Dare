@@ -6,7 +6,7 @@ public class Food : MonoBehaviour {
 
 	public Transform antsParent;
 
-	public float quantity = 3;
+	public float quantity = 30;
 
 	private bool waitingForAnts = true;
 	
