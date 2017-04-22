@@ -53,8 +53,7 @@ public class AntController : MonoBehaviour {
 
 			if (GetBlockingObject())
 			{
-				Debug.Log("GAME OVER");
-				RenderSettings.ambientLight = Color.black; // TODO
+				GameOverHandler.OnGameOver();
 			}
 		}
 

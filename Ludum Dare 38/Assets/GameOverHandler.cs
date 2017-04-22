@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverScreen : MonoBehaviour {
+public class GameOverHandler : MonoBehaviour {
+
+	private static GameOverHandler instance;
 
 	public AntHill antHill;
 	public GameObject innerPanel;
 
 	void Awake() {
+		instance = this;
 		innerPanel.SetActive(false);
 	}
 
@@ -15,8 +18,13 @@ public class GameOverScreen : MonoBehaviour {
 	{
 		if (antHill.currentFoodSupply < 0)
 		{
-			innerPanel.SetActive(true);
-			GameManager.OnGameOver();
+			OnGameOver();
 		}
+	}
+
+	public static void OnGameOver()
+	{
+		instance.innerPanel.SetActive(true);
+		GameManager.OnGameOver();
 	}
 }
