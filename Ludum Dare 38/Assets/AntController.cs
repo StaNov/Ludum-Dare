@@ -8,7 +8,7 @@ public class AntController : MonoBehaviour {
 	public float rotateSpeed = 1;
 	public bool isLeader = false;
 
-	public Transform front;
+	public Transform[] bumpers;
 
 	private const float minimumDistance = 5;
 
@@ -21,7 +21,7 @@ public class AntController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 
 		if (isLeader) {
-			AntPosition pos = new AntPosition() { position = transform.position, rotation = transform.rotation };
+			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos = pos;
 			leaderCurrentPos = pos;
 		}
@@ -38,14 +38,14 @@ public class AntController : MonoBehaviour {
 
 	private void ControlLeader() {
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon) {
-			AntPosition pos = new AntPosition() { position = transform.position, rotation = transform.rotation };
+			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos.next = pos;
 			currentPos = pos;
 			leaderCurrentPos = pos;
 
 			rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
 
-			if (IsSomethingInFront())
+			if (GetBlockingObject())
 			{
 				Debug.Log("GAME OVER");
 				RenderSettings.ambientLight = Color.black; // TODO
@@ -58,11 +58,19 @@ public class AntController : MonoBehaviour {
 	private void ControlFollower() {
 
 		if (currentPos == null) {
-			currentPos = leaderCurrentPos;
+			ResetCurrentPos();
 		}
 
-		if (IsSomethingInFront())
+		var blockingObject = GetBlockingObject();
+		if (blockingObject)
 		{
+			if (blockingObject.GetBlockingObject() == this)
+			{
+				ResetCurrentPos();
+				transform.rotation = Quaternion.identity;
+				blockingObject.transform.rotation = Quaternion.identity;
+			}
+
 			return;
 		}
 
@@ -75,17 +83,30 @@ public class AntController : MonoBehaviour {
 		direction = direction.normalized * magnitude;
 
 		rb.MovePosition(transform.position + direction);
-		transform.rotation = currentPos.rotation;
+		transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
 	}
 
-	private bool IsSomethingInFront()
+	private AntController GetBlockingObject()
 	{
-		return Physics2D.Raycast(front.position, front.up, 1f);
+		foreach (Transform bumper in bumpers)
+		{
+			RaycastHit2D hit = Physics2D.Raycast(bumper.position, bumper.up, 1f);
+			if (hit)
+			{
+				return hit.collider.GetComponent<AntController>();
+			}
+		}
+
+		return null;
+	}
+
+	private void ResetCurrentPos()
+	{
+		currentPos = leaderCurrentPos;
 	}
 
 	private class AntPosition {
 		public Vector3 position;
-		public Quaternion rotation;
 		public AntPosition next;
 	}
 }
