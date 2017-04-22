@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Collectible : MonoBehaviour {
 	public int quantity = 30;
@@ -64,9 +65,9 @@ public class Collectible : MonoBehaviour {
 		Vector3 position = new Vector3(xPos, yPos, 0);
 		position.Normalize();
 		position *= (GetComponent<CircleCollider2D>().radius + (ant.GetComponent<BoxCollider2D>().size.y / 2) / transform.localScale.x);
-
-		ant.transform.localPosition = position;
-		ant.transform.localRotation = Quaternion.LookRotation(Vector3.forward, Vector3.zero - ant.transform.localPosition);
+		
+		ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, Vector3.zero - position).eulerAngles, 1f);
+		ant.transform.DOLocalMove(position, 1f);
 	}
 }
 
