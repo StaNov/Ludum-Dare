@@ -129,5 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0847724c4fa92ab47beec890c6ab5f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antsParent: {fileID: 0}
-  quantity: 100
+  quantity: 30
+  type: 0
