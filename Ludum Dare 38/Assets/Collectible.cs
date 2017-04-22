@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour {
-
-	public Transform antsParent;
-
-	public float quantity = 30;
+public class Collectible : MonoBehaviour {
+	public int quantity = 30;
+	public CollectibleType type;
 
 	private bool waitingForAnts = true;
 	
@@ -54,4 +52,9 @@ public class Food : MonoBehaviour {
 		
 		waitingForAnts = false;
 	}
+}
+
+public enum CollectibleType
+{
+	FOOD, MATERIAL
 }

@@ -25,16 +25,24 @@ public class AntHill : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		Food food = col.GetComponent<Food>();
+		Collectible collectible = col.GetComponent<Collectible>();
 
-		if (food == null)
+		if (collectible == null)
 		{
 			return;
 		}
 
-		m_CurrentFoodSupply += food.quantity;
+		switch (collectible.type)
+		{
+			case CollectibleType.FOOD:
+				m_CurrentFoodSupply += collectible.quantity;
+				break;
+			case CollectibleType.MATERIAL:
+				m_Level += collectible.quantity;
+				break;
+		}
 
-		AntController[] ants = food.ReleaseAntsAndDestroy();
+		AntController[] ants = collectible.ReleaseAntsAndDestroy();
 
 		spawner.AcceptAntsToSpawn(ants);
 	}
