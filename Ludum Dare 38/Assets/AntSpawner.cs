@@ -35,6 +35,7 @@ public class AntSpawner : MonoBehaviour {
 	{
 		antLeaderToSpawn.transform.position = leaderSpawnPoint.position;
 		antLeaderToSpawn.transform.rotation = leaderSpawnPoint.rotation;
+		antLeaderToSpawn.GetComponent<Collider2D>().enabled = true;
 		antLeaderToSpawn.gameObject.SetActive(true);
 		AntsManager.ReturnAntToActives(antLeaderToSpawn);
 	}
@@ -49,6 +50,7 @@ public class AntSpawner : MonoBehaviour {
 		if (remainingAntsToSpawn.Count > 0)
 		{
 			AntController ant = remainingAntsToSpawn[0];
+			ant.GetComponent<Collider2D>().enabled = true;
 			ant.transform.position = transform.position;
 			ant.gameObject.SetActive(true);
 			AntsManager.ReturnAntToActives(ant);

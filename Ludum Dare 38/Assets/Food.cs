@@ -46,6 +46,7 @@ public class Food : MonoBehaviour {
 		foreach (AntController ant in AntsManager.GetActiveAnts())
 		{
 			ant.enabled = false;
+			ant.GetComponent<Collider2D>().enabled = false;
 			ant.transform.parent = transform;
 			ant.transform.localPosition = Vector3.zero;
 			ant.transform.localRotation = Quaternion.identity;
