@@ -67,12 +67,12 @@ public class Collectible : MonoBehaviour {
 		}
 
 		AntController collidingAnt = collision.collider.GetComponent<AntController>();
-		if (collidingAnt != null && !collidingAnt.isLeader)
+		if (collidingAnt == null || !collidingAnt.isLeader)
 		{
 			return;
 		}
-		
-		//rb.constraints = RigidbodyConstraints2D.None;
+
+		rb.bodyType = RigidbodyType2D.Dynamic;
 
 		attachedAnts = AntsManager.GetActiveAnts();
 
