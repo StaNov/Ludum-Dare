@@ -35,13 +35,13 @@ public class Collectible : MonoBehaviour {
 		bool moving = false;
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
 		{
-			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / (Mathf.Pow(weight, 2.5f));
+			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / (Mathf.Pow(weight, 2.2f));
 			moveSpeed = Mathf.Clamp(moveSpeed, 0, MAX_MOVE_SPEED);
 			rb.MovePosition(transform.position + attachedAntLeader.transform.up * moveSpeed * Time.deltaTime);
 			moving = true;
 		}
 
-		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / (Mathf.Pow(weight, 2.5f));
+		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / (Mathf.Pow(weight, 2.2f));
 		rotationSpeed = Mathf.Clamp(rotationSpeed, -MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 		transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
 		moving |= Mathf.Abs(rotationSpeed) > float.Epsilon;
