@@ -5,24 +5,43 @@ using DG.Tweening;
 
 public class Collectible : MonoBehaviour {
 
-	private const float TWEEN_DURATION = 1f;
+	private const float TWEEN_DURATION = 1;
+
+	private const float COEF_ROTATION_SPEED = 10;
+	private const float COEF_MOVE_SPEED = 2;
+	private const float MAX_ROTATION_SPEED = 100;
+	private const float MAX_MOVE_SPEED = 25;
 
 	public int quantity = 30;
 	public CollectibleType type;
 	
 	private AntController attachedAntLeader = null;
-	
+	private AntController[] attachedAnts;
+
+	private Rigidbody2D rb;
+
+	void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+	}
+
 	void FixedUpdate () {
 		if (attachedAntLeader == null)
 		{
 			return;
 		}
 
-		transform.Translate(
-			Input.GetAxisRaw("Horizontal") * Time.deltaTime * 10,
-			Input.GetAxisRaw("Vertical") * Time.deltaTime * 10,
-			0
-		);
+		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
+		{
+			float moveSpeed = Mathf.Clamp(attachedAnts.Length * COEF_MOVE_SPEED, 0, MAX_MOVE_SPEED);
+			rb.MovePosition(transform.position + attachedAntLeader.transform.up * moveSpeed * Time.deltaTime);
+			// TODO zohlednit vahu nakladu
+		}
+
+		float rotationSpeed = Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED;
+		rotationSpeed = Mathf.Clamp(rotationSpeed, -MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
+		transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
+		// TODO zohlednit vahu nakladu
 	}
 
 	public AntController[] ReleaseAntsAndDestroy()
@@ -51,8 +70,10 @@ public class Collectible : MonoBehaviour {
 		{
 			return;
 		}
-		
-		foreach (AntController ant in AntsManager.GetActiveAnts())
+
+		attachedAnts = AntsManager.GetActiveAnts();
+
+		foreach (AntController ant in attachedAnts)
 		{
 			ant.enabled = false;
 			ant.transform.parent = transform;
@@ -68,6 +89,12 @@ public class Collectible : MonoBehaviour {
 
 	private void SetAntPositionAndRotationAfterHit(AntController ant)
 	{
+		if (ant.isLeader)
+		{
+			ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, - ant.transform.localPosition).eulerAngles, TWEEN_DURATION * 0.3f).SetEase(Ease.InOutSine);
+			return;
+		}
+
 		float xPos = Random.Range(-10f, 10f);
 		float yPos = Random.Range(-10f, 10f);
 		Vector3 position = new Vector3(xPos, yPos, 0);
@@ -77,7 +104,7 @@ public class Collectible : MonoBehaviour {
 		DOTween.Sequence()
 			.Append(ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, position - ant.transform.localPosition).eulerAngles, TWEEN_DURATION * 0.3f).SetEase(Ease.InOutSine))
 			.AppendInterval(TWEEN_DURATION * 0.7f)
-			.Append(ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, Vector3.zero - position).eulerAngles, TWEEN_DURATION * 0.5f).SetEase(Ease.InOutSine))
+			.Append(ant.transform.DOLocalRotate(Quaternion.LookRotation(Vector3.forward, - position).eulerAngles, TWEEN_DURATION * 0.5f).SetEase(Ease.InOutSine))
 			.Play();
 		ant.transform.DOLocalMove(position, TWEEN_DURATION);
 	}
