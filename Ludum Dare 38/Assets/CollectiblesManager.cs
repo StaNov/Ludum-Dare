@@ -6,8 +6,23 @@ public class CollectiblesManager : MonoBehaviour {
 
 	public GameObject[] foodPrefabs;
 	public GameObject[] materialPrefabs;
-
 	public int[] levelToStartGenerateNext;
+
+	public AntHill antHill;
+
+	private int currentPrefabLevel {
+		get {
+			for (int i = 0; i < levelToStartGenerateNext.Length; i++)
+			{
+				if (levelToStartGenerateNext[i] > antHill.level)
+				{
+					return i;
+				}
+			}
+			
+			return levelToStartGenerateNext[levelToStartGenerateNext.Length - 1];
+		}
+	}
 
 	private CollectibleSlot[] slots;
 
@@ -31,7 +46,7 @@ public class CollectiblesManager : MonoBehaviour {
 		CollectibleSlot slot = freeSlots[Random.Range(0, freeSlots.Length - 1)];
 
 		GameObject[] prefabs = food <= material ? foodPrefabs : materialPrefabs;
-		GameObject prefab = prefabs[Random.Range(0, prefabs.Length - 1)];
+		GameObject prefab = prefabs[currentPrefabLevel];
 
 		Instantiate(prefab, slot.transform);
 	}
