@@ -8,6 +8,7 @@ public class AntHill : MonoBehaviour {
 
 	public float currentFoodSupply { get { return m_CurrentFoodSupply; } }
 	public int level { get { return m_Level; } }
+	public int maxFoodSupply { get { return (level + 1) * 100; } }
 
 	private float m_CurrentFoodSupply = 0;
 	private int m_Level = 0;
@@ -29,6 +30,7 @@ public class AntHill : MonoBehaviour {
 		{
 			case CollectibleType.FOOD:
 				m_CurrentFoodSupply += collectible.quantity;
+				m_CurrentFoodSupply = Mathf.Min(m_CurrentFoodSupply, maxFoodSupply);
 				break;
 			case CollectibleType.MATERIAL:
 				m_Level += collectible.quantity;

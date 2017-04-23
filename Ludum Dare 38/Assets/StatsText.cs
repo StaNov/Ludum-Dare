@@ -15,6 +15,6 @@ public class StatsText : MonoBehaviour {
 	}
 
 	void Update () {
-		text.text = "Food: " + antHill.currentFoodSupply.ToString("0") + "\nLevel: " + antHill.level;
+		text.text = "Food: " + antHill.currentFoodSupply.ToString("0") + "/" + antHill.maxFoodSupply + "\nLevel: " + antHill.level;
 	}
 }
