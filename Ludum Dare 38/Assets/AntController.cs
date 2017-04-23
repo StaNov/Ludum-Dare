@@ -58,7 +58,10 @@ public class AntController : MonoBehaviour {
 			rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
 		}
 
-		transform.Rotate(new Vector3(0, 0, -Input.GetAxisRaw("Horizontal") * rotateSpeed * 30 * Time.deltaTime));
+		if (!movingAutomatically)
+		{
+			transform.Rotate(new Vector3(0, 0, -Input.GetAxisRaw("Horizontal") * rotateSpeed * 30 * Time.deltaTime));
+		}
 	}
 
 	private void ControlFollower() {
