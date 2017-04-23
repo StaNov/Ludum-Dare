@@ -22,9 +22,9 @@ public class GameOverHandler : MonoBehaviour {
 		}
 	}
 
-	public static void OnGameOver()
+	private void OnGameOver()
 	{
-		instance.innerPanel.SetActive(true);
+		innerPanel.SetActive(true);
 		GameManager.OnGameOver();
 	}
 }

@@ -13,6 +13,8 @@ public class AntController : MonoBehaviour {
 	private const float minimumDistance = 5;
 
 	private AntPosition currentPos;
+	private float leaderDistanceWhileIAmStanding;
+	private static AntPosition leaderLastPos;
 	private static AntPosition leaderCurrentPos;
 
 	private Rigidbody2D rb;
@@ -28,6 +30,7 @@ public class AntController : MonoBehaviour {
 			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos = pos;
 			leaderCurrentPos = pos;
+			leaderLastPos = pos;
 		}
 
 		ResetCurrentPos();
@@ -43,6 +46,8 @@ public class AntController : MonoBehaviour {
 	}
 
 	private void ControlLeader() {
+		leaderLastPos = leaderCurrentPos;
+
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon) {
 			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos.next = pos;
@@ -50,11 +55,6 @@ public class AntController : MonoBehaviour {
 			leaderCurrentPos = pos;
 
 			rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
-
-			if (GetBlockingObject())
-			{
-				GameOverHandler.OnGameOver();
-			}
 		}
 
 		transform.Rotate(new Vector3(0, 0, -Input.GetAxisRaw("Horizontal") * rotateSpeed * 30 * Time.deltaTime));
@@ -62,19 +62,17 @@ public class AntController : MonoBehaviour {
 
 	private void ControlFollower() {
 
-		// TODO mozna se da smazat, udela se v OnEnable
-		if (currentPos == null) {
-			ResetCurrentPos();
-		}
-
 		var blockingObject = GetBlockingObject();
 		if (blockingObject)
 		{
-			if (blockingObject.GetBlockingObject() == this)
+			if (leaderDistanceWhileIAmStanding > 5)
 			{
 				ResetCurrentPos();
 				transform.rotation = Quaternion.identity;
-				blockingObject.transform.rotation = Quaternion.identity;
+			}
+			else
+			{
+				leaderDistanceWhileIAmStanding += Vector3.Distance(leaderCurrentPos.position, leaderLastPos.position);
 			}
 
 			return;
@@ -90,6 +88,7 @@ public class AntController : MonoBehaviour {
 
 		rb.MovePosition(transform.position + direction);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+		leaderDistanceWhileIAmStanding = 0;
 	}
 
 	private AntController GetBlockingObject()
