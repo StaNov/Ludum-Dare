@@ -16,7 +16,7 @@ public class GameOverHandler : MonoBehaviour {
 
 	void Update()
 	{
-		if (antHill.currentFoodSupply < 0)
+		if (antHill.currentFoodSupply < - float.Epsilon)
 		{
 			OnGameOver();
 		}

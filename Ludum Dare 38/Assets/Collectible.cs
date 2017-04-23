@@ -7,8 +7,8 @@ public class Collectible : MonoBehaviour {
 
 	private const float TWEEN_DURATION = 1;
 
-	private const float COEF_ROTATION_SPEED = 1000;
-	private const float COEF_MOVE_SPEED = 200;
+	private const float COEF_ROTATION_SPEED = 50;
+	private const float COEF_MOVE_SPEED = 6;
 	private const float MAX_ROTATION_SPEED = 100;
 	private const float MAX_MOVE_SPEED = 25;
 
@@ -19,7 +19,7 @@ public class Collectible : MonoBehaviour {
 	private AntController[] attachedAnts;
 
 	private Rigidbody2D rb;
-	private float weight { get { return type == CollectibleType.FOOD ? quantity : quantity * 100; } }
+	private float weight { get { return type == CollectibleType.FOOD ? quantity / 100 : quantity; } }
 
 	void Awake()
 	{
