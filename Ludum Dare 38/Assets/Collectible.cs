@@ -5,12 +5,12 @@ using DG.Tweening;
 
 public class Collectible : MonoBehaviour {
 
-	private const float TWEEN_DURATION = 1;
+	private const float TWEEN_DURATION = 0.5f;
 
 	private const float COEF_ROTATION_SPEED = 50;
 	private const float COEF_MOVE_SPEED = 6;
 	private const float MAX_ROTATION_SPEED = 170;
-	private const float MAX_MOVE_SPEED = 25;
+	private const float MAX_MOVE_SPEED = 20;
 
 	public int quantity = 30;
 	public CollectibleType type;
@@ -66,10 +66,13 @@ public class Collectible : MonoBehaviour {
 			return;
 		}
 
-		if (! collision.collider.GetComponent<AntController>().isLeader)
+		AntController collidingAnt = collision.collider.GetComponent<AntController>();
+		if (collidingAnt != null && !collidingAnt.isLeader)
 		{
 			return;
 		}
+		
+		//rb.constraints = RigidbodyConstraints2D.None;
 
 		attachedAnts = AntsManager.GetActiveAnts();
 
