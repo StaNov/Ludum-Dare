@@ -20,7 +20,7 @@ public class CollectiblesManager : MonoBehaviour {
 				}
 			}
 			
-			return levelToStartGenerateNext[levelToStartGenerateNext.Length - 1];
+			return foodPrefabs.Length - 1;
 		}
 	}
 
