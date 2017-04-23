@@ -32,16 +32,26 @@ public class Collectible : MonoBehaviour {
 			return;
 		}
 
+		bool moving = false;
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
 		{
 			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / (Mathf.Pow(weight, 2.5f));
 			moveSpeed = Mathf.Clamp(moveSpeed, 0, MAX_MOVE_SPEED);
 			rb.MovePosition(transform.position + attachedAntLeader.transform.up * moveSpeed * Time.deltaTime);
+			moving = true;
 		}
 
 		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / (Mathf.Pow(weight, 2.5f));
 		rotationSpeed = Mathf.Clamp(rotationSpeed, -MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 		transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
+		moving |= Mathf.Abs(rotationSpeed) > float.Epsilon;
+
+		Animator[] ants = GetComponentsInChildren<Animator>();
+
+		foreach (Animator ant in ants)
+		{
+			ant.SetBool("IsMoving", moving);
+		}
 	}
 
 	public AntController[] ReleaseAntsAndDestroy()
