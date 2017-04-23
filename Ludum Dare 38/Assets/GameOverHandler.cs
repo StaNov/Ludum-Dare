@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class GameOverHandler : MonoBehaviour {
 
-	private static GameOverHandler instance;
-
 	public AntHill antHill;
 	public GameObject innerPanel;
 
 	void Awake() {
-		instance = this;
 		innerPanel.SetActive(false);
 	}
 
