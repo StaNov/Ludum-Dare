@@ -5,6 +5,7 @@ using UnityEngine;
 public class AntHill : MonoBehaviour {
 
 	public AntSpawner spawner;
+	public CollectiblesManager collectiblesManager;
 
 	public float currentFoodSupply { get { return m_CurrentFoodSupply; } }
 	public int level { get { return m_Level; } }
@@ -40,5 +41,7 @@ public class AntHill : MonoBehaviour {
 		AntController[] ants = collectible.ReleaseAntsAndDestroy();
 
 		spawner.AcceptAntsToSpawn(ants);
+
+		collectiblesManager.PopulateRandomSlot();
 	}
 }

@@ -74,7 +74,8 @@ public class Collectible : MonoBehaviour {
 
 		AntSpawner.ForceSpawnOfAllAnts();
 		rb.bodyType = RigidbodyType2D.Dynamic;
-		//rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+		transform.parent = null;
 
 		attachedAnts = AntsManager.GetActiveAnts();
 
