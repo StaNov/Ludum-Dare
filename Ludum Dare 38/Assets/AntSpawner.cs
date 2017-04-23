@@ -9,6 +9,7 @@ public class AntSpawner : MonoBehaviour {
 	public GameObject antLeaderPrefab;
 	public GameObject antPrefab;
 	public AntHill antHill;
+	public TutorialManager tutorial;
 
 	private AntController antLeaderToSpawn;
 	private List<AntController> remainingAntsToSpawn;
@@ -16,13 +17,14 @@ public class AntSpawner : MonoBehaviour {
 	void Awake()
 	{
 		instance = this;
+		remainingAntsToSpawn = new List<AntController>();
+		antLeaderToSpawn = Instantiate(antLeaderPrefab).GetComponent<AntController>();
+		SpawnAntLeader();
 	}
 
 	void Start()
 	{
-		remainingAntsToSpawn = new List<AntController>();
-		antLeaderToSpawn = Instantiate(antLeaderPrefab).GetComponent<AntController>();
-		SpawnAntLeader();
+		
 	}
 
 	public void AcceptAntsToSpawn(AntController[] ants) {
@@ -44,7 +46,6 @@ public class AntSpawner : MonoBehaviour {
 		}
 
 		SpawnAntLeader();
-		//SpawnAntIfAvailable();
 	}
 
 	private void SpawnAntLeader()
@@ -55,10 +56,16 @@ public class AntSpawner : MonoBehaviour {
 		antLeaderToSpawn.gameObject.SetActive(true);
 		AntsManager.ReturnAntToActives(antLeaderToSpawn);
 		antLeaderToSpawn.MoveForwardAuto();
+		tutorial.antLeader = antLeaderToSpawn;
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
+		if (collision.GetComponent<AntController>() == null)
+		{
+			return;
+		}
+
 		SpawnAntIfAvailable();
 	}
 

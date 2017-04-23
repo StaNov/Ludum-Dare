@@ -7,6 +7,7 @@ public class AntController : MonoBehaviour {
 	public float moveSpeed = 1;
 	public float rotateSpeed = 1;
 	public bool isLeader = false;
+	public TutorialCanvas tutorial;
 
 	public Transform[] bumpers;
 
@@ -69,6 +70,11 @@ public class AntController : MonoBehaviour {
 		}
 		
 		animator.SetBool("IsMoving", moved);
+
+		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
+		{
+			tutorial.gameObject.SetActive(false);
+		}
 	}
 
 	private void ControlFollower() {

@@ -14,6 +14,7 @@ public class Collectible : MonoBehaviour {
 
 	public int quantity = 30;
 	public CollectibleType type;
+	public TutorialCanvas tutorial;
 	
 	private AntController attachedAntLeader = null;
 	private AntController[] attachedAnts;
@@ -69,7 +70,13 @@ public class Collectible : MonoBehaviour {
 			attachedAntLeader = null;
 		}
 
-		Destroy(gameObject);
+		if (tutorial)
+		{
+			tutorial.gameObject.SetActive(false);
+		}
+
+		gameObject.SetActive(false);
+		Destroy(gameObject, 0.5f);
 		return ants;
 	}
 
