@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AntSpawner : MonoBehaviour {
 
+	private static AntSpawner instance;
+
 	public Transform leaderSpawnPoint;
 	public GameObject antLeaderPrefab;
 	public GameObject antPrefab;
@@ -11,6 +13,11 @@ public class AntSpawner : MonoBehaviour {
 
 	private AntController antLeaderToSpawn;
 	private List<AntController> remainingAntsToSpawn;
+
+	void Awake()
+	{
+		instance = this;
+	}
 
 	void Start()
 	{
@@ -59,12 +66,25 @@ public class AntSpawner : MonoBehaviour {
 	{
 		if (remainingAntsToSpawn.Count > 0)
 		{
-			AntController ant = remainingAntsToSpawn[0];
-			ant.GetComponent<Collider2D>().enabled = true;
-			ant.transform.position = transform.position;
-			ant.gameObject.SetActive(true);
-			AntsManager.ReturnAntToActives(ant);
-			remainingAntsToSpawn.RemoveAt(0);
+			SpawnAnt();
+		}
+	}
+
+	private void SpawnAnt()
+	{
+		AntController ant = remainingAntsToSpawn[0];
+		ant.GetComponent<Collider2D>().enabled = true;
+		ant.transform.position = transform.position;
+		ant.gameObject.SetActive(true);
+		AntsManager.ReturnAntToActives(ant);
+		remainingAntsToSpawn.RemoveAt(0);
+	}
+
+	public static void ForceSpawnOfAllAnts()
+	{
+		while (instance.remainingAntsToSpawn.Count > 0)
+		{
+			instance.SpawnAnt();
 		}
 	}
 }
