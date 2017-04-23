@@ -5,13 +5,18 @@ using UnityEngine;
 public class AntSpawner : MonoBehaviour {
 
 	public Transform leaderSpawnPoint;
+	public GameObject antLeaderPrefab;
+	public GameObject antPrefab;
+	public AntHill antHill;
 
 	private AntController antLeaderToSpawn;
 	private List<AntController> remainingAntsToSpawn;
 
-	void Awake()
+	void Start()
 	{
 		remainingAntsToSpawn = new List<AntController>();
+		antLeaderToSpawn = Instantiate(antLeaderPrefab).GetComponent<AntController>();
+		SpawnAntLeader();
 	}
 
 	public void AcceptAntsToSpawn(AntController[] ants) {
@@ -21,10 +26,15 @@ public class AntSpawner : MonoBehaviour {
 			ant.gameObject.SetActive(false);
 			if (ant.isLeader) {
 				antLeaderToSpawn = ant;
-			} else
-			{
+			} else {
 				remainingAntsToSpawn.Add(ant);
 			}
+		}
+
+		while (remainingAntsToSpawn.Count < antHill.level) {
+			AntController newAnt = Instantiate(antPrefab).GetComponent<AntController>();
+			newAnt.gameObject.SetActive(false);
+			remainingAntsToSpawn.Add(newAnt);
 		}
 
 		SpawnAntLeader();
