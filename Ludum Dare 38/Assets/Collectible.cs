@@ -9,11 +9,11 @@ public class Collectible : MonoBehaviour {
 
 	public int quantity = 30;
 	public CollectibleType type;
-
-	private bool waitingForAnts = true;
+	
+	private AntController attachedAntLeader = null;
 	
 	void FixedUpdate () {
-		if (waitingForAnts)
+		if (attachedAntLeader == null)
 		{
 			return;
 		}
@@ -34,13 +34,15 @@ public class Collectible : MonoBehaviour {
 			ant.transform.parent = null;
 		}
 
+		attachedAntLeader = null;
+
 		Destroy(gameObject);
 		return ants;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (! waitingForAnts)
+		if (attachedAntLeader != null)
 		{
 			return;
 		}
@@ -56,9 +58,12 @@ public class Collectible : MonoBehaviour {
 			ant.transform.parent = transform;
 			SetAntPositionAndRotationAfterHit(ant);
 			ant.GetComponent<Collider2D>().enabled = false;
+
+			if (ant.isLeader)
+			{
+				attachedAntLeader = ant;
+			}
 		}
-		
-		waitingForAnts = false;
 	}
 
 	private void SetAntPositionAndRotationAfterHit(AntController ant)
