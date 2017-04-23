@@ -7,8 +7,8 @@ public class Collectible : MonoBehaviour {
 
 	private const float TWEEN_DURATION = 1;
 
-	private const float COEF_ROTATION_SPEED = 10;
-	private const float COEF_MOVE_SPEED = 2;
+	private const float COEF_ROTATION_SPEED = 1000;
+	private const float COEF_MOVE_SPEED = 200;
 	private const float MAX_ROTATION_SPEED = 100;
 	private const float MAX_MOVE_SPEED = 25;
 
@@ -19,6 +19,7 @@ public class Collectible : MonoBehaviour {
 	private AntController[] attachedAnts;
 
 	private Rigidbody2D rb;
+	private float weight { get { return type == CollectibleType.FOOD ? quantity : quantity * 100; } }
 
 	void Awake()
 	{
@@ -33,15 +34,14 @@ public class Collectible : MonoBehaviour {
 
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
 		{
-			float moveSpeed = Mathf.Clamp(attachedAnts.Length * COEF_MOVE_SPEED, 0, MAX_MOVE_SPEED);
+			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / weight;
+			moveSpeed = Mathf.Clamp(moveSpeed, 0, MAX_MOVE_SPEED);
 			rb.MovePosition(transform.position + attachedAntLeader.transform.up * moveSpeed * Time.deltaTime);
-			// TODO zohlednit vahu nakladu
 		}
 
-		float rotationSpeed = Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED;
+		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / weight;
 		rotationSpeed = Mathf.Clamp(rotationSpeed, -MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 		transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
-		// TODO zohlednit vahu nakladu
 	}
 
 	public AntController[] ReleaseAntsAndDestroy()
