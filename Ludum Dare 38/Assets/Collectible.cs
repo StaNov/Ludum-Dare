@@ -53,8 +53,11 @@ public class Collectible : MonoBehaviour {
 			ant.transform.parent = null;
 		}
 
-		attachedAntLeader.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-		attachedAntLeader = null;
+		if (attachedAntLeader != null)
+		{
+			attachedAntLeader.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			attachedAntLeader = null;
+		}
 
 		Destroy(gameObject);
 		return ants;

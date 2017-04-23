@@ -19,9 +19,11 @@ public class AntController : MonoBehaviour {
 	private bool movingAutomatically;
 
 	private Rigidbody2D rb;
-	
+	private Animator animator;
+
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponentInChildren<Animator>();
 	}
 
 	void OnEnable()
@@ -48,6 +50,7 @@ public class AntController : MonoBehaviour {
 
 	private void ControlLeader() {
 		leaderLastPos = leaderCurrentPos;
+		bool moved = false;
 
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon || movingAutomatically) {
 			AntPosition pos = new AntPosition() { position = transform.position };
@@ -56,12 +59,16 @@ public class AntController : MonoBehaviour {
 			leaderCurrentPos = pos;
 
 			rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
+			moved = true;
 		}
 
 		if (!movingAutomatically)
 		{
 			transform.Rotate(new Vector3(0, 0, -Input.GetAxisRaw("Horizontal") * rotateSpeed * 30 * Time.deltaTime));
+			//moved |= Mathf.Abs(Input.GetAxisRaw("Horizontal")) > float.Epsilon;
 		}
+		
+		animator.SetBool("IsMoving", moved);
 	}
 
 	private void ControlFollower() {
@@ -79,6 +86,7 @@ public class AntController : MonoBehaviour {
 				leaderDistanceWhileIAmStanding += Vector3.Distance(leaderCurrentPos.position, leaderLastPos.position);
 			}
 
+			animator.SetBool("IsMoving", false);
 			return;
 		}
 
@@ -91,6 +99,7 @@ public class AntController : MonoBehaviour {
 		direction = direction.normalized * magnitude;
 
 		rb.MovePosition(transform.position + direction);
+		animator.SetBool("IsMoving", true);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
 		leaderDistanceWhileIAmStanding = 0;
 	}
