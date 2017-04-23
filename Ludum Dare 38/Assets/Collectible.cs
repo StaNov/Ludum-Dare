@@ -9,7 +9,7 @@ public class Collectible : MonoBehaviour {
 
 	private const float COEF_ROTATION_SPEED = 50;
 	private const float COEF_MOVE_SPEED = 6;
-	private const float MAX_ROTATION_SPEED = 100;
+	private const float MAX_ROTATION_SPEED = 170;
 	private const float MAX_MOVE_SPEED = 25;
 
 	public int quantity = 30;
@@ -34,12 +34,12 @@ public class Collectible : MonoBehaviour {
 
 		if (Input.GetAxisRaw("Vertical") > float.Epsilon)
 		{
-			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / weight;
+			float moveSpeed = (attachedAnts.Length * COEF_MOVE_SPEED) / (weight * weight);
 			moveSpeed = Mathf.Clamp(moveSpeed, 0, MAX_MOVE_SPEED);
 			rb.MovePosition(transform.position + attachedAntLeader.transform.up * moveSpeed * Time.deltaTime);
 		}
 
-		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / weight;
+		float rotationSpeed = (Input.GetAxisRaw("Horizontal") * attachedAnts.Length * COEF_ROTATION_SPEED) / (weight * weight);
 		rotationSpeed = Mathf.Clamp(rotationSpeed, -MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 		transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
 	}
