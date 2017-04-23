@@ -17,6 +17,10 @@ public class FoodBarController : MonoBehaviour {
 	void Awake () {
 		text = GetComponentInChildren<Text>();
 		fullWidth = bar.sizeDelta.x;
+
+		Vector2 size = bar.sizeDelta;
+		size.x = 0;
+		bar.sizeDelta = size;
 	}
 	
 	void Update () {

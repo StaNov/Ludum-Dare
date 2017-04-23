@@ -176,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219494241252336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.78749, y: -11.704882, z: 0}
+  m_LocalPosition: {x: -88.56323, y: -4.152182, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4072949713445224}
@@ -366,7 +366,7 @@ MonoBehaviour:
     You can control him by arrow keys or WASD.
 
 
-'
+    Don''t be surprised - he cannot walk backwards.'
 --- !u!114 &114120786006506086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,7 +568,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.6049957, y: 3.7150006}
-  m_SizeDelta: {x: 2188.9, y: 798.8}
+  m_SizeDelta: {x: 2188.9, y: 1460.4}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224837701173228192
 RectTransform:

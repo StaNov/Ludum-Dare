@@ -180,7 +180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.4, y: 0}
+  m_AnchoredPosition: {x: 25.4, y: 0}
   m_SizeDelta: {x: 73.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19642451
@@ -771,7 +771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -25.53}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34.6, y: -0.10000038}
+  m_AnchoredPosition: {x: -29.11, y: -0.10000038}
   m_SizeDelta: {x: 21.4, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288556554
@@ -2105,9 +2105,16 @@ MonoBehaviour:
     empty now.
 
 
-    The bigger the anthill, the bigger the stuff will start to appear. Strawberry
-    gives you more food than a corn seed, but is much heavier. So get some more ants
-    by collecting needles before you try to bring the strawberry, for example.
+    Each ant also provides you 100 units of food supply capacity.
+
+
+    The bigger the anthill, the bigger the stuff will start to appear. For example,
+    strawberry gives you more food than a corn seed, but is much heavier. So get some
+    more ants by collecting needles before you try to bring the strawberry.
+
+
+    Similarly, a leaf is heavier than needles, but it provides enough building material
+    to bring you two more new ants.
 
 
     Good luck! You can close this window by touching it with your ant king.'
@@ -3186,7 +3193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1084216824
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3204,9 +3211,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -24.4, y: -11.1}
-  m_SizeDelta: {x: 4726.06, y: 2318.91}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.56954956, y: 0.23384857}
+  m_SizeDelta: {x: 4726.1, y: 3146.77}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084216825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3291,7 +3298,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2351.4075, y: 1150.6415}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3302,7 +3309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4703.815, y: 2302.283}
+  m_Size: {x: 4734.8447, y: 3184.7417}
   m_EdgeRadius: 0
 --- !u!114 &1089731870 stripped
 MonoBehaviour:
@@ -5215,11 +5222,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Those are needles from trees. Ants build anthills from it.
+  m_Text: 'Those are needles from trees. Ants build anthills from them.
 
 
-    Bring them to the anthill and you get another ant to help you carrying more stuff
-    to the anthill.
+    Bring them to the anthill and you''ll get another ant to help you to carry more
+    stuff to the anthill.
 
 
     Two ants means double carry-power!'
