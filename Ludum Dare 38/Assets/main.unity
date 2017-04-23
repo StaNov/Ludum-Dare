@@ -2620,6 +2620,7 @@ GameObject:
   - component: {fileID: 1079168266}
   - component: {fileID: 1079168267}
   - component: {fileID: 1079168265}
+  - component: {fileID: 1079168268}
   m_Layer: 0
   m_Name: AntHill
   m_TagString: Untagged
@@ -2665,6 +2666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 546948067}
   collectiblesManager: {fileID: 912183017}
+  mnamMnam: {fileID: 8300000, guid: c3f2ff10bc9e62446ae8a36adc65254b, type: 3}
+  woohoo: {fileID: 8300000, guid: c679b784293ed914cbb3123813ff4595, type: 3}
 --- !u!61 &1079168267
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2690,6 +2693,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4390335, y: 8.232889}
   m_EdgeRadius: 0
+--- !u!82 &1079168268
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079168264}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &1079168269
 Transform:
   m_ObjectHideFlags: 0

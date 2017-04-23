@@ -128,6 +128,11 @@ public class AntController : MonoBehaviour {
 		StartCoroutine(MoveAuto());
 	}
 
+	public void PlayPickupSound()
+	{
+		GetComponent<AudioSource>().Play();
+	}
+
 	private IEnumerator MoveAuto()
 	{
 		movingAutomatically = true;

@@ -104,6 +104,7 @@ public class Collectible : MonoBehaviour {
 			{
 				attachedAntLeader = ant;
 				ant.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+				ant.PlayPickupSound();
 			}
 		}
 	}
