@@ -12,7 +12,7 @@ public class CollectiblesManager : MonoBehaviour {
 
 	private int currentPrefabLevel {
 		get {
-			for (int i = 0; i < levelToStartGenerateNext.Length; i++)
+			for (int i = 0; i <= levelToStartGenerateNext.Length; i++)
 			{
 				if (levelToStartGenerateNext[i] > antHill.level)
 				{

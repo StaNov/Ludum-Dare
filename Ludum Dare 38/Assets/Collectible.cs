@@ -53,6 +53,7 @@ public class Collectible : MonoBehaviour {
 			ant.transform.parent = null;
 		}
 
+		attachedAntLeader.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 		attachedAntLeader = null;
 
 		Destroy(gameObject);
@@ -89,6 +90,7 @@ public class Collectible : MonoBehaviour {
 			if (ant.isLeader)
 			{
 				attachedAntLeader = ant;
+				ant.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 			}
 		}
 	}
