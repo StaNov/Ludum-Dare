@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 50148067128277254}
   - component: {fileID: 58160300907514412}
   m_Layer: 0
-  m_Name: Food4
+  m_Name: Food3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1001495908614252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 4542140901206502}
   m_RootOrder: 0
@@ -187,7 +187,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 3.5
 --- !u!114 &114664549435716402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,5 +199,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0847724c4fa92ab47beec890c6ab5f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity: 400
+  quantity: 350
   type: 0
