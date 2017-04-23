@@ -23,7 +23,6 @@ public class FoodBarController : MonoBehaviour {
 		text.text = "Food: " + antHill.currentFoodSupply.ToString("0") + "/" + antHill.maxFoodSupply;
 		Vector2 size = bar.sizeDelta;
 		size.x = (antHill.currentFoodSupply / antHill.maxFoodSupply) * fullWidth;
-		//bar.sizeDelta = size;
 		bar.DOSizeDelta(size, 1f);
 	}
 }
