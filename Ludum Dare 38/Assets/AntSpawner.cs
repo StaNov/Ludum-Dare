@@ -5,8 +5,7 @@ using UnityEngine;
 public class AntSpawner : MonoBehaviour {
 
 	private static AntSpawner instance;
-
-	public Transform leaderSpawnPoint;
+	
 	public GameObject antLeaderPrefab;
 	public GameObject antPrefab;
 	public AntHill antHill;
@@ -45,16 +44,17 @@ public class AntSpawner : MonoBehaviour {
 		}
 
 		SpawnAntLeader();
-		SpawnAntIfAvailable();
+		//SpawnAntIfAvailable();
 	}
 
 	private void SpawnAntLeader()
 	{
-		antLeaderToSpawn.transform.position = leaderSpawnPoint.position;
-		antLeaderToSpawn.transform.rotation = leaderSpawnPoint.rotation;
+		antLeaderToSpawn.transform.position = transform.position;
+		antLeaderToSpawn.transform.rotation = transform.rotation;
 		antLeaderToSpawn.GetComponent<Collider2D>().enabled = true;
 		antLeaderToSpawn.gameObject.SetActive(true);
 		AntsManager.ReturnAntToActives(antLeaderToSpawn);
+		antLeaderToSpawn.MoveForwardAuto();
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)

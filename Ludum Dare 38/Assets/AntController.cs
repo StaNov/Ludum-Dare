@@ -16,6 +16,7 @@ public class AntController : MonoBehaviour {
 	private float leaderDistanceWhileIAmStanding;
 	private static AntPosition leaderLastPos;
 	private static AntPosition leaderCurrentPos;
+	private bool movingAutomatically;
 
 	private Rigidbody2D rb;
 	
@@ -48,7 +49,7 @@ public class AntController : MonoBehaviour {
 	private void ControlLeader() {
 		leaderLastPos = leaderCurrentPos;
 
-		if (Input.GetAxisRaw("Vertical") > float.Epsilon) {
+		if (Input.GetAxisRaw("Vertical") > float.Epsilon || movingAutomatically) {
 			AntPosition pos = new AntPosition() { position = transform.position };
 			currentPos.next = pos;
 			currentPos = pos;
@@ -108,6 +109,18 @@ public class AntController : MonoBehaviour {
 	private void ResetCurrentPos()
 	{
 		currentPos = leaderCurrentPos;
+	}
+
+	public void MoveForwardAuto()
+	{
+		StartCoroutine(MoveAuto());
+	}
+
+	private IEnumerator MoveAuto()
+	{
+		movingAutomatically = true;
+		yield return new WaitForSeconds(0.5f);
+		movingAutomatically = false;
 	}
 
 	private class AntPosition {
