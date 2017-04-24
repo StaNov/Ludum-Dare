@@ -32,8 +32,39 @@ public class GameOverHandler : MonoBehaviour {
 	private void OnGameOver()
 	{
 		gameOver = true;
-		gameOverText.text = gameOverText.text.Replace("XXX", antHill.level.ToString()).Replace("YYY", "Gold");
+		gameOverText.text = gameOverText.text.Replace("XXX", antHill.level.ToString()).Replace("YYY", Medal());
 		innerPanel.SetActive(true);
 		GameManager.OnGameOver();
+	}
+
+	private string Medal()
+	{
+		if (antHill.level >= 40)
+		{
+			PlayerPrefs.SetString("medal", "gold");
+			return "GOLD";
+		}
+
+		if (antHill.level >= 30)
+		{
+			if (PlayerPrefs.GetString("medal", "") != "gold")
+			{
+				PlayerPrefs.SetString("medal", "silver");
+			}
+			
+			return "SILVER";
+		}
+
+		if (antHill.level >= 20)
+		{
+			if (PlayerPrefs.GetString("medal", "") != "gold" || PlayerPrefs.GetString("medal", "") != "silver")
+			{
+				PlayerPrefs.SetString("medal", "bronze");
+			}
+
+			return "BRONZE";
+		}
+
+		return "no";
 	}
 }
