@@ -10,12 +10,10 @@ public class NameManager : MonoBehaviour {
 	{
 		get
 		{
-			Debug.Log("getting " + PlayerPrefs.GetString(PLAYER_NAME_KEY, ""));
 			return PlayerPrefs.GetString(PLAYER_NAME_KEY, "");
 		}
 		set
 		{
-			Debug.Log("setting " + value);
 			PlayerPrefs.SetString(PLAYER_NAME_KEY, value);
 		}
 	}
