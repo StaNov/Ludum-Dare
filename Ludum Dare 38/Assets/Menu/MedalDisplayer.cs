@@ -10,8 +10,8 @@ public class MedalDisplayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		bronze.SetActive(PlayerPrefs.GetString("medal", "") == "bronze");
-		silver.SetActive(PlayerPrefs.GetString("medal", "") == "silver");
-		gold.SetActive(PlayerPrefs.GetString("medal", "") == "gold");
+		bronze.SetActive(PlayerPrefs.GetString("medal-competitive", "") == "bronze");
+		silver.SetActive(PlayerPrefs.GetString("medal-competitive", "") == "silver");
+		gold.SetActive(PlayerPrefs.GetString("medal-competitive", "") == "gold");
 	}
 }
