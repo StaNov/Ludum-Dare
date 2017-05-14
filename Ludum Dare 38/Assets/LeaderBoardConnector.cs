@@ -1,56 +1,27 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public static class LeaderBoardConnector {
 	
 	private const string SECRET_KEY_PRIVATE = "xxx";
 
-	public static LeaderboardResult[] Load(int lines, string currentPlayerName) {
+	public static WWW FetchResultsAll(int lines)
+	{
 		CheckSecretKey();
-
-		List<LeaderboardResult> result = FetchResultsAll(lines);
-
-		if (! string.IsNullOrEmpty(currentPlayerName) && ! result.Any(r => r.name == currentPlayerName))
-		{
-			result.AddRange(FetchResultsPlayer(currentPlayerName));
-		}
-		
-		return result.ToArray();
+		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?count=" + lines);
 	}
 
-	private static List<LeaderboardResult> FetchResultsAll(int lines)
+	public static WWW FetchResultsPlayer(string playerName)
 	{
-		return FetchResults("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?count=" + lines);
+		CheckSecretKey();
+		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?name=" + System.Uri.EscapeDataString(playerName));
 	}
 
-	private static List<LeaderboardResult> FetchResultsPlayer(string playerName)
-	{
-		return FetchResults("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?name=" + System.Uri.EscapeDataString(playerName));
-	}
-
-	private static List<LeaderboardResult> FetchResults(string url)
+	public static List<LeaderboardResult> ConvertStringToResult(string wwwResult)
 	{
 		List<LeaderboardResult> result = new List<LeaderboardResult>();
-
-		DateTime requestTimeout = DateTime.Now.AddSeconds(3);
-		WWW www = new WWW(url);
-
-		while (!www.isDone) {
-			if (DateTime.Now > requestTimeout)
-			{
-				return result;
-			}
-		}
-		
-		if (www.error != null)
-		{
-			return result;
-		}
-
-		string wwwResult = www.text;
 
 		string[] lines = wwwResult.Split('\n');
 
@@ -72,7 +43,7 @@ public static class LeaderBoardConnector {
 
 			result.Add(convertedLine);
 		}
-
+		
 		return result;
 	}
 	
