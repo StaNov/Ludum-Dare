@@ -12,7 +12,7 @@ public static class LeaderBoardConnector {
 
 		List<LeaderboardResult> result = FetchResultsAll(lines);
 
-		if (! result.Any(r => r.name == currentPlayerName))
+		if (! string.IsNullOrEmpty(currentPlayerName) && ! result.Any(r => r.name == currentPlayerName))
 		{
 			result.AddRange(FetchResultsPlayer(currentPlayerName));
 		}
