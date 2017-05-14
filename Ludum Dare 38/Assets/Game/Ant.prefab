@@ -207,6 +207,7 @@ MonoBehaviour:
   moveSpeed: 20
   rotateSpeed: 10
   isLeader: 0
+  tutorial: {fileID: 0}
   bumpers:
   - {fileID: 4920832200182182}
   - {fileID: 4549843319423702}
