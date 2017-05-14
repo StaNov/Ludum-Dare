@@ -5,7 +5,10 @@ using UnityEngine;
 public class Leaderboard : MonoBehaviour {
 
 	public GameObject leaderboardLinePrefab;
-	
+	public GameObject leaderboardLinePrefab1;
+	public GameObject leaderboardLinePrefab2;
+	public GameObject leaderboardLinePrefab3;
+
 	void Start () {
 		var lines = LeaderBoardConnector.Load(10, NameManager.Name);
 
@@ -14,9 +17,11 @@ public class Leaderboard : MonoBehaviour {
 			Destroy(child.gameObject);
 		}
 
-		foreach(var line in lines)
+		for (int i = 0; i < lines.Length; i++)
 		{
-			GameObject newLine = Instantiate(leaderboardLinePrefab);
+			var line = lines[i];
+			GameObject prefab = i == 0 ? leaderboardLinePrefab1 : i == 1 ? leaderboardLinePrefab2 : i == 2 ? leaderboardLinePrefab3 : leaderboardLinePrefab;
+			GameObject newLine = Instantiate(prefab);
 
 			newLine.transform.SetParent(transform, false);
 
