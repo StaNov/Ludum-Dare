@@ -17,10 +17,9 @@ public class Leaderboard : MonoBehaviour {
 			Destroy(child.gameObject);
 		}
 
-		for (int i = 0; i < lines.Length; i++)
+		foreach (var line in lines)
 		{
-			var line = lines[i];
-			GameObject prefab = i == 0 ? leaderboardLinePrefab1 : i == 1 ? leaderboardLinePrefab2 : i == 2 ? leaderboardLinePrefab3 : leaderboardLinePrefab;
+			GameObject prefab = line.place == 1 ? leaderboardLinePrefab1 : line.place == 2 ? leaderboardLinePrefab2 : line.place == 3 ? leaderboardLinePrefab3 : leaderboardLinePrefab;
 			GameObject newLine = Instantiate(prefab);
 
 			newLine.transform.SetParent(transform, false);
@@ -29,6 +28,7 @@ public class Leaderboard : MonoBehaviour {
 			lineComponent.place = line.place;
 			lineComponent.playerName = line.name;
 			lineComponent.score = line.score;
+			lineComponent.isCurrentPlayer = line.name == NameManager.Name;
 		}
 	}
 }
