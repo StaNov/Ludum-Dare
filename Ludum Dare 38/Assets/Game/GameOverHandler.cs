@@ -7,8 +7,6 @@ using System;
 
 public class GameOverHandler : MonoBehaviour {
 
-	private const string SECRET_KEY = "xxx";
-
 	public AntHill antHill;
 	public GameObject innerPanel;
 	public Text gameOverText;
@@ -17,11 +15,6 @@ public class GameOverHandler : MonoBehaviour {
 
 	void Awake() {
 		innerPanel.SetActive(false);
-
-		if (SECRET_KEY == "xxx")
-		{
-			Debug.LogError("SECRET KEY WAS NOT REPLACED!!!");
-		}
 	}
 
 	void Update()
@@ -42,13 +35,8 @@ public class GameOverHandler : MonoBehaviour {
 		gameOver = true;
 		gameOverText.text = gameOverText.text.Replace("XXX", antHill.level.ToString()).Replace("YYY", Medal());
 		innerPanel.SetActive(true);
-		SaveHighScore();
+		LeaderBoardConnector.Save(NameManager.Name, antHill.level);
 		GameManager.OnGameOver();
-	}
-
-	private void SaveHighScore()
-	{
-		new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + NameManager.Name + "/" + antHill.level);
 	}
 
 	private string Medal()
