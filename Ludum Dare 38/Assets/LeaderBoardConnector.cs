@@ -6,12 +6,11 @@ using UnityEngine;
 public static class LeaderBoardConnector {
 
 	private const string SECRET_KEY = "xxx";
-	private const int LINES = 2;
 
-	public static LeaderboardResult[] Load(string currentPlayerName) {
+	public static LeaderboardResult[] Load(int lines, string currentPlayerName) {
 		CheckSecretKey();
 
-		List<LeaderboardResult> result = FetchResultsAll();
+		List<LeaderboardResult> result = FetchResultsAll(lines);
 
 		if (! result.Any(r => r.name == currentPlayerName))
 		{
@@ -21,9 +20,9 @@ public static class LeaderBoardConnector {
 		return result.ToArray();
 	}
 
-	private static List<LeaderboardResult> FetchResultsAll()
+	private static List<LeaderboardResult> FetchResultsAll(int lines)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY + "/pipe/" + LINES);
+		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY + "/pipe/" + lines);
 	}
 
 	private static List<LeaderboardResult> FetchResultsPlayer(string playerName)
