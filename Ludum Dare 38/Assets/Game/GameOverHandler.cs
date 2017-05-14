@@ -21,7 +21,7 @@ public class GameOverHandler : MonoBehaviour {
 	{
 		if (antHill.currentFoodSupply < - float.Epsilon)
 		{
-			OnGameOver();
+			StartCoroutine(OnGameOver());
 		}
 
 		if (gameOver && Input.GetKeyDown(KeyCode.Return))
@@ -30,12 +30,18 @@ public class GameOverHandler : MonoBehaviour {
 		}
 	}
 
-	private void OnGameOver()
+	private IEnumerator OnGameOver()
 	{
 		gameOver = true;
 		gameOverText.text = gameOverText.text.Replace("XXX", antHill.level.ToString()).Replace("YYY", Medal());
 		innerPanel.SetActive(true);
-		LeaderBoardConnector.Save(NameManager.Name, antHill.level);
+
+		WWW www = LeaderBoardConnector.Save(NameManager.Name, antHill.level);
+		while (! www.isDone)
+		{
+			yield return null;
+		}
+
 		GameManager.OnGameOver();
 	}
 

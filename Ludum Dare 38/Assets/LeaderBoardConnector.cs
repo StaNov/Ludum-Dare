@@ -70,10 +70,10 @@ public static class LeaderBoardConnector {
 		return result;
 	}
 	
-	public static void Save(string name, int score) {
+	public static WWW Save(string name, int score) {
 		CheckSecretKey();
 
-		new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + name + "/" + score);
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + name + "/" + score);
 	}
 
 	private static void CheckSecretKey()
