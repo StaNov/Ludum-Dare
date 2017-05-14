@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afddca71d99647459ce33f3d270a31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
-  rotateSpeed: 10
+  moveSpeed: 30
+  rotateSpeed: 12
   isLeader: 0
   tutorial: {fileID: 0}
   bumpers:

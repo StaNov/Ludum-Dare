@@ -9,8 +9,8 @@ public class Collectible : MonoBehaviour {
 
 	private const float COEF_ROTATION_SPEED = 50;
 	private const float COEF_MOVE_SPEED = 6;
-	private const float MAX_ROTATION_SPEED = 170;
-	private const float MAX_MOVE_SPEED = 20;
+	private const float MAX_ROTATION_SPEED = 190;
+	private const float MAX_MOVE_SPEED = 30;
 
 	public int quantity = 30;
 	public CollectibleType type;
