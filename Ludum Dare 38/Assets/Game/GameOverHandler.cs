@@ -47,27 +47,27 @@ public class GameOverHandler : MonoBehaviour {
 
 	private string Medal()
 	{
-		if (antHill.level >= 40)
+		if (antHill.level >= 70)
 		{
-			PlayerPrefs.SetString("medal", "gold");
+			PlayerPrefs.SetString("medal-competitive", "gold");
 			return "GOLD";
 		}
 
-		if (antHill.level >= 30)
+		if (antHill.level >= 50)
 		{
-			if (PlayerPrefs.GetString("medal", "") != "gold")
+			if (PlayerPrefs.GetString("medal-competitive", "") != "gold")
 			{
-				PlayerPrefs.SetString("medal", "silver");
+				PlayerPrefs.SetString("medal-competitive", "silver");
 			}
 			
 			return "SILVER";
 		}
 
-		if (antHill.level >= 20)
+		if (antHill.level >= 30)
 		{
-			if (PlayerPrefs.GetString("medal", "") != "gold" || PlayerPrefs.GetString("medal", "") != "silver")
+			if (PlayerPrefs.GetString("medal-competitive", "") != "gold" || PlayerPrefs.GetString("medal-competitive", "") != "silver")
 			{
-				PlayerPrefs.SetString("medal", "bronze");
+				PlayerPrefs.SetString("medal-competitive", "bronze");
 			}
 
 			return "BRONZE";

@@ -17,7 +17,10 @@ public class Collectible : MonoBehaviour {
 	public int quantity = 30;
 	public CollectibleType type;
 	public TutorialCanvas tutorial;
-	
+
+	[HideInInspector]
+	public bool destroyed = false;
+
 	private AntController attachedAntLeader = null;
 	private AntController[] attachedAnts;
 
@@ -79,6 +82,7 @@ public class Collectible : MonoBehaviour {
 
 		gameObject.SetActive(false);
 		Destroy(gameObject, 0.5f);
+		destroyed = true;
 		return ants;
 	}
 

@@ -29,7 +29,7 @@ public class AntHill : MonoBehaviour {
 	{
 		Collectible collectible = col.GetComponent<Collectible>();
 
-		if (collectible == null)
+		if (collectible == null || collectible.destroyed)
 		{
 			return;
 		}

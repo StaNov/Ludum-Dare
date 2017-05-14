@@ -142,7 +142,7 @@ public class AntController : MonoBehaviour {
 	private IEnumerator MoveAuto()
 	{
 		movingAutomatically = true;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		movingAutomatically = false;
 	}
 

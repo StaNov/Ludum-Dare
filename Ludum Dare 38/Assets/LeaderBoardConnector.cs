@@ -29,7 +29,7 @@ public static class LeaderBoardConnector {
 
 	private static List<LeaderboardResult> FetchResultsPlayer(string playerName)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe-get/" + playerName);
+		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe-get/" + System.Uri.EscapeDataString(playerName));
 	}
 
 	private static List<LeaderboardResult> FetchResults(string url)
@@ -80,7 +80,7 @@ public static class LeaderBoardConnector {
 	public static WWW Save(string name, int score) {
 		CheckSecretKey();
 
-		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PRIVATE + "/add/" + name + "/" + score);
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PRIVATE + "/add/" + System.Uri.EscapeDataString(name) + "/" + score);
 	}
 
 	private static void CheckSecretKey()
