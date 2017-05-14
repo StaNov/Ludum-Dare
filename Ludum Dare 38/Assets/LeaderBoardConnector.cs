@@ -79,8 +79,8 @@ public static class LeaderBoardConnector {
 	
 	public static WWW Save(string name, int score) {
 		CheckSecretKey();
-
-		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PRIVATE + "/add/" + System.Uri.EscapeDataString(name) + "/" + score);
+		
+		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardSave.php?name=" + System.Uri.EscapeDataString(name) + "&score=" + score + "&secret=" + SECRET_KEY_PRIVATE);
 	}
 
 	private static void CheckSecretKey()
