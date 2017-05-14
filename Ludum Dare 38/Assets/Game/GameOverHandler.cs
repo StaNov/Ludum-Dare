@@ -12,6 +12,7 @@ public class GameOverHandler : MonoBehaviour {
 	public Text gameOverText;
 
 	private bool gameOver = false;
+	private bool leaderboardSent = false;
 
 	void Awake() {
 		innerPanel.SetActive(false);
@@ -24,7 +25,7 @@ public class GameOverHandler : MonoBehaviour {
 			StartCoroutine(OnGameOver());
 		}
 
-		if (gameOver && Input.GetKeyDown(KeyCode.Return))
+		if (leaderboardSent && Input.GetKeyDown(KeyCode.Return))
 		{
 			SceneManager.LoadScene(0);
 		}
@@ -35,6 +36,7 @@ public class GameOverHandler : MonoBehaviour {
 		gameOver = true;
 		gameOverText.text = gameOverText.text.Replace("XXX", antHill.level.ToString()).Replace("YYY", Medal());
 		innerPanel.SetActive(true);
+		GameManager.OnGameOver();
 
 		WWW www = LeaderBoardConnector.Save(NameManager.Name, antHill.level);
 		while (! www.isDone)
@@ -42,7 +44,7 @@ public class GameOverHandler : MonoBehaviour {
 			yield return null;
 		}
 
-		GameManager.OnGameOver();
+		leaderboardSent = true;
 	}
 
 	private string Medal()
