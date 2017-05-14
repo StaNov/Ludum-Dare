@@ -2231,7 +2231,7 @@ MonoBehaviour:
   - {fileID: 1804330544694352, guid: f1e2fec82863c494b8ec1f57fba8ad79, type: 2}
   - {fileID: 1804330544694352, guid: d7a807aad5e5a1b45998d21c1b26860f, type: 2}
   - {fileID: 1804330544694352, guid: 7cf3586a74741994aaef961bb0bcf3be, type: 2}
-  levelToStartGenerateNext: 040000000c0000001800000028000000
+  levelToStartGenerateNext: 04000000120000002600000032000000
   antHill: {fileID: 1079168266}
 --- !u!4 &912183018
 Transform:

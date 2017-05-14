@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -33,12 +34,18 @@ public static class LeaderBoardConnector {
 
 	private static List<LeaderboardResult> FetchResults(string url)
 	{
-		WWW www = new WWW(url);
-
-		while (!www.isDone) { }
-
 		List<LeaderboardResult> result = new List<LeaderboardResult>();
 
+		DateTime requestTimeout = DateTime.Now.AddSeconds(3);
+		WWW www = new WWW(url);
+
+		while (!www.isDone) {
+			if (DateTime.Now > requestTimeout)
+			{
+				return result;
+			}
+		}
+		
 		if (www.error != null)
 		{
 			return result;
