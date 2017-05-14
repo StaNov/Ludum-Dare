@@ -48,7 +48,7 @@ public class GameOverHandler : MonoBehaviour {
 
 	private void SaveHighScore()
 	{
-		WWW www = new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + NameManager.Name + "/" + antHill.level);
+		new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + NameManager.Name + "/" + antHill.level);
 	}
 
 	private string Medal()
