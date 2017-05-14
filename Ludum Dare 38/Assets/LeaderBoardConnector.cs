@@ -6,17 +6,18 @@ using UnityEngine;
 public static class LeaderBoardConnector {
 	
 	private const string SECRET_KEY_PRIVATE = "xxx";
+	private const string SECRET_KEY_PUBLIC = "xxx";
 
 	public static WWW FetchResultsAll(int lines)
 	{
 		CheckSecretKey();
-		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?count=" + lines);
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe/" + lines);
 	}
 
 	public static WWW FetchResultsPlayer(string playerName)
 	{
 		CheckSecretKey();
-		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?name=" + System.Uri.EscapeDataString(playerName));
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe-get/" + Uri.EscapeDataString(playerName));
 	}
 
 	public static List<LeaderboardResult> ConvertStringToResult(string wwwResult)
@@ -50,7 +51,7 @@ public static class LeaderBoardConnector {
 	public static WWW Save(string name, int score) {
 		CheckSecretKey();
 		
-		return new WWW("http://games.stanov.cz/ludum-dare-38/callLeaderboardSave.php?name=" + System.Uri.EscapeDataString(name) + "&score=" + score + "&secret=" + SECRET_KEY_PRIVATE);
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PRIVATE  + "/add/" + Uri.EscapeDataString(name) + "/" + score);
 	}
 
 	private static void CheckSecretKey()
