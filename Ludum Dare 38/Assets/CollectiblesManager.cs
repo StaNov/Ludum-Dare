@@ -65,7 +65,14 @@ public class CollectiblesManager : MonoBehaviour {
 			}
 			else
 			{
-				int _ = slot.GetComponentInChildren<Collectible>().type == CollectibleType.FOOD ? food++ : material++;
+				if (slot.GetComponentInChildren<Collectible>().type == CollectibleType.FOOD)
+				{
+					food++;
+				}
+				else
+				{
+					material++;
+				}
 			}
 		}
 
