@@ -186,7 +186,7 @@ MonoBehaviour:
     m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 1
+    m_MinSize: 15
     m_MaxSize: 19
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: 200
-  m_PreferredHeight: -1
+  m_PreferredHeight: 0
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
 --- !u!114 &114834465295099874
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 10
+  m_PreferredWidth: 20
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
