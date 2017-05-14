@@ -5,7 +5,8 @@ using UnityEngine;
 
 public static class LeaderBoardConnector {
 
-	private const string SECRET_KEY = "xxx";
+	private const string SECRET_KEY_PUBLIC = "xxx";
+	private const string SECRET_KEY_PRIVATE = "xxx";
 
 	public static LeaderboardResult[] Load(int lines, string currentPlayerName) {
 		CheckSecretKey();
@@ -22,12 +23,12 @@ public static class LeaderBoardConnector {
 
 	private static List<LeaderboardResult> FetchResultsAll(int lines)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY + "/pipe/" + lines);
+		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe/" + lines);
 	}
 
 	private static List<LeaderboardResult> FetchResultsPlayer(string playerName)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY + "/pipe-get/" + playerName);
+		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe-get/" + playerName);
 	}
 
 	private static List<LeaderboardResult> FetchResults(string url)
@@ -72,12 +73,12 @@ public static class LeaderBoardConnector {
 	public static WWW Save(string name, int score) {
 		CheckSecretKey();
 
-		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY + "/add/" + name + "/" + score);
+		return new WWW("http://dreamlo.com/lb/" + SECRET_KEY_PRIVATE + "/add/" + name + "/" + score);
 	}
 
 	private static void CheckSecretKey()
 	{
-		if (SECRET_KEY == "xxx")
+		if (SECRET_KEY_PUBLIC == "xxx" || SECRET_KEY_PRIVATE == "xxx")
 		{
 			throw new System.Exception("SECRET KEY WAS NOT REPLACED!!!");
 		}
