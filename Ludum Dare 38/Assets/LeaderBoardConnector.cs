@@ -5,8 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 public static class LeaderBoardConnector {
-
-	private const string SECRET_KEY_PUBLIC = "xxx";
+	
 	private const string SECRET_KEY_PRIVATE = "xxx";
 
 	public static LeaderboardResult[] Load(int lines, string currentPlayerName) {
@@ -24,12 +23,12 @@ public static class LeaderBoardConnector {
 
 	private static List<LeaderboardResult> FetchResultsAll(int lines)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe/" + lines);
+		return FetchResults("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?count=" + lines);
 	}
 
 	private static List<LeaderboardResult> FetchResultsPlayer(string playerName)
 	{
-		return FetchResults("http://dreamlo.com/lb/" + SECRET_KEY_PUBLIC + "/pipe-get/" + System.Uri.EscapeDataString(playerName));
+		return FetchResults("http://games.stanov.cz/ludum-dare-38/callLeaderboardLoad.php?name=" + System.Uri.EscapeDataString(playerName));
 	}
 
 	private static List<LeaderboardResult> FetchResults(string url)
@@ -85,7 +84,7 @@ public static class LeaderBoardConnector {
 
 	private static void CheckSecretKey()
 	{
-		if (SECRET_KEY_PUBLIC == "xxx" || SECRET_KEY_PRIVATE == "xxx")
+		if (SECRET_KEY_PRIVATE == "xxx")
 		{
 			throw new System.Exception("SECRET KEY WAS NOT REPLACED!!!");
 		}
