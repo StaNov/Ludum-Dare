@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	public static void OnGameOver()
 	{
+		Cursor.visible = true;
 		Time.timeScale = 0;
 	}
 }
