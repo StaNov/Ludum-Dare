@@ -169,6 +169,58 @@ public class GameplayConstants : ScriptableObject
 			{
 				FamilyHappiness = -5
 			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.PartnerTakesCareOfFamily,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				FamilyHealth = 40,
+				FamilyHappiness = -5
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.PartnerGoesShopping,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				FoodSupplies = 5,
+				FamilyFood = -10,
+				Money = -40
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.PartnerGoesToWork,
+			DurationInSeconds = 15,
+			Effect = new StatsDifference
+			{
+				FamilyHealth = -10
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.HireSomeoneToTakeCareOfFamily,
+			DurationInSeconds = 1,
+			Effect = new StatsDifference
+			{
+				FamilyHealth = 50,
+				Money = -50,
+				FamilyHappiness = -10
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.OrderFoodSupplies,
+			DurationInSeconds = 1,
+			Effect = new StatsDifference
+			{
+				FoodSupplies = 5,
+				Money = -80,
+				FamilyHappiness = -10
+			}
 		}
 	};
 
@@ -226,7 +278,12 @@ public enum PlayerActionType
 	SpendTimeWithFamily,
 	TakeCareOfFamily,
 	LearnNewStuffForWork,
-	LearnNewStuffForWorkPartner
+	LearnNewStuffForWorkPartner,
+	PartnerTakesCareOfFamily,
+	PartnerGoesShopping,
+	PartnerGoesToWork,
+	HireSomeoneToTakeCareOfFamily,
+	OrderFoodSupplies
 }
 
 public static class ExtensionMethods
@@ -237,6 +294,9 @@ public static class ExtensionMethods
 		{
 			case PlayerActionType.PartnerFeedsFamily:
 			case PlayerActionType.LearnNewStuffForWorkPartner:
+			case PlayerActionType.PartnerTakesCareOfFamily:
+			case PlayerActionType.PartnerGoesShopping:
+			case PlayerActionType.PartnerGoesToWork:
 				return true;
 				
 			default:

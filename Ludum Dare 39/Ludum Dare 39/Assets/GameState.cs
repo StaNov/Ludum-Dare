@@ -119,6 +119,10 @@ public class GameState : MonoBehaviour {
 						Money += MoneyPerWorkshift;
 						MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
 						break;
+					case PlayerActionType.PartnerGoesToWork:
+						Money += MoneyPerPartnersWorkshift;
+						MoneyPerPartnersWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
+						break;
 					case PlayerActionType.LearnNewStuffForWork:
 						MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseByLearningCoefficient;
 						break;
