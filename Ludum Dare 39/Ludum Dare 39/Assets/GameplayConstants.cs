@@ -73,6 +73,17 @@ public class GameplayConstants : ScriptableObject
 		},
 		new PlayerAction
 		{
+			Type = PlayerActionType.FeedFamily,
+			DurationInSeconds = 7,
+			Effect = new StatsDifference
+			{
+				FamilyFood = 30,
+				FoodSupplies = -2,
+				MyEnergy = -20
+			}
+		},
+		new PlayerAction
+		{
 			Type = PlayerActionType.Eat,
 			DurationInSeconds = 4,
 			Effect = new StatsDifference
@@ -168,7 +179,8 @@ public enum PlayerActionType
 	Eat,
 	DoHobby,
 	DoSport,
-	GoShopping
+	GoShopping,
+	FeedFamily
 }
 
 public static class ExtensionMethods
