@@ -119,13 +119,34 @@ public class GameplayConstants : ScriptableObject
 		new PlayerAction
 		{
 			Type = PlayerActionType.GoShopping,
-			DurationInSeconds = 15,
+			DurationInSeconds = 10,
 			Effect = new StatsDifference
 			{
 				MyFood = -10,
 				MyEnergy = -20,
 				FoodSupplies = 5,
 				Money = -40
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.SpendTimeWithFamily,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				FamilyHappiness = 40,
+				MyHappiness = 40,
+				MyEnergy = -20
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.TakeCareOfFamily,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				FamilyHealth = 40,
+				MyEnergy = -20
 			}
 		}
 	};
@@ -180,7 +201,9 @@ public enum PlayerActionType
 	DoHobby,
 	DoSport,
 	GoShopping,
-	FeedFamily
+	FeedFamily,
+	SpendTimeWithFamily,
+	TakeCareOfFamily
 }
 
 public static class ExtensionMethods

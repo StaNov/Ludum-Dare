@@ -107,6 +107,22 @@ MonoBehaviour:
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: -2
+  - Type: 10
+    DurationInSeconds: 7
+    Effect:
+      MyEnergy: -20
+      MyMaxEnergy: 0
+      MyFood: 0
+      MyHappiness: 0
+      MyHealth: 0
+      FamilyFood: 30
+      FamilyHappiness: 0
+      FamilyHealth: 0
+      Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: -2
   - Type: 6
     DurationInSeconds: 4
     Effect:
@@ -156,7 +172,7 @@ MonoBehaviour:
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
   - Type: 9
-    DurationInSeconds: 15
+    DurationInSeconds: 10
     Effect:
       MyEnergy: -20
       MyMaxEnergy: 0
@@ -171,3 +187,35 @@ MonoBehaviour:
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 5
+  - Type: 11
+    DurationInSeconds: 10
+    Effect:
+      MyEnergy: -20
+      MyMaxEnergy: 0
+      MyFood: 0
+      MyHappiness: 0
+      MyHealth: 0
+      FamilyFood: 0
+      FamilyHappiness: 40
+      FamilyHealth: 0
+      Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0
+  - Type: 12
+    DurationInSeconds: 10
+    Effect:
+      MyEnergy: -20
+      MyMaxEnergy: 0
+      MyFood: 0
+      MyHappiness: 0
+      MyHealth: 0
+      FamilyFood: 0
+      FamilyHappiness: 0
+      FamilyHealth: 40
+      Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0
