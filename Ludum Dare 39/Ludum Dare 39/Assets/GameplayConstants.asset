@@ -123,3 +123,19 @@ MonoBehaviour:
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: -1
+  - Type: 7
+    DurationInSeconds: 10
+    Effect:
+      MyEnergy: -20
+      MyMaxEnergy: 0
+      MyFood: -10
+      MyHappiness: 20
+      MyHealth: -10
+      FamilyFood: 0
+      FamilyHappiness: 0
+      FamilyHealth: 0
+      Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0
