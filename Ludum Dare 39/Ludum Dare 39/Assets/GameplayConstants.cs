@@ -6,15 +6,15 @@ public class GameplayConstants : ScriptableObject
 {
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
-		MyEnergy = -10,
-		MyMaxEnergy = -1,
-		MyFood = -5,
-		MyHappiness = -5,
-		MyHealth = -5,
-		FamilyFood = -5,
-		FamilyHappiness = -5,
-		FamilyHealth = -5,
-		Age = 2
+		MyEnergy = -30,
+		MyMaxEnergy = -10,
+		MyFood = -50,
+		MyHappiness = -50,
+		MyHealth = -50,
+		FamilyFood = -50,
+		FamilyHappiness = -50,
+		FamilyHealth = -50,
+		Age = 10
 	};
 
 	public PlayerAction[] PlayerActions = {
@@ -33,8 +33,8 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 2,
 			Effect = new StatsDifference
 			{
-				MyEnergy = 10,
-				MyHealth = -10
+				MyEnergy = 30,
+				MyHealth = -20
 			}
 		}
 	};

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: GameplayConstants
   m_EditorClassIdentifier: 
   ChangePerMinute:
-    MyEnergy: -10
-    MyMaxEnergy: -1
-    MyFood: -5
-    MyHappiness: -5
-    MyHealth: -5
-    FamilyFood: -5
-    FamilyHappiness: -5
-    FamilyHealth: -5
-    Age: 2
+    MyEnergy: -30
+    MyMaxEnergy: -10
+    MyFood: -30
+    MyHappiness: -30
+    MyHealth: -30
+    FamilyFood: -30
+    FamilyHappiness: -30
+    FamilyHealth: -30
+    Age: 5
   PlayerActions:
   - Type: 1
     DurationInSeconds: 15
@@ -37,11 +37,11 @@ MonoBehaviour:
   - Type: 2
     DurationInSeconds: 2
     Effect:
-      MyEnergy: 10
+      MyEnergy: 30
       MyMaxEnergy: 0
       MyFood: 0
       MyHappiness: 0
-      MyHealth: -10
+      MyHealth: -20
       FamilyFood: 0
       FamilyHappiness: 0
       FamilyHealth: 0
