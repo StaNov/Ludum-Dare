@@ -22,6 +22,8 @@ public class GameState : MonoBehaviour {
 
 	public static GameState Instance;
 	
+	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0;}}
+	
 	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
 	private float DeltaTimeByDurationPlayer { get { return Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
 	private float DeltaTimeByDurationPartner { get { return Time.deltaTime * (1.0f / CurrentPartnerAction.Action.DurationInSeconds); }}
@@ -34,6 +36,11 @@ public class GameState : MonoBehaviour {
 	
 	private void FixedUpdate ()
 	{
+		if (IsGameOver)
+		{
+			return;
+		}
+		
 		if (CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None)
 		{
 			MyEnergy += CurrentPlayerAction.Action.Effect.MyEnergy * DeltaTimeByDurationPlayer;
