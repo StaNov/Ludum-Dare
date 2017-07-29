@@ -21,10 +21,20 @@ public class GameplayConstants : ScriptableObject
 		new PlayerAction
 		{
 			Type = PlayerActionType.Sleep,
-			DurationInSeconds = 10,
+			DurationInSeconds = 15,
 			Effect = new StatsDifference
 			{
-				MyEnergy = 10
+				MyEnergy = 50
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.DrinkCoffee,
+			DurationInSeconds = 2,
+			Effect = new StatsDifference
+			{
+				MyEnergy = 10,
+				MyHealth = -10
 			}
 		}
 	};
@@ -40,7 +50,7 @@ public class GameplayConstants : ScriptableObject
 		throw new Exception("NO ACTION FOUND!");
 	}
 }
-	
+
 [Serializable]
 public class StatsDifference
 {
@@ -65,5 +75,5 @@ public class PlayerAction
 
 public enum PlayerActionType
 {
-	None, Sleep
+	None, Sleep, DrinkCoffee
 }

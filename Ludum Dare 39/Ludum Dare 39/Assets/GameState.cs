@@ -37,13 +37,13 @@ public class GameState : MonoBehaviour {
 		if (CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None)
 		{
 			MyEnergy += CurrentPlayerAction.Action.Effect.MyEnergy * DeltaTimeByDurationPlayer;
-			MyMaxEnergy += CurrentPlayerAction.Action.Effect.MyMaxEnergy * DeltaTimeInMinutes;
-			MyFood += CurrentPlayerAction.Action.Effect.MyFood * DeltaTimeInMinutes;
-			MyHappiness += CurrentPlayerAction.Action.Effect.MyHappiness * DeltaTimeInMinutes;
-			MyHealth += CurrentPlayerAction.Action.Effect.MyHealth * DeltaTimeInMinutes;
-			FamilyFood += CurrentPlayerAction.Action.Effect.FamilyFood * DeltaTimeInMinutes;
-			FamilyHappiness += CurrentPlayerAction.Action.Effect.FamilyHappiness * DeltaTimeInMinutes;
-			FamilyHealth += CurrentPlayerAction.Action.Effect.FamilyHealth * DeltaTimeInMinutes;
+			MyMaxEnergy += CurrentPlayerAction.Action.Effect.MyMaxEnergy * DeltaTimeByDurationPlayer;
+			MyFood += CurrentPlayerAction.Action.Effect.MyFood * DeltaTimeByDurationPlayer;
+			MyHappiness += CurrentPlayerAction.Action.Effect.MyHappiness * DeltaTimeByDurationPlayer;
+			MyHealth += CurrentPlayerAction.Action.Effect.MyHealth * DeltaTimeByDurationPlayer;
+			FamilyFood += CurrentPlayerAction.Action.Effect.FamilyFood * DeltaTimeByDurationPlayer;
+			FamilyHappiness += CurrentPlayerAction.Action.Effect.FamilyHappiness * DeltaTimeByDurationPlayer;
+			FamilyHealth += CurrentPlayerAction.Action.Effect.FamilyHealth * DeltaTimeByDurationPlayer;
 
 			CurrentPlayerAction.RemainingTime -= Time.deltaTime;
 
