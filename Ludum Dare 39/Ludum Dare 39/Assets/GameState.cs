@@ -53,15 +53,24 @@ public class GameState : MonoBehaviour {
 			}
 		}
 
-		MyEnergy -= Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
-		MyMaxEnergy -= Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
-		MyFood -= Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
-		MyHappiness -= Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
-		MyHealth -= Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
-		FamilyFood -= Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
-		FamilyHappiness -= Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
-		FamilyHealth -= Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
+		MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
+		MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
+		MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
+		MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
+		MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
+		FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
+		FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
+		FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
 		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;
+		
+		MyEnergy = Mathf.Clamp(MyEnergy, 0, MyMaxEnergy);
+		MyMaxEnergy = Mathf.Clamp(MyMaxEnergy, 0, 100);
+		MyFood = Mathf.Clamp(MyFood, 0, 100);
+		MyHappiness = Mathf.Clamp(MyHappiness, 0, 100);
+		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
+		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
+		FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
+		FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
 	}
 
 	public void RunPlayerAction(string type)
