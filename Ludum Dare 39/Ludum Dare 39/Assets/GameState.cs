@@ -60,18 +60,40 @@ public class GameState : MonoBehaviour {
 
 			if (CurrentPlayerAction.RemainingTime < 0)
 			{
+				if (CurrentPlayerAction.Action.Type == PlayerActionType.GoToWork)
+				{
+					Money += MoneyPerWorkshift;
+					MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
+				}
+				
 				CurrentPlayerAction = null;
 			}
 		}
 
-		MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
-		MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
-		MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
-		MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
-		MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
-		FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
-		FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
-		FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyEnergy < float.Epsilon)
+			MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyMaxEnergy < float.Epsilon)
+			MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyFood < float.Epsilon)
+			MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHappiness < float.Epsilon)
+			MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHealth < float.Epsilon)
+			MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyFood < float.Epsilon)
+			FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHappiness < float.Epsilon)
+			FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
+		
+		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHealth < float.Epsilon)
+			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
+		
 		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;
 		
 		MyEnergy = Mathf.Clamp(MyEnergy, 0, MyMaxEnergy);

@@ -11,16 +11,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6612040df492e4e9228970cb8b4194, type: 3}
   m_Name: GameplayConstants
   m_EditorClassIdentifier: 
+  MoneyPerShiftIncreaseCoefficient: 1.5
   ChangePerMinute:
     MyEnergy: -30
     MyMaxEnergy: -10
-    MyFood: -30
-    MyHappiness: -30
-    MyHealth: -30
-    FamilyFood: -30
-    FamilyHappiness: -30
-    FamilyHealth: -30
-    Age: 5
+    MyFood: -50
+    MyHappiness: -50
+    MyHealth: -50
+    FamilyFood: -50
+    FamilyHappiness: -50
+    FamilyHealth: -50
+    Age: 10
+    Money: 0
+    MoneyPerWorkshift: 0
+    MoneyPerPartnersWorkshift: 0
+    FoodSupplies: 0
   PlayerActions:
   - Type: 1
     DurationInSeconds: 15
@@ -34,6 +39,10 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0
   - Type: 2
     DurationInSeconds: 2
     Effect:
@@ -46,3 +55,23 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
+      Money: 0
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0
+  - Type: 3
+    DurationInSeconds: 15
+    Effect:
+      MyEnergy: -30
+      MyMaxEnergy: 0
+      MyFood: 0
+      MyHappiness: 0
+      MyHealth: 0
+      FamilyFood: 0
+      FamilyHappiness: 0
+      FamilyHealth: 0
+      Age: 0
+      Money: 30
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0

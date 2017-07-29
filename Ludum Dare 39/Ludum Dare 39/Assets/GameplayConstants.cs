@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
+	public float MoneyPerShiftIncreaseCoefficient = 1.5f;
+	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
 		MyEnergy = -30,
@@ -36,6 +38,16 @@ public class GameplayConstants : ScriptableObject
 				MyEnergy = 30,
 				MyHealth = -20
 			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.GoToWork,
+			DurationInSeconds = 15,
+			Effect = new StatsDifference
+			{
+				MyEnergy = -30,
+				Money = 30
+			}
 		}
 	};
 
@@ -63,6 +75,10 @@ public class StatsDifference
 	public float FamilyHappiness;
 	public float FamilyHealth;
 	public float Age;
+	public float Money;
+	public float MoneyPerWorkshift;
+	public float MoneyPerPartnersWorkshift;
+	public float FoodSupplies;
 }
 
 [Serializable]
@@ -75,5 +91,5 @@ public class PlayerAction
 
 public enum PlayerActionType
 {
-	None, Sleep, DrinkCoffee
+	None, Sleep, DrinkCoffee, GoToWork
 }
