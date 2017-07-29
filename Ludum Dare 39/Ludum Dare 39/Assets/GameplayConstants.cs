@@ -93,6 +93,29 @@ public class GameplayConstants : ScriptableObject
 				MyEnergy = -20,
 				MyHappiness = 20
 			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.DoSport,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				MyFood = -10,
+				MyEnergy = -20,
+				MyHealth = 30
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.GoShopping,
+			DurationInSeconds = 15,
+			Effect = new StatsDifference
+			{
+				MyFood = -10,
+				MyEnergy = -20,
+				FoodSupplies = 5,
+				Money = -40
+			}
 		}
 	};
 
@@ -143,7 +166,9 @@ public enum PlayerActionType
 	HaveASmoke,
 	PartnerFeedsFamily,
 	Eat,
-	DoHobby
+	DoHobby,
+	DoSport,
+	GoShopping
 }
 
 public static class ExtensionMethods
