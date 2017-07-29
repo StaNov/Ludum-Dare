@@ -113,10 +113,18 @@ public class GameState : MonoBehaviour {
 
 			if (action.RemainingTime < 0)
 			{
-				if (action.Action.Type == PlayerActionType.GoToWork)
+				switch (action.Action.Type)
 				{
-					Money += MoneyPerWorkshift;
-					MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
+					case PlayerActionType.GoToWork:
+						Money += MoneyPerWorkshift;
+						MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
+						break;
+					case PlayerActionType.LearnNewStuffForWork:
+						MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseByLearningCoefficient;
+						break;
+					case PlayerActionType.LearnNewStuffForWorkPartner:
+						MoneyPerPartnersWorkshift *= Constants.MoneyPerShiftIncreaseByLearningCoefficient;
+						break;
 				}
 
 				action = null;

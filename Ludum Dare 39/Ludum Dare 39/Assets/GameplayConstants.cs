@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
-	public float MoneyPerShiftIncreaseCoefficient = 1.5f;
+	public float MoneyPerShiftIncreaseCoefficient = 1.2f;
+	public float MoneyPerShiftIncreaseByLearningCoefficient = 1.5f;
 	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
@@ -148,6 +149,26 @@ public class GameplayConstants : ScriptableObject
 				FamilyHealth = 40,
 				MyEnergy = -20
 			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.LearnNewStuffForWork,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				MyEnergy = -20,
+				MyHappiness = -20,
+				FamilyHappiness = -5
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.LearnNewStuffForWorkPartner,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				FamilyHappiness = -5
+			}
 		}
 	};
 
@@ -203,7 +224,9 @@ public enum PlayerActionType
 	GoShopping,
 	FeedFamily,
 	SpendTimeWithFamily,
-	TakeCareOfFamily
+	TakeCareOfFamily,
+	LearnNewStuffForWork,
+	LearnNewStuffForWorkPartner
 }
 
 public static class ExtensionMethods
@@ -213,6 +236,7 @@ public static class ExtensionMethods
 		switch(type)
 		{
 			case PlayerActionType.PartnerFeedsFamily:
+			case PlayerActionType.LearnNewStuffForWorkPartner:
 				return true;
 				
 			default:
