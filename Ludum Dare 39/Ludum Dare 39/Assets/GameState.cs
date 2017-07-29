@@ -66,6 +66,11 @@ public class GameState : MonoBehaviour {
 
 	public void RunPlayerAction(string type)
 	{
+		if (CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None)
+		{
+			return;
+		}
+		
 		PlayerAction action = Constants.GetPlayerAction((PlayerActionType) Enum.Parse(typeof(PlayerActionType), type));
 		
 		CurrentPlayerAction = new CurrentAction
