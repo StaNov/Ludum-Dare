@@ -45,14 +45,13 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 15,
 			Effect = new StatsDifference
 			{
-				MyEnergy = -30,
-				Money = 30
+				MyEnergy = -30
 			}
 		},
 		new PlayerAction
 		{
 			Type = PlayerActionType.HaveASmoke,
-			DurationInSeconds = 3,
+			DurationInSeconds = 2,
 			Effect = new StatsDifference
 			{
 				MyMaxEnergy = -10,
@@ -115,9 +114,24 @@ public class PlayerAction
 public enum PlayerActionType
 {
 	None,
-	Sleep, 
-	DrinkCoffee, 
-	GoToWork, 
+	Sleep,
+	DrinkCoffee,
+	GoToWork,
 	HaveASmoke,
 	PartnerFeedsFamily
+}
+
+public static class ExtensionMethods
+{
+	public static bool IsPartnersAction(this PlayerActionType type)
+	{
+		switch(type)
+		{
+			case PlayerActionType.PartnerFeedsFamily:
+				return true;
+				
+			default:
+				return false;
+		}
+	}
 }

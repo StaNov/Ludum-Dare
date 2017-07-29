@@ -26,7 +26,7 @@ public class GameState : MonoBehaviour {
 
 	public static GameState Instance;
 	
-	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0;}}
+	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0 || Money < 0 || FoodSupplies < 0;}}
 	
 	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
 	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
@@ -105,6 +105,8 @@ public class GameState : MonoBehaviour {
 			FamilyFood += action.Action.Effect.FamilyFood * deltaTimeByDuration;
 			FamilyHappiness += action.Action.Effect.FamilyHappiness * deltaTimeByDuration;
 			FamilyHealth += action.Action.Effect.FamilyHealth * deltaTimeByDuration;
+			Money += action.Action.Effect.Money * deltaTimeByDuration;
+			FoodSupplies += action.Action.Effect.FoodSupplies * deltaTimeByDuration;
 
 			action.RemainingTime -= Time.deltaTime;
 
@@ -125,18 +127,26 @@ public class GameState : MonoBehaviour {
 
 	public void RunPlayerAction(string type)
 	{
-		if (CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None)
+		PlayerAction action = Constants.GetPlayerAction((PlayerActionType) Enum.Parse(typeof(PlayerActionType), type));
+		bool isPartnersAction = action.Type.IsPartnersAction();
+		
+		if (! isPartnersAction && CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None
+		    || isPartnersAction && CurrentPartnerAction != null && CurrentPartnerAction.Action.Type != PlayerActionType.None)
 		{
 			return;
 		}
-		
-		PlayerAction action = Constants.GetPlayerAction((PlayerActionType) Enum.Parse(typeof(PlayerActionType), type));
-		
-		CurrentPlayerAction = new CurrentAction
+
+		var currentAction = new CurrentAction
 		{
 			Action = action,
 			RemainingTime = action.DurationInSeconds
 		};
+
+		if (!isPartnersAction)
+			CurrentPlayerAction = currentAction;
+		else
+			CurrentPartnerAction = currentAction;
+			
 	}
 
 	[Serializable]
