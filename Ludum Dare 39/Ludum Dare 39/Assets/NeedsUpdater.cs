@@ -13,15 +13,17 @@ public class NeedsUpdater : MonoBehaviour
 	public Text FamilyFood;
 	public Text FamilyHappiness;
 	public Text FamilyHealth;
+	public Text Age;
 
 	private void Update ()
 	{
-		MyEnergy.text = "My energy: " + (int) GameState.Instance.MyEnergy + " / " + (int) GameState.Instance.MyMaxEnergy;
-		MyFood.text = "My food: " + (int) GameState.Instance.MyFood;
-		MyHappiness.text = "My happiness: " + (int) GameState.Instance.MyHappiness;
-		MyHealth.text = "My health: " + (int) GameState.Instance.MyHealth;
-		FamilyFood.text = "Family food: " + (int) GameState.Instance.FamilyFood;
-		FamilyHappiness.text = "Family happiness: " + (int) GameState.Instance.FamilyHappiness;
-		FamilyHealth.text = "Family health: " + (int) GameState.Instance.FamilyHealth;
+		MyEnergy.text = "My energy: " + Mathf.CeilToInt(GameState.Instance.MyEnergy) + " / " + Mathf.CeilToInt(GameState.Instance.MyMaxEnergy);
+		MyFood.text = "My food: " + Mathf.CeilToInt(GameState.Instance.MyFood);
+		MyHappiness.text = "My happiness: " + Mathf.CeilToInt(GameState.Instance.MyHappiness);
+		MyHealth.text = "My health: " + Mathf.CeilToInt(GameState.Instance.MyHealth);
+		FamilyFood.text = "Family food: " + Mathf.CeilToInt(GameState.Instance.FamilyFood);
+		FamilyHappiness.text = "Family happiness: " + Mathf.CeilToInt(GameState.Instance.FamilyHappiness);
+		FamilyHealth.text = "Family health: " + Mathf.CeilToInt(GameState.Instance.FamilyHealth);
+		Age.text = "Age\n\n" + Mathf.FloorToInt(GameState.Instance.Age);
 	}
 }
