@@ -16,12 +16,12 @@ public class NeedsUpdater : MonoBehaviour
 
 	private void Update ()
 	{
-		MyEnergy.text = "My energy: " + GameState.Instance.MyEnergy + " / " + GameState.Instance.MyMaxEnergy;
-		MyFood.text = "My food: " + GameState.Instance.MyFood;
-		MyHappiness.text = "My happiness: " + GameState.Instance.MyHappiness;
-		MyHealth.text = "My health: " + GameState.Instance.MyHealth;
-		FamilyFood.text = "Family food: " + GameState.Instance.FamilyFood;
-		FamilyHappiness.text = "Family happiness: " + GameState.Instance.FamilyHappiness;
-		FamilyHealth.text = "Family health: " + GameState.Instance.FamilyHealth;
+		MyEnergy.text = "My energy: " + (int) GameState.Instance.MyEnergy + " / " + (int) GameState.Instance.MyMaxEnergy;
+		MyFood.text = "My food: " + (int) GameState.Instance.MyFood;
+		MyHappiness.text = "My happiness: " + (int) GameState.Instance.MyHappiness;
+		MyHealth.text = "My health: " + (int) GameState.Instance.MyHealth;
+		FamilyFood.text = "Family food: " + (int) GameState.Instance.FamilyFood;
+		FamilyHappiness.text = "Family happiness: " + (int) GameState.Instance.FamilyHappiness;
+		FamilyHealth.text = "Family health: " + (int) GameState.Instance.FamilyHealth;
 	}
 }

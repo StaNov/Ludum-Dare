@@ -1639,12 +1639,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyEnergy: 100
+  MyMaxEnergy: 100
   MyFood: 100
   MyHappiness: 100
   MyHealth: 100
   FamilyFood: 100
   FamilyHappiness: 100
   FamilyHealth: 100
+  Constants: {fileID: 11400000, guid: 29116353ffefdfd439c6b2117f22a6ef, type: 2}
 --- !u!4 &1806929946
 Transform:
   m_ObjectHideFlags: 0
