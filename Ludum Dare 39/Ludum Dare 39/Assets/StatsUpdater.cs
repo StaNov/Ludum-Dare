@@ -11,9 +11,9 @@ public class StatsUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		Money.text = "Money: $" + Mathf.CeilToInt(State.Money);
-		MoneyPerWorkshift.text = "Money per work shift: $" + Mathf.FloorToInt(State.MoneyPerWorkshift);
-		MoneyPerPartnersWorkshift.text = "Money per partner's work shift: $" + Mathf.FloorToInt(State.MoneyPerPartnersWorkshift);
+		Money.text = "Money: " + Mathf.CeilToInt(State.Money);
+		MoneyPerWorkshift.text = "Money per work shift: " + Mathf.FloorToInt(State.MoneyPerWorkshift);
+		MoneyPerPartnersWorkshift.text = "Money per partner's work shift: " + Mathf.FloorToInt(State.MoneyPerPartnersWorkshift);
 		FoodSupplies.text = "Food supplies: " + Mathf.FloorToInt(State.FoodSupplies);
 	}
 }
