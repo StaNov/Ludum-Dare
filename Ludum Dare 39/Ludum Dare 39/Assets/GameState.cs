@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameState : MonoBehaviour {
 
@@ -125,8 +126,9 @@ public class GameState : MonoBehaviour {
 		return action;
 	}
 
-	public void RunPlayerAction(string type)
+	public void RunAction()
 	{
+		string type = EventSystem.current.currentSelectedGameObject.name;
 		PlayerAction action = Constants.GetPlayerAction((PlayerActionType) Enum.Parse(typeof(PlayerActionType), type));
 		bool isPartnersAction = action.Type.IsPartnersAction();
 		
