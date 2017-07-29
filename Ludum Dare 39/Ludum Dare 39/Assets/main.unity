@@ -918,6 +918,7 @@ GameObject:
   - component: {fileID: 580241531}
   - component: {fileID: 580241530}
   - component: {fileID: 580241529}
+  - component: {fileID: 580241532}
   m_Layer: 5
   m_Name: Stats
   m_TagString: Untagged
@@ -1002,6 +1003,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580241527}
+--- !u!114 &580241532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 580241527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85864c057d78bf4290c67e0862e8082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Money: {fileID: 1468625280}
+  MoneyPerWorkshift: {fileID: 964512961}
+  MoneyPerPartnersWorkshift: {fileID: 1509428536}
+  FoodSupplies: {fileID: 322755252}
+  State: {fileID: 1806929945}
 --- !u!1 &584681998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,8 +1270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128, y: -94}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 104, y: -96}
+  m_SizeDelta: {x: 160, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650435838
 MonoBehaviour:
@@ -2828,8 +2845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128, y: -49}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 104, y: -40.499985}
+  m_SizeDelta: {x: 160, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1553818922
 MonoBehaviour:
@@ -3276,6 +3293,10 @@ MonoBehaviour:
   FamilyHappiness: 100
   FamilyHealth: 100
   Age: 25
+  Money: 100
+  MoneyPerWorkshift: 20
+  MoneyPerPartnersWorkshift: 20
+  FoodSupplies: 5
   CurrentPlayerAction:
     Action:
       Type: 0

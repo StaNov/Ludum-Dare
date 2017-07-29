@@ -14,6 +14,10 @@ public class GameState : MonoBehaviour {
     public float FamilyHappiness = 100;
     public float FamilyHealth = 100;
     public float Age = 25;
+    public float Money = 100;
+    public float MoneyPerWorkshift = 20;
+    public float MoneyPerPartnersWorkshift = 20;
+    public float FoodSupplies = 5;
 
 	public CurrentAction CurrentPlayerAction;
 	public CurrentAction CurrentPartnerAction;
