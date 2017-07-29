@@ -29,13 +29,14 @@ public class GameState : MonoBehaviour {
 	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0;}}
 	
 	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
-	private float DeltaTimeByDurationPlayer { get { return Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
-	private float DeltaTimeByDurationPartner { get { return Time.deltaTime * (1.0f / CurrentPartnerAction.Action.DurationInSeconds); }}
+	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
+	private float DeltaTimeByDurationPartner { get { return CurrentPartnerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPartnerAction.Action.DurationInSeconds); }}
 
 	private void Awake ()
 	{
 		Instance = this;
 		CurrentPlayerAction = null;
+		CurrentPartnerAction = null;
 	}
 	
 	private void FixedUpdate ()
@@ -45,53 +46,39 @@ public class GameState : MonoBehaviour {
 			return;
 		}
 		
-		if (CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None)
-		{
-			MyEnergy += CurrentPlayerAction.Action.Effect.MyEnergy * DeltaTimeByDurationPlayer;
-			MyMaxEnergy += CurrentPlayerAction.Action.Effect.MyMaxEnergy * DeltaTimeByDurationPlayer;
-			MyFood += CurrentPlayerAction.Action.Effect.MyFood * DeltaTimeByDurationPlayer;
-			MyHappiness += CurrentPlayerAction.Action.Effect.MyHappiness * DeltaTimeByDurationPlayer;
-			MyHealth += CurrentPlayerAction.Action.Effect.MyHealth * DeltaTimeByDurationPlayer;
-			FamilyFood += CurrentPlayerAction.Action.Effect.FamilyFood * DeltaTimeByDurationPlayer;
-			FamilyHappiness += CurrentPlayerAction.Action.Effect.FamilyHappiness * DeltaTimeByDurationPlayer;
-			FamilyHealth += CurrentPlayerAction.Action.Effect.FamilyHealth * DeltaTimeByDurationPlayer;
+		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, DeltaTimeByDurationPlayer);
+		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
 
-			CurrentPlayerAction.RemainingTime -= Time.deltaTime;
-
-			if (CurrentPlayerAction.RemainingTime < 0)
-			{
-				if (CurrentPlayerAction.Action.Type == PlayerActionType.GoToWork)
-				{
-					Money += MoneyPerWorkshift;
-					MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
-				}
-				
-				CurrentPlayerAction = null;
-			}
-		}
-
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyEnergy < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyEnergy < float.Epsilon)
+			&& (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.MyEnergy < float.Epsilon))
 			MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyMaxEnergy < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyMaxEnergy < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.MyMaxEnergy < float.Epsilon))
 			MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyFood < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyFood < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.MyFood < float.Epsilon))
 			MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHappiness < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHappiness < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.MyHappiness < float.Epsilon))
 			MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHealth < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.MyHealth < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.MyHealth < float.Epsilon))
 			MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyFood < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyFood < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.FamilyFood < float.Epsilon))
 			FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHappiness < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHappiness < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.FamilyHappiness < float.Epsilon))
 			FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
 		
-		if (CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHealth < float.Epsilon)
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.Effect.FamilyHealth < float.Epsilon)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.Effect.FamilyHealth < float.Epsilon))
 			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
 		
 		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;
@@ -104,6 +91,36 @@ public class GameState : MonoBehaviour {
 		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
 		FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
 		FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
+	}
+
+	private CurrentAction UpdateByAction(CurrentAction action, float deltaTimeByDuration)
+	{
+		if (action != null && action.Action.Type != PlayerActionType.None)
+		{
+			MyEnergy += action.Action.Effect.MyEnergy * deltaTimeByDuration;
+			MyMaxEnergy += action.Action.Effect.MyMaxEnergy * deltaTimeByDuration;
+			MyFood += action.Action.Effect.MyFood * deltaTimeByDuration;
+			MyHappiness += action.Action.Effect.MyHappiness * deltaTimeByDuration;
+			MyHealth += action.Action.Effect.MyHealth * deltaTimeByDuration;
+			FamilyFood += action.Action.Effect.FamilyFood * deltaTimeByDuration;
+			FamilyHappiness += action.Action.Effect.FamilyHappiness * deltaTimeByDuration;
+			FamilyHealth += action.Action.Effect.FamilyHealth * deltaTimeByDuration;
+
+			action.RemainingTime -= Time.deltaTime;
+
+			if (action.RemainingTime < 0)
+			{
+				if (action.Action.Type == PlayerActionType.GoToWork)
+				{
+					Money += MoneyPerWorkshift;
+					MoneyPerWorkshift *= Constants.MoneyPerShiftIncreaseCoefficient;
+				}
+
+				action = null;
+			}
+		}
+
+		return action;
 	}
 
 	public void RunPlayerAction(string type)

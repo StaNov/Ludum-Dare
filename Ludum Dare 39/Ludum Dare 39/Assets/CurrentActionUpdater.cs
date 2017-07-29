@@ -7,9 +7,12 @@ public class CurrentActionUpdater : MonoBehaviour
 {
 	public GameState State;
 	public Text ActionText;
+	public bool IsPartner;
 	
 	void Update ()
 	{
-		ActionText.text = State.CurrentPlayerAction == null ? "" : State.CurrentPlayerAction.Action.Type.ToString();
+		GameState.CurrentAction action = IsPartner ? State.CurrentPartnerAction : State.CurrentPlayerAction;
+		
+		ActionText.text = action == null ? "" : action.Action.Type.ToString();
 	}
 }

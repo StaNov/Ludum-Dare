@@ -52,7 +52,7 @@ public class GameplayConstants : ScriptableObject
 		new PlayerAction
 		{
 			Type = PlayerActionType.HaveASmoke,
-			DurationInSeconds = 5,
+			DurationInSeconds = 3,
 			Effect = new StatsDifference
 			{
 				MyMaxEnergy = -10,
@@ -60,6 +60,16 @@ public class GameplayConstants : ScriptableObject
 				MyHealth = -10,
 				FamilyHealth = -10,
 				MyHappiness = 30
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.PartnerFeedsFamily,
+			DurationInSeconds = 5,
+			Effect = new StatsDifference
+			{
+				FamilyFood = 30,
+				FoodSupplies = -2
 			}
 		}
 	};
@@ -104,5 +114,10 @@ public class PlayerAction
 
 public enum PlayerActionType
 {
-	None, Sleep, DrinkCoffee, GoToWork, HaveASmoke
+	None,
+	Sleep, 
+	DrinkCoffee, 
+	GoToWork, 
+	HaveASmoke,
+	PartnerFeedsFamily
 }
