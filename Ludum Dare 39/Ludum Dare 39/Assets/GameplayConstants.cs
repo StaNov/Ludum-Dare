@@ -11,10 +11,10 @@ public class GameplayConstants : ScriptableObject
 	{
 		MyEnergy = -25,
 		MyMaxEnergy = -15,
-		MyFood = -25,
+		MyFood = -50,
 		MyHappiness = -25,
 		MyHealth = -25,
-		FamilyFood = -25,
+		FamilyFood = -50,
 		FamilyHappiness = -25,
 		FamilyHealth = -25,
 		Age = 10
@@ -25,7 +25,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.Sleep,
 			DurationInSeconds = 15,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyEnergy = 50
 			}
@@ -34,7 +34,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.DrinkCoffee,
 			DurationInSeconds = 2,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyEnergy = 30,
 				MyHealth = -20
@@ -44,10 +44,11 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.GoToWork,
 			DurationInSeconds = 15,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyEnergy = -30,
 				MyHealth = -10,
+				MyHappiness = -10,
 				FamilyHappiness = -10
 			}
 		},
@@ -55,7 +56,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.HaveASmoke,
 			DurationInSeconds = 2,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyMaxEnergy = -10,
 				Money = -10,
@@ -68,7 +69,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.PartnerFeedsFamily,
 			DurationInSeconds = 7,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
 				FoodSupplies = -2
@@ -78,7 +79,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.FeedFamily,
 			DurationInSeconds = 7,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
 				FoodSupplies = -2,
@@ -89,7 +90,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.Eat,
 			DurationInSeconds = 4,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyFood = 30,
 				FoodSupplies = -1,
@@ -100,7 +101,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.DoHobby,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyFood = -10,
 				MyHealth = -10,
@@ -112,7 +113,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.DoSport,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyFood = -10,
 				MyEnergy = -20,
@@ -123,7 +124,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.GoShopping,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyFood = -10,
 				MyEnergy = -20,
@@ -135,7 +136,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.SpendTimeWithFamily,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHappiness = 40,
 				MyHappiness = 40,
@@ -146,7 +147,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.TakeCareOfFamily,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHealth = 40,
 				MyEnergy = -20
@@ -156,7 +157,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.LearnNewStuffForWork,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyEnergy = -20,
 				MyHappiness = -20,
@@ -167,7 +168,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.LearnNewStuffForWorkPartner,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHappiness = -5
 			}
@@ -176,7 +177,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.PartnerTakesCareOfFamily,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHealth = 40,
 				FamilyHappiness = -5
@@ -186,7 +187,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.PartnerGoesShopping,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FoodSupplies = 5,
 				FamilyFood = -10,
@@ -197,7 +198,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.PartnerGoesToWork,
 			DurationInSeconds = 15,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHealth = -20,
 				FamilyFood = -10,
@@ -208,7 +209,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.HireSomeoneToTakeCareOfFamily,
 			DurationInSeconds = 1,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHealth = 50,
 				Money = -50,
@@ -219,7 +220,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.OrderFoodSupplies,
 			DurationInSeconds = 1,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FoodSupplies = 5,
 				Money = -80,
@@ -230,7 +231,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.OrderPizza,
 			DurationInSeconds = 1,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				FamilyHealth = -20,
 				Money = -80,
@@ -243,7 +244,7 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.TakeAPill,
 			DurationInSeconds = 1,
-			Effect = new StatsDifference
+			EffectDuring = new StatsDifference
 			{
 				MyHealth = 40,
 				Money = -50,
@@ -251,13 +252,17 @@ public class GameplayConstants : ScriptableObject
 				MyMaxEnergy = -10
 			}
 		},
+		// TODO ocaď nahoru updatovat na before a after
 		new PlayerAction
 		{
 			Type = PlayerActionType.GoPartyWithFriends,
 			DurationInSeconds = 8,
-			Effect = new StatsDifference
+			EffectBefore = new StatsDifference
 			{
-				Money = -70,
+				Money = -70
+			},
+			EffectDuring = new StatsDifference
+			{
 				MyHappiness = 40,
 				MyEnergy = -20,
 				FamilyHappiness = -20
@@ -267,9 +272,12 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.GoToAquaWorld,
 			DurationInSeconds = 10,
-			Effect = new StatsDifference
+			EffectBefore = new StatsDifference
 			{
-				Money = -100,
+				Money = -100
+			},
+			EffectDuring = new StatsDifference
+			{
 				MyHappiness = 10,
 				FamilyHappiness = 30,
 				MyEnergy = -10
@@ -294,19 +302,19 @@ public class GameplayConstants : ScriptableObject
 [Serializable]
 public class StatsDifference : ICloneable
 {
-	public float MyEnergy;
-	public float MyMaxEnergy;
-	public float MyFood;
-	public float MyHappiness;
-	public float MyHealth;
-	public float FamilyFood;
-	public float FamilyHappiness;
-	public float FamilyHealth;
-	public float Age;
-	public float Money;
-	public float MoneyPerWorkshift;
-	public float MoneyPerPartnersWorkshift;
-	public float FoodSupplies;
+	public int MyEnergy;
+	public int MyMaxEnergy;
+	public int MyFood;
+	public int MyHappiness;
+	public int MyHealth;
+	public int FamilyFood;
+	public int FamilyHappiness;
+	public int FamilyHealth;
+	public int Age;
+	public int Money;
+	public int MoneyPerWorkshift;
+	public int MoneyPerPartnersWorkshift;
+	public int FoodSupplies;
 	
 	public object Clone()
 	{
@@ -319,7 +327,9 @@ public class PlayerAction
 {
 	public PlayerActionType Type;
 	public float DurationInSeconds;
-	public StatsDifference Effect;
+	public StatsDifference EffectBefore;
+	public StatsDifference EffectDuring;
+	public StatsDifference EffectAfter;
 }
 
 public enum PlayerActionType

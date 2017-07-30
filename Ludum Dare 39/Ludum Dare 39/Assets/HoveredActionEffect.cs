@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -20,30 +21,53 @@ public class HoveredActionEffect : MonoBehaviour
 
 	public void SetEffect(PlayerAction action)
 	{
-		m_Effect = action.Effect.Clone() as StatsDifference;
+		m_Effect = CreateSummaryEffect(action);
 		m_TimeToFinish = action.DurationInSeconds;
+	}
+
+	private StatsDifference CreateSummaryEffect(PlayerAction action)
+	{
+		StatsDifference result = new StatsDifference();
+
+		var differences = new[] {action.EffectBefore, action.EffectDuring, action.EffectAfter};
+		
+		foreach (StatsDifference difference in differences)
+		{
+			result.MyEnergy += difference.MyEnergy;
+			result.MyMaxEnergy += difference.MyMaxEnergy;
+			result.MyFood += difference.MyFood;
+			result.MyHappiness += difference.MyHappiness;
+			result.MyHealth += difference.MyHealth;
+			result.FamilyFood += difference.FamilyFood;
+			result.FamilyHappiness += difference.FamilyHappiness;
+			result.FamilyHealth += difference.FamilyHealth;
+			result.Money += difference.Money;
+			result.FoodSupplies += difference.FoodSupplies;
+		}
 
 		if (action.Type == PlayerActionType.GoToWork)
 		{
-			m_Effect.Money = State.MoneyPerWorkshift;
-			m_Effect.MoneyPerWorkshift = State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1);
+			result.Money = State.MoneyPerWorkshift;
+			result.MoneyPerWorkshift = Mathf.RoundToInt(State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1));
 		}
 		
 		if (action.Type == PlayerActionType.PartnerGoesToWork)
 		{
-			m_Effect.Money = State.MoneyPerPartnersWorkshift;
-			m_Effect.MoneyPerPartnersWorkshift = State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1);
+			result.Money = State.MoneyPerPartnersWorkshift;
+			result.MoneyPerPartnersWorkshift = Mathf.RoundToInt(State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1));
 		}
 		
 		if (action.Type == PlayerActionType.LearnNewStuffForWork)
 		{
-			m_Effect.MoneyPerWorkshift = State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1);
+			result.MoneyPerWorkshift = Mathf.RoundToInt(State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1));
 		}
 		
 		if (action.Type == PlayerActionType.LearnNewStuffForWorkPartner)
 		{
-			m_Effect.MoneyPerPartnersWorkshift = State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1);
+			result.MoneyPerPartnersWorkshift = Mathf.RoundToInt(State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1));
 		}
+
+		return result;
 	}
 
 	private StatsDifference m_Effect = new StatsDifference();
