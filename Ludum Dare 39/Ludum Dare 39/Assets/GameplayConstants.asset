@@ -22,7 +22,7 @@ MonoBehaviour:
     FamilyFood: -50
     FamilyHappiness: -30
     FamilyHealth: -15
-    Age: 13
+    Age: 10
     Money: 0
     MoneyPerWorkshift: 0
     MoneyPerPartnersWorkshift: 0
@@ -135,9 +135,9 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: -30
       MyMaxEnergy: 0
-      MyFood: 0
+      MyFood: -10
       MyHappiness: -10
-      MyHealth: -10
+      MyHealth: -20
       FamilyFood: 0
       FamilyHappiness: -10
       FamilyHealth: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
       MyEnergy: 0
       MyMaxEnergy: -10
       MyFood: 0
-      MyHappiness: 30
+      MyHappiness: 50
       MyHealth: -20
       FamilyFood: 0
       FamilyHappiness: 0
@@ -223,10 +223,10 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: 0
       MyMaxEnergy: 0
-      MyFood: 30
+      MyFood: 40
       MyHappiness: 0
       MyHealth: -10
-      FamilyFood: 30
+      FamilyFood: 40
       FamilyHappiness: -10
       FamilyHealth: -10
       Age: 0
@@ -267,10 +267,10 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: -20
       MyMaxEnergy: 0
-      MyFood: 30
-      MyHappiness: 0
+      MyFood: 40
+      MyHappiness: -10
       MyHealth: -10
-      FamilyFood: 30
+      FamilyFood: 40
       FamilyHappiness: 0
       FamilyHealth: -10
       Age: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: 0
       MyMaxEnergy: 0
-      MyFood: 30
+      MyFood: 40
       MyHappiness: 0
       MyHealth: -10
       FamilyFood: 0
@@ -401,7 +401,7 @@ MonoBehaviour:
       MyMaxEnergy: 0
       MyFood: -15
       MyHappiness: 0
-      MyHealth: 30
+      MyHealth: 40
       FamilyFood: 0
       FamilyHappiness: 0
       FamilyHealth: 0
@@ -575,7 +575,7 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: -20
       MyMaxEnergy: 0
-      MyFood: 0
+      MyFood: -10
       MyHappiness: -20
       MyHealth: 0
       FamilyFood: 0
@@ -883,10 +883,10 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: 0
       MyMaxEnergy: 0
-      MyFood: 30
-      MyHappiness: 0
-      MyHealth: 0
-      FamilyFood: 30
+      MyFood: 50
+      MyHappiness: 10
+      MyHealth: -20
+      FamilyFood: 50
       FamilyHappiness: 10
       FamilyHealth: -20
       Age: 0
@@ -926,10 +926,10 @@ MonoBehaviour:
       FoodSupplies: 0
     EffectDuring:
       MyEnergy: 0
-      MyMaxEnergy: -10
+      MyMaxEnergy: -3
       MyFood: 0
       MyHappiness: 0
-      MyHealth: 40
+      MyHealth: 60
       FamilyFood: 0
       FamilyHappiness: -10
       FamilyHealth: 0
