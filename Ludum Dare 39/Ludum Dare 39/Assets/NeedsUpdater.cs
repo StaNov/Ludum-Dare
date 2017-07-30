@@ -16,18 +16,30 @@ public class NeedsUpdater : MonoBehaviour
 	public Text Age;
 
 	public GameState State;
+	public HoveredActionEffect Effect;
 
 	private void Update ()
 	{
-		MyEnergy.text = "My energy: " + Mathf.CeilToInt(State.MyEnergy) + " / " + Mathf.CeilToInt(State.MyMaxEnergy);
-		MyFood.text = "My food: " + Mathf.CeilToInt(State.MyFood);
-		MyHappiness.text = "My happiness: " + Mathf.CeilToInt(State.MyHappiness);
-		MyHealth.text = "My health: " + Mathf.CeilToInt(State.MyHealth);
-		FamilyFood.text = "Family food: " + Mathf.CeilToInt(State.FamilyFood);
-		FamilyHappiness.text = "Family happiness: " + Mathf.CeilToInt(State.FamilyHappiness);
-		FamilyHealth.text = "Family health: " + Mathf.CeilToInt(State.FamilyHealth);
+		StatsDifference effect = Effect.Effect;
+		
+		MyEnergy.text = "My energy: " + Mathf.CeilToInt(State.MyEnergy) + CreateEffectSuffix(effect.MyEnergy) + " / " + Mathf.CeilToInt(State.MyMaxEnergy) + CreateEffectSuffix(effect.MyMaxEnergy);
+		MyFood.text = "My food: " + Mathf.CeilToInt(State.MyFood) + CreateEffectSuffix(effect.MyFood);
+		MyHappiness.text = "My happiness: " + Mathf.CeilToInt(State.MyHappiness) + CreateEffectSuffix(effect.MyHappiness);
+		MyHealth.text = "My health: " + Mathf.CeilToInt(State.MyHealth) + CreateEffectSuffix(effect.MyHealth);
+		FamilyFood.text = "Family food: " + Mathf.CeilToInt(State.FamilyFood) + CreateEffectSuffix(effect.FamilyFood);
+		FamilyHappiness.text = "Family happiness: " + Mathf.CeilToInt(State.FamilyHappiness) + CreateEffectSuffix(effect.FamilyHappiness);
+		FamilyHealth.text = "Family health: " + Mathf.CeilToInt(State.FamilyHealth) + CreateEffectSuffix(effect.FamilyHealth);
 		Age.text = "Age\n\n" + Mathf.FloorToInt(State.Age);
 	}
-	
-	// TODO private void Append
+
+	private string CreateEffectSuffix(float /*TODO mozna to budou inty */ differenceValue)
+	{
+		if (differenceValue > float.Epsilon)
+			return " <color=green><b>+" + differenceValue + "</b></color>";
+		
+		if (differenceValue < -float.Epsilon)
+			return " <color=red><b>" + differenceValue + "</b></color>";
+
+		return "";
+	}
 }

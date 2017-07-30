@@ -5743,6 +5743,7 @@ MonoBehaviour:
   FamilyHealth: {fileID: 1259030213}
   Age: {fileID: 825174760}
   State: {fileID: 1806929945}
+  Effect: {fileID: 1595859565}
 --- !u!114 &1595859565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5754,20 +5755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a5110f1bc308a4c8041694e93af40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Effect:
-    MyEnergy: 0
-    MyMaxEnergy: 0
-    MyFood: 0
-    MyHappiness: 0
-    MyHealth: 0
-    FamilyFood: 0
-    FamilyHappiness: 0
-    FamilyHealth: 0
-    Age: 0
-    Money: 0
-    MoneyPerWorkshift: 0
-    MoneyPerPartnersWorkshift: 0
-    FoodSupplies: 0
 --- !u!1 &1617740488
 GameObject:
   m_ObjectHideFlags: 0
