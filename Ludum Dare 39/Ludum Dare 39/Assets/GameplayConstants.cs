@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
-	public float MoneyPerShiftIncreaseCoefficient = 1.2f;
-	public float MoneyPerShiftIncreaseByLearningCoefficient = 1.5f;
+	public float MoneyPerShiftIncreaseCoefficient = 1.5f;
+	public float MoneyPerShiftIncreaseByLearningCoefficient = 2f;
 	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
@@ -76,13 +76,16 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.PartnerFeedsFamily,
 			DurationInSeconds = 7,
+			EffectBefore = new StatsDifference
+			{
+				FoodSupplies = -3
+			},
 			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
 				MyFood = 30,
 				FamilyHealth = -10,
 				MyHealth = -10,
-				FoodSupplies = -2,
 				FamilyHappiness = -10
 			}
 		},
@@ -92,7 +95,7 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 7,
 			EffectBefore = new StatsDifference
 			{
-				FoodSupplies = -2
+				FoodSupplies = -3
 			},
 			EffectDuring = new StatsDifference
 			{

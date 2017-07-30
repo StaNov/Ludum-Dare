@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6612040df492e4e9228970cb8b4194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoneyPerShiftIncreaseCoefficient: 1.2
-  MoneyPerShiftIncreaseByLearningCoefficient: 1.5
+  MoneyPerShiftIncreaseCoefficient: 1.5
+  MoneyPerShiftIncreaseByLearningCoefficient: 2
   ChangePerMinute:
     MyEnergy: -25
     MyMaxEnergy: -10
@@ -219,7 +219,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
+      FoodSupplies: -3
     EffectDuring:
       MyEnergy: 0
       MyMaxEnergy: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: -2
+      FoodSupplies: 0
     EffectAfter:
       MyEnergy: 0
       MyMaxEnergy: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: -2
+      FoodSupplies: -3
     EffectDuring:
       MyEnergy: -20
       MyMaxEnergy: 0
