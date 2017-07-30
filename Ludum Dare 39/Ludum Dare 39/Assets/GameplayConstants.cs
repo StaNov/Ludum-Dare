@@ -235,7 +235,44 @@ public class GameplayConstants : ScriptableObject
 				FamilyHealth = -20,
 				Money = -80,
 				FamilyFood = 30,
+				MyFood = 30,
 				FamilyHappiness = 10
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.TakeAPill,
+			DurationInSeconds = 1,
+			Effect = new StatsDifference
+			{
+				MyHealth = 40,
+				Money = -50,
+				FamilyHappiness = -10,
+				MyMaxEnergy = -10
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.GoPartyWithFriends,
+			DurationInSeconds = 8,
+			Effect = new StatsDifference
+			{
+				Money = -70,
+				MyHappiness = 40,
+				MyEnergy = -20,
+				FamilyHappiness = -20
+			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.GoToAquaWorld,
+			DurationInSeconds = 10,
+			Effect = new StatsDifference
+			{
+				Money = -100,
+				MyHappiness = 10,
+				FamilyHappiness = 30,
+				MyEnergy = -10
 			}
 		}
 	};
@@ -307,7 +344,10 @@ public enum PlayerActionType
 	PartnerGoesToWork,
 	HireSomeoneToTakeCareOfFamily,
 	OrderFoodSupplies,
-	OrderPizza
+	OrderPizza,
+	TakeAPill,
+	GoPartyWithFriends,
+	GoToAquaWorld
 }
 
 public static class ExtensionMethods
