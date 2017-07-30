@@ -367,4 +367,16 @@ public static class ExtensionMethods
 				return false;
 		}
 	}
+	public static bool IsForBoth(this PlayerActionType type)
+	{
+		switch(type)
+		{
+			case PlayerActionType.GoToAquaWorld:
+			case PlayerActionType.SpendTimeWithFamily:
+				return true;
+				
+			default:
+				return false;
+		}
+	}
 }

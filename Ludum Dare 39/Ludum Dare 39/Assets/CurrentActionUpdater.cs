@@ -12,6 +12,13 @@ public class CurrentActionUpdater : MonoBehaviour
 	void Update ()
 	{
 		GameState.CurrentAction action = IsPartner ? State.CurrentPartnerAction : State.CurrentPlayerAction;
+
+		if (IsPartner && State.CurrentPlayerAction != null &&
+		    (State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld
+		     || State.CurrentPlayerAction.Action.Type == PlayerActionType.SpendTimeWithFamily))
+		{
+			action = State.CurrentPlayerAction;
+		}
 		
 		ActionText.text = action == null ? "" : action.Action.Type.ToString();
 	}

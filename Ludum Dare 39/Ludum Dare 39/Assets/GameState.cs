@@ -142,7 +142,9 @@ public class GameState : MonoBehaviour {
 		bool isPartnersAction = action.Type.IsPartnersAction();
 		
 		if (! isPartnersAction && CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None
-		    || isPartnersAction && CurrentPartnerAction != null && CurrentPartnerAction.Action.Type != PlayerActionType.None)
+		    || isPartnersAction && CurrentPartnerAction != null && CurrentPartnerAction.Action.Type != PlayerActionType.None
+		    || isPartnersAction && CurrentPlayerAction != null && CurrentPlayerAction.Action.Type.IsForBoth()
+		    || ! isPartnersAction && CurrentPartnerAction != null && action.Type.IsForBoth())
 		{
 			return;
 		}
