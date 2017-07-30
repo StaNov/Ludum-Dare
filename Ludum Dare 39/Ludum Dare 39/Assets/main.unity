@@ -5742,6 +5742,7 @@ MonoBehaviour:
   FamilyHappiness: {fileID: 142393592}
   FamilyHealth: {fileID: 1259030213}
   Age: {fileID: 825174760}
+  State: {fileID: 1806929945}
 --- !u!114 &1595859565
 MonoBehaviour:
   m_ObjectHideFlags: 0

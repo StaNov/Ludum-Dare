@@ -24,8 +24,6 @@ public class GameState : MonoBehaviour {
 	public CurrentAction CurrentPartnerAction;
 
 	public GameplayConstants Constants;
-
-	public static GameState Instance;
 	
 	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0 || Money < 0 || FoodSupplies < 0;}}
 	
@@ -35,7 +33,6 @@ public class GameState : MonoBehaviour {
 
 	private void Awake ()
 	{
-		Instance = this;
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
 	}
