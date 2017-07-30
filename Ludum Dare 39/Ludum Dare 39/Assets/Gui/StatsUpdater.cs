@@ -16,10 +16,10 @@ public class StatsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		Money.text = "Money: " + Mathf.CeilToInt(State.Money) + EffectSuffixCreator.Create(effect.Money);
-		MoneyPerWorkshift.text = "Money per work shift: " + Mathf.FloorToInt(State.MoneyPerWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
-		MoneyPerPartnersWorkshift.text = "Money per partner's work shift: " + Mathf.FloorToInt(State.MoneyPerPartnersWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
-		FoodSupplies.text = "Food supplies: " + Mathf.FloorToInt(State.FoodSupplies) + EffectSuffixCreator.Create(effect.FoodSupplies);
+		Money.text = Mathf.CeilToInt(State.Money) + EffectSuffixCreator.Create(effect.Money);
+		MoneyPerWorkshift.text = Mathf.FloorToInt(State.MoneyPerWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
+		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.MoneyPerPartnersWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
+		FoodSupplies.text = Mathf.FloorToInt(State.FoodSupplies) + EffectSuffixCreator.Create(effect.FoodSupplies);
 		Age.text = "Age\n\n" + Mathf.FloorToInt(State.Age);
 	}
 }
