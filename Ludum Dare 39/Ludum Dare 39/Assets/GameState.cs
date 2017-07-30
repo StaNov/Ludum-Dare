@@ -24,8 +24,33 @@ public class GameState : MonoBehaviour {
 	public CurrentAction CurrentPartnerAction;
 
 	public GameplayConstants Constants;
-	
-	public bool IsGameOver { get {return MyEnergy <= 0 || MyFood <= 0 || MyHappiness <= 0 || MyHealth <= 0 || FamilyFood <= 0 || FamilyHappiness <= 0 || FamilyHealth <= 0 || Money < 0 || FoodSupplies < 0;}}
+
+	public GameOverReason GameOver
+	{
+		get
+		{
+			if (MyEnergy <= 0)
+				return GameOverReason.Energy;
+			if (MyFood <= 0)
+				return GameOverReason.Food;
+			if (MyHappiness <= 0)
+				return GameOverReason.Happiness;
+			if (MyHealth <= 0)
+				return GameOverReason.Health;
+			if (FamilyFood <= 0)
+				return GameOverReason.FFood;
+			if (FamilyHappiness <= 0)
+				return GameOverReason.FHappiness;
+			if (FamilyHealth <= 0)
+				return GameOverReason.FHealth;
+			if (Money < 0)
+				return GameOverReason.Money;
+			if (FoodSupplies < 0)
+				return GameOverReason.FoodSupplies;
+			
+			return GameOverReason.StillPlaying;
+		}
+	}
 	
 	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
 	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
@@ -39,7 +64,7 @@ public class GameState : MonoBehaviour {
 	
 	private void FixedUpdate ()
 	{
-		if (IsGameOver)
+		if (GameOver != GameOverReason.StillPlaying)
 		{
 			return;
 		}
@@ -191,4 +216,9 @@ public class GameState : MonoBehaviour {
 		public PlayerAction Action;
 		public float RemainingTime;
 	}
+}
+
+public enum GameOverReason
+{
+	StillPlaying, Energy, Food, Health, Happiness, FFood, FHealth, FHappiness, Money, FoodSupplies 
 }
