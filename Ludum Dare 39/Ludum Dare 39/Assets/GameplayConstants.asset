@@ -22,7 +22,7 @@ MonoBehaviour:
     FamilyFood: -50
     FamilyHappiness: -30
     FamilyHealth: -15
-    Age: 10
+    Age: 8
     Money: 0
     MoneyPerWorkshift: 0
     MoneyPerPartnersWorkshift: 0
@@ -1008,18 +1008,18 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
-      Money: -300
+      Money: -700
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
     EffectDuring:
-      MyEnergy: -10
+      MyEnergy: 10
       MyMaxEnergy: 5
       MyFood: 10
       MyHappiness: 10
-      MyHealth: 0
+      MyHealth: 10
       FamilyFood: 0
-      FamilyHappiness: 40
+      FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
       Money: 0

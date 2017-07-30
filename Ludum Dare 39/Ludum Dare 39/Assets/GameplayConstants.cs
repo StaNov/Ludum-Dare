@@ -480,7 +480,7 @@ public static class ExtensionMethods
 			case PlayerActionType.TakeAPill:
 				return "Taking a pill";
 			case PlayerActionType.GoToAquaWorld:
-				return "In aqua world";
+				return "In water park";
 			case PlayerActionType.GoToSpa:
 				return "In spa";
 			default:
