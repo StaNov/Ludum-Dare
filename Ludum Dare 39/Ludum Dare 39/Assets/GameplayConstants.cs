@@ -10,13 +10,13 @@ public class GameplayConstants : ScriptableObject
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
 		MyEnergy = -25,
-		MyMaxEnergy = -15,
+		MyMaxEnergy = -10,
 		MyFood = -50,
-		MyHappiness = -25,
-		MyHealth = -25,
+		MyHappiness = -15,
+		MyHealth = -15,
 		FamilyFood = -50,
-		FamilyHappiness = -25,
-		FamilyHealth = -25,
+		FamilyHappiness = -15,
+		FamilyHealth = -15,
 		Age = 10
 	};
 
