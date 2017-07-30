@@ -9,6 +9,9 @@ public class CurrentActionUpdater : MonoBehaviour
 	public Text ActionText;
 	public bool IsPartner;
 	public BarIndicator Indicator;
+	public AudioSource Source;
+
+	private bool lastFrameActionPerforming;
 	
 	void Update ()
 	{
@@ -24,5 +27,12 @@ public class CurrentActionUpdater : MonoBehaviour
 		ActionText.text = action == null ? "" : action.Action.Type.ToString();
 		
 		Indicator.UpdateValue(action == null || action.Action.Type == PlayerActionType.None ? 0 : 1 - action.RemainingTime / action.Action.DurationInSeconds, 0, 0, 1);
+
+		if (lastFrameActionPerforming && action == null)
+		{
+			Source.Play();
+		}
+
+		lastFrameActionPerforming = action != null;
 	}
 }
