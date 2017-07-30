@@ -9,8 +9,8 @@ public class GameplayConstants : ScriptableObject
 	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
-		MyEnergy = -15,
-		MyMaxEnergy = -10,
+		MyEnergy = -25,
+		MyMaxEnergy = -15,
 		MyFood = -25,
 		MyHappiness = -25,
 		MyHealth = -25,
@@ -46,7 +46,9 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 15,
 			Effect = new StatsDifference
 			{
-				MyEnergy = -30
+				MyEnergy = -30,
+				MyHealth = -10,
+				FamilyHappiness = -10
 			}
 		},
 		new PlayerAction
@@ -197,7 +199,9 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 15,
 			Effect = new StatsDifference
 			{
-				FamilyHealth = -10
+				FamilyHealth = -20,
+				FamilyFood = -10,
+				FamilyHappiness = -10
 			}
 		},
 		new PlayerAction

@@ -34,6 +34,16 @@ public class HoveredActionEffect : MonoBehaviour
 			m_Effect.Money = State.MoneyPerPartnersWorkshift;
 			m_Effect.MoneyPerPartnersWorkshift = State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1);
 		}
+		
+		if (action.Type == PlayerActionType.LearnNewStuffForWork)
+		{
+			m_Effect.MoneyPerWorkshift = State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1);
+		}
+		
+		if (action.Type == PlayerActionType.LearnNewStuffForWorkPartner)
+		{
+			m_Effect.MoneyPerPartnersWorkshift = State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1);
+		}
 	}
 
 	private StatsDifference m_Effect = new StatsDifference();
