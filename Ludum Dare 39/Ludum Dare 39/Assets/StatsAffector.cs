@@ -9,7 +9,7 @@ public class StatsAffector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		var playerAction = Constants.GetPlayerAction(gameObject.name);
-		Effect.SetEffect(playerAction.Effect, playerAction.DurationInSeconds);
+		Effect.SetEffect(playerAction);
 	}
 
 	public void OnPointerExit(PointerEventData eventData)

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class HoveredActionEffect : MonoBehaviour
 {
+	public GameState State;
+	public GameplayConstants Constants;
+	
 	public StatsDifference Effect
 	{
 		get { return m_Effect; }
@@ -15,10 +18,22 @@ public class HoveredActionEffect : MonoBehaviour
 		get { return m_TimeToFinish; }
 	}
 
-	public void SetEffect(StatsDifference difference, float timeToFinish)
+	public void SetEffect(PlayerAction action)
 	{
-		m_Effect = difference.Clone() as StatsDifference;
-		m_TimeToFinish = timeToFinish;
+		m_Effect = action.Effect.Clone() as StatsDifference;
+		m_TimeToFinish = action.DurationInSeconds;
+
+		if (action.Type == PlayerActionType.GoToWork)
+		{
+			m_Effect.Money = State.MoneyPerWorkshift;
+			m_Effect.MoneyPerWorkshift = State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1);
+		}
+		
+		if (action.Type == PlayerActionType.PartnerGoesToWork)
+		{
+			m_Effect.Money = State.MoneyPerPartnersWorkshift;
+			m_Effect.MoneyPerPartnersWorkshift = State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1);
+		}
 	}
 
 	private StatsDifference m_Effect = new StatsDifference();

@@ -22,23 +22,27 @@ public class NeedsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		MyEnergy.text = "My energy: " + Mathf.CeilToInt(State.MyEnergy) + CreateEffectSuffix(effect.MyEnergy) + " / " + Mathf.CeilToInt(State.MyMaxEnergy) + CreateEffectSuffix(effect.MyMaxEnergy);
-		MyFood.text = "My food: " + Mathf.CeilToInt(State.MyFood) + CreateEffectSuffix(effect.MyFood);
-		MyHappiness.text = "My happiness: " + Mathf.CeilToInt(State.MyHappiness) + CreateEffectSuffix(effect.MyHappiness);
-		MyHealth.text = "My health: " + Mathf.CeilToInt(State.MyHealth) + CreateEffectSuffix(effect.MyHealth);
-		FamilyFood.text = "Family food: " + Mathf.CeilToInt(State.FamilyFood) + CreateEffectSuffix(effect.FamilyFood);
-		FamilyHappiness.text = "Family happiness: " + Mathf.CeilToInt(State.FamilyHappiness) + CreateEffectSuffix(effect.FamilyHappiness);
-		FamilyHealth.text = "Family health: " + Mathf.CeilToInt(State.FamilyHealth) + CreateEffectSuffix(effect.FamilyHealth);
+		MyEnergy.text = "My energy: " + Mathf.CeilToInt(State.MyEnergy) + EffectSuffixCreator.Create(effect.MyEnergy) + " / " + Mathf.CeilToInt(State.MyMaxEnergy) + EffectSuffixCreator.Create(effect.MyMaxEnergy);
+		MyFood.text = "My food: " + Mathf.CeilToInt(State.MyFood) + EffectSuffixCreator.Create(effect.MyFood);
+		MyHappiness.text = "My happiness: " + Mathf.CeilToInt(State.MyHappiness) + EffectSuffixCreator.Create(effect.MyHappiness);
+		MyHealth.text = "My health: " + Mathf.CeilToInt(State.MyHealth) + EffectSuffixCreator.Create(effect.MyHealth);
+		FamilyFood.text = "Family food: " + Mathf.CeilToInt(State.FamilyFood) + EffectSuffixCreator.Create(effect.FamilyFood);
+		FamilyHappiness.text = "Family happiness: " + Mathf.CeilToInt(State.FamilyHappiness) + EffectSuffixCreator.Create(effect.FamilyHappiness);
+		FamilyHealth.text = "Family health: " + Mathf.CeilToInt(State.FamilyHealth) + EffectSuffixCreator.Create(effect.FamilyHealth);
 		Age.text = "Age\n\n" + Mathf.FloorToInt(State.Age);
 	}
+}
 
-	private string CreateEffectSuffix(float /*TODO mozna to budou inty */ differenceValue)
+public static class EffectSuffixCreator
+{
+	public static string Create(float /*TODO mozna to budou inty */ differenceValue)
 	{
-		if (differenceValue > float.Epsilon)
-			return " <color=green><b>+" + differenceValue + "</b></color>";
+		int difference = Mathf.RoundToInt(differenceValue);
 		
-		if (differenceValue < -float.Epsilon)
-			return " <color=red><b>" + differenceValue + "</b></color>";
+		if (difference > float.Epsilon)
+			return " <color=green><b>+" + difference + "</b></color>";
+		if (difference < -float.Epsilon)
+			return " <color=red><b>" + difference + "</b></color>";
 
 		return "";
 	}

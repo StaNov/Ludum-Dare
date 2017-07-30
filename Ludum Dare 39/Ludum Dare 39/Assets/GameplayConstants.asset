@@ -341,7 +341,7 @@ MonoBehaviour:
       MyHappiness: 0
       MyHealth: 0
       FamilyFood: 30
-      FamilyHappiness: 0
+      FamilyHappiness: 10
       FamilyHealth: -20
       Age: 0
       Money: -80

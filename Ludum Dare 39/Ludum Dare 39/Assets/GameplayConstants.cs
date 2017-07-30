@@ -1,5 +1,4 @@
 ﻿using System;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
@@ -231,7 +230,8 @@ public class GameplayConstants : ScriptableObject
 			{
 				FamilyHealth = -20,
 				Money = -80,
-				FamilyFood = 30
+				FamilyFood = 30,
+				FamilyHappiness = 10
 			}
 		}
 	};

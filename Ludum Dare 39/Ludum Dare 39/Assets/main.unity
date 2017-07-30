@@ -2367,6 +2367,7 @@ MonoBehaviour:
   MoneyPerPartnersWorkshift: {fileID: 1509428536}
   FoodSupplies: {fileID: 322755252}
   State: {fileID: 1806929945}
+  Effect: {fileID: 1595859565}
 --- !u!1 &584681998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,6 +6047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a5110f1bc308a4c8041694e93af40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: {fileID: 1806929945}
+  Constants: {fileID: 11400000, guid: 29116353ffefdfd439c6b2117f22a6ef, type: 2}
 --- !u!1 &1617740488
 GameObject:
   m_ObjectHideFlags: 0
