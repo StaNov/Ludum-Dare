@@ -40,9 +40,17 @@ public static class EffectSuffixCreator
 		int difference = Mathf.RoundToInt(differenceValue);
 		
 		if (difference > 0)
-			return " <color=green><b>+" + difference + "</b></color>";
+			#if UNITY_WEBGL && !UNITY_EDITOR
+				return " <color=green>+" + difference + "</color>";
+			#else
+				return " <color=green><b>+" + difference + "</b></color>";
+			#endif
 		if (difference < 0)
-			return " <color=red><b>" + difference + "</b></color>";
+			#if UNITY_WEBGL && !UNITY_EDITOR
+				return " <color=red>+" + difference + "</color>";
+			#else
+				return " <color=red><b>+" + difference + "</b></color>";
+			#endif
 
 		return "";
 	}
