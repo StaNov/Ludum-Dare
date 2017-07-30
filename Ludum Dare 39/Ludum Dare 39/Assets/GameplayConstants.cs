@@ -326,7 +326,7 @@ public class StatsDifference : ICloneable
 public class PlayerAction
 {
 	public PlayerActionType Type;
-	public float DurationInSeconds;
+	public int DurationInSeconds;
 	public StatsDifference EffectBefore;
 	public StatsDifference EffectDuring;
 	public StatsDifference EffectAfter;

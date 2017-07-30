@@ -47,36 +47,36 @@ public class GameState : MonoBehaviour {
 		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, DeltaTimeByDurationPlayer);
 		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
 
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyEnergy < float.Epsilon)
-			&& (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyEnergy < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyEnergy == 0)
+			&& (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyEnergy == 0))
 			MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyMaxEnergy < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyMaxEnergy < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyMaxEnergy == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyMaxEnergy == 0))
 			MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyFood < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyFood < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyFood == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyFood == 0))
 			MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHappiness < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHappiness < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHappiness == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHappiness == 0))
 			MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHealth < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHealth < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHealth == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHealth == 0))
 			MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyFood < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyFood < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyFood == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyFood == 0))
 			FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHappiness < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHappiness < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHappiness == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHappiness == 0))
 			FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
 		
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHealth < float.Epsilon)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHealth < float.Epsilon))
+		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHealth == 0)
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHealth == 0))
 			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
 		
 		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;

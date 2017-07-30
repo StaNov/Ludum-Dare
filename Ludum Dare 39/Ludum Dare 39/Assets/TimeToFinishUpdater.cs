@@ -8,6 +8,6 @@ public class TimeToFinishUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		Text.text = Effect.TimeToFinish > float.Epsilon ? Mathf.RoundToInt(Effect.TimeToFinish) + "s" : "";
+		Text.text = Effect.TimeToFinish > 0 ? Mathf.RoundToInt(Effect.TimeToFinish) + "s" : "";
 	}
 }

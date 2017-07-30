@@ -14,7 +14,7 @@ public class HoveredActionEffect : MonoBehaviour
 		get { return m_Effect; }
 	}
 
-	public float /*TODO int*/ TimeToFinish
+	public int TimeToFinish
 	{
 		get { return m_TimeToFinish; }
 	}
@@ -71,7 +71,7 @@ public class HoveredActionEffect : MonoBehaviour
 	}
 
 	private StatsDifference m_Effect = new StatsDifference();
-	private float m_TimeToFinish;
+	private int m_TimeToFinish;
 
 	public void ResetDifference()
 	{

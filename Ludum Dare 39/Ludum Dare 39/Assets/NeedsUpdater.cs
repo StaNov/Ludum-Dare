@@ -35,13 +35,13 @@ public class NeedsUpdater : MonoBehaviour
 
 public static class EffectSuffixCreator
 {
-	public static string Create(float /*TODO mozna to budou inty */ differenceValue)
+	public static string Create(int differenceValue)
 	{
 		int difference = Mathf.RoundToInt(differenceValue);
 		
-		if (difference > float.Epsilon)
+		if (difference > 0)
 			return " <color=green><b>+" + difference + "</b></color>";
-		if (difference < -float.Epsilon)
+		if (difference < 0)
 			return " <color=red><b>" + difference + "</b></color>";
 
 		return "";
