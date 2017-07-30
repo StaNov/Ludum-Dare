@@ -148,11 +148,14 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.GoShopping,
 			DurationInSeconds = 10,
+			EffectBefore = new StatsDifference
+			{
+				Money = -40
+			},
 			EffectDuring = new StatsDifference
 			{
 				MyFood = -10,
 				MyEnergy = -20,
-				Money = -40
 			},
 			EffectAfter = new StatsDifference
 			{
@@ -309,13 +312,15 @@ public class GameplayConstants : ScriptableObject
 			DurationInSeconds = 10,
 			EffectBefore = new StatsDifference
 			{
-				Money = -100
+				Money = -120
 			},
 			EffectDuring = new StatsDifference
 			{
-				MyHappiness = 10,
-				FamilyHappiness = 30,
-				MyEnergy = -10
+				MyHappiness = 20,
+				FamilyHappiness = 40,
+				MyEnergy = -10,
+				MyFood = 20,
+				FamilyFood = 20
 			}
 		}
 	};

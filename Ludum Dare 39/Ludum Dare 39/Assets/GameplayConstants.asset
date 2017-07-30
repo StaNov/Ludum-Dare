@@ -436,7 +436,7 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
-      Money: 0
+      Money: -40
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
@@ -450,7 +450,7 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
-      Money: -40
+      Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
@@ -953,50 +953,6 @@ MonoBehaviour:
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
   - Type: 22
-    DurationInSeconds: 8
-    EffectBefore:
-      MyEnergy: 0
-      MyMaxEnergy: 0
-      MyFood: 0
-      MyHappiness: 0
-      MyHealth: 0
-      FamilyFood: 0
-      FamilyHappiness: 0
-      FamilyHealth: 0
-      Age: 0
-      Money: -70
-      MoneyPerWorkshift: 0
-      MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
-    EffectDuring:
-      MyEnergy: -20
-      MyMaxEnergy: 0
-      MyFood: 0
-      MyHappiness: 40
-      MyHealth: 0
-      FamilyFood: 0
-      FamilyHappiness: -20
-      FamilyHealth: 0
-      Age: 0
-      Money: 0
-      MoneyPerWorkshift: 0
-      MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
-    EffectAfter:
-      MyEnergy: 0
-      MyMaxEnergy: 0
-      MyFood: 0
-      MyHappiness: 0
-      MyHealth: 0
-      FamilyFood: 0
-      FamilyHappiness: 0
-      FamilyHealth: 0
-      Age: 0
-      Money: 0
-      MoneyPerWorkshift: 0
-      MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
-  - Type: 23
     DurationInSeconds: 10
     EffectBefore:
       MyEnergy: 0
@@ -1008,18 +964,18 @@ MonoBehaviour:
       FamilyHappiness: 0
       FamilyHealth: 0
       Age: 0
-      Money: -100
+      Money: -120
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 0
     EffectDuring:
       MyEnergy: -10
       MyMaxEnergy: 0
-      MyFood: 0
-      MyHappiness: 10
+      MyFood: 20
+      MyHappiness: 20
       MyHealth: 0
-      FamilyFood: 0
-      FamilyHappiness: 30
+      FamilyFood: 20
+      FamilyHappiness: 40
       FamilyHealth: 0
       Age: 0
       Money: 0

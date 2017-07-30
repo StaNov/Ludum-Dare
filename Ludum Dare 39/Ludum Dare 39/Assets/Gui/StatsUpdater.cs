@@ -20,6 +20,6 @@ public class StatsUpdater : MonoBehaviour
 		MoneyPerWorkshift.text = Mathf.FloorToInt(State.MoneyPerWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
 		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.MoneyPerPartnersWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
 		FoodSupplies.text = Mathf.FloorToInt(State.FoodSupplies) + EffectSuffixCreator.Create(effect.FoodSupplies);
-		Age.text = "Age\n\n" + Mathf.FloorToInt(State.Age);
+		Age.text = Mathf.FloorToInt(State.Age).ToString();
 	}
 }
