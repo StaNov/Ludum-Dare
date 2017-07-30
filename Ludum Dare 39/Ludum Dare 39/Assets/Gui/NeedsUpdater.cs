@@ -52,7 +52,7 @@ public static class EffectSuffixCreator
 			#endif
 		if (difference < 0)
 			#if UNITY_WEBGL && !UNITY_EDITOR
-				return " <color=red>+" + difference + "</color>";
+				return " <color=red>" + difference + "</color>";
 			#else
 				return " <color=red><b>" + difference + "</b></color>";
 			#endif
