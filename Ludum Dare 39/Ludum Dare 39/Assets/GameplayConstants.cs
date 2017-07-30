@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
@@ -224,8 +225,10 @@ public class GameplayConstants : ScriptableObject
 		}
 	};
 
-	public PlayerAction GetPlayerAction(PlayerActionType type)
+	public PlayerAction GetPlayerAction(string typeString)
 	{
+		PlayerActionType type = (PlayerActionType) Enum.Parse(typeof(PlayerActionType), typeString);
+		
 		foreach (var action in PlayerActions)
 		{
 			if (type == action.Type)
@@ -237,7 +240,7 @@ public class GameplayConstants : ScriptableObject
 }
 
 [Serializable]
-public class StatsDifference
+public class StatsDifference : ICloneable
 {
 	public float MyEnergy;
 	public float MyMaxEnergy;
@@ -252,6 +255,11 @@ public class StatsDifference
 	public float MoneyPerWorkshift;
 	public float MoneyPerPartnersWorkshift;
 	public float FoodSupplies;
+	
+	public object Clone()
+	{
+		return MemberwiseClone();
+	}
 }
 
 [Serializable]

@@ -141,7 +141,7 @@ public class GameState : MonoBehaviour {
 	public void RunAction()
 	{
 		string type = EventSystem.current.currentSelectedGameObject.name;
-		PlayerAction action = Constants.GetPlayerAction((PlayerActionType) Enum.Parse(typeof(PlayerActionType), type));
+		PlayerAction action = Constants.GetPlayerAction(type);
 		bool isPartnersAction = action.Type.IsPartnersAction();
 		
 		if (! isPartnersAction && CurrentPlayerAction != null && CurrentPlayerAction.Action.Type != PlayerActionType.None
