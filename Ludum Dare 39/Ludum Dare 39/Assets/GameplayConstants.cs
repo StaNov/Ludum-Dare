@@ -79,7 +79,9 @@ public class GameplayConstants : ScriptableObject
 			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
+				MyFood = 30,
 				FamilyHealth = -10,
+				MyHealth = -10,
 				FoodSupplies = -2,
 				FamilyHappiness = -10
 			}
@@ -95,7 +97,9 @@ public class GameplayConstants : ScriptableObject
 			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
+				MyFood = 30,
 				FamilyHealth = -10,
+				MyHealth = -10,
 				MyEnergy = -20
 			}
 		},
