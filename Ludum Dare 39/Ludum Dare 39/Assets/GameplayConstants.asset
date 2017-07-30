@@ -263,7 +263,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
+      FoodSupplies: -2
     EffectDuring:
       MyEnergy: -20
       MyMaxEnergy: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: -2
+      FoodSupplies: 0
     EffectAfter:
       MyEnergy: 0
       MyMaxEnergy: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: 0
+      FoodSupplies: -1
     EffectDuring:
       MyEnergy: 0
       MyMaxEnergy: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
       Money: 0
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
-      FoodSupplies: -1
+      FoodSupplies: 0
     EffectAfter:
       MyEnergy: 0
       MyMaxEnergy: 0

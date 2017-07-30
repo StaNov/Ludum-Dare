@@ -88,11 +88,14 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.FeedFamily,
 			DurationInSeconds = 7,
+			EffectBefore = new StatsDifference
+			{
+				FoodSupplies = -2
+			},
 			EffectDuring = new StatsDifference
 			{
 				FamilyFood = 30,
 				FamilyHealth = -10,
-				FoodSupplies = -2,
 				MyEnergy = -20
 			}
 		},
@@ -100,10 +103,13 @@ public class GameplayConstants : ScriptableObject
 		{
 			Type = PlayerActionType.Eat,
 			DurationInSeconds = 4,
+			EffectBefore = new StatsDifference
+			{
+				FoodSupplies = -1,
+			},
 			EffectDuring = new StatsDifference
 			{
 				MyFood = 30,
-				FoodSupplies = -1,
 				MyHealth = -10
 			}
 		},

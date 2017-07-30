@@ -22,8 +22,8 @@ public class NeedsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		MyEnergy.UpdateValue(State.MyEnergy, Mathf.CeilToInt(State.MyEnergy), effect.MyEnergy);
-		// TODO MyMaxEnergy.UpdateValue(Mathf.CeilToInt(State.MyMaxEnergy), effect.MyMaxEnergy);
+		MyMaxEnergy.UpdateValue(State.MyMaxEnergy, Mathf.CeilToInt(State.MyMaxEnergy), effect.MyMaxEnergy);
+		MyEnergy.UpdateValue(State.MyEnergy, Mathf.CeilToInt(State.MyEnergy), effect.MyEnergy, State.MyMaxEnergy);
 		MyFood.UpdateValue(State.MyFood, Mathf.CeilToInt(State.MyFood), effect.MyFood);
 		MyHappiness.UpdateValue(State.MyHappiness, Mathf.CeilToInt(State.MyHappiness), effect.MyHappiness);
 		MyHealth.UpdateValue(State.MyHealth, Mathf.CeilToInt(State.MyHealth), effect.MyHealth);
@@ -35,7 +35,7 @@ public class NeedsUpdater : MonoBehaviour
 
 public abstract class StateIndicator : MonoBehaviour
 {
-	public abstract void UpdateValue(float value, int displayValue, int effect);
+	public abstract void UpdateValue(float value, int displayValue, int effect, float maxValue=100.0f);
 }
 
 public static class EffectSuffixCreator
