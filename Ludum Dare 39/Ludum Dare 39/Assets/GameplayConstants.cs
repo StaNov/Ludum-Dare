@@ -416,6 +416,7 @@ public static class ExtensionMethods
 				return false;
 		}
 	}
+	
 	public static bool IsForBoth(this PlayerActionType type)
 	{
 		switch(type)
@@ -426,6 +427,61 @@ public static class ExtensionMethods
 				
 			default:
 				return false;
+		}
+	}
+	
+	public static string Localized(this PlayerActionType type)
+	{
+		switch(type)
+		{
+			case PlayerActionType.None:
+				return "";
+			case PlayerActionType.Sleep:
+				return "Sleeping";
+			case PlayerActionType.DrinkCoffee:
+				return "Drinking coffee";
+			case PlayerActionType.GoToWork:
+				return "In work";
+			case PlayerActionType.HaveASmoke:
+				return "Smoking";
+			case PlayerActionType.PartnerFeedsFamily:
+				return "Feeding family";
+			case PlayerActionType.Eat:
+				return "Eating";
+			case PlayerActionType.DoHobby:
+				return "Doing hobby";
+			case PlayerActionType.DoSport:
+				return "Doing sport";
+			case PlayerActionType.GoShopping:
+				return "Shopping";
+			case PlayerActionType.FeedFamily:
+				return "Feeding family";
+			case PlayerActionType.SpendTimeWithFamily:
+				return "Being together";
+			case PlayerActionType.TakeCareOfFamily:
+				return "Taking care of family";
+			case PlayerActionType.LearnNewStuffForWork:
+				return "Learning new skills";
+			case PlayerActionType.LearnNewStuffForWorkPartner:
+				return "Learning new skills";
+			case PlayerActionType.PartnerTakesCareOfFamily:
+				return "Taking care of family";
+			case PlayerActionType.PartnerGoesShopping:
+				return "Shopping";
+			case PlayerActionType.PartnerGoesToWork:
+				return "In work";
+			case PlayerActionType.HireSomeoneToTakeCareOfFamily:
+				return "Hiring cleaning someone";
+			case PlayerActionType.OrderFoodSupplies:
+				return "Ordering meals";
+			case PlayerActionType.OrderPizza:
+				return "Ordering pizza";
+			case PlayerActionType.TakeAPill:
+				return "Taking a pill";
+			case PlayerActionType.GoToAquaWorld:
+				return "In aqua world";
+			default:
+				throw new ArgumentOutOfRangeException("type", type, null);
 		}
 	}
 }

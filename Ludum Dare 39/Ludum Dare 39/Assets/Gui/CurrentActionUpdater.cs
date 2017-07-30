@@ -24,7 +24,7 @@ public class CurrentActionUpdater : MonoBehaviour
 			action = State.CurrentPlayerAction;
 		}
 		
-		ActionText.text = action == null ? "" : action.Action.Type.ToString();
+		ActionText.text = action == null ? "" : action.Action.Type.Localized();
 		
 		Indicator.UpdateValue(action == null || action.Action.Type == PlayerActionType.None ? 0 : 1 - action.RemainingTime / action.Action.DurationInSeconds, 0, 0, 1);
 
