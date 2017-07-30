@@ -396,7 +396,8 @@ public enum PlayerActionType
 	OrderFoodSupplies,
 	OrderPizza,
 	TakeAPill,
-	GoToAquaWorld
+	GoToAquaWorld,
+	GoToSpa
 }
 
 public static class ExtensionMethods
@@ -480,6 +481,8 @@ public static class ExtensionMethods
 				return "Taking a pill";
 			case PlayerActionType.GoToAquaWorld:
 				return "In aqua world";
+			case PlayerActionType.GoToSpa:
+				return "In spa";
 			default:
 				throw new ArgumentOutOfRangeException("type", type, null);
 		}
