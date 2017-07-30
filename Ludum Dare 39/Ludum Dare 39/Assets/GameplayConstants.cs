@@ -305,21 +305,6 @@ public class GameplayConstants : ScriptableObject
 		},
 		new PlayerAction
 		{
-			Type = PlayerActionType.GoPartyWithFriends,
-			DurationInSeconds = 8,
-			EffectBefore = new StatsDifference
-			{
-				Money = -70
-			},
-			EffectDuring = new StatsDifference
-			{
-				MyHappiness = 40,
-				MyEnergy = -20,
-				FamilyHappiness = -20
-			}
-		},
-		new PlayerAction
-		{
 			Type = PlayerActionType.GoToAquaWorld,
 			DurationInSeconds = 10,
 			EffectBefore = new StatsDifference
@@ -406,7 +391,6 @@ public enum PlayerActionType
 	OrderFoodSupplies,
 	OrderPizza,
 	TakeAPill,
-	GoPartyWithFriends,
 	GoToAquaWorld
 }
 
