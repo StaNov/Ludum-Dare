@@ -22,20 +22,20 @@ public class NeedsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		MyEnergy.UpdateValue(Mathf.CeilToInt(State.MyEnergy), effect.MyEnergy);
+		MyEnergy.UpdateValue(State.MyEnergy, Mathf.CeilToInt(State.MyEnergy), effect.MyEnergy);
 		// TODO MyMaxEnergy.UpdateValue(Mathf.CeilToInt(State.MyMaxEnergy), effect.MyMaxEnergy);
-		MyFood.UpdateValue(Mathf.CeilToInt(State.MyFood), effect.MyFood);
-		MyHappiness.UpdateValue(Mathf.CeilToInt(State.MyHappiness), effect.MyHappiness);
-		MyHealth.UpdateValue(Mathf.CeilToInt(State.MyHealth), effect.MyHealth);
-		FamilyFood.UpdateValue(Mathf.CeilToInt(State.FamilyFood), effect.FamilyFood);
-		FamilyHappiness.UpdateValue(Mathf.CeilToInt(State.FamilyHappiness), effect.FamilyHappiness);
-		FamilyHealth.UpdateValue(Mathf.CeilToInt(State.FamilyHealth), effect.FamilyHealth);
+		MyFood.UpdateValue(State.MyFood, Mathf.CeilToInt(State.MyFood), effect.MyFood);
+		MyHappiness.UpdateValue(State.MyHappiness, Mathf.CeilToInt(State.MyHappiness), effect.MyHappiness);
+		MyHealth.UpdateValue(State.MyHealth, Mathf.CeilToInt(State.MyHealth), effect.MyHealth);
+		FamilyFood.UpdateValue(State.FamilyFood, Mathf.CeilToInt(State.FamilyFood), effect.FamilyFood);
+		FamilyHappiness.UpdateValue(State.FamilyHappiness, Mathf.CeilToInt(State.FamilyHappiness), effect.FamilyHappiness);
+		FamilyHealth.UpdateValue(State.FamilyHealth, Mathf.CeilToInt(State.FamilyHealth), effect.FamilyHealth);
 	}
 }
 
 public abstract class StateIndicator : MonoBehaviour
 {
-	public abstract void UpdateValue(int value, int effect);
+	public abstract void UpdateValue(float value, int displayValue, int effect);
 }
 
 public static class EffectSuffixCreator

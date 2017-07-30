@@ -5,10 +5,16 @@ using UnityEngine.UI;
 
 public class BarIndicator : StateIndicator
 {
-	public Text text;
+	public Text Value;
+	public RectTransform GreenBar;
 	
-	public override void UpdateValue(int value, int effect)
+	public override void UpdateValue(float value, int displayValue, int effect)
 	{
-		text.text = value + EffectSuffixCreator.Create(effect);
+		Value.text = displayValue + EffectSuffixCreator.Create(effect);
+		float fullWidth = GetComponentInParent<RectTransform>().sizeDelta.x;
+
+		var temp = GreenBar.sizeDelta;
+		temp.x = fullWidth * (value / 100.0f);
+		GreenBar.sizeDelta = temp;
 	}
 }
