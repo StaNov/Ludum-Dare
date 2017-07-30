@@ -14,14 +14,14 @@ MonoBehaviour:
   MoneyPerShiftIncreaseCoefficient: 1.2
   MoneyPerShiftIncreaseByLearningCoefficient: 1.5
   ChangePerMinute:
-    MyEnergy: -30
+    MyEnergy: -15
     MyMaxEnergy: -10
-    MyFood: -50
-    MyHappiness: -50
-    MyHealth: -50
-    FamilyFood: -50
-    FamilyHappiness: -50
-    FamilyHealth: -50
+    MyFood: -25
+    MyHappiness: -25
+    MyHealth: -25
+    FamilyFood: -25
+    FamilyHappiness: -25
+    FamilyHealth: -25
     Age: 10
     Money: 0
     MoneyPerWorkshift: 0
@@ -332,3 +332,19 @@ MonoBehaviour:
       MoneyPerWorkshift: 0
       MoneyPerPartnersWorkshift: 0
       FoodSupplies: 5
+  - Type: 20
+    DurationInSeconds: 1
+    Effect:
+      MyEnergy: 0
+      MyMaxEnergy: 0
+      MyFood: 0
+      MyHappiness: 0
+      MyHealth: 0
+      FamilyFood: 30
+      FamilyHappiness: 0
+      FamilyHealth: -20
+      Age: 0
+      Money: -80
+      MoneyPerWorkshift: 0
+      MoneyPerPartnersWorkshift: 0
+      FoodSupplies: 0

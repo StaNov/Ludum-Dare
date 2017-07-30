@@ -10,14 +10,14 @@ public class GameplayConstants : ScriptableObject
 	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
-		MyEnergy = -30,
+		MyEnergy = -15,
 		MyMaxEnergy = -10,
-		MyFood = -50,
-		MyHappiness = -50,
-		MyHealth = -50,
-		FamilyFood = -50,
-		FamilyHappiness = -50,
-		FamilyHealth = -50,
+		MyFood = -25,
+		MyHappiness = -25,
+		MyHealth = -25,
+		FamilyFood = -25,
+		FamilyHappiness = -25,
+		FamilyHealth = -25,
 		Age = 10
 	};
 
@@ -222,6 +222,17 @@ public class GameplayConstants : ScriptableObject
 				Money = -80,
 				FamilyHappiness = -10
 			}
+		},
+		new PlayerAction
+		{
+			Type = PlayerActionType.OrderPizza,
+			DurationInSeconds = 1,
+			Effect = new StatsDifference
+			{
+				FamilyHealth = -20,
+				Money = -80,
+				FamilyFood = 30
+			}
 		}
 	};
 
@@ -291,7 +302,8 @@ public enum PlayerActionType
 	PartnerGoesShopping,
 	PartnerGoesToWork,
 	HireSomeoneToTakeCareOfFamily,
-	OrderFoodSupplies
+	OrderFoodSupplies,
+	OrderPizza
 }
 
 public static class ExtensionMethods
