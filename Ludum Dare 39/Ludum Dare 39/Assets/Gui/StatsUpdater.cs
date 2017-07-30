@@ -7,6 +7,7 @@ public class StatsUpdater : MonoBehaviour
 	public Text MoneyPerWorkshift;
 	public Text MoneyPerPartnersWorkshift;
 	public Text FoodSupplies;
+	public Text Age;
 	
 	public GameState State;
 	public HoveredActionEffect Effect;
@@ -19,5 +20,6 @@ public class StatsUpdater : MonoBehaviour
 		MoneyPerWorkshift.text = "Money per work shift: " + Mathf.FloorToInt(State.MoneyPerWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
 		MoneyPerPartnersWorkshift.text = "Money per partner's work shift: " + Mathf.FloorToInt(State.MoneyPerPartnersWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
 		FoodSupplies.text = "Food supplies: " + Mathf.FloorToInt(State.FoodSupplies) + EffectSuffixCreator.Create(effect.FoodSupplies);
+		Age.text = "Age\n\n" + Mathf.FloorToInt(State.Age);
 	}
 }
