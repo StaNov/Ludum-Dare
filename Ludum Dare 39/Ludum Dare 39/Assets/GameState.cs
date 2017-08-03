@@ -15,7 +15,7 @@ public class GameState : MonoBehaviour {
     public float FamilyHappiness = 100;
     public float FamilyHealth = 100;
     public float Age = 25;
-    public float Money = 100;
+    public float Money = 0;
     public int MoneyPerWorkshift = 20;
     public int MoneyPerPartnersWorkshift = 20;
     public int FoodSupplies = 5;
@@ -73,55 +73,60 @@ public class GameState : MonoBehaviour {
 		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, DeltaTimeByDurationPlayer);
 		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
 
+		UpdateByTime();
+		ClampStateValues();
+	}
+
+	private void UpdateByTime()
+	{
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyEnergy == 0)
-			&& (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyEnergy == 0))
+		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyEnergy == 0))
 			MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
-		
+
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyMaxEnergy == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyMaxEnergy == 0))
 			MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
-		
+
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyFood == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyFood == 0))
 			MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
-		
+
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHappiness == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHappiness == 0))
 			MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
-		
+
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHealth == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHealth == 0))
 			MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
-		
+
 		if (IsFamilyActive
 		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyFood == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyFood == 0))
 			FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
-		
+
 		if (IsFamilyActive
 		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHappiness == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHappiness == 0))
 			FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
-		
+
 		if (IsFamilyActive
 		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHealth == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHealth == 0))
 			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
-		
+
 		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;
-		
+	}
+
+	private void ClampStateValues()
+	{
 		MyEnergy = Mathf.Clamp(MyEnergy, 0, MyMaxEnergy);
 		MyMaxEnergy = Mathf.Clamp(MyMaxEnergy, 0, 100);
 		MyFood = Mathf.Clamp(MyFood, 0, 100);
 		MyHappiness = Mathf.Clamp(MyHappiness, 0, 100);
 		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
-		
-		if (IsFamilyActive)
-		{
-			FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
-			FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
-			FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
-		}
+		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
+		FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
+		FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
 	}
 
 	private CurrentAction UpdateByAction(CurrentAction action, float deltaTimeByDuration)
@@ -193,17 +198,9 @@ public class GameState : MonoBehaviour {
 		{
 			case PlayerActionType.GoToWork:
 				Money += MoneyPerWorkshift;
-				MoneyPerWorkshift = Mathf.RoundToInt(MoneyPerWorkshift * Constants.MoneyPerShiftIncreaseCoefficient);
 				break;
 			case PlayerActionType.PartnerGoesToWork:
 				Money += MoneyPerPartnersWorkshift;
-				MoneyPerPartnersWorkshift = Mathf.RoundToInt(MoneyPerPartnersWorkshift * Constants.MoneyPerShiftIncreaseCoefficient);
-				break;
-			case PlayerActionType.LearnNewStuffForWork:
-				MoneyPerWorkshift = Mathf.RoundToInt(MoneyPerWorkshift * Constants.MoneyPerShiftIncreaseByLearningCoefficient);
-				break;
-			case PlayerActionType.LearnNewStuffForWorkPartner:
-				MoneyPerPartnersWorkshift = Mathf.RoundToInt(MoneyPerPartnersWorkshift * Constants.MoneyPerShiftIncreaseByLearningCoefficient);
 				break;
 		}
 	}
@@ -217,7 +214,10 @@ public class GameState : MonoBehaviour {
 		MyHealth += difference.MyHealth;
 		Money += difference.Money;
 		FoodSupplies += difference.FoodSupplies;
+		MoneyPerWorkshift += difference.MoneyPerWorkshift;
+		MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
 
+		// TODO this if condition doesnt need to be here - it gets clamped later anyways
 		if (IsFamilyActive)
 		{
 			FamilyFood += difference.FamilyFood;

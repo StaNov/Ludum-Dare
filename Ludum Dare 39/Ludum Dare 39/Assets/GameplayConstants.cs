@@ -4,9 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
-	public float MoneyPerShiftIncreaseCoefficient = 1.5f;
-	public float MoneyPerShiftIncreaseByLearningCoefficient = 2f;
-	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
 		MyEnergy = -15,

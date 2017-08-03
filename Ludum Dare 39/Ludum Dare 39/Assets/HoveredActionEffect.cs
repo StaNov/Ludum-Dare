@@ -43,28 +43,18 @@ public class HoveredActionEffect : MonoBehaviour
 			result.FamilyHealth += difference.FamilyHealth;
 			result.Money += difference.Money;
 			result.FoodSupplies += difference.FoodSupplies;
+			result.MoneyPerWorkshift += difference.MoneyPerWorkshift;
+			result.MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
 		}
 
 		if (action.Type == PlayerActionType.GoToWork)
 		{
 			result.Money = State.MoneyPerWorkshift;
-			result.MoneyPerWorkshift = Mathf.RoundToInt(State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1));
 		}
 		
 		if (action.Type == PlayerActionType.PartnerGoesToWork)
 		{
 			result.Money = State.MoneyPerPartnersWorkshift;
-			result.MoneyPerPartnersWorkshift = Mathf.RoundToInt(State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseCoefficient - 1));
-		}
-		
-		if (action.Type == PlayerActionType.LearnNewStuffForWork)
-		{
-			result.MoneyPerWorkshift = Mathf.RoundToInt(State.MoneyPerWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1));
-		}
-		
-		if (action.Type == PlayerActionType.LearnNewStuffForWorkPartner)
-		{
-			result.MoneyPerPartnersWorkshift = Mathf.RoundToInt(State.MoneyPerPartnersWorkshift * (Constants.MoneyPerShiftIncreaseByLearningCoefficient - 1));
 		}
 
 		return result;
