@@ -9935,7 +9935,7 @@ MonoBehaviour:
   FamilyHappiness: 100
   FamilyHealth: 100
   Age: 25
-  Money: 100
+  Money: 0
   MoneyPerWorkshift: 20
   MoneyPerPartnersWorkshift: 20
   FoodSupplies: 5
