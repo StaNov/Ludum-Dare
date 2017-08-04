@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GameState : MonoBehaviour {
+public class GameState : MonoBehaviour
+{
+	private Dictionary<PlayerActionType, float> _needs;
 
     public float MyEnergy = 100;
     public float MyMaxEnergy = 100;
@@ -15,7 +17,7 @@ public class GameState : MonoBehaviour {
     public float FamilyHappiness = 100;
     public float FamilyHealth = 100;
     public float Age = 25;
-    public float Money = 0;
+    public int Money = 0;
     public int MoneyPerWorkshift = 20;
     public int MoneyPerPartnersWorkshift = 20;
     public int FoodSupplies = 5;
@@ -146,12 +148,11 @@ public class GameState : MonoBehaviour {
 	{
 		if (action != null && action.Action.Type != PlayerActionType.None)
 		{
-			MyEnergy += action.Action.EffectDuring.MyEnergy * deltaTimeByDuration;
 			MyMaxEnergy += action.Action.EffectDuring.MyMaxEnergy * deltaTimeByDuration;
+			MyEnergy += action.Action.EffectDuring.MyEnergy * deltaTimeByDuration;
 			MyFood += action.Action.EffectDuring.MyFood * deltaTimeByDuration;
 			MyHappiness += action.Action.EffectDuring.MyHappiness * deltaTimeByDuration;
 			MyHealth += action.Action.EffectDuring.MyHealth * deltaTimeByDuration;
-			Money += action.Action.EffectDuring.Money * deltaTimeByDuration;
 
 			if (IsFamilyActive)
 			{
