@@ -11,6 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6612040df492e4e9228970cb8b4194, type: 3}
   m_Name: GameplayConstants
   m_EditorClassIdentifier: 
+  InitialValues:
+    MyEnergy: 100
+    MyMaxEnergy: 100
+    MyFood: 100
+    MyHappiness: 100
+    MyHealth: 100
+    FamilyFood: 100
+    FamilyHappiness: 100
+    FamilyHealth: 100
+    Age: 13
+    Money: 0
+    MoneyPerWorkshift: 20
+    MoneyPerPartnersWorkshift: 20
+    FoodSupplies: 0
   ChangePerMinute:
     MyEnergy: -15
     MyMaxEnergy: -10

@@ -61,6 +61,19 @@ public class GameState : MonoBehaviour {
 	{
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
+
+		MyEnergy = Constants.InitialValues.MyEnergy;
+		MyMaxEnergy = Constants.InitialValues.MyMaxEnergy;
+		MyFood = Constants.InitialValues.MyFood;
+		MyHappiness = Constants.InitialValues.MyHappiness;
+		MyHealth = Constants.InitialValues.MyHealth;
+		FamilyFood = Constants.InitialValues.FamilyFood;
+		FamilyHappiness = Constants.InitialValues.FamilyHappiness;
+		FamilyHealth = Constants.InitialValues.FamilyHealth;
+		Age = Constants.InitialValues.Age;
+		Money = Constants.InitialValues.Money;
+		MoneyPerWorkshift = Constants.InitialValues.MoneyPerWorkshift;
+		MoneyPerPartnersWorkshift = Constants.InitialValues.MoneyPerPartnersWorkshift;
 	}
 	
 	private void FixedUpdate ()

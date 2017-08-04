@@ -4,6 +4,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
+	public StatsDifference InitialValues = new StatsDifference
+	{
+		MyEnergy = 100,
+		MyMaxEnergy = 100,
+		MyFood = 100,
+		MyHappiness = 100,
+		MyHealth = 100,
+		FamilyFood = 100,
+		FamilyHappiness = 100,
+		FamilyHealth = 100,
+		Age = 13,
+		Money = 0,
+		MoneyPerWorkshift = 20,
+		MoneyPerPartnersWorkshift = 20
+	};
+	
 	public StatsDifference ChangePerMinute = new StatsDifference
 	{
 		MyEnergy = -15,
