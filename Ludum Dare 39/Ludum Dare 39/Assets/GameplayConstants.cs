@@ -11,7 +11,11 @@ public class GameplayConstants : ScriptableObject
 	public PlayerAction GetPlayerAction(string typeString)
 	{
 		PlayerActionType type = (PlayerActionType) Enum.Parse(typeof(PlayerActionType), typeString);
-		
+		return GetPlayerAction(type);
+	}
+	
+	public PlayerAction GetPlayerAction(PlayerActionType type)
+	{
 		foreach (var action in PlayerActions)
 		{
 			if (type == action.Type)
