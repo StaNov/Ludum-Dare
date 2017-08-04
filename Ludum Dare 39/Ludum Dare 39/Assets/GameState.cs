@@ -119,8 +119,8 @@ public class GameState : MonoBehaviour {
 
 	private void ClampStateValues()
 	{
-		MyEnergy = Mathf.Clamp(MyEnergy, 0, MyMaxEnergy);
 		MyMaxEnergy = Mathf.Clamp(MyMaxEnergy, 0, 100);
+		MyEnergy = Mathf.Clamp(MyEnergy, 0, MyMaxEnergy);
 		MyFood = Mathf.Clamp(MyFood, 0, 100);
 		MyHappiness = Mathf.Clamp(MyHappiness, 0, 100);
 		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
