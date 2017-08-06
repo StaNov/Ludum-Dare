@@ -69,7 +69,9 @@ public static class ReusableLeaderboardManager {
 
 	public static IEnumerator SaveNewRecord(string saveScriptUrl, string name, int score)
 	{
-		WWW www = new WWW(saveScriptUrl + "?name=" + Uri.EscapeDataString(name) + "&score=" /*+ SecretScoreEncoder.Encode(score)*/);
+		string url = saveScriptUrl + "?name=" + Uri.EscapeDataString(name) + "&score=" /*+ SecretScoreEncoder.Encode(score)*/;
+		
+		WWW www = new WWW(url);
 
 		while (! www.isDone)
 			yield return null;
