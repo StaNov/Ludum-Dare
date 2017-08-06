@@ -23,5 +23,8 @@ public class LeaderboardDisplayer : MonoBehaviour
 		var leaderBoardLine = Instantiate(LinePrefab).GetComponent<LeaderBoardLine>();
 		leaderBoardLine.SetValues(place, playerName, score);
 		leaderBoardLine.transform.SetParent(transform, false);
+		
+		if (playerName.Equals(PlayerNameManager.PlayerName))
+			leaderBoardLine.SetCurrentPlayer();
 	}
 }

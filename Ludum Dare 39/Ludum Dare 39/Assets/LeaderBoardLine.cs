@@ -13,4 +13,11 @@ public class LeaderBoardLine : MonoBehaviour
 		Name.text = playerName;
 		Score.text = score + " years";
 	}
+
+	public void SetCurrentPlayer()
+	{
+		Place.color = Color.red;
+		Name.color = Color.red;
+		Score.color = Color.red;
+	}
 }
