@@ -73,7 +73,12 @@ public static class ReusableLeaderboardManager {
 		
 		WWW www = new WWW(url);
 
-		while (! www.isDone)
+		while (www.keepWaiting)
 			yield return null;
+		
+		if (string.IsNullOrEmpty(www.error))
+			Debug.Log("Leaderboard saved!");
+		else
+			Debug.Log("Leaderboard save error: " + www.error);
 	}
 }
