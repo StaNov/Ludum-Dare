@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,9 +25,9 @@ public class LeaderboardDisplayer : MonoBehaviour
 
 		InstantiateLeaderboardLines(lines);
 		
-		if (! lines.Any(line => line.PlayerName.Equals("StaNov" /* TODO */)))
+		if (! string.IsNullOrEmpty(PlayerNameManager.PlayerName) && ! lines.Any(line => line.PlayerName.Equals(PlayerNameManager.PlayerName)))
 		{
-			www = new WWW("http://dreamlo.com/lb/59875abbb0b05d1ad4be0123/pipe-get/StaNov" /* TODO */);
+			www = new WWW("http://dreamlo.com/lb/59875abbb0b05d1ad4be0123/pipe-get/" + WWW.EscapeURL(PlayerNameManager.PlayerName));
 
 			while (!www.isDone)
 				yield return null;
