@@ -20,7 +20,7 @@ MonoBehaviour:
     FamilyFood: 100
     FamilyHappiness: 100
     FamilyHealth: 100
-    Age: 13
+    Age: 25
     Money: 0
     MoneyPerWorkshift: 20
     MoneyPerPartnersWorkshift: 20
