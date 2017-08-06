@@ -23,3 +23,6 @@ sysinfo.txt
 # Rider files
 *.iml
 .idea/
+
+# Secrets
+Secret*
