@@ -20,7 +20,7 @@ public static class ReusableLeaderboardManager {
 
 		if (! string.IsNullOrEmpty(currentPlayerName) && ! lines.Any(line => line.PlayerName.Equals(currentPlayerName)))
 		{
-			www = new WWW("http://dreamlo.com/lb/" + leaderboardId + "/pipe-get/" + WWW.EscapeURL(currentPlayerName));
+			www = new WWW("http://dreamlo.com/lb/" + leaderboardId + "/pipe-get/" + Uri.EscapeDataString(currentPlayerName));
 
 			while (!www.isDone)
 				yield return null;
@@ -63,5 +63,15 @@ public static class ReusableLeaderboardManager {
 		public int Place;
 		public string PlayerName;
 		public int Score;
+	}
+
+
+
+	public static IEnumerator SaveNewRecord(string saveScriptUrl, string name, int score)
+	{
+		WWW www = new WWW(saveScriptUrl + "?name=" + Uri.EscapeDataString(name) + "&score=" /*+ SecretScoreEncoder.Encode(score)*/);
+
+		while (! www.isDone)
+			yield return null;
 	}
 }
