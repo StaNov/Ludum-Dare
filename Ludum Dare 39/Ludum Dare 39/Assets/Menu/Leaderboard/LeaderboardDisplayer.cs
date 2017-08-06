@@ -10,7 +10,8 @@ public class LeaderboardDisplayer : MonoBehaviour
 {
 	public GameObject LinePrefab;
 
-	IEnumerator Start () {
+	IEnumerator Start ()
+	{
 		foreach (Transform child in transform)
 		{
 			Destroy(child.gameObject);
@@ -21,10 +22,8 @@ public class LeaderboardDisplayer : MonoBehaviour
 		while (! www.isDone)
 			yield return null;
 
-		Line[] lines = ParseLines(www.text.Trim());
+		List<Line> lines = ParseLines(www.text.Trim());
 
-		InstantiateLeaderboardLines(lines);
-		
 		if (! string.IsNullOrEmpty(PlayerNameManager.PlayerName) && ! lines.Any(line => line.PlayerName.Equals(PlayerNameManager.PlayerName)))
 		{
 			www = new WWW("http://dreamlo.com/lb/59875abbb0b05d1ad4be0123/pipe-get/" + WWW.EscapeURL(PlayerNameManager.PlayerName));
@@ -32,13 +31,13 @@ public class LeaderboardDisplayer : MonoBehaviour
 			while (!www.isDone)
 				yield return null;
 			
-			lines = ParseLines(www.text.Trim());
-			
-			InstantiateLeaderboardLines(lines);
+			lines.AddRange(ParseLines(www.text.Trim()));
 		}
+			
+		InstantiateLeaderboardLines(lines);
 	}
 
-	private void InstantiateLeaderboardLines(Line[] lines)
+	private void InstantiateLeaderboardLines(List<Line> lines)
 	{
 		foreach (Line line in lines)
 		{
@@ -48,10 +47,10 @@ public class LeaderboardDisplayer : MonoBehaviour
 		}
 	}
 
-	private Line[] ParseLines(string text)
+	private List<Line> ParseLines(string text)
 	{
 		if (string.IsNullOrEmpty(text))
-			return new Line[0];
+			return new List<Line>();
 		
 		string[] linesStrings = text.Split('\n');
 		
@@ -69,7 +68,7 @@ public class LeaderboardDisplayer : MonoBehaviour
 			result.Add(newLine);
 		}
 
-		return result.ToArray();
+		return result;
 	}
 
 	private class Line
