@@ -500,10 +500,10 @@ MonoBehaviour:
       MyEnergy: -20
       MyMaxEnergy: 0
       MyFood: 0
-      MyHappiness: 30
+      MyHappiness: 40
       MyHealth: 0
       FamilyFood: 0
-      FamilyHappiness: 30
+      FamilyHappiness: 40
       FamilyHealth: 0
       Age: 0
       Money: 0
@@ -983,11 +983,11 @@ MonoBehaviour:
     EffectDuring:
       MyEnergy: -10
       MyMaxEnergy: 0
-      MyFood: 20
-      MyHappiness: 20
+      MyFood: 10
+      MyHappiness: 30
       MyHealth: 0
-      FamilyFood: 20
-      FamilyHappiness: 40
+      FamilyFood: 10
+      FamilyHappiness: 30
       FamilyHealth: 0
       Age: 0
       Money: 0
