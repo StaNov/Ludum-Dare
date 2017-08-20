@@ -8,7 +8,7 @@ public class Failingtest {
 
 	[Test]
 	public void FailingtestSimplePasses() {
-		Assert.IsTrue(true);
+		Assert.IsTrue(false);
 	}
 
 	// A UnityTest behaves like a coroutine in PlayMode
@@ -17,8 +17,9 @@ public class Failingtest {
 	public IEnumerator FailingtestWithEnumeratorPasses() {
 		// Use the Assert class to test conditions.
 		// yield to skip a frame
-		yield return null;
+		for (int i = 0; i < 180; i++)
+			yield return null;
 
-		Assert.IsTrue(true);
+		Assert.IsTrue(false);
 	}
 }
