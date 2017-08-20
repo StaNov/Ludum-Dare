@@ -8,4 +8,4 @@ install:
 - ./Travis/install.sh
 script:
 - ./Travis/test.sh
-- ./Travis/build.sh
+# - ./Travis/build.sh
