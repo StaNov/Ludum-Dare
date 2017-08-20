@@ -11,6 +11,10 @@ echo "Attempting to test $project in Editor."
   -silent-crashes \
   -logFile $(pwd)/unity.log \
   -projectPath "$PROJECT_DIR"
+  
+EXIT_CODE=$?
 
 echo 'Logs from test'
 cat $(pwd)/unity.log
+
+exit $EXIT_CODE

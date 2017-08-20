@@ -74,7 +74,7 @@ public static class ReusableLeaderboardManager {
 			yield break;
 		}
 		
-		string url = saveScriptUrl + "?name=" + Uri.EscapeDataString(name) + "&score=" + SecretScoreEncoder.Encode(score);
+		string url = saveScriptUrl + "?name=" + Uri.EscapeDataString(name) + "&score="/* + SecretScoreEncoder.Encode(score)*/;
 		
 		WWW www = new WWW(url);
 
