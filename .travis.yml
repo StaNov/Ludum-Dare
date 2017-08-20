@@ -6,4 +6,5 @@ before_install:
 install:
 - ./Travis/install.sh
 script:
+- ./Travis/test.sh
 - ./Travis/build.sh
