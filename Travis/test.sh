@@ -1,6 +1,7 @@
 #! /bin/sh
 
 project="GameOfLife"
+test_results_path="$(pwd)/Build/testResults.xml"
 
 echo "Attempting to test $project in Editor."
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
@@ -9,7 +10,11 @@ echo "Attempting to test $project in Editor."
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $PROJECT_DIR
+  -projectPath "$PROJECT_DIR"
+  -testResults "$test_results_path"
 
-echo 'Logs from build'
+echo 'Logs from test'
 cat $(pwd)/unity.log
+
+echo 'Test results'
+cat "$test_results_path"

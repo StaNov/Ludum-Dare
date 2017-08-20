@@ -8,7 +8,7 @@ echo "Attempting to build $project for Windows"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $PROJECT_DIR \
+  -projectPath "$PROJECT_DIR" \
   -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" \
   -quit
 
@@ -18,7 +18,7 @@ echo "Attempting to build $project for WebGL"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $PROJECT_DIR \
+  -projectPath "$PROJECT_DIR" \
   -buildWebGLPlayer "$(pwd)/Build/webgl/" \
   -quit
 
