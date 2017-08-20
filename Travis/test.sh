@@ -9,8 +9,7 @@ echo "Attempting to test $project in Editor."
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $PROJECT_DIR \
-  -quit
+  -projectPath $PROJECT_DIR
 
 echo 'Logs from build'
 cat $(pwd)/unity.log
