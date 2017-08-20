@@ -8,7 +8,7 @@ echo "Attempting to build $project for Windows"
   -nographics 
   -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
+  -projectPath "$(pwd)/Ludum Dare 39/Ludum Dare 39"
   -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" 
   -quit
 
@@ -18,7 +18,7 @@ echo "Attempting to build $project for WebGL"
   -nographics 
   -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
+  -projectPath "$(pwd)/Ludum Dare 39/Ludum Dare 39"
   -buildWebGLPlayer "$(pwd)/Build/webgl" 
   -quit
 
