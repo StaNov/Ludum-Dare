@@ -8,11 +8,9 @@ env:
 before_install:
   - chmod a+x ./Travis/install.sh
   - chmod a+x ./Travis/test.sh
-  - chmod a+x ./Travis/build.sh
 
 install:
   - ./Travis/install.sh
 
 script:
   - ./Travis/test.sh
-#  - ./Travis/build.sh
