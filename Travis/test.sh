@@ -10,11 +10,7 @@ echo "Attempting to test $project in Editor."
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath "$PROJECT_DIR" \
-  -testResults "$TEST_RESULTS_PATH"
+  -projectPath "$PROJECT_DIR"
 
 echo 'Logs from test'
 cat $(pwd)/unity.log
-
-echo 'Test results'
-cat "$TEST_RESULTS_PATH"
