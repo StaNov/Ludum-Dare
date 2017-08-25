@@ -8,19 +8,19 @@ public class GameState : MonoBehaviour
 {
 	private Dictionary<PlayerActionType, float> _needs;
 
-    public float MyEnergy = 100;
-    public float MyMaxEnergy = 100;
-    public float MyFood = 100;
-    public float MyHappiness = 100;
-    public float MyHealth = 100;
-    public float FamilyFood = 100;
-    public float FamilyHappiness = 100;
-    public float FamilyHealth = 100;
-    public float Age = 25;
-    public int Money = 0;
-    public int MoneyPerWorkshift = 20;
-    public int MoneyPerPartnersWorkshift = 20;
-    public int FoodSupplies = 5;
+    public float MyEnergy;
+    public float MyMaxEnergy;
+    public float MyFood;
+    public float MyHappiness;
+    public float MyHealth;
+    public float FamilyFood;
+    public float FamilyHappiness;
+    public float FamilyHealth;
+    public float Age;
+    public int Money;
+    public int MoneyPerWorkshift;
+    public int MoneyPerPartnersWorkshift;
+    public int FoodSupplies;
 	public bool IsFamilyActive;
 
 	public CurrentAction CurrentPlayerAction;
