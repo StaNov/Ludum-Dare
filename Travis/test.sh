@@ -2,6 +2,7 @@
 
 project="GameOfLife"
 TEST_RESULTS_PATH="$(pwd)/Build/testResults.xml"
+TEST_PLATFORM=$1
 
 echo "===== Attempting to test project in Editor ====="
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
