@@ -16,8 +16,15 @@ public class GameStateTest
 		yield return DestroyAllObjectsInScene();
 
 		State = new GameObject().AddComponent<GameState>();
-		State.Constants = ScriptableObject.CreateInstance<GameplayConstants>();
-		State.Constants.InitialValues = new StatsDifference
+		State.Constants = CreateTestingGameplayConstants();
+
+		yield return null;
+	}
+
+	private static GameplayConstants CreateTestingGameplayConstants()
+	{
+		var result = ScriptableObject.CreateInstance<GameplayConstants>();
+		result.InitialValues = new StatsDifference
 		{
 			Age = InitialAge,
 			Money = InitialMoney,
@@ -31,12 +38,12 @@ public class GameStateTest
 			FoodSupplies = 99,
 			MyFood = 20
 		};
-		State.Constants.ChangePerMinute = new StatsDifference
+		result.ChangePerMinute = new StatsDifference
 		{
 			Age = 11111
 		};
 
-		yield return new WaitForFixedUpdate();
+		return result;
 	}
 
 	private static IEnumerator DestroyAllObjectsInScene()
@@ -46,6 +53,7 @@ public class GameStateTest
 			Object.Destroy(o);
 		}
 
+		// wait a frame so the objects are really destroyed
 		yield return null;
 	}
 
