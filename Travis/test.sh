@@ -6,7 +6,7 @@ TEST_RESULTS_PATH="$(pwd)/Build/testResults.xml"
 echo "===== Attempting to test project in Editor ====="
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -runTests \
-  -testPlatform playmode \
+  -testPlatform $TEST_PLATFORM \
   -batchmode \
   -nographics \
   -silent-crashes \

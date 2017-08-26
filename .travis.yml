@@ -3,7 +3,8 @@ language: objective-c
 os: osx
 
 env:
-  - PROJECT_DIR="$(pwd)/Ludum Dare 39/Ludum Dare 39"
+  - PROJECT_DIR="$(pwd)/Ludum Dare 39/Ludum Dare 39" TEST_PLATFORM=editmode
+  - PROJECT_DIR="$(pwd)/Ludum Dare 39/Ludum Dare 39" TEST_PLATFORM=playmode
 
 before_install:
   - chmod a+x ./Travis/install.sh
