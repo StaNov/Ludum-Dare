@@ -2,7 +2,6 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using System;
 using UnityEngine.SceneManagement;
 
 public class GameStateTest
@@ -13,7 +12,7 @@ public class GameStateTest
 	{
 		SceneManager.LoadScene("GameStateTestScene", LoadSceneMode.Additive);
 		yield return null;
-		State = GameObject.Find("GameObject").GetComponent<GameState>();
+		State = GameObject.FindObjectOfType<GameState>();
 	}
 
 	[UnityTest]
