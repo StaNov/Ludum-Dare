@@ -17,8 +17,9 @@ public class GameStateTest
 
 		State = new GameObject().AddComponent<GameState>();
 		State.Constants = CreateTestingGameplayConstants();
+		Time.timeScale = 100;
 
-		yield return null;
+		yield return new WaitForEndOfFrame();
 	}
 
 	private static GameplayConstants CreateTestingGameplayConstants()
@@ -30,7 +31,7 @@ public class GameStateTest
 			Money = InitialMoney,
 			MyMaxEnergy = 1111,
 			MyEnergy = 1000,
-			MyHappiness = 2,
+			MyHappiness = 1,
 			MyHealth = 30,
 			FamilyFood = 10,
 			FamilyHappiness = 20,
@@ -40,7 +41,8 @@ public class GameStateTest
 		};
 		result.ChangePerMinute = new StatsDifference
 		{
-			Age = 11111
+			Age = 11111,
+			MyHappiness = -5 * 60
 		};
 
 		return result;
@@ -65,10 +67,25 @@ public class GameStateTest
 	}
 
 	[UnityTest]
-	public IEnumerator AgeIsGreaterAfterCoupleOfFrames()
+	public IEnumerator AgeIsGreaterAfterSomeTime()
 	{
 		yield return Setup();
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1);
 		Assert.Greater(State.Age, InitialAge + 1);
+	}
+
+	[UnityTest]
+	public IEnumerator NotGameOverAfterInitialization()
+	{
+		yield return Setup();
+		Assert.AreEqual(State.GameOver, GameOverReason.StillPlaying);
+	}
+
+	[UnityTest]
+	public IEnumerator GameOverAfterSomeTime()
+	{
+		yield return Setup();
+		yield return new WaitForSeconds(1);
+		Assert.AreEqual(State.GameOver, GameOverReason.Happiness);
 	}
 }
