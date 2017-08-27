@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,23 +7,23 @@ public class GameState : MonoBehaviour
 {
 	private Dictionary<PlayerActionType, float> _needs;
 
-    public float MyEnergy;
-    public float MyMaxEnergy;
-    public float MyFood;
-    public float MyHappiness;
-    public float MyHealth;
-    public float FamilyFood;
-    public float FamilyHappiness;
-    public float FamilyHealth;
-    public float Age;
-    public int Money;
-    public int MoneyPerWorkshift;
-    public int MoneyPerPartnersWorkshift;
-    public int FoodSupplies;
-	public bool IsFamilyActive;
+    public float MyEnergy { get; private set; }
+    public float MyMaxEnergy { get; private set; }
+	public float MyFood { get; private set; }
+	public float MyHappiness { get; private set; }
+	public float MyHealth { get; private set; }
+	public float FamilyFood { get; private set; }
+	public float FamilyHappiness { get; private set; }
+	public float FamilyHealth { get; private set; }
+	public float Age { get; private set; }
+	public int Money { get; private set; }
+	public int MoneyPerWorkshift { get; private set; }
+	public int MoneyPerPartnersWorkshift { get; private set; }
+	public int FoodSupplies { get; private set; }
+	public bool IsFamilyActive { get; private set; }
 
-	public CurrentAction CurrentPlayerAction;
-	public CurrentAction CurrentPartnerAction;
+	public CurrentAction CurrentPlayerAction { get; private set; }
+	public CurrentAction CurrentPartnerAction { get; private set; }
 
 	public GameplayConstants Constants;
 
@@ -58,6 +57,11 @@ public class GameState : MonoBehaviour
 	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
 	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
 	private float DeltaTimeByDurationPartner { get { return CurrentPartnerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPartnerAction.Action.DurationInSeconds); }}
+
+	public void StartFamily()
+	{
+		IsFamilyActive = true;
+	}
 
 	private void Start ()
 	{
