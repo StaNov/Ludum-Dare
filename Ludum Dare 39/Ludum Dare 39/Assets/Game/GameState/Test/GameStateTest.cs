@@ -52,7 +52,8 @@ public class GameStateTest
 	{
 		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
 		{
-			Object.Destroy(o);
+			if (o.name != "Code-based tests runner")
+				Object.Destroy(o);
 		}
 
 		// wait a frame so the objects are really destroyed
