@@ -2,24 +2,19 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class GameStateTest
+public class GameStateTest : AbstractTest
 {
-	private GameState State;
-
 	private const int InitialAge = 40;
 	private const int InitialMoney = 12345;
 
-	public IEnumerator Setup()
+	private GameState State;
+	private GameplayConstants TestConstants;
+	
+	protected override void BeforeClass()
 	{
-		yield return DestroyAllObjectsInScene();
-
-		State = new GameObject().AddComponent<GameState>();
-		State.Constants = CreateTestingGameplayConstants();
 		Time.timeScale = 20;
-
-		yield return new WaitForEndOfFrame();
+		TestConstants = CreateTestingGameplayConstants();
 	}
 
 	private static GameplayConstants CreateTestingGameplayConstants()
@@ -48,16 +43,10 @@ public class GameStateTest
 		return result;
 	}
 
-	private static IEnumerator DestroyAllObjectsInScene()
+	protected override void SetupSpecific()
 	{
-		foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-		{
-			if (o.name != "Code-based tests runner")
-				Object.Destroy(o);
-		}
-
-		// wait a frame so the objects are really destroyed
-		yield return null;
+		State = new GameObject().AddComponent<GameState>();
+		State.Constants = TestConstants;
 	}
 
 	[UnityTest]
