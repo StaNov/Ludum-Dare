@@ -1,4 +1,5 @@
 #! /bin/sh
+set -e
 
 BASE_URL=http://beta.unity3d.com/download
 HASH=472613c02cf7

@@ -1,4 +1,5 @@
 #! /bin/sh
+set -e
 
 project="GameOfLife"
 TEST_RESULTS_PATH="$(pwd)/Build/testResults.xml"
