@@ -5,16 +5,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class ScenesTest {
+public class ZZZ_ScenesTest {
 
-	// TODO [UnityTest]
+	[UnityTest]
 	public IEnumerator LoadScenesAndLetThemGoForSomeTime () {
-		for(int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+		Time.timeScale = 1;
+
+		for(int i = 0; i < SceneManager.sceneCountInBuildSettings - 1; i++)
 		{
-			SceneManager.LoadScene(i);
+			var operation = SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+			while (!operation.isDone)
+			{
+				yield return null;
+			}
+			operation.allowSceneActivation = true;
+
 			yield return new WaitForSeconds(5);
 
-			var operation = SceneManager.UnloadSceneAsync(i);
+			operation = SceneManager.UnloadSceneAsync(i);
 			while(! operation.isDone)
 			{
 				yield return null;
