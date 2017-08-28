@@ -17,7 +17,7 @@ public class GameStateTest
 
 		State = new GameObject().AddComponent<GameState>();
 		State.Constants = CreateTestingGameplayConstants();
-		Time.timeScale = 100;
+		Time.timeScale = 20;
 
 		yield return new WaitForEndOfFrame();
 	}

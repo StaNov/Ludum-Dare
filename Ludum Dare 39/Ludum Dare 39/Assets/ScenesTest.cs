@@ -9,12 +9,12 @@ public class ZZZ_ScenesTest {
 
 	[UnityTest]
 	public IEnumerator LoadScenesAndLetThemGoForSomeTime () {
-		Time.timeScale = 1;
+		Time.timeScale = 20;
 
 		for(int i = 0; i < SceneManager.sceneCountInBuildSettings - 1; i++)
 		{
 			SceneManager.LoadScene(i);
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(10);
 		}
 	}
 }
