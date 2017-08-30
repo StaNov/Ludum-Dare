@@ -3,11 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum StateItemType
+{
+	MyEnergy
+}
+
+public class StateItem
+{
+	private float _value;
+
+	public float GetValue()
+	{
+		return _value;
+	}
+
+	public void SetValue(float v)
+	{
+		_value = v;
+	}
+}
+
 public class GameState : MonoBehaviour
 {
-	private Dictionary<PlayerActionType, float> _needs;
+	private Dictionary<StateItemType, StateItem> _items;
 
-    public float MyEnergy { get; private set; }
+	public float GetStateItemValue(StateItemType type)
+	{
+		return _items[type].GetValue();
+	}
+
+    public float MyEnergy { get { return _items[StateItemType.MyEnergy].GetValue(); } private set { _items[StateItemType.MyEnergy].SetValue(value); } }
     public float MyMaxEnergy { get; private set; }
 	public float MyFood { get; private set; }
 	public float MyHappiness { get; private set; }
@@ -63,11 +88,17 @@ public class GameState : MonoBehaviour
 		IsFamilyActive = true;
 	}
 
+	private void Awake()
+	{
+		_items = new Dictionary<StateItemType, StateItem>();
+		_items.Add(StateItemType.MyEnergy, new StateItem());
+	}
+
 	private void Start ()
 	{
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
-
+		
 		MyEnergy = Constants.InitialValues.MyEnergy;
 		MyMaxEnergy = Constants.InitialValues.MyMaxEnergy;
 		MyFood = Constants.InitialValues.MyFood;
