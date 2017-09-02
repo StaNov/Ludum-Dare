@@ -100,4 +100,31 @@ public class GameStateTest : AbstractTest
 		yield return new WaitForSeconds(1);
 		Assert.AreEqual(TestGameState.GameOver, GameOverReason.Happiness);
 	}
+
+	[UnityTest]
+	public IEnumerator HappinessTopClampedProperly()
+	{
+		yield return Setup();
+		TestConstants.InitialValues.MyHappiness = 99;
+		TestConstants.ChangePerMinute.MyHappiness = 1 * 60;
+		yield return CreateTestGameState();
+
+		yield return new WaitForSeconds(1);
+		Assert.LessOrEqual(TestGameState.MyHappiness, 100f);
+	}
+
+	[UnityTest]
+	public IEnumerator EnergyTopClampedProperly()
+	{
+		int initialMaxEnergy = 80;
+
+		yield return Setup();
+		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
+		TestConstants.InitialValues.MyEnergy = initialMaxEnergy - 5;
+		TestConstants.ChangePerMinute.MyEnergy = 10 * 60;
+		yield return CreateTestGameState();
+
+		yield return new WaitForSeconds(1);
+		Assert.LessOrEqual(TestGameState.MyEnergy, initialMaxEnergy);
+	}
 }
