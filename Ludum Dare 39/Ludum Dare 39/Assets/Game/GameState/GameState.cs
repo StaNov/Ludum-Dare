@@ -98,12 +98,13 @@ public class GameState : MonoBehaviour
 
 	private void Awake()
 	{
-		_items = new Dictionary<StateItemType, StateItem>();
-		_items.Add(StateItemType.MyEnergy, new StateItem());
 	}
 
 	private void Start ()
 	{
+		_items = new Dictionary<StateItemType, StateItem>();
+		_items.Add(StateItemType.MyEnergy, new StateItem());
+
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
 		
