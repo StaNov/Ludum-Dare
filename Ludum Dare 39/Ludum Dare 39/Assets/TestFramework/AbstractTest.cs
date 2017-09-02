@@ -22,8 +22,11 @@ public abstract class AbstractTest
 	protected IEnumerator Setup ()
 	{
 		yield return DestroyAllObjectsInScene();
+
+		// wait until the objects are destroyed
+		yield return null;
+
 		SetupSpecific();
-		yield return new WaitForEndOfFrame();
 	}
 
 	protected virtual void SetupSpecific() { }

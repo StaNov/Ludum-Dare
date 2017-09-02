@@ -7,9 +7,8 @@ public class GameStateTest : AbstractTest
 {
 	private const int InitialAge = 40;
 	private const int InitialMoney = 12345;
-	private const int InitialEnergy = 99;
 
-	private GameState State;
+	private GameState TestGameState;
 	private GameplayConstants TestConstants;
 	
 	protected override void BeforeClass()
@@ -22,23 +21,19 @@ public class GameStateTest : AbstractTest
 		var result = ScriptableObject.CreateInstance<GameplayConstants>();
 		result.InitialValues = new StatsDifference
 		{
-			Age = InitialAge,
-			Money = InitialMoney,
-			MyMaxEnergy = 1111,
-			MyEnergy = InitialEnergy,
-			MyHappiness = 1,
-			MyHealth = 30,
-			FamilyFood = 10,
-			FamilyHappiness = 20,
-			FamilyHealth = 30,
+			Age = 1,
+			Money = 9999,
+			MyMaxEnergy = 9999,
+			MyEnergy = 100,
+			MyHappiness = 100,
+			MyHealth = 100,
+			FamilyFood = 100,
+			FamilyHappiness = 100,
+			FamilyHealth = 100,
 			FoodSupplies = 99,
-			MyFood = 20
+			MyFood = 99
 		};
-		result.ChangePerMinute = new StatsDifference
-		{
-			Age = 11111,
-			MyHappiness = -5 * 60
-		};
+		result.ChangePerMinute = new StatsDifference();
 
 		return result;
 	}
@@ -46,38 +41,63 @@ public class GameStateTest : AbstractTest
 	protected override void SetupSpecific()
 	{
 		TestConstants = CreateTestingGameplayConstants();
+	}
 
-		State = new GameObject().AddComponent<GameState>();
-		State.Constants = TestConstants;
+	private IEnumerator CreateTestGameState()
+	{
+		TestGameState = new GameObject().AddComponent<GameState>();
+		TestGameState.Constants = TestConstants;
+
+		yield return new WaitForEndOfFrame();
 	}
 
 	[UnityTest]
 	public IEnumerator EnergyIsInitializedAfterSceneLoad()
 	{
+		int initialEnergy = 99;
+
 		yield return Setup();
-		Assert.AreEqual(State.MyEnergy, InitialEnergy);
+		TestConstants.InitialValues.MyEnergy = initialEnergy;
+		yield return CreateTestGameState();
+
+		Assert.AreEqual(TestGameState.MyEnergy, initialEnergy);
 	}
 
 	[UnityTest]
 	public IEnumerator AgeIsGreaterAfterSomeTime()
 	{
+		int initialAge = 10;
+
 		yield return Setup();
+		TestConstants.InitialValues.Age = initialAge;
+		TestConstants.ChangePerMinute.Age = 11111;
+		yield return CreateTestGameState();
+
 		yield return new WaitForSeconds(1);
-		Assert.Greater(State.Age, InitialAge + 1);
+		Assert.Greater(TestGameState.Age, initialAge + 1);
 	}
 
 	[UnityTest]
 	public IEnumerator NotGameOverAfterInitialization()
 	{
 		yield return Setup();
-		Assert.AreEqual(State.GameOver, null);
+		yield return CreateTestGameState();
+
+		Assert.IsNull(TestGameState.GameOver);
 	}
 
 	[UnityTest]
 	public IEnumerator GameOverAfterSomeTime()
 	{
+		int veryLowHappiness = 1;
+		int veryQuickHappinessDecrease = -5 * 60;
+
 		yield return Setup();
+		TestConstants.InitialValues.MyHappiness = veryLowHappiness;
+		TestConstants.ChangePerMinute.MyHappiness = veryQuickHappinessDecrease;
+		yield return CreateTestGameState();
+
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(State.GameOver, GameOverReason.Happiness);
+		Assert.AreEqual(TestGameState.GameOver, GameOverReason.Happiness);
 	}
 }
