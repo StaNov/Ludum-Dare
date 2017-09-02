@@ -12,6 +12,11 @@ public class StateItem
 {
 	private float _value;
 
+	public bool IsGameOverBecauseOfThis()
+	{
+		return _value <= 0;
+	}
+
 	public float GetValue()
 	{
 		return _value;
@@ -52,10 +57,15 @@ public class GameState : MonoBehaviour
 
 	public GameplayConstants Constants;
 
+	// TODO type to "StateItemType?" return null if still playing
 	public GameOverReason GameOver
 	{
 		get
 		{
+			foreach (var item in _items)
+				if (item.Value.IsGameOverBecauseOfThis())
+					return GameOverReason.Energy;
+
 			if (MyEnergy <= 0)
 				return GameOverReason.Energy;
 			if (MyFood <= 0)
