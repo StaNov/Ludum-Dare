@@ -12,6 +12,11 @@ public class StateItem
 {
 	private float _value;
 
+	public StateItem(float initialValue)
+	{
+		_value = initialValue;
+	}
+
 	public bool IsGameOverBecauseOfThis()
 	{
 		return _value <= 0;
@@ -22,6 +27,7 @@ public class StateItem
 		return _value;
 	}
 
+	// TODO redesign so it can be removed
 	public void SetValue(float v)
 	{
 		_value = v;
@@ -102,9 +108,8 @@ public class GameState : MonoBehaviour
 		CurrentPartnerAction = null;
 
 		_items = new Dictionary<StateItemType, StateItem>();
-		_items.Add(StateItemType.MyEnergy, new StateItem());
+		_items.Add(StateItemType.MyEnergy, new StateItem(Constants.InitialValues.MyEnergy));
 		
-		MyEnergy = Constants.InitialValues.MyEnergy;
 		MyMaxEnergy = Constants.InitialValues.MyMaxEnergy;
 		MyFood = Constants.InitialValues.MyFood;
 		MyHappiness = Constants.InitialValues.MyHappiness;

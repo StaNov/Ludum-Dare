@@ -7,6 +7,7 @@ public class GameStateTest : AbstractTest
 {
 	private const int InitialAge = 40;
 	private const int InitialMoney = 12345;
+	private const int InitialEnergy = 99;
 
 	private GameState State;
 	private GameplayConstants TestConstants;
@@ -24,7 +25,7 @@ public class GameStateTest : AbstractTest
 			Age = InitialAge,
 			Money = InitialMoney,
 			MyMaxEnergy = 1111,
-			MyEnergy = 1000,
+			MyEnergy = InitialEnergy,
 			MyHappiness = 1,
 			MyHealth = 30,
 			FamilyFood = 10,
@@ -51,10 +52,10 @@ public class GameStateTest : AbstractTest
 	}
 
 	[UnityTest]
-	public IEnumerator MoneyStatIsInitializedAfterSceneLoad()
+	public IEnumerator EnergyIsInitializedAfterSceneLoad()
 	{
 		yield return Setup();
-		Assert.AreEqual(State.Money, InitialMoney);
+		Assert.AreEqual(State.MyEnergy, InitialEnergy);
 	}
 
 	[UnityTest]
