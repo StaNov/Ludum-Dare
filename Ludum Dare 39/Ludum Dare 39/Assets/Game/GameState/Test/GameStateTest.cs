@@ -68,7 +68,7 @@ public class GameStateTest : AbstractTest
 	public IEnumerator NotGameOverAfterInitialization()
 	{
 		yield return Setup();
-		Assert.AreEqual(State.GameOver, GameOverReason.StillPlaying);
+		Assert.AreEqual(State.GameOver, null);
 	}
 
 	[UnityTest]

@@ -7,7 +7,7 @@ public class LeaderboardSaver : MonoBehaviour
 	private bool _recordSaved;
 	
 	void Update () {
-		if (!_recordSaved && State.GameOver != GameOverReason.StillPlaying)
+		if (!_recordSaved && State.GameOver != null)
 		{
 			StartCoroutine(ReusableLeaderboardManager.SaveNewRecord(
 				"http://games.stanov.cz/ludum-dare-39/callLeaderboardSave.php",

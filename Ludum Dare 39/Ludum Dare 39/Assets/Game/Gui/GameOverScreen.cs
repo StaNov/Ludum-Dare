@@ -15,7 +15,7 @@ public class GameOverScreen : MonoBehaviour
 	}
 
 	private void Update () {
-		if (State.GameOver == GameOverReason.StillPlaying)
+		if (State.GameOver == null)
 			return;
 
 		Reason.text = GetGameOverReason(State.GameOver);
@@ -24,7 +24,7 @@ public class GameOverScreen : MonoBehaviour
 		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.Age).ToString());
 	}
 
-	private string GetGameOverReason(GameOverReason reason)
+	private string GetGameOverReason(GameOverReason? reason)
 	{
 		switch (reason)
 		{

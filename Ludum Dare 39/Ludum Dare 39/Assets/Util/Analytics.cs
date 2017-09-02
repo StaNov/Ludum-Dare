@@ -38,7 +38,7 @@ public class Analytics : MonoBehaviour
 	}
 
 	void Update () {
-		if (!_eventSent && State.GameOver != GameOverReason.StillPlaying)
+		if (!_eventSent && State.GameOver != null)
 		{
 			PlayTimeTotal += Mathf.FloorToInt(Time.timeSinceLevelLoad);
 			PlayedGames++;

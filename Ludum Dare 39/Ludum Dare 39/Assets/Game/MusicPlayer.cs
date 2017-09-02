@@ -16,7 +16,7 @@ public class MusicPlayer : MonoBehaviour
 
 	void Update()
 	{
-		if (State.GameOver != GameOverReason.StillPlaying)
+		if (State.GameOver != null)
 		{
 			Source.clip = EndTune;
 			Source.Play();

@@ -57,8 +57,8 @@ public class GameState : MonoBehaviour
 
 	public GameplayConstants Constants;
 
-	// TODO type to "StateItemType?" return null if still playing
-	public GameOverReason GameOver
+	// TODO type to "StateItemType?"
+	public GameOverReason? GameOver
 	{
 		get
 		{
@@ -83,7 +83,7 @@ public class GameState : MonoBehaviour
 			if (FoodSupplies < 0)
 				return GameOverReason.FoodSupplies;
 			
-			return GameOverReason.StillPlaying;
+			return null;
 		}
 	}
 	
@@ -123,7 +123,7 @@ public class GameState : MonoBehaviour
 	
 	private void FixedUpdate ()
 	{
-		if (GameOver != GameOverReason.StillPlaying)
+		if (GameOver != null)
 		{
 			return;
 		}
@@ -293,5 +293,5 @@ public class GameState : MonoBehaviour
 
 public enum GameOverReason
 {
-	StillPlaying, Energy, Food, Health, Happiness, FFood, FHealth, FHappiness, Money, FoodSupplies 
+	Energy, Food, Health, Happiness, FFood, FHealth, FHappiness, Money, FoodSupplies 
 }
