@@ -65,9 +65,7 @@ public class GameState : MonoBehaviour
 			foreach (var item in _items)
 				if (item.Value.IsGameOverBecauseOfThis())
 					return GameOverReason.Energy;
-
-			if (MyEnergy <= 0)
-				return GameOverReason.Energy;
+			
 			if (MyFood <= 0)
 				return GameOverReason.Food;
 			if (MyHappiness <= 0)
