@@ -96,17 +96,13 @@ public class GameState : MonoBehaviour
 		IsFamilyActive = true;
 	}
 
-	private void Awake()
-	{
-	}
-
 	private void Start ()
 	{
-		_items = new Dictionary<StateItemType, StateItem>();
-		_items.Add(StateItemType.MyEnergy, new StateItem());
-
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
+
+		_items = new Dictionary<StateItemType, StateItem>();
+		_items.Add(StateItemType.MyEnergy, new StateItem());
 		
 		MyEnergy = Constants.InitialValues.MyEnergy;
 		MyMaxEnergy = Constants.InitialValues.MyMaxEnergy;
