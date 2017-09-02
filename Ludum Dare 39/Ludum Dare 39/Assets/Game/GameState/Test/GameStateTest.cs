@@ -14,7 +14,6 @@ public class GameStateTest : AbstractTest
 	protected override void BeforeClass()
 	{
 		Time.timeScale = 20;
-		TestConstants = CreateTestingGameplayConstants();
 	}
 
 	private static GameplayConstants CreateTestingGameplayConstants()
@@ -45,6 +44,8 @@ public class GameStateTest : AbstractTest
 
 	protected override void SetupSpecific()
 	{
+		TestConstants = CreateTestingGameplayConstants();
+
 		State = new GameObject().AddComponent<GameState>();
 		State.Constants = TestConstants;
 	}
