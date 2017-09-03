@@ -133,6 +133,8 @@ public class GameStateTest : AbstractTest
 	public IEnumerator MaxEnergyTopClampedProperly()
 	{
 		int initialMaxEnergy = 123;
+
+		// TODO no it is not clean this way, max maxenergy is not setable dynamically, but 100 hardcoded in GameState
 		float maxMaxEnergy = 100;
 
 		yield return Setup();
@@ -143,5 +145,23 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
 		yield return new WaitForSeconds(1);
 		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
+	}
+
+	[UnityTest]
+	public IEnumerator MaxEnergyBottomClampedProperly()
+	{
+		int initialMaxEnergy = -999;
+
+		// TODO no it is not clean this way, min maxenergy is not setable dynamically, but 0 hardcoded in GameState
+		float minMaxEnergy = 0;
+
+		yield return Setup();
+		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
+		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
+		yield return CreateTestGameState();
+
+		Assert.AreEqual(TestGameState.MyMaxEnergy, minMaxEnergy);
+		yield return new WaitForSeconds(1);
+		Assert.AreEqual(TestGameState.MyMaxEnergy, minMaxEnergy);
 	}
 }
