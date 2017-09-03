@@ -5,7 +5,7 @@ project="GameOfLife"
 TEST_RESULTS_PATH="$(pwd)/Build/testResults.xml"
 TEST_PLATFORM=$1
 
-echo "===== Attempting to test project in Editor ====="
+echo "\n\n===== Attempting to test project in Editor =====\n\n"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -runTests \
   -testPlatform $TEST_PLATFORM \
@@ -21,7 +21,7 @@ EXIT_CODE=$?
 echo 'Logs from test'
 cat $(pwd)/unity.log
 
-echo '===== Test results if file exists ====='
+echo '\n\n===== Test results if file exists =====\n\n'
 if [ -f "$TEST_RESULTS_PATH" ]; then
   cat "$TEST_RESULTS_PATH";
 fi
