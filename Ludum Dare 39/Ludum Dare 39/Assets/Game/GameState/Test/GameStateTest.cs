@@ -90,16 +90,16 @@ public class GameStateTest : AbstractTest
 	[UnityTest]
 	public IEnumerator GameOverAfterSomeTime()
 	{
-		int veryLowHappiness = 1;
-		int veryQuickHappinessDecrease = -5 * 60;
+		int veryLowEnergy = 1;
+		int veryQuickEnergyDecrease = -5 * 60;
 
 		yield return Setup();
-		TestConstants.InitialValues.MyHappiness = veryLowHappiness;
-		TestConstants.ChangePerMinute.MyHappiness = veryQuickHappinessDecrease;
+		TestConstants.InitialValues.MyEnergy = veryLowEnergy;
+		TestConstants.ChangePerMinute.MyEnergy = veryQuickEnergyDecrease;
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(GameOverReason.Happiness, TestGameState.GameOver);
+		Assert.AreEqual(GameOverReason.Energy, TestGameState.GameOver);
 	}
 
 	[UnityTest]
