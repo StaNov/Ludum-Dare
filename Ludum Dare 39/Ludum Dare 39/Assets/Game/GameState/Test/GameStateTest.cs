@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-// TODO swap expected and actual
+// TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
 public class GameStateTest : AbstractTest
 {
 	private const int InitialAge = 40;
@@ -61,7 +61,7 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(TestGameState.MyEnergy, initialEnergy);
+		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
 	}
 
 	[UnityTest]
@@ -75,7 +75,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.Greater(TestGameState.Age, initialAge + 1);
+		Assert.Less(initialAge + 1, TestGameState.Age);
 	}
 
 	[UnityTest]
@@ -99,19 +99,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(TestGameState.GameOver, GameOverReason.Happiness);
-	}
-
-	[UnityTest]
-	public IEnumerator HappinessTopClampedProperly()
-	{
-		yield return Setup();
-		TestConstants.InitialValues.MyHappiness = 99;
-		TestConstants.ChangePerMinute.MyHappiness = 1 * 60;
-		yield return CreateTestGameState();
-
-		yield return new WaitForSeconds(1);
-		Assert.LessOrEqual(TestGameState.MyHappiness, 100f);
+		Assert.AreEqual(GameOverReason.Happiness, TestGameState.GameOver);
 	}
 
 	[UnityTest]
@@ -126,7 +114,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(TestGameState.MyEnergy, initialMaxEnergy);
+		Assert.AreEqual(initialMaxEnergy, TestGameState.MyEnergy);
 	}
 
 	[UnityTest]
@@ -142,9 +130,9 @@ public class GameStateTest : AbstractTest
 		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 
 	[UnityTest]
@@ -160,8 +148,8 @@ public class GameStateTest : AbstractTest
 		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(TestGameState.MyMaxEnergy, minMaxEnergy);
+		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(TestGameState.MyMaxEnergy, minMaxEnergy);
+		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 }
