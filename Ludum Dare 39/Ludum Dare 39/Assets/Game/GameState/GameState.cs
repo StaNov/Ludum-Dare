@@ -13,24 +13,38 @@ public class StateItem
 	private float _value;
 	private float _minValue;
 	private Func<float> _maxValue;
+	private Func<StatsDifference, bool> _differenceHasZeroEffect;
+	private float _changePerMinute;
 
-	public StateItem(float minValue, Func<float> getMaxValue, float initialValue)
+	// TODO create builder
+	public StateItem(float minValue, Func<float> getMaxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect)
 	{
 		_minValue = minValue;
 		_maxValue = getMaxValue;
+		_changePerMinute = changePerMinute;
+		_differenceHasZeroEffect = differenceHasZeroEffect;
 		Value = initialValue;
 	}
 
-	public StateItem(float minValue, float maxValue, float initialValue)
+	public StateItem(float minValue, float maxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect)
 	{
 		_minValue = minValue;
 		_maxValue = () => maxValue;
+		_changePerMinute = changePerMinute;
+		_differenceHasZeroEffect = differenceHasZeroEffect;
 		Value = initialValue;
 	}
+
+	public float ChangePerMinute { get { return _changePerMinute; } }
 
 	public bool IsGameOverBecauseOfThis()
 	{
 		return _value <= 0;
+	}
+
+	public bool DifferenceHasZeroEffect(StatsDifference difference)
+	{
+		return _differenceHasZeroEffect(difference);
 	}
 
 	// TODO redesign so set may be private
@@ -113,8 +127,8 @@ public class GameState : MonoBehaviour
 
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0));
 		MyFood = Constants.InitialValues.MyFood;
 		MyHappiness = Constants.InitialValues.MyHappiness;
 		MyHealth = Constants.InitialValues.MyHealth;
@@ -143,13 +157,10 @@ public class GameState : MonoBehaviour
 
 	private void UpdateByTime()
 	{
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyMaxEnergy == 0)
-			&& (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyMaxEnergy == 0))
-			MyMaxEnergy += Constants.ChangePerMinute.MyMaxEnergy * DeltaTimeInMinutes;
-
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyEnergy == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyEnergy == 0))
-			MyEnergy += Constants.ChangePerMinute.MyEnergy * DeltaTimeInMinutes;
+		foreach (var item in _items)
+			if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
+				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
+				item.Value.Value += item.Value.ChangePerMinute * DeltaTimeInMinutes;
 
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyFood == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyFood == 0))
