@@ -3,6 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
+// TODO swap expected and actual
 public class GameStateTest : AbstractTest
 {
 	private const int InitialAge = 40;
@@ -125,6 +126,22 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.LessOrEqual(TestGameState.MyEnergy, initialMaxEnergy);
+		Assert.AreEqual(TestGameState.MyEnergy, initialMaxEnergy);
+	}
+
+	[UnityTest]
+	public IEnumerator MaxEnergyTopClampedProperly()
+	{
+		int initialMaxEnergy = 123;
+		float maxMaxEnergy = 100;
+
+		yield return Setup();
+		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
+		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
+		yield return CreateTestGameState();
+
+		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
+		yield return new WaitForSeconds(1);
+		Assert.AreEqual(TestGameState.MyMaxEnergy, maxMaxEnergy);
 	}
 }

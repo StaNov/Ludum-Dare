@@ -5,27 +5,27 @@ using UnityEngine.EventSystems;
 
 public enum StateItemType
 {
-	MyEnergy
+	MyEnergy, MyMaxEnergy
 }
 
 public class StateItem
 {
 	private float _value;
 	private float _minValue;
-	private float _maxValue;
+	private Func<float> _maxValue;
 
-	public StateItem(float initialValue, float minValue, Func<float> getMaxValue)
+	public StateItem(float minValue, Func<float> getMaxValue, float initialValue)
 	{
-		_value = initialValue;
 		_minValue = minValue;
-		_maxValue = getMaxValue();
+		_maxValue = getMaxValue;
+		Value = initialValue;
 	}
 
-	public StateItem(float initialValue, float minValue, float maxValue)
+	public StateItem(float minValue, float maxValue, float initialValue)
 	{
-		_value = initialValue;
 		_minValue = minValue;
-		_maxValue = maxValue;
+		_maxValue = () => maxValue;
+		Value = initialValue;
 	}
 
 	public bool IsGameOverBecauseOfThis()
@@ -33,16 +33,8 @@ public class StateItem
 		return _value <= 0;
 	}
 
-	public float GetValue()
-	{
-		return _value;
-	}
-
-	// TODO redesign so it can be removed
-	public void SetValue(float v)
-	{
-		_value = Mathf.Clamp(v, _minValue, _maxValue);
-	}
+	// TODO redesign so set may be private
+	public float Value { get { return _value; } set { _value = Mathf.Clamp(value, _minValue, _maxValue()); } }
 }
 
 public class GameState : MonoBehaviour
@@ -51,11 +43,11 @@ public class GameState : MonoBehaviour
 
 	public float GetStateItemValue(StateItemType type)
 	{
-		return _items[type].GetValue();
+		return _items[type].Value;
 	}
 
-    public float MyEnergy { get { return _items[StateItemType.MyEnergy].GetValue(); } private set { _items[StateItemType.MyEnergy].SetValue(value); } }
-    public float MyMaxEnergy { get; private set; }
+    public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } private set { _items[StateItemType.MyEnergy].Value = value; } }
+    public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } private set { _items[StateItemType.MyMaxEnergy].Value = value; } }
 	public float MyFood { get; private set; }
 	public float MyHappiness { get; private set; }
 	public float MyHealth { get; private set; }
@@ -121,8 +113,8 @@ public class GameState : MonoBehaviour
 
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		MyMaxEnergy = Constants.InitialValues.MyMaxEnergy;
-		_items.Add(StateItemType.MyEnergy, new StateItem(Constants.InitialValues.MyEnergy, 0, () => MyMaxEnergy));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy));
 		MyFood = Constants.InitialValues.MyFood;
 		MyHappiness = Constants.InitialValues.MyHappiness;
 		MyHealth = Constants.InitialValues.MyHealth;
@@ -191,7 +183,6 @@ public class GameState : MonoBehaviour
 
 	private void ClampStateValues()
 	{
-		MyMaxEnergy = Mathf.Clamp(MyMaxEnergy, 0, 100);
 		MyFood = Mathf.Clamp(MyFood, 0, 100);
 		MyHappiness = Mathf.Clamp(MyHappiness, 0, 100);
 		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
