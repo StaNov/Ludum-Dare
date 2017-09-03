@@ -15,3 +15,7 @@ install:
 script:
   - ./Travis/test.sh editmode
   - ./Travis/test.sh playmode
+  
+cache:
+  directories:
+  - UnityInstallFile

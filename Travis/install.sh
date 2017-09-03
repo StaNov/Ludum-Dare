@@ -8,17 +8,22 @@ VERSION=2017.1.0f3
 download() {
   file=$1
   url="$BASE_URL/$HASH/$package"
+  mkdir UnityInstallFile
+  cd UnityInstallFile
 
   echo "Downloading from $url: "
   curl -o `basename "$package"` "$url"
+  cd ..
 }
 
 install() {
   package=$1
   download "$package"
 
+  cd UnityInstallFile
   echo "Installing "`basename "$package"`
   sudo installer -dumplog -package `basename "$package"` -target /
+  cd ..
 }
 
 install "MacEditorInstaller/Unity-$VERSION.pkg"
