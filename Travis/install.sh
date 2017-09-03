@@ -8,8 +8,8 @@ VERSION=2017.1.0f3
 download() {
   file=$1
   url="$BASE_URL/$HASH/$package"
-  mkdir UnityInstallFile
-  cd UnityInstallFile
+  mkdir -p UnityInstallFileFolder
+  cd UnityInstallFileFolder
 
   echo "Downloading from $url: "
   curl -o `basename "$package"` "$url"
@@ -20,7 +20,7 @@ install() {
   package=$1
   download "$package"
 
-  cd UnityInstallFile
+  cd UnityInstallFileFolder
   echo "Installing "`basename "$package"`
   sudo installer -dumplog -package `basename "$package"` -target /
   cd ..
