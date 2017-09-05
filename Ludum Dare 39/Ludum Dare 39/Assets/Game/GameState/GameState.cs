@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public enum StateItemType
 {
-	MyEnergy, MyMaxEnergy
+	MyEnergy, MyMaxEnergy, MyFood
 }
 
 public class StateItem
@@ -62,7 +62,7 @@ public class GameState : MonoBehaviour
 
     public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } private set { _items[StateItemType.MyEnergy].Value = value; } }
     public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } private set { _items[StateItemType.MyMaxEnergy].Value = value; } }
-	public float MyFood { get; private set; }
+	public float MyFood { get { return _items[StateItemType.MyFood].Value; } private set { _items[StateItemType.MyFood].Value = value; } }
 	public float MyHappiness { get; private set; }
 	public float MyHealth { get; private set; }
 	public float FamilyFood { get; private set; }
@@ -89,9 +89,7 @@ public class GameState : MonoBehaviour
 				if (item.Value.IsGameOverBecauseOfThis())
 					// TODO item.Key
 					return GameOverReason.Energy;
-			
-			if (MyFood <= 0)
-				return GameOverReason.Food;
+
 			if (MyHappiness <= 0)
 				return GameOverReason.Happiness;
 			if (MyHealth <= 0)
@@ -129,7 +127,7 @@ public class GameState : MonoBehaviour
 
 		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0));
 		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0));
-		MyFood = Constants.InitialValues.MyFood;
+		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0));
 		MyHappiness = Constants.InitialValues.MyHappiness;
 		MyHealth = Constants.InitialValues.MyHealth;
 		FamilyFood = Constants.InitialValues.FamilyFood;
@@ -162,10 +160,6 @@ public class GameState : MonoBehaviour
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
 				item.Value.Value += item.Value.ChangePerMinute * DeltaTimeInMinutes;
 
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyFood == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyFood == 0))
-			MyFood += Constants.ChangePerMinute.MyFood * DeltaTimeInMinutes;
-
 		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHappiness == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHappiness == 0))
 			MyHappiness += Constants.ChangePerMinute.MyHappiness * DeltaTimeInMinutes;
@@ -194,7 +188,6 @@ public class GameState : MonoBehaviour
 
 	private void ClampStateValues()
 	{
-		MyFood = Mathf.Clamp(MyFood, 0, 100);
 		MyHappiness = Mathf.Clamp(MyHappiness, 0, 100);
 		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
 		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
