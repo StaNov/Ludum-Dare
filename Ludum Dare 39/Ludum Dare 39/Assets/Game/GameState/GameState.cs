@@ -210,9 +210,11 @@ public class GameState : MonoBehaviour
 				return null;
 			}
 
-			MyMaxEnergy += action.Action.EffectDuring.MyMaxEnergy * deltaTimeByDuration;
-			MyEnergy += action.Action.EffectDuring.MyEnergy * deltaTimeByDuration;
-			MyFood += action.Action.EffectDuring.MyFood * deltaTimeByDuration;
+			foreach (var item in _items)
+			{
+				item.Value.Value += action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration;
+			}
+
 			MyHappiness += action.Action.EffectDuring.MyHappiness * deltaTimeByDuration;
 			MyHealth += action.Action.EffectDuring.MyHealth * deltaTimeByDuration;
 
