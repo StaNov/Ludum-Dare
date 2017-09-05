@@ -9,7 +9,7 @@ public abstract class AbstractTest
 	private float OriginalVolume = 1;
 
 	[UnityTest]
-	public IEnumerator AAA_SetupClass()
+	public IEnumerator a_SetupClass()
 	{
 		OriginalTimeScale = Time.timeScale;
 		OriginalVolume = AudioListener.volume;
@@ -46,7 +46,7 @@ public abstract class AbstractTest
 	}
 
 	[UnityTest]
-	public IEnumerator ZZZ_TearDownClass()
+	public IEnumerator zzz_TearDownClass()
 	{
 		AfterClass();
 
