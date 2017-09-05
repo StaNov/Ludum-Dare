@@ -152,4 +152,33 @@ public class GameStateTest : AbstractTest
 		yield return new WaitForSeconds(1);
 		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
 	}
+
+	[UnityTest]
+	public IEnumerator UpdateByActionDuringLowersStat()
+	{
+		int initialFood = 90;
+		int foodDecreaseByAction = 10;
+		int actionDuration = 2;
+
+		yield return Setup();
+		TestConstants.InitialValues.MyFood = initialFood;
+		TestConstants.PlayerActions = new PlayerAction[1];
+		TestConstants.PlayerActions[0] = new PlayerAction
+		{
+			Type = PlayerActionType.Eat,
+			DurationInSeconds = actionDuration,
+			EffectBefore = new StatsDifference(),
+			EffectDuring = new StatsDifference
+			{
+				MyFood = - foodDecreaseByAction
+			},
+			EffectAfter = new StatsDifference()
+		};
+		yield return CreateTestGameState();
+
+		Assert.AreEqual(initialFood, TestGameState.MyFood);
+		TestGameState.RunAction(PlayerActionType.Eat.ToString());
+		yield return new WaitForSeconds(3);
+		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
+	}
 }

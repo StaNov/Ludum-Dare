@@ -199,6 +199,17 @@ public class GameState : MonoBehaviour
 	{
 		if (action != null && action.Action.Type != PlayerActionType.None)
 		{
+			action.RemainingTime -= Time.deltaTime;
+
+			// TODO if remaining time is less than Time.deltaTime, apply to only the remaining part
+			// ... but it happens in FixedUpdate, so it doesn't matter that much - Time.deltaTime is still the same 0.02
+			if (action.RemainingTime < 0)
+			{
+				UpdateAfterAction(action.Action);
+				// TODO action may be "set or unset" internally, not "null or non-null" by itself
+				return null;
+			}
+
 			MyMaxEnergy += action.Action.EffectDuring.MyMaxEnergy * deltaTimeByDuration;
 			MyEnergy += action.Action.EffectDuring.MyEnergy * deltaTimeByDuration;
 			MyFood += action.Action.EffectDuring.MyFood * deltaTimeByDuration;
@@ -211,14 +222,6 @@ public class GameState : MonoBehaviour
 				FamilyHappiness += action.Action.EffectDuring.FamilyHappiness * deltaTimeByDuration;
 				FamilyHealth += action.Action.EffectDuring.FamilyHealth * deltaTimeByDuration;
 			}
-
-			action.RemainingTime -= Time.deltaTime;
-
-			if (action.RemainingTime < 0)
-			{
-				UpdateAfterAction(action.Action);
-				action = null;
-			}
 		}
 
 		return action;
@@ -226,10 +229,20 @@ public class GameState : MonoBehaviour
 
 	public void RunAction()
 	{
-		string type = EventSystem.current.currentSelectedGameObject.name;
-		PlayerAction action = Constants.GetPlayerAction(type);
+		string actionName = EventSystem.current.currentSelectedGameObject.name;
+		RunAction(actionName);
+	}
+
+	public void RunAction(string actionName)
+	{
+		PlayerAction action = Constants.GetPlayerAction(actionName);
+		RunAction(action);
+	}
+
+	public void RunAction(PlayerAction action)
+	{
 		bool isPartnersAction = action.Type.IsPartnersAction();
-		
+
 		if (action.Type.IsForBoth() && CurrentPartnerAction != null && CurrentPartnerAction.Action.Type != PlayerActionType.None)
 		{
 			CurrentPartnerAction = null;
@@ -247,7 +260,6 @@ public class GameState : MonoBehaviour
 			CurrentPlayerAction = currentAction;
 		else
 			CurrentPartnerAction = currentAction;
-			
 	}
 
 	private void UpdateBeforeAction(PlayerAction action)

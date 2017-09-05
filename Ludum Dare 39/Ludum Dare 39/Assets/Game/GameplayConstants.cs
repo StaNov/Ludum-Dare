@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
@@ -46,6 +46,21 @@ public class StatsDifference : ICloneable
 	public object Clone()
 	{
 		return MemberwiseClone();
+	}
+
+	public int GetStat(StateItemType type)
+	{
+		switch (type)
+		{
+			case StateItemType.MyMaxEnergy:
+				return MyMaxEnergy;
+			case StateItemType.MyEnergy:
+				return MyEnergy;
+			case StateItemType.MyFood:
+				return MyFood;
+			default:
+				throw new Exception("This type is not implemented in StatsDifference: " + type.ToString());
+		}
 	}
 }
 
