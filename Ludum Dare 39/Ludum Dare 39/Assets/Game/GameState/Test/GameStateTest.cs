@@ -6,8 +6,7 @@ using System.Collections;
 // TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
 public class GameStateTest : AbstractTest
 {
-	private const int InitialAge = 40;
-	private const int InitialMoney = 12345;
+	private const PlayerActionType TestActionType = PlayerActionType.Eat;
 
 	private GameState TestGameState;
 	private GameplayConstants TestConstants;
@@ -35,6 +34,15 @@ public class GameStateTest : AbstractTest
 			MyFood = 99
 		};
 		result.ChangePerMinute = new StatsDifference();
+		result.PlayerActions = new PlayerAction[1];
+		result.PlayerActions[0] = new PlayerAction
+		{
+			Type = TestActionType,
+			DurationInSeconds = 1,
+			EffectBefore = new StatsDifference(),
+			EffectDuring = new StatsDifference(),
+			EffectAfter = new StatsDifference()
+		};
 
 		return result;
 	}
@@ -161,23 +169,15 @@ public class GameStateTest : AbstractTest
 		int actionDuration = 2;
 
 		yield return Setup();
+
 		TestConstants.InitialValues.MyFood = initialFood;
-		TestConstants.PlayerActions = new PlayerAction[1];
-		TestConstants.PlayerActions[0] = new PlayerAction
-		{
-			Type = PlayerActionType.Eat,
-			DurationInSeconds = actionDuration,
-			EffectBefore = new StatsDifference(),
-			EffectDuring = new StatsDifference
-			{
-				MyFood = - foodDecreaseByAction
-			},
-			EffectAfter = new StatsDifference()
-		};
+		TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
+		TestConstants.PlayerActions[0].EffectDuring.MyFood = -foodDecreaseByAction;
+
 		yield return CreateTestGameState();
 
 		Assert.AreEqual(initialFood, TestGameState.MyFood);
-		TestGameState.RunAction(PlayerActionType.Eat);
+		TestGameState.RunAction(TestActionType);
 		yield return new WaitForSeconds(3);
 		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
 	}
@@ -189,24 +189,15 @@ public class GameStateTest : AbstractTest
 		int energyDecreaseByAction = 10;
 
 		yield return Setup();
+
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
-		// TODO playeractions initialize in setup
-		TestConstants.PlayerActions = new PlayerAction[1];
-		TestConstants.PlayerActions[0] = new PlayerAction
-		{
-			Type = PlayerActionType.Eat,
-			DurationInSeconds = 10,
-			EffectBefore = new StatsDifference
-			{
-				MyEnergy = -energyDecreaseByAction
-			},
-			EffectDuring = new StatsDifference(),
-			EffectAfter = new StatsDifference()
-		};
+		TestConstants.PlayerActions[0].DurationInSeconds = 10;
+		TestConstants.PlayerActions[0].EffectBefore.MyEnergy = -energyDecreaseByAction;
+
 		yield return CreateTestGameState();
 
 		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
-		TestGameState.RunAction(PlayerActionType.Eat);
+		TestGameState.RunAction(TestActionType);
 		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
 	}
 }
