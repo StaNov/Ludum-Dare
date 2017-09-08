@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public enum StateItemType
 {
+	Age,
 	MyEnergy,
 	MyMaxEnergy,
 	MyFood,
@@ -71,7 +72,8 @@ public class GameState : MonoBehaviour
 		return _items[type].Value;
 	}
 
-    public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } private set { _items[StateItemType.MyEnergy].Value = value; } }
+	public float Age { get { return _items[StateItemType.Age].Value; } private set { _items[StateItemType.Age].Value = value; } }
+	public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } private set { _items[StateItemType.MyEnergy].Value = value; } }
     public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } private set { _items[StateItemType.MyMaxEnergy].Value = value; } }
 	public float MyFood { get { return _items[StateItemType.MyFood].Value; } private set { _items[StateItemType.MyFood].Value = value; } }
 	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } private set { _items[StateItemType.MyHappiness].Value = value; } }
@@ -79,7 +81,6 @@ public class GameState : MonoBehaviour
 	public float FamilyFood { get; private set; }
 	public float FamilyHappiness { get; private set; }
 	public float FamilyHealth { get; private set; }
-	public float Age { get; private set; }
 	public int Money { get; private set; }
 	public int MoneyPerWorkshift { get; private set; }
 	public int MoneyPerPartnersWorkshift { get; private set; }
@@ -131,6 +132,7 @@ public class GameState : MonoBehaviour
 
 		_items = new Dictionary<StateItemType, StateItem>();
 
+		_items.Add(StateItemType.Age, new StateItem(0, 99999, Constants.InitialValues.Age, Constants.ChangePerMinute.Age, (d) => true));
 		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0));
 		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0));
 		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0));
@@ -139,7 +141,6 @@ public class GameState : MonoBehaviour
 		FamilyFood = Constants.InitialValues.FamilyFood;
 		FamilyHappiness = Constants.InitialValues.FamilyHappiness;
 		FamilyHealth = Constants.InitialValues.FamilyHealth;
-		Age = Constants.InitialValues.Age;
 		Money = Constants.InitialValues.Money;
 		MoneyPerWorkshift = Constants.InitialValues.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift = Constants.InitialValues.MoneyPerPartnersWorkshift;
@@ -180,8 +181,6 @@ public class GameState : MonoBehaviour
 		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHealth == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHealth == 0))
 			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
-
-		Age += Constants.ChangePerMinute.Age * DeltaTimeInMinutes;
 	}
 
 	private void ClampStateValues()

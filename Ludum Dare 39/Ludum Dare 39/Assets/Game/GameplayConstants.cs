@@ -53,6 +53,8 @@ public class StatsDifference : ICloneable
 	{
 		switch (type)
 		{
+			case StateItemType.Age:
+				return Age;
 			case StateItemType.MyMaxEnergy:
 				return MyMaxEnergy;
 			case StateItemType.MyEnergy:
