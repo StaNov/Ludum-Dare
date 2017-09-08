@@ -48,6 +48,7 @@ public class StatsDifference : ICloneable
 		return MemberwiseClone();
 	}
 
+	// TODO redesign, load dynamically
 	public int GetStat(StateItemType type)
 	{
 		switch (type)
@@ -58,6 +59,16 @@ public class StatsDifference : ICloneable
 				return MyEnergy;
 			case StateItemType.MyFood:
 				return MyFood;
+			case StateItemType.MyHappiness:
+				return MyHappiness;
+			case StateItemType.MyHealth:
+				return MyHealth;
+			case StateItemType.FamilyFood:
+				return FamilyFood;
+			case StateItemType.FamilyHappiness:
+				return FamilyHappiness;
+			case StateItemType.FamilyHealth:
+				return FamilyHealth;
 			default:
 				throw new Exception("This type is not implemented in StatsDifference: " + type.ToString());
 		}
