@@ -302,12 +302,9 @@ public class GameState : MonoBehaviour
 	
 	private void UpdateStatsOneTime(StatsDifference difference)
 	{
-		/*foreach (var item in _items)
-			item.Value.Value += difference.GetStat(item.Key);*/
+		foreach (var item in _items)
+			item.Value.Value += difference.GetStat(item.Key);
 
-		MyEnergy += difference.MyEnergy;
-		MyMaxEnergy += difference.MyMaxEnergy;
-		MyFood += difference.MyFood;
 		MyHappiness += difference.MyHappiness;
 		MyHealth += difference.MyHealth;
 		Money += difference.Money;
