@@ -75,7 +75,7 @@ public class GameState : MonoBehaviour
     public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } private set { _items[StateItemType.MyMaxEnergy].Value = value; } }
 	public float MyFood { get { return _items[StateItemType.MyFood].Value; } private set { _items[StateItemType.MyFood].Value = value; } }
 	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } private set { _items[StateItemType.MyHappiness].Value = value; } }
-	public float MyHealth { get; private set; }
+	public float MyHealth { get { return _items[StateItemType.MyHealth].Value; } private set { _items[StateItemType.MyHealth].Value = value; } }
 	public float FamilyFood { get; private set; }
 	public float FamilyHappiness { get; private set; }
 	public float FamilyHealth { get; private set; }
@@ -100,8 +100,6 @@ public class GameState : MonoBehaviour
 					return item.Key;
 
 			// TODO delete
-			if (MyHealth <= 0)
-				return StateItemType.MyHealth;
 			if (FamilyFood <= 0)
 				return StateItemType.FamilyFood;
 			if (FamilyHappiness <= 0)
@@ -137,7 +135,7 @@ public class GameState : MonoBehaviour
 		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0));
 		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0));
 		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, Constants.InitialValues.MyHappiness, Constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0));
-		MyHealth = Constants.InitialValues.MyHealth;
+		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, Constants.InitialValues.MyHealth, Constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0));
 		FamilyFood = Constants.InitialValues.FamilyFood;
 		FamilyHappiness = Constants.InitialValues.FamilyHappiness;
 		FamilyHealth = Constants.InitialValues.FamilyHealth;
@@ -168,10 +166,6 @@ public class GameState : MonoBehaviour
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
 				item.Value.Value += item.Value.ChangePerMinute * DeltaTimeInMinutes;
 
-		if ((CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.MyHealth == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.MyHealth == 0))
-			MyHealth += Constants.ChangePerMinute.MyHealth * DeltaTimeInMinutes;
-
 		if (IsFamilyActive
 		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyFood == 0)
 		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyFood == 0))
@@ -192,7 +186,6 @@ public class GameState : MonoBehaviour
 
 	private void ClampStateValues()
 	{
-		MyHealth = Mathf.Clamp(MyHealth, 0, 100);
 		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
 		FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
 		FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
@@ -217,8 +210,6 @@ public class GameState : MonoBehaviour
 			{
 				item.Value.Value += action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration;
 			}
-
-			MyHealth += action.Action.EffectDuring.MyHealth * deltaTimeByDuration;
 
 			if (IsFamilyActive)
 			{
@@ -297,7 +288,6 @@ public class GameState : MonoBehaviour
 		foreach (var item in _items)
 			item.Value.Value += difference.GetStat(item.Key);
 		
-		MyHealth += difference.MyHealth;
 		Money += difference.Money;
 		FoodSupplies += difference.FoodSupplies;
 		MoneyPerWorkshift += difference.MoneyPerWorkshift;
