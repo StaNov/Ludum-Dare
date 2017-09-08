@@ -26,25 +26,30 @@ public class StateItem
 	private float _minValue;
 	private Func<float> _maxValue;
 	private Func<StatsDifference, bool> _differenceHasZeroEffect;
+	private Func<bool> _shouldBeUpdated;
 	private float _changePerMinute;
 
 	// TODO create builder
-	public StateItem(float minValue, Func<float> getMaxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect)
+	public StateItem(float minValue, Func<float> getMaxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
 	{
+		_shouldBeUpdated = () => true; // initial values can be initialized
 		_minValue = minValue;
 		_maxValue = getMaxValue;
 		_changePerMinute = changePerMinute;
 		_differenceHasZeroEffect = differenceHasZeroEffect;
 		Value = initialValue;
+		_shouldBeUpdated = shouldBeUpdated;
 	}
 
-	public StateItem(float minValue, float maxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect)
+	public StateItem(float minValue, float maxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
 	{
+		_shouldBeUpdated = () => true; // initial values can be initialized
 		_minValue = minValue;
 		_maxValue = () => maxValue;
 		_changePerMinute = changePerMinute;
 		_differenceHasZeroEffect = differenceHasZeroEffect;
 		Value = initialValue;
+		_shouldBeUpdated = shouldBeUpdated;
 	}
 
 	public float ChangePerMinute { get { return _changePerMinute; } }
@@ -60,7 +65,20 @@ public class StateItem
 	}
 
 	// TODO redesign so set may be private
-	public float Value { get { return _value; } set { _value = Mathf.Clamp(value, _minValue, _maxValue()); } }
+	public float Value
+	{
+		get
+		{
+			return _value;
+		}
+		set
+		{
+			if (_shouldBeUpdated())
+			{
+				_value = Mathf.Clamp(value, _minValue, _maxValue());
+			}
+		}
+	}
 }
 
 public class GameState : MonoBehaviour
@@ -78,9 +96,9 @@ public class GameState : MonoBehaviour
 	public float MyFood { get { return _items[StateItemType.MyFood].Value; } private set { _items[StateItemType.MyFood].Value = value; } }
 	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } private set { _items[StateItemType.MyHappiness].Value = value; } }
 	public float MyHealth { get { return _items[StateItemType.MyHealth].Value; } private set { _items[StateItemType.MyHealth].Value = value; } }
-	public float FamilyFood { get; private set; }
-	public float FamilyHappiness { get; private set; }
-	public float FamilyHealth { get; private set; }
+	public float FamilyFood { get { return _items[StateItemType.FamilyFood].Value; } private set { _items[StateItemType.FamilyFood].Value = value; } }
+	public float FamilyHappiness { get { return _items[StateItemType.FamilyHappiness].Value; } private set { _items[StateItemType.FamilyHappiness].Value = value; } }
+	public float FamilyHealth { get { return _items[StateItemType.FamilyHealth].Value; } private set { _items[StateItemType.FamilyHealth].Value = value; } }
 	public int Money { get; private set; }
 	public int MoneyPerWorkshift { get; private set; }
 	public int MoneyPerPartnersWorkshift { get; private set; }
@@ -101,12 +119,6 @@ public class GameState : MonoBehaviour
 					return item.Key;
 
 			// TODO delete
-			if (FamilyFood <= 0)
-				return StateItemType.FamilyFood;
-			if (FamilyHappiness <= 0)
-				return StateItemType.FamilyHappiness;
-			if (FamilyHealth <= 0)
-				return StateItemType.FamilyHealth;
 			if (Money < 0)
 				return StateItemType.Money;
 			if (FoodSupplies < 0)
@@ -132,15 +144,15 @@ public class GameState : MonoBehaviour
 
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		_items.Add(StateItemType.Age, new StateItem(0, 99999, Constants.InitialValues.Age, Constants.ChangePerMinute.Age, (d) => true));
-		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0));
-		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0));
-		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, Constants.InitialValues.MyHappiness, Constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0));
-		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, Constants.InitialValues.MyHealth, Constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0));
-		FamilyFood = Constants.InitialValues.FamilyFood;
-		FamilyHappiness = Constants.InitialValues.FamilyHappiness;
-		FamilyHealth = Constants.InitialValues.FamilyHealth;
+		_items.Add(StateItemType.Age, new StateItem(0, 99999, Constants.InitialValues.Age, Constants.ChangePerMinute.Age, (d) => true, () => true));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0, () => true));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0, () => true));
+		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0, () => true));
+		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, Constants.InitialValues.MyHappiness, Constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0, () => true));
+		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, Constants.InitialValues.MyHealth, Constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0, () => true));
+		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, Constants.InitialValues.FamilyFood, Constants.ChangePerMinute.FamilyFood, (d) => d.FamilyFood == 0, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, Constants.InitialValues.FamilyHappiness, Constants.ChangePerMinute.FamilyHappiness, (d) => d.FamilyHappiness == 0, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, Constants.InitialValues.FamilyHealth, Constants.ChangePerMinute.FamilyHealth, (d) => d.FamilyHealth == 0, () => IsFamilyActive));
 		Money = Constants.InitialValues.Money;
 		MoneyPerWorkshift = Constants.InitialValues.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift = Constants.InitialValues.MoneyPerPartnersWorkshift;
@@ -157,7 +169,6 @@ public class GameState : MonoBehaviour
 		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
 
 		UpdateByTime();
-		ClampStateValues();
 	}
 
 	private void UpdateByTime()
@@ -166,28 +177,6 @@ public class GameState : MonoBehaviour
 			if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
 				item.Value.Value += item.Value.ChangePerMinute * DeltaTimeInMinutes;
-
-		if (IsFamilyActive
-		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyFood == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyFood == 0))
-			FamilyFood += Constants.ChangePerMinute.FamilyFood * DeltaTimeInMinutes;
-
-		if (IsFamilyActive
-		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHappiness == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHappiness == 0))
-			FamilyHappiness += Constants.ChangePerMinute.FamilyHappiness * DeltaTimeInMinutes;
-
-		if (IsFamilyActive
-		    && (CurrentPlayerAction == null || CurrentPlayerAction.Action.EffectDuring.FamilyHealth == 0)
-		    && (CurrentPartnerAction == null || CurrentPartnerAction.Action.EffectDuring.FamilyHealth == 0))
-			FamilyHealth += Constants.ChangePerMinute.FamilyHealth * DeltaTimeInMinutes;
-	}
-
-	private void ClampStateValues()
-	{
-		FamilyFood = Mathf.Clamp(FamilyFood, 0, 100);
-		FamilyHappiness = Mathf.Clamp(FamilyHappiness, 0, 100);
-		FamilyHealth = Mathf.Clamp(FamilyHealth, 0, 100);
 	}
 
 	private CurrentAction UpdateByAction(CurrentAction action, float deltaTimeByDuration)
@@ -208,13 +197,6 @@ public class GameState : MonoBehaviour
 			foreach (var item in _items)
 			{
 				item.Value.Value += action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration;
-			}
-
-			if (IsFamilyActive)
-			{
-				FamilyFood += action.Action.EffectDuring.FamilyFood * deltaTimeByDuration;
-				FamilyHappiness += action.Action.EffectDuring.FamilyHappiness * deltaTimeByDuration;
-				FamilyHealth += action.Action.EffectDuring.FamilyHealth * deltaTimeByDuration;
 			}
 		}
 
@@ -291,14 +273,6 @@ public class GameState : MonoBehaviour
 		FoodSupplies += difference.FoodSupplies;
 		MoneyPerWorkshift += difference.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
-
-		// TODO this if condition doesnt need to be here - it gets clamped later anyways
-		if (IsFamilyActive)
-		{
-			FamilyFood += difference.FamilyFood;
-			FamilyHappiness += difference.FamilyHappiness;
-			FamilyHealth += difference.FamilyHealth;
-		}
 	}
 
 	[Serializable]
