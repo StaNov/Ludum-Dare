@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,27 +24,30 @@ public class GameOverScreen : MonoBehaviour
 		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.Age).ToString());
 	}
 
-	private string GetGameOverReason(GameOverReason? reason)
+	private string GetGameOverReason(StateItemType? reason)
 	{
 		switch (reason)
 		{
-			case GameOverReason.Energy:
+			case StateItemType.MyEnergy:
+			case StateItemType.MyMaxEnergy:
 				return "You ran out of energy.";
-			case GameOverReason.Food:
+			case StateItemType.MyFood:
 				return "You ran out of food.";
-			case GameOverReason.Health:
+			case StateItemType.MyHealth:
 				return "You ran out of health.";
-			case GameOverReason.Happiness:
+			case StateItemType.MyHappiness:
 				return "You ran out of happiness.";
-			case GameOverReason.FFood:
+			case StateItemType.FamilyFood:
 				return "Family ran out of food.";
-			case GameOverReason.FHealth:
+			case StateItemType.FamilyHealth:
 				return "Family ran out of health.";
-			case GameOverReason.FHappiness:
+			case StateItemType.FamilyHappiness:
 				return "Family ran out of happiness.";
-			case GameOverReason.Money:
+			case StateItemType.Money:
+				// TODO remove
 				return "You ran out of money.";
-			case GameOverReason.FoodSupplies:
+			case StateItemType.FoodSupplies:
+				// TODO remove
 				return "You ran out of food supplies.";
 			default:
 				throw new ArgumentOutOfRangeException();

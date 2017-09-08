@@ -5,7 +5,18 @@ using UnityEngine.EventSystems;
 
 public enum StateItemType
 {
-	MyEnergy, MyMaxEnergy, MyFood
+	MyEnergy,
+	MyMaxEnergy,
+	MyFood,
+	MyHealth,
+	MyHappiness,
+	FamilyFood,
+	FamilyHealth,
+	FamilyHappiness,
+	Money,
+	FoodSupplies,
+	MySalary,
+	PartnerSalary
 }
 
 public class StateItem
@@ -79,31 +90,30 @@ public class GameState : MonoBehaviour
 	public CurrentAction CurrentPartnerAction { get; private set; }
 
 	public GameplayConstants Constants;
-
-	// TODO type to "StateItemType?"
-	public GameOverReason? GameOver
+	
+	public StateItemType? GameOver
 	{
 		get
 		{
 			foreach (var item in _items)
 				if (item.Value.IsGameOverBecauseOfThis())
-					// TODO item.Key
-					return GameOverReason.Energy;
+					return item.Key;
 
+			// TODO delete
 			if (MyHappiness <= 0)
-				return GameOverReason.Happiness;
+				return StateItemType.MyHappiness;
 			if (MyHealth <= 0)
-				return GameOverReason.Health;
+				return StateItemType.MyHealth;
 			if (FamilyFood <= 0)
-				return GameOverReason.FFood;
+				return StateItemType.FamilyFood;
 			if (FamilyHappiness <= 0)
-				return GameOverReason.FHappiness;
+				return StateItemType.FamilyHappiness;
 			if (FamilyHealth <= 0)
-				return GameOverReason.FHealth;
+				return StateItemType.FamilyHealth;
 			if (Money < 0)
-				return GameOverReason.Money;
+				return StateItemType.Money;
 			if (FoodSupplies < 0)
-				return GameOverReason.FoodSupplies;
+				return StateItemType.FoodSupplies;
 			
 			return null;
 		}
@@ -229,10 +239,16 @@ public class GameState : MonoBehaviour
 		return action;
 	}
 
+	// TODO move to button logic
 	public void RunAction()
 	{
 		string actionName = EventSystem.current.currentSelectedGameObject.name;
 		RunAction(actionName);
+	}
+
+	public void RunAction(PlayerActionType type)
+	{
+		RunAction(type.ToString());
 	}
 
 	public void RunAction(string actionName)
@@ -286,6 +302,9 @@ public class GameState : MonoBehaviour
 	
 	private void UpdateStatsOneTime(StatsDifference difference)
 	{
+		/*foreach (var item in _items)
+			item.Value.Value += difference.GetStat(item.Key);*/
+
 		MyEnergy += difference.MyEnergy;
 		MyMaxEnergy += difference.MyMaxEnergy;
 		MyFood += difference.MyFood;
@@ -311,9 +330,4 @@ public class GameState : MonoBehaviour
 		public PlayerAction Action;
 		public float RemainingTime;
 	}
-}
-
-public enum GameOverReason
-{
-	Energy, Food, Health, Happiness, FFood, FHealth, FHappiness, Money, FoodSupplies 
 }

@@ -88,7 +88,7 @@ public class GameStateTest : AbstractTest
 	}
 
 	[UnityTest]
-	public IEnumerator GameOverAfterSomeTime()
+	public IEnumerator GameOverBecauseOfMyEnergy()
 	{
 		int veryLowEnergy = 1;
 		int veryQuickEnergyDecrease = -5 * 60;
@@ -99,7 +99,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(GameOverReason.Energy, TestGameState.GameOver);
+		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
 	}
 
 	[UnityTest]
@@ -177,8 +177,36 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		Assert.AreEqual(initialFood, TestGameState.MyFood);
-		TestGameState.RunAction(PlayerActionType.Eat.ToString());
+		TestGameState.RunAction(PlayerActionType.Eat);
 		yield return new WaitForSeconds(3);
 		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
+	}
+
+	[UnityTest]
+	public IEnumerator UpdateByActionBeforeChangesStats()
+	{
+		int initialEnergy = 90;
+		int energyDecreaseByAction = 10;
+
+		yield return Setup();
+		TestConstants.InitialValues.MyEnergy = initialEnergy;
+		// TODO playeractions initialize in setup
+		TestConstants.PlayerActions = new PlayerAction[1];
+		TestConstants.PlayerActions[0] = new PlayerAction
+		{
+			Type = PlayerActionType.Eat,
+			DurationInSeconds = 10,
+			EffectBefore = new StatsDifference
+			{
+				MyEnergy = -energyDecreaseByAction
+			},
+			EffectDuring = new StatsDifference(),
+			EffectAfter = new StatsDifference()
+		};
+		yield return CreateTestGameState();
+
+		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
+		TestGameState.RunAction(PlayerActionType.Eat);
+		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
 	}
 }
