@@ -200,4 +200,120 @@ public class GameStateTest : AbstractTest
 		TestGameState.RunAction(TestActionType);
 		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
 	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_ByTime()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10 * 60;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+
+		TestGameState.StartFamily();
+		yield return new WaitForSeconds(2);
+		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.FamilyFood);
+	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_ByActionTime()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10 * 60;
+		int effectDuration = 1;
+		int slowerDecreaseSoGreaterCanBeUsed = familyFoodDecrease / 2;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
+		TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+
+		TestGameState.StartFamily();
+		TestGameState.RunAction(TestActionType);
+		yield return new WaitForSeconds(effectDuration + 1);
+		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.FamilyFood);
+	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_AfterAction()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10;
+		int effectDuration = 1;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
+		TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+
+		TestGameState.StartFamily();
+		TestGameState.RunAction(TestActionType);
+		yield return new WaitForSeconds(effectDuration + 1);
+		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.FamilyFood);
+	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByTime()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10 * 60;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+		
+		yield return new WaitForSeconds(1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByActionTime()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10 * 60;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+
+		TestGameState.RunAction(TestActionType);
+		yield return new WaitForSeconds(1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+	}
+
+	[UnityTest]
+	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_AfterAction()
+	{
+		int initialFamilyFood = 50;
+		int familyFoodDecrease = 10;
+		int effectDuration = 1;
+
+		yield return Setup();
+
+		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
+		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
+		TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
+
+		yield return CreateTestGameState();
+
+		TestGameState.RunAction(TestActionType);
+		yield return new WaitForSeconds(effectDuration + 1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+	}
 }
