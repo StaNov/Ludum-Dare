@@ -26,13 +26,12 @@ public class StateItem
 	private float _minValue;
 	private Func<float> _maxValue;
 	private Func<StatsDifference, bool> _differenceHasZeroEffect;
-	private Func<bool> _shouldBeUpdated;
+	private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 	private float _changePerMinute;
 
 	// TODO create builder
 	public StateItem(float minValue, Func<float> getMaxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
 	{
-		_shouldBeUpdated = () => true; // initial values can be initialized
 		_minValue = minValue;
 		_maxValue = getMaxValue;
 		_changePerMinute = changePerMinute;
@@ -43,7 +42,6 @@ public class StateItem
 
 	public StateItem(float minValue, float maxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
 	{
-		_shouldBeUpdated = () => true; // initial values can be initialized
 		_minValue = minValue;
 		_maxValue = () => maxValue;
 		_changePerMinute = changePerMinute;
