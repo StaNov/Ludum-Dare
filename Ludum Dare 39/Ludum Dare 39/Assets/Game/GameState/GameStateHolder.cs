@@ -208,24 +208,22 @@ public class GameState
 
 	private CurrentAction UpdateByAction(CurrentAction action, float deltaTime)
 	{
-		float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
-
 		if (action != null && action.Action.Type != PlayerActionType.None)
 		{
-			action.RemainingTime -= Time.deltaTime;
+			deltaTime = Mathf.Min(deltaTime, action.RemainingTime); // just the remaining time if smaller then deltaTime
+			action.RemainingTime -= deltaTime;
 
-			// TODO if remaining time is less than Time.deltaTime, apply to only the remaining part
-			// ... but it happens in FixedUpdate, so it doesn't matter that much - Time.deltaTime is still the same 0.02
-			if (action.RemainingTime < 0)
+			foreach (var item in _items)
+			{
+				float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
+				item.Value.ApplyChange(action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration);
+			}
+			
+			if (action.RemainingTime <= 0)
 			{
 				UpdateAfterAction(action.Action);
 				// TODO action may be "set or unset" internally, not "null or non-null" by itself
 				return null;
-			}
-
-			foreach (var item in _items)
-			{
-				item.Value.ApplyChange(action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration);
 			}
 		}
 

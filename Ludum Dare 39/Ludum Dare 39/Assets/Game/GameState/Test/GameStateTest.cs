@@ -8,13 +8,8 @@ public class GameStateTest : AbstractTest
 {
 	private const PlayerActionType TestActionType = PlayerActionType.Eat;
 
-	private GameStateHolder TestGameState;
+	private GameState TestGameState;
 	private GameplayConstants TestConstants;
-	
-	protected override void BeforeClass()
-	{
-		Time.timeScale = 20;
-	}
 
 	private static GameplayConstants CreateTestingGameplayConstants()
 	{
@@ -52,12 +47,9 @@ public class GameStateTest : AbstractTest
 		TestConstants = CreateTestingGameplayConstants();
 	}
 
-	private IEnumerator CreateTestGameState()
+	private void CreateTestGameState()
 	{
-		TestGameState = new GameObject().AddComponent<GameStateHolder>();
-		TestGameState.Constants = TestConstants;
-
-		yield return new WaitForEndOfFrame();
+		TestGameState = new GameState(TestConstants);
 	}
 
 	[UnityTest]
@@ -67,9 +59,9 @@ public class GameStateTest : AbstractTest
 
 		yield return Setup();
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		Assert.AreEqual(initialEnergy, TestGameState.State.MyEnergy);
+		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
 	}
 
 	[UnityTest]
@@ -80,19 +72,19 @@ public class GameStateTest : AbstractTest
 		yield return Setup();
 		TestConstants.InitialValues.Age = initialAge;
 		TestConstants.ChangePerMinute.Age = 11111;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		yield return new WaitForSeconds(1);
-		Assert.Less(initialAge + 1, TestGameState.State.Age);
+		TestGameState.ApplyTime(1);
+		Assert.Less(initialAge + 1, TestGameState.Age);
 	}
 
 	[UnityTest]
 	public IEnumerator NotGameOverAfterInitialization()
 	{
 		yield return Setup();
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		Assert.IsNull(TestGameState.State.GameOver);
+		Assert.IsNull(TestGameState.GameOver);
 	}
 
 	[UnityTest]
@@ -104,10 +96,10 @@ public class GameStateTest : AbstractTest
 		yield return Setup();
 		TestConstants.InitialValues.MyEnergy = veryLowEnergy;
 		TestConstants.ChangePerMinute.MyEnergy = veryQuickEnergyDecrease;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.State.GameOver);
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
 	}
 
 	[UnityTest]
@@ -119,10 +111,10 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.InitialValues.MyEnergy = initialMaxEnergy - 5;
 		TestConstants.ChangePerMinute.MyEnergy = 10 * 60;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialMaxEnergy, TestGameState.State.MyEnergy);
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(initialMaxEnergy, TestGameState.MyEnergy);
 	}
 
 	[UnityTest]
@@ -136,11 +128,10 @@ public class GameStateTest : AbstractTest
 		yield return Setup();
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		Assert.AreEqual(maxMaxEnergy, TestGameState.State.MyMaxEnergy);
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(maxMaxEnergy, TestGameState.State.MyMaxEnergy);
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 
 	[UnityTest]
@@ -154,11 +145,10 @@ public class GameStateTest : AbstractTest
 		yield return Setup();
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		Assert.AreEqual(minMaxEnergy, TestGameState.State.MyMaxEnergy);
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(minMaxEnergy, TestGameState.State.MyMaxEnergy);
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 
 	[UnityTest]
@@ -174,12 +164,11 @@ public class GameStateTest : AbstractTest
 		TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
 		TestConstants.PlayerActions[0].EffectDuring.MyFood = -foodDecreaseByAction;
 
-		yield return CreateTestGameState();
-
-		Assert.AreEqual(initialFood, TestGameState.State.MyFood);
-		TestGameState.State.RunAction(TestActionType);
-		yield return new WaitForSeconds(3);
-		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.State.MyFood, 0.01);
+		CreateTestGameState();
+		
+		TestGameState.RunAction(TestActionType);
+		TestGameState.ApplyTime(3);
+		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
 	}
 
 	[UnityTest]
@@ -194,11 +183,10 @@ public class GameStateTest : AbstractTest
 		TestConstants.PlayerActions[0].DurationInSeconds = 10;
 		TestConstants.PlayerActions[0].EffectBefore.MyEnergy = -energyDecreaseByAction;
 
-		yield return CreateTestGameState();
-
-		Assert.AreEqual(initialEnergy, TestGameState.State.MyEnergy);
-		TestGameState.State.RunAction(TestActionType);
-		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.State.MyEnergy, 0.01);
+		CreateTestGameState();
+		
+		TestGameState.RunAction(TestActionType);
+		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
 	}
 
 	[UnityTest]
@@ -212,11 +200,11 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		TestGameState.State.StartFamily();
-		yield return new WaitForSeconds(2);
-		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.State.FamilyFood);
+		TestGameState.StartFamily();
+		TestGameState.ApplyTime(2);
+		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.FamilyFood);
 	}
 
 	[UnityTest]
@@ -233,12 +221,12 @@ public class GameStateTest : AbstractTest
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
 		TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		TestGameState.State.StartFamily();
-		TestGameState.State.RunAction(TestActionType);
-		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.State.FamilyFood);
+		TestGameState.StartFamily();
+		TestGameState.RunAction(TestActionType);
+		TestGameState.ApplyTime(effectDuration + 1);
+		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.FamilyFood);
 	}
 
 	[UnityTest]
@@ -254,12 +242,12 @@ public class GameStateTest : AbstractTest
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
 		TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		TestGameState.State.StartFamily();
-		TestGameState.State.RunAction(TestActionType);
-		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.State.FamilyFood);
+		TestGameState.StartFamily();
+		TestGameState.RunAction(TestActionType);
+		TestGameState.ApplyTime(effectDuration + 1);
+		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.FamilyFood);
 	}
 
 	[UnityTest]
@@ -273,10 +261,10 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
-		
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
+		CreateTestGameState();
+
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
 	}
 
 	[UnityTest]
@@ -290,11 +278,11 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		TestGameState.State.RunAction(TestActionType);
-		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
+		TestGameState.RunAction(TestActionType);
+		TestGameState.ApplyTime(1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
 	}
 
 	[UnityTest]
@@ -310,10 +298,10 @@ public class GameStateTest : AbstractTest
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
 		TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
 
-		yield return CreateTestGameState();
+		CreateTestGameState();
 
-		TestGameState.State.RunAction(TestActionType);
-		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
+		TestGameState.RunAction(TestActionType);
+		TestGameState.ApplyTime(effectDuration + 1);
+		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
 	}
 }
