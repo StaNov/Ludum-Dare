@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HoveredActionEffect : MonoBehaviour
 {
-	public GameState State;
+	public GameStateHolder State;
 	public GameplayConstants Constants;
 	
 	public StatsDifference Effect

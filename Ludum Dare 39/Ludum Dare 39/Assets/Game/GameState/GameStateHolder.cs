@@ -83,7 +83,7 @@ public class StateItem
 	}
 }
 
-public class GameState : MonoBehaviour
+public class GameStateHolder : MonoBehaviour
 {
 	private Dictionary<StateItemType, StateItem> _items;
 

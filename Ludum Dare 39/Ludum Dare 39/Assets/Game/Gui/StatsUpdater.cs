@@ -9,7 +9,7 @@ public class StatsUpdater : MonoBehaviour
 	public Text FoodSupplies;
 	public Text Age;
 	
-	public GameState State;
+	public GameStateHolder State;
 	public HoveredActionEffect Effect;
 	
 	void Update ()

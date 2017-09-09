@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Analytics : MonoBehaviour
 {
-	public GameState State;
+	public GameStateHolder State;
 	private bool _eventSent;
 	private const string PlayTimeTotalKey = "PlayTimeTotalGameOfLife";
 	private const string PlayerIdKey = "PlayerIdGameOfLife";

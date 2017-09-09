@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CurrentActionUpdater : MonoBehaviour
 {
-	public GameState State;
+	public GameStateHolder State;
 	public Text ActionText;
 	public bool IsPartner;
 	public BarIndicator Indicator;
@@ -15,7 +15,7 @@ public class CurrentActionUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		GameState.CurrentAction action = IsPartner ? State.CurrentPartnerAction : State.CurrentPlayerAction;
+		GameStateHolder.CurrentAction action = IsPartner ? State.CurrentPartnerAction : State.CurrentPlayerAction;
 
 		if (IsPartner && State.CurrentPlayerAction != null &&
 		    (State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld

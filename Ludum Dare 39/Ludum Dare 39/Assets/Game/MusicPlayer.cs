@@ -6,7 +6,7 @@ public class MusicPlayer : MonoBehaviour
 	public AudioClip MainTune;
 	public AudioClip StressTune;
 	public AudioClip EndTune;
-	public GameState State;
+	public GameStateHolder State;
 
 	void Start()
 	{

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FamilyStarter : MonoBehaviour
 {
 	public GameObject[] FamilyObjects;
-	public GameState State;
+	public GameStateHolder State;
 
 	private void Start()
 	{

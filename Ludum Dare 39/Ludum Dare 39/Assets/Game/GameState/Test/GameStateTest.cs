@@ -8,7 +8,7 @@ public class GameStateTest : AbstractTest
 {
 	private const PlayerActionType TestActionType = PlayerActionType.Eat;
 
-	private GameState TestGameState;
+	private GameStateHolder TestGameState;
 	private GameplayConstants TestConstants;
 	
 	protected override void BeforeClass()
@@ -54,7 +54,7 @@ public class GameStateTest : AbstractTest
 
 	private IEnumerator CreateTestGameState()
 	{
-		TestGameState = new GameObject().AddComponent<GameState>();
+		TestGameState = new GameObject().AddComponent<GameStateHolder>();
 		TestGameState.Constants = TestConstants;
 
 		yield return new WaitForEndOfFrame();

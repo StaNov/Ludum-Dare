@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
 {
-	public GameState State;
+	public GameStateHolder State;
 	public GameObject Panel;
 	public Text ResultYears;
 	public Text Reason;

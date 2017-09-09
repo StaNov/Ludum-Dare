@@ -2,7 +2,7 @@
 
 public class LeaderboardSaver : MonoBehaviour
 {
-	public GameState State;
+	public GameStateHolder State;
 
 	private bool _recordSaved;
 	

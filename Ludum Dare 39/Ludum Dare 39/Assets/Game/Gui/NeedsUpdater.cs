@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class NeedsUpdater : MonoBehaviour
 	public StateIndicator FamilyHappiness;
 	public StateIndicator FamilyHealth;
 
-	public GameState State;
+	public GameStateHolder State;
 	public HoveredActionEffect Effect;
 
 	private void Update ()
