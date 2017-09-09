@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.TestTools;
 using NUnit.Framework;
-using System.Collections;
 
 // TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
-public class GameStateTest : AbstractTest
+public class GameStateTest
 {
 	private const PlayerActionType TestActionType = PlayerActionType.Eat;
 
@@ -42,7 +40,7 @@ public class GameStateTest : AbstractTest
 		return result;
 	}
 
-	protected override void SetupSpecific()
+	private void CreateTestConstants()
 	{
 		TestConstants = CreateTestingGameplayConstants();
 	}
@@ -52,24 +50,24 @@ public class GameStateTest : AbstractTest
 		TestGameState = new GameState(TestConstants);
 	}
 
-	[UnityTest]
-	public IEnumerator EnergyIsInitializedAfterSceneLoad()
+	[Test]
+	public void EnergyIsInitializedAfterSceneLoad()
 	{
 		int initialEnergy = 99;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
 		CreateTestGameState();
 
 		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
 	}
 
-	[UnityTest]
-	public IEnumerator AgeIsGreaterAfterSomeTime()
+	[Test]
+	public void AgeIsGreaterAfterSomeTime()
 	{
 		int initialAge = 10;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.Age = initialAge;
 		TestConstants.ChangePerMinute.Age = 11111;
 		CreateTestGameState();
@@ -78,22 +76,22 @@ public class GameStateTest : AbstractTest
 		Assert.Less(initialAge + 1, TestGameState.Age);
 	}
 
-	[UnityTest]
-	public IEnumerator NotGameOverAfterInitialization()
+	[Test]
+	public void NotGameOverAfterInitialization()
 	{
-		yield return Setup();
+		CreateTestConstants();
 		CreateTestGameState();
 
 		Assert.IsNull(TestGameState.GameOver);
 	}
 
-	[UnityTest]
-	public IEnumerator GameOverBecauseOfMyEnergy()
+	[Test]
+	public void GameOverBecauseOfMyEnergy()
 	{
 		int veryLowEnergy = 1;
 		int veryQuickEnergyDecrease = -5 * 60;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.MyEnergy = veryLowEnergy;
 		TestConstants.ChangePerMinute.MyEnergy = veryQuickEnergyDecrease;
 		CreateTestGameState();
@@ -102,12 +100,12 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
 	}
 
-	[UnityTest]
-	public IEnumerator EnergyTopClampedProperly()
+	[Test]
+	public void EnergyTopClampedProperly()
 	{
 		int initialMaxEnergy = 80;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.InitialValues.MyEnergy = initialMaxEnergy - 5;
 		TestConstants.ChangePerMinute.MyEnergy = 10 * 60;
@@ -117,15 +115,15 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialMaxEnergy, TestGameState.MyEnergy);
 	}
 
-	[UnityTest]
-	public IEnumerator MaxEnergyTopClampedProperly()
+	[Test]
+	public void MaxEnergyTopClampedProperly()
 	{
 		int initialMaxEnergy = 123;
 
 		// TODO no it is not clean this way, max maxenergy is not setable dynamically, but 100 hardcoded in GameState
 		float maxMaxEnergy = 100;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
 		CreateTestGameState();
@@ -134,15 +132,15 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 
-	[UnityTest]
-	public IEnumerator MaxEnergyBottomClampedProperly()
+	[Test]
+	public void MaxEnergyBottomClampedProperly()
 	{
 		int initialMaxEnergy = -999;
 
 		// TODO no it is not clean this way, min maxenergy is not setable dynamically, but 0 hardcoded in GameState
 		float minMaxEnergy = 0;
 
-		yield return Setup();
+		CreateTestConstants();
 		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
 		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
 		CreateTestGameState();
@@ -151,14 +149,14 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
 	}
 
-	[UnityTest]
-	public IEnumerator UpdateByActionDuringLowersStat()
+	[Test]
+	public void UpdateByActionDuringLowersStat()
 	{
 		int initialFood = 90;
 		int foodDecreaseByAction = 10;
 		int actionDuration = 2;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.MyFood = initialFood;
 		TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
@@ -171,13 +169,13 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
 	}
 
-	[UnityTest]
-	public IEnumerator UpdateByActionBeforeChangesStats()
+	[Test]
+	public void UpdateByActionBeforeChangesStats()
 	{
 		int initialEnergy = 90;
 		int energyDecreaseByAction = 10;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
 		TestConstants.PlayerActions[0].DurationInSeconds = 10;
@@ -189,13 +187,13 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_ByTime()
+	[Test]
+	public void FamilyFoodGetUpdatedWhenFamilyIsActive_ByTime()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10 * 60;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
@@ -207,15 +205,15 @@ public class GameStateTest : AbstractTest
 		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.FamilyFood);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_ByActionTime()
+	[Test]
+	public void FamilyFoodGetUpdatedWhenFamilyIsActive_ByActionTime()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10 * 60;
 		int effectDuration = 1;
 		int slowerDecreaseSoGreaterCanBeUsed = familyFoodDecrease / 2;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
@@ -229,14 +227,14 @@ public class GameStateTest : AbstractTest
 		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.FamilyFood);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodGetUpdatedWhenFamilyIsActive_AfterAction()
+	[Test]
+	public void FamilyFoodGetUpdatedWhenFamilyIsActive_AfterAction()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10;
 		int effectDuration = 1;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
@@ -250,13 +248,13 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.FamilyFood);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByTime()
+	[Test]
+	public void FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByTime()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10 * 60;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
@@ -267,13 +265,13 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByActionTime()
+	[Test]
+	public void FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_ByActionTime()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10 * 60;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
@@ -285,14 +283,14 @@ public class GameStateTest : AbstractTest
 		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
 	}
 
-	[UnityTest]
-	public IEnumerator FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_AfterAction()
+	[Test]
+	public void FamilyFoodNotGetUpdatedWhenFamilyIsNotActive_AfterAction()
 	{
 		int initialFamilyFood = 50;
 		int familyFoodDecrease = 10;
 		int effectDuration = 1;
 
-		yield return Setup();
+		CreateTestConstants();
 
 		TestConstants.InitialValues.FamilyFood = initialFamilyFood;
 		TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
