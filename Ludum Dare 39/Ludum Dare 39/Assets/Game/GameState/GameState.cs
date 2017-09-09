@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -16,15 +15,15 @@ public class GameState
 		_constants = constants;
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		_items.Add(StateItemType.Age, new StateItem(0, 99999, constants.InitialValues.Age, constants.ChangePerMinute.Age, (d) => true, () => true));
-		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, constants.InitialValues.MyMaxEnergy, constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0, () => true));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, constants.InitialValues.MyEnergy, constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0, () => true));
-		_items.Add(StateItemType.MyFood, new StateItem(0, 100, constants.InitialValues.MyFood, constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0, () => true));
-		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, constants.InitialValues.MyHappiness, constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0, () => true));
-		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, constants.InitialValues.MyHealth, constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0, () => true));
-		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, constants.InitialValues.FamilyFood, constants.ChangePerMinute.FamilyFood, (d) => d.FamilyFood == 0, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, constants.InitialValues.FamilyHappiness, constants.ChangePerMinute.FamilyHappiness, (d) => d.FamilyHappiness == 0, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, constants.InitialValues.FamilyHealth, constants.ChangePerMinute.FamilyHealth, (d) => d.FamilyHealth == 0, () => IsFamilyActive));
+		_items.Add(StateItemType.Age, new StateItem(0, 99999, constants, (d) => d.Age, () => true));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, constants, (d) => d.MyEnergy, () => true));
+		_items.Add(StateItemType.MyFood, new StateItem(0, 100, constants, (d) => d.MyFood, () => true));
+		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, constants, (d) => d.MyHappiness, () => true));
+		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, constants, (d) => d.MyHealth, () => true));
+		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
 		Money = constants.InitialValues.Money;
 		MoneyPerWorkshift = constants.InitialValues.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift = constants.InitialValues.MoneyPerPartnersWorkshift;
@@ -91,12 +90,10 @@ public class GameState
 
 	private void UpdateByTime(float deltaTime)
 	{
-		float deltaTimeInMinutes = deltaTime / 60;
-
 		foreach (var item in _items)
 			if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
-				item.Value.ApplyChange(item.Value.ChangePerMinute * deltaTimeInMinutes);
+				item.Value.ApplyDifferenceByTime(deltaTime);
 	}
 
 	private CurrentAction UpdateByAction(CurrentAction action, float deltaTime)
@@ -109,7 +106,7 @@ public class GameState
 			foreach (var item in _items)
 			{
 				float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
-				item.Value.ApplyChange(action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration);
+				item.Value.ApplyDifference(action.Action.EffectDuring, deltaTimeByDuration);
 			}
 
 			if (action.RemainingTime <= 0)
@@ -180,7 +177,7 @@ public class GameState
 	private void UpdateStatsOneTime(StatsDifference difference)
 	{
 		foreach (var item in _items)
-			item.Value.ApplyChange(difference.GetStat(item.Key));
+			item.Value.ApplyDifference(difference);
 
 		Money += difference.Money;
 		FoodSupplies += difference.FoodSupplies;

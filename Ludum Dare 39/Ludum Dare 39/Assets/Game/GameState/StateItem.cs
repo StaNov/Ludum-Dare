@@ -25,36 +25,45 @@ public class StateItem
 	private float _value;
 	private float _minValue;
 	private Func<float> _maxValue;
-	private Func<StatsDifference, bool> _differenceHasZeroEffect;
+	private Func<StatsDifference, float> _getDifferenceValue;
 	private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 	private float _changePerMinute;
 
 	// TODO create builder
-	public StateItem(float minValue, Func<float> getMaxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
+	// TODO redesign the arguments needed in constructor
+	// TODO pass gamestate to differenceHasZeroEffect or shouldBeUpdated?
+	public StateItem(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
 	{
 		_minValue = minValue;
 		_maxValue = getMaxValue;
-		_changePerMinute = changePerMinute;
-		_differenceHasZeroEffect = differenceHasZeroEffect;
-		Value = initialValue;
+		_getDifferenceValue = getDifferenceValue;
+		_changePerMinute = _getDifferenceValue(constants.ChangePerMinute);
+		Value = _getDifferenceValue(constants.InitialValues);
 		_shouldBeUpdated = shouldBeUpdated;
 	}
 
-	public StateItem(float minValue, float maxValue, float initialValue, float changePerMinute, Func<StatsDifference, bool> differenceHasZeroEffect, Func<bool> shouldBeUpdated)
+	public StateItem(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
 	{
 		_minValue = minValue;
 		_maxValue = () => maxValue;
-		_changePerMinute = changePerMinute;
-		_differenceHasZeroEffect = differenceHasZeroEffect;
-		Value = initialValue;
+		_getDifferenceValue = getDifferenceValue;
+		_changePerMinute = _getDifferenceValue(constants.ChangePerMinute);
+		Value = _getDifferenceValue(constants.InitialValues);
 		_shouldBeUpdated = shouldBeUpdated;
 	}
 
 	public float ChangePerMinute { get { return _changePerMinute; } }
 
-	public void ApplyChange(float changeValue)
+	public void ApplyDifferenceByTime(float deltaTime)
 	{
-		Value += changeValue;
+		float deltaTimeInMinutes = deltaTime / 60;
+
+		Value += _changePerMinute * deltaTimeInMinutes;
+	}
+
+	public void ApplyDifference(StatsDifference difference, float multiplier = 1)
+	{
+		Value += _getDifferenceValue(difference) * multiplier;
 	}
 
 	public bool IsGameOverBecauseOfThis()
@@ -64,7 +73,7 @@ public class StateItem
 
 	public bool DifferenceHasZeroEffect(StatsDifference difference)
 	{
-		return _differenceHasZeroEffect(difference);
+		return _getDifferenceValue(difference) == 0;
 	}
 
 	public float Value
