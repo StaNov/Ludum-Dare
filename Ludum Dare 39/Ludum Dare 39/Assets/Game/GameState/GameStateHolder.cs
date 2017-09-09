@@ -85,6 +85,16 @@ public class StateItem
 
 public class GameStateHolder : MonoBehaviour
 {
+	private void Start()
+	{
+		Initialize();
+	}
+
+	private void FixedUpdate()
+	{
+		ApplyTime(Time.deltaTime);
+	}
+
 	private Dictionary<StateItemType, StateItem> _items;
 
 	public float GetStateItemValue(StateItemType type)
@@ -139,7 +149,8 @@ public class GameStateHolder : MonoBehaviour
 		IsFamilyActive = true;
 	}
 
-	private void Start ()
+	// TODO to constructor
+	private void Initialize()
 	{
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
@@ -159,14 +170,14 @@ public class GameStateHolder : MonoBehaviour
 		MoneyPerWorkshift = Constants.InitialValues.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift = Constants.InitialValues.MoneyPerPartnersWorkshift;
 	}
-	
-	private void FixedUpdate ()
+
+	public void ApplyTime(float deltaTime)
 	{
 		if (GameOver != null)
 		{
 			return;
 		}
-		
+
 		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, DeltaTimeByDurationPlayer);
 		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
 
