@@ -128,9 +128,9 @@ public class GameState : MonoBehaviour
 		}
 	}
 	
-	private static float DeltaTimeInMinutes { get { return Time.deltaTime * (1.0f / 60.0f); }}
-	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPlayerAction.Action.DurationInSeconds); }}
-	private float DeltaTimeByDurationPartner { get { return CurrentPartnerAction == null ? 0 : Time.deltaTime * (1.0f / CurrentPartnerAction.Action.DurationInSeconds); }}
+	private static float DeltaTimeInMinutes { get { return Time.deltaTime / 60; }}
+	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime / CurrentPlayerAction.Action.DurationInSeconds; }}
+	private float DeltaTimeByDurationPartner { get { return CurrentPartnerAction == null ? 0 : Time.deltaTime / CurrentPartnerAction.Action.DurationInSeconds; }}
 
 	public void StartFamily()
 	{
