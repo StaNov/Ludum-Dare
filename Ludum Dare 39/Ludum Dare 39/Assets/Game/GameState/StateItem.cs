@@ -29,6 +29,10 @@ public class StateItem
 	private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 	private float _changePerMinute;
 
+	public StateItem(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
+		this(minValue, () => maxValue, constants, getDifferenceValue, shouldBeUpdated)
+	{ }
+
 	// TODO create builder
 	// TODO redesign the arguments needed in constructor
 	// TODO pass gamestate to differenceHasZeroEffect or shouldBeUpdated?
@@ -36,16 +40,6 @@ public class StateItem
 	{
 		_minValue = minValue;
 		_maxValue = getMaxValue;
-		_getDifferenceValue = getDifferenceValue;
-		_changePerMinute = _getDifferenceValue(constants.ChangePerMinute);
-		Value = _getDifferenceValue(constants.InitialValues);
-		_shouldBeUpdated = shouldBeUpdated;
-	}
-
-	public StateItem(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
-	{
-		_minValue = minValue;
-		_maxValue = () => maxValue;
 		_getDifferenceValue = getDifferenceValue;
 		_changePerMinute = _getDifferenceValue(constants.ChangePerMinute);
 		Value = _getDifferenceValue(constants.InitialValues);
