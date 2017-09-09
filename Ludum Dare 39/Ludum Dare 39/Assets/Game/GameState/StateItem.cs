@@ -46,8 +46,6 @@ public class StateItem
 		_shouldBeUpdated = shouldBeUpdated;
 	}
 
-	public float ChangePerMinute { get { return _changePerMinute; } }
-
 	public void ApplyDifferenceByTime(float deltaTime)
 	{
 		float deltaTimeInMinutes = deltaTime / 60;
