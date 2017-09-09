@@ -52,6 +52,11 @@ public class StateItem
 
 	public float ChangePerMinute { get { return _changePerMinute; } }
 
+	public void ApplyChange(float changeValue)
+	{
+		Value += changeValue;
+	}
+
 	public bool IsGameOverBecauseOfThis()
 	{
 		return _value <= 0;
@@ -61,15 +66,14 @@ public class StateItem
 	{
 		return _differenceHasZeroEffect(difference);
 	}
-
-	// TODO redesign so set may be private
+	
 	public float Value
 	{
 		get
 		{
 			return _value;
 		}
-		set
+		private set
 		{
 			if (_shouldBeUpdated())
 			{
@@ -88,15 +92,15 @@ public class GameState : MonoBehaviour
 		return _items[type].Value;
 	}
 
-	public float Age { get { return _items[StateItemType.Age].Value; } private set { _items[StateItemType.Age].Value = value; } }
-	public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } private set { _items[StateItemType.MyEnergy].Value = value; } }
-    public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } private set { _items[StateItemType.MyMaxEnergy].Value = value; } }
-	public float MyFood { get { return _items[StateItemType.MyFood].Value; } private set { _items[StateItemType.MyFood].Value = value; } }
-	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } private set { _items[StateItemType.MyHappiness].Value = value; } }
-	public float MyHealth { get { return _items[StateItemType.MyHealth].Value; } private set { _items[StateItemType.MyHealth].Value = value; } }
-	public float FamilyFood { get { return _items[StateItemType.FamilyFood].Value; } private set { _items[StateItemType.FamilyFood].Value = value; } }
-	public float FamilyHappiness { get { return _items[StateItemType.FamilyHappiness].Value; } private set { _items[StateItemType.FamilyHappiness].Value = value; } }
-	public float FamilyHealth { get { return _items[StateItemType.FamilyHealth].Value; } private set { _items[StateItemType.FamilyHealth].Value = value; } }
+	public float Age { get { return _items[StateItemType.Age].Value; } }
+	public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } }
+    public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } }
+	public float MyFood { get { return _items[StateItemType.MyFood].Value; } }
+	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } }
+	public float MyHealth { get { return _items[StateItemType.MyHealth].Value; } }
+	public float FamilyFood { get { return _items[StateItemType.FamilyFood].Value; } }
+	public float FamilyHappiness { get { return _items[StateItemType.FamilyHappiness].Value; } }
+	public float FamilyHealth { get { return _items[StateItemType.FamilyHealth].Value; } }
 	public int Money { get; private set; }
 	public int MoneyPerWorkshift { get; private set; }
 	public int MoneyPerPartnersWorkshift { get; private set; }
@@ -174,7 +178,7 @@ public class GameState : MonoBehaviour
 		foreach (var item in _items)
 			if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
-				item.Value.Value += item.Value.ChangePerMinute * DeltaTimeInMinutes;
+				item.Value.ApplyChange(item.Value.ChangePerMinute * DeltaTimeInMinutes);
 	}
 
 	private CurrentAction UpdateByAction(CurrentAction action, float deltaTimeByDuration)
@@ -194,7 +198,7 @@ public class GameState : MonoBehaviour
 
 			foreach (var item in _items)
 			{
-				item.Value.Value += action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration;
+				item.Value.ApplyChange(action.Action.EffectDuring.GetStat(item.Key) * deltaTimeByDuration);
 			}
 		}
 
@@ -265,7 +269,7 @@ public class GameState : MonoBehaviour
 	private void UpdateStatsOneTime(StatsDifference difference)
 	{
 		foreach (var item in _items)
-			item.Value.Value += difference.GetStat(item.Key);
+			item.Value.ApplyChange(difference.GetStat(item.Key));
 		
 		Money += difference.Money;
 		FoodSupplies += difference.FoodSupplies;
