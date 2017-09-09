@@ -7,12 +7,12 @@ public class LeaderboardSaver : MonoBehaviour
 	private bool _recordSaved;
 	
 	void Update () {
-		if (!_recordSaved && State.GameOver != null)
+		if (!_recordSaved && State.State.GameOver != null)
 		{
 			StartCoroutine(ReusableLeaderboardManager.SaveNewRecord(
 				"http://games.stanov.cz/ludum-dare-39/callLeaderboardSave.php",
 				PlayerNameManager.PlayerName,
-				Mathf.FloorToInt(State.Age)));
+				Mathf.FloorToInt(State.State.Age)));
 			
 			_recordSaved = true;
 		}

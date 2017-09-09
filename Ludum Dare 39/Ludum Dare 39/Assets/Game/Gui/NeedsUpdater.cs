@@ -22,14 +22,14 @@ public class NeedsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		MyMaxEnergy.UpdateValue(State.MyMaxEnergy, Mathf.CeilToInt(State.MyMaxEnergy), effect.MyMaxEnergy);
-		MyEnergy.UpdateValue(State.MyEnergy, Mathf.CeilToInt(State.MyEnergy), effect.MyEnergy, State.MyMaxEnergy);
-		MyFood.UpdateValue(State.MyFood, Mathf.CeilToInt(State.MyFood), effect.MyFood);
-		MyHappiness.UpdateValue(State.MyHappiness, Mathf.CeilToInt(State.MyHappiness), effect.MyHappiness);
-		MyHealth.UpdateValue(State.MyHealth, Mathf.CeilToInt(State.MyHealth), effect.MyHealth);
-		FamilyFood.UpdateValue(State.FamilyFood, Mathf.CeilToInt(State.FamilyFood), effect.FamilyFood);
-		FamilyHappiness.UpdateValue(State.FamilyHappiness, Mathf.CeilToInt(State.FamilyHappiness), effect.FamilyHappiness);
-		FamilyHealth.UpdateValue(State.FamilyHealth, Mathf.CeilToInt(State.FamilyHealth), effect.FamilyHealth);
+		MyMaxEnergy.UpdateValue(State.State.MyMaxEnergy, Mathf.CeilToInt(State.State.MyMaxEnergy), effect.MyMaxEnergy);
+		MyEnergy.UpdateValue(State.State.MyEnergy, Mathf.CeilToInt(State.State.MyEnergy), effect.MyEnergy, State.State.MyMaxEnergy);
+		MyFood.UpdateValue(State.State.MyFood, Mathf.CeilToInt(State.State.MyFood), effect.MyFood);
+		MyHappiness.UpdateValue(State.State.MyHappiness, Mathf.CeilToInt(State.State.MyHappiness), effect.MyHappiness);
+		MyHealth.UpdateValue(State.State.MyHealth, Mathf.CeilToInt(State.State.MyHealth), effect.MyHealth);
+		FamilyFood.UpdateValue(State.State.FamilyFood, Mathf.CeilToInt(State.State.FamilyFood), effect.FamilyFood);
+		FamilyHappiness.UpdateValue(State.State.FamilyHappiness, Mathf.CeilToInt(State.State.FamilyHappiness), effect.FamilyHappiness);
+		FamilyHealth.UpdateValue(State.State.FamilyHealth, Mathf.CeilToInt(State.State.FamilyHealth), effect.FamilyHealth);
 	}
 }
 

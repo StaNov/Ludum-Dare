@@ -15,13 +15,13 @@ public class CurrentActionUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		GameStateHolder.CurrentAction action = IsPartner ? State.CurrentPartnerAction : State.CurrentPlayerAction;
+		GameState.CurrentAction action = IsPartner ? State.State.CurrentPartnerAction : State.State.CurrentPlayerAction;
 
-		if (IsPartner && State.CurrentPlayerAction != null &&
-		    (State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld
-		     || State.CurrentPlayerAction.Action.Type == PlayerActionType.SpendTimeWithFamily))
+		if (IsPartner && State.State.CurrentPlayerAction != null &&
+		    (State.State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld
+		     || State.State.CurrentPlayerAction.Action.Type == PlayerActionType.SpendTimeWithFamily))
 		{
-			action = State.CurrentPlayerAction;
+			action = State.State.CurrentPlayerAction;
 		}
 		
 		ActionText.text = action == null ? "" : action.Action.Type.Localized();

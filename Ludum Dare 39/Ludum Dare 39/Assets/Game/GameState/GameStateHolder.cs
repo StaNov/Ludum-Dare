@@ -85,17 +85,35 @@ public class StateItem
 
 public class GameStateHolder : MonoBehaviour
 {
+	private GameState _state;
+
+	public GameplayConstants Constants;
+
+	// TODO return only the values we need to expose
+	public GameState State { get { return _state; } }
+
+	// TODO move to button logic
+	public void RunAction()
+	{
+		string actionName = EventSystem.current.currentSelectedGameObject.name;
+		_state.RunAction(actionName);
+	}
+
 	private void Start()
 	{
-		Initialize();
+		_state = new GameState(Constants);
 	}
 
 	private void FixedUpdate()
 	{
-		ApplyTime(Time.deltaTime);
+		_state.ApplyTime(Time.deltaTime);
 	}
+}
 
+public class GameState
+{ 
 	private Dictionary<StateItemType, StateItem> _items;
+	private GameplayConstants _constants;
 
 	public float GetStateItemValue(StateItemType type)
 	{
@@ -119,8 +137,6 @@ public class GameStateHolder : MonoBehaviour
 
 	public CurrentAction CurrentPlayerAction { get; private set; }
 	public CurrentAction CurrentPartnerAction { get; private set; }
-
-	public GameplayConstants Constants;
 	
 	public StateItemType? GameOver
 	{
@@ -139,36 +155,32 @@ public class GameStateHolder : MonoBehaviour
 			return null;
 		}
 	}
-	
-	private static float DeltaTimeInMinutes { get { return Time.deltaTime / 60; }}
-	private float DeltaTimeByDurationPlayer { get { return CurrentPlayerAction == null ? 0 : Time.deltaTime / CurrentPlayerAction.Action.DurationInSeconds; }}
-	private float DeltaTimeByDurationPartner { get { return CurrentPartnerAction == null ? 0 : Time.deltaTime / CurrentPartnerAction.Action.DurationInSeconds; }}
 
 	public void StartFamily()
 	{
 		IsFamilyActive = true;
 	}
-
-	// TODO to constructor
-	private void Initialize()
+	
+	public GameState(GameplayConstants constants)
 	{
 		CurrentPlayerAction = null;
 		CurrentPartnerAction = null;
 
+		_constants = constants;
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		_items.Add(StateItemType.Age, new StateItem(0, 99999, Constants.InitialValues.Age, Constants.ChangePerMinute.Age, (d) => true, () => true));
-		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, Constants.InitialValues.MyMaxEnergy, Constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0, () => true));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, Constants.InitialValues.MyEnergy, Constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0, () => true));
-		_items.Add(StateItemType.MyFood, new StateItem(0, 100, Constants.InitialValues.MyFood, Constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0, () => true));
-		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, Constants.InitialValues.MyHappiness, Constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0, () => true));
-		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, Constants.InitialValues.MyHealth, Constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0, () => true));
-		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, Constants.InitialValues.FamilyFood, Constants.ChangePerMinute.FamilyFood, (d) => d.FamilyFood == 0, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, Constants.InitialValues.FamilyHappiness, Constants.ChangePerMinute.FamilyHappiness, (d) => d.FamilyHappiness == 0, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, Constants.InitialValues.FamilyHealth, Constants.ChangePerMinute.FamilyHealth, (d) => d.FamilyHealth == 0, () => IsFamilyActive));
-		Money = Constants.InitialValues.Money;
-		MoneyPerWorkshift = Constants.InitialValues.MoneyPerWorkshift;
-		MoneyPerPartnersWorkshift = Constants.InitialValues.MoneyPerPartnersWorkshift;
+		_items.Add(StateItemType.Age, new StateItem(0, 99999, constants.InitialValues.Age, constants.ChangePerMinute.Age, (d) => true, () => true));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, constants.InitialValues.MyMaxEnergy, constants.ChangePerMinute.MyMaxEnergy, (d) => d.MyMaxEnergy == 0, () => true));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, constants.InitialValues.MyEnergy, constants.ChangePerMinute.MyEnergy, (d) => d.MyEnergy == 0, () => true));
+		_items.Add(StateItemType.MyFood, new StateItem(0, 100, constants.InitialValues.MyFood, constants.ChangePerMinute.MyFood, (d) => d.MyFood == 0, () => true));
+		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, constants.InitialValues.MyHappiness, constants.ChangePerMinute.MyHappiness, (d) => d.MyHappiness == 0, () => true));
+		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, constants.InitialValues.MyHealth, constants.ChangePerMinute.MyHealth, (d) => d.MyHealth == 0, () => true));
+		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, constants.InitialValues.FamilyFood, constants.ChangePerMinute.FamilyFood, (d) => d.FamilyFood == 0, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, constants.InitialValues.FamilyHappiness, constants.ChangePerMinute.FamilyHappiness, (d) => d.FamilyHappiness == 0, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, constants.InitialValues.FamilyHealth, constants.ChangePerMinute.FamilyHealth, (d) => d.FamilyHealth == 0, () => IsFamilyActive));
+		Money = constants.InitialValues.Money;
+		MoneyPerWorkshift = constants.InitialValues.MoneyPerWorkshift;
+		MoneyPerPartnersWorkshift = constants.InitialValues.MoneyPerPartnersWorkshift;
 	}
 
 	public void ApplyTime(float deltaTime)
@@ -178,22 +190,26 @@ public class GameStateHolder : MonoBehaviour
 			return;
 		}
 
-		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, DeltaTimeByDurationPlayer);
-		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, DeltaTimeByDurationPartner);
+		CurrentPlayerAction = UpdateByAction(CurrentPlayerAction, deltaTime);
+		CurrentPartnerAction = UpdateByAction(CurrentPartnerAction, deltaTime);
 
-		UpdateByTime();
+		UpdateByTime(deltaTime);
 	}
 
-	private void UpdateByTime()
+	private void UpdateByTime(float deltaTime)
 	{
+		float deltaTimeInMinutes = deltaTime / 60;
+
 		foreach (var item in _items)
 			if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
 				&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
-				item.Value.ApplyChange(item.Value.ChangePerMinute * DeltaTimeInMinutes);
+				item.Value.ApplyChange(item.Value.ChangePerMinute * deltaTimeInMinutes);
 	}
 
-	private CurrentAction UpdateByAction(CurrentAction action, float deltaTimeByDuration)
+	private CurrentAction UpdateByAction(CurrentAction action, float deltaTime)
 	{
+		float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
+
 		if (action != null && action.Action.Type != PlayerActionType.None)
 		{
 			action.RemainingTime -= Time.deltaTime;
@@ -216,13 +232,6 @@ public class GameStateHolder : MonoBehaviour
 		return action;
 	}
 
-	// TODO move to button logic
-	public void RunAction()
-	{
-		string actionName = EventSystem.current.currentSelectedGameObject.name;
-		RunAction(actionName);
-	}
-
 	public void RunAction(PlayerActionType type)
 	{
 		RunAction(type.ToString());
@@ -230,7 +239,7 @@ public class GameStateHolder : MonoBehaviour
 
 	public void RunAction(string actionName)
 	{
-		PlayerAction action = Constants.GetPlayerAction(actionName);
+		PlayerAction action = _constants.GetPlayerAction(actionName);
 		RunAction(action);
 	}
 

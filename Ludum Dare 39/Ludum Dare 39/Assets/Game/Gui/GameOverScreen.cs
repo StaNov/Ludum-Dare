@@ -15,13 +15,13 @@ public class GameOverScreen : MonoBehaviour
 	}
 
 	private void Update () {
-		if (State.GameOver == null)
+		if (State.State.GameOver == null)
 			return;
 
-		Reason.text = GetGameOverReason(State.GameOver);
+		Reason.text = GetGameOverReason(State.State.GameOver);
 		
 		Panel.SetActive(true);
-		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.Age).ToString());
+		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.State.Age).ToString());
 	}
 
 	private string GetGameOverReason(StateItemType? reason)

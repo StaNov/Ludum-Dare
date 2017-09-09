@@ -38,7 +38,7 @@ public class Analytics : MonoBehaviour
 	}
 
 	void Update () {
-		if (!_eventSent && State.GameOver != null)
+		if (!_eventSent && State.State.GameOver != null)
 		{
 			PlayTimeTotal += Mathf.FloorToInt(Time.timeSinceLevelLoad);
 			PlayedGames++;
@@ -47,8 +47,8 @@ public class Analytics : MonoBehaviour
 				"GameOver",
 				new Dictionary<string, object>
 				{
-					{"Score", Mathf.FloorToInt(State.Age)},
-					{"GameOverReason", State.GameOver.ToString()},
+					{"Score", Mathf.FloorToInt(State.State.Age)},
+					{"GameOverReason", State.State.GameOver.ToString()},
 					{"PlayingTimeOneGame", Mathf.FloorToInt(Time.timeSinceLevelLoad)},
 					{"PlayingTimeTotal", PlayTimeTotal},
 					{"Name", PlayerNameManager.PlayerName},

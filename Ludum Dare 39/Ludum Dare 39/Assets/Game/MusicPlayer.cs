@@ -16,7 +16,7 @@ public class MusicPlayer : MonoBehaviour
 
 	void Update()
 	{
-		if (State.GameOver != null)
+		if (State.State.GameOver != null)
 		{
 			Source.clip = EndTune;
 			Source.Play();
@@ -44,24 +44,24 @@ public class MusicPlayer : MonoBehaviour
 
 	private bool IsInDanger()
 	{
-		return State.MyEnergy < DangerLimit
-			|| State.MyFood < DangerLimit
-			|| State.MyHealth < DangerLimit
-			|| State.MyHappiness < DangerLimit
-			|| State.FamilyHappiness < DangerLimit
-			|| State.FamilyHealth < DangerLimit
-			|| State.FamilyFood < DangerLimit;
+		return State.State.MyEnergy < DangerLimit
+			|| State.State.MyFood < DangerLimit
+			|| State.State.MyHealth < DangerLimit
+			|| State.State.MyHappiness < DangerLimit
+			|| State.State.FamilyHappiness < DangerLimit
+			|| State.State.FamilyHealth < DangerLimit
+			|| State.State.FamilyFood < DangerLimit;
 	}
 
 	private bool IsOk()
 	{
-		return State.MyEnergy > OkLimit
-		       && State.MyFood > OkLimit
-		       && State.MyHealth > OkLimit
-		       && State.MyHappiness > OkLimit
-		       && State.FamilyHappiness > OkLimit
-		       && State.FamilyHealth > OkLimit
-		       && State.FamilyFood > OkLimit;
+		return State.State.MyEnergy > OkLimit
+		       && State.State.MyFood > OkLimit
+		       && State.State.MyHealth > OkLimit
+		       && State.State.MyHappiness > OkLimit
+		       && State.State.FamilyHappiness > OkLimit
+		       && State.State.FamilyHealth > OkLimit
+		       && State.State.FamilyFood > OkLimit;
 	}
 
 }

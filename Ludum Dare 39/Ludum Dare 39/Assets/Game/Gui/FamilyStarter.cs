@@ -23,6 +23,6 @@ public class FamilyStarter : MonoBehaviour
 		}
 
 		gameObject.SetActive(false);
-		State.StartFamily();
+		State.State.StartFamily();
 	}
 }

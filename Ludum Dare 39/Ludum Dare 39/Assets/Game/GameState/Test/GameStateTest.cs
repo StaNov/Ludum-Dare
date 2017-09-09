@@ -69,7 +69,7 @@ public class GameStateTest : AbstractTest
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
+		Assert.AreEqual(initialEnergy, TestGameState.State.MyEnergy);
 	}
 
 	[UnityTest]
@@ -83,7 +83,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.Less(initialAge + 1, TestGameState.Age);
+		Assert.Less(initialAge + 1, TestGameState.State.Age);
 	}
 
 	[UnityTest]
@@ -92,7 +92,7 @@ public class GameStateTest : AbstractTest
 		yield return Setup();
 		yield return CreateTestGameState();
 
-		Assert.IsNull(TestGameState.GameOver);
+		Assert.IsNull(TestGameState.State.GameOver);
 	}
 
 	[UnityTest]
@@ -107,7 +107,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
+		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.State.GameOver);
 	}
 
 	[UnityTest]
@@ -122,7 +122,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialMaxEnergy, TestGameState.MyEnergy);
+		Assert.AreEqual(initialMaxEnergy, TestGameState.State.MyEnergy);
 	}
 
 	[UnityTest]
@@ -138,9 +138,9 @@ public class GameStateTest : AbstractTest
 		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.State.MyMaxEnergy);
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.State.MyMaxEnergy);
 	}
 
 	[UnityTest]
@@ -156,9 +156,9 @@ public class GameStateTest : AbstractTest
 		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(minMaxEnergy, TestGameState.State.MyMaxEnergy);
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(minMaxEnergy, TestGameState.State.MyMaxEnergy);
 	}
 
 	[UnityTest]
@@ -176,10 +176,10 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(initialFood, TestGameState.MyFood);
-		TestGameState.RunAction(TestActionType);
+		Assert.AreEqual(initialFood, TestGameState.State.MyFood);
+		TestGameState.State.RunAction(TestActionType);
 		yield return new WaitForSeconds(3);
-		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
+		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.State.MyFood, 0.01);
 	}
 
 	[UnityTest]
@@ -196,9 +196,9 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
-		TestGameState.RunAction(TestActionType);
-		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
+		Assert.AreEqual(initialEnergy, TestGameState.State.MyEnergy);
+		TestGameState.State.RunAction(TestActionType);
+		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.State.MyEnergy, 0.01);
 	}
 
 	[UnityTest]
@@ -214,9 +214,9 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		TestGameState.StartFamily();
+		TestGameState.State.StartFamily();
 		yield return new WaitForSeconds(2);
-		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.FamilyFood);
+		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.State.FamilyFood);
 	}
 
 	[UnityTest]
@@ -235,10 +235,10 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		TestGameState.StartFamily();
-		TestGameState.RunAction(TestActionType);
+		TestGameState.State.StartFamily();
+		TestGameState.State.RunAction(TestActionType);
 		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.FamilyFood);
+		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.State.FamilyFood);
 	}
 
 	[UnityTest]
@@ -256,10 +256,10 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		TestGameState.StartFamily();
-		TestGameState.RunAction(TestActionType);
+		TestGameState.State.StartFamily();
+		TestGameState.State.RunAction(TestActionType);
 		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.State.FamilyFood);
 	}
 
 	[UnityTest]
@@ -276,7 +276,7 @@ public class GameStateTest : AbstractTest
 		yield return CreateTestGameState();
 		
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
 	}
 
 	[UnityTest]
@@ -292,9 +292,9 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		TestGameState.RunAction(TestActionType);
+		TestGameState.State.RunAction(TestActionType);
 		yield return new WaitForSeconds(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
 	}
 
 	[UnityTest]
@@ -312,8 +312,8 @@ public class GameStateTest : AbstractTest
 
 		yield return CreateTestGameState();
 
-		TestGameState.RunAction(TestActionType);
+		TestGameState.State.RunAction(TestActionType);
 		yield return new WaitForSeconds(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.State.FamilyFood);
 	}
 }
