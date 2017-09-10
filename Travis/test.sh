@@ -12,6 +12,7 @@ echo "\n\n===== Running tests in $TEST_PLATFORM =====\n\n"
   -batchmode \
   -nographics \
   -silent-crashes \
+  -logFile \
   -projectPath "$PROJECT_DIR" \
   -testResults "$TEST_RESULTS_PATH"
 
