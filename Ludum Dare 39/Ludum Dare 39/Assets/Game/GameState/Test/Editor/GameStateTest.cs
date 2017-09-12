@@ -11,7 +11,7 @@ public class GameStateTest
 
 	private static GameplayConstants CreateTestingGameplayConstants()
 	{
-		var result = ScriptableObject.CreateInstance<GameplayConstants>();
+		var result = GameplayConstants.EmptyConstants();
 		result.InitialValues = new StatsDifference
 		{
 			Age = 1,
@@ -26,7 +26,6 @@ public class GameStateTest
 			FoodSupplies = 99,
 			MyFood = 99
 		};
-		result.ChangePerMinute = new StatsDifference();
 		result.PlayerActions = new PlayerAction[1];
 		result.PlayerActions[0] = new PlayerAction
 		{
@@ -79,6 +78,7 @@ public class GameStateTest
 	[Test]
 	public void NotGameOverAfterInitialization()
 	{
+		// TODO create specific stateitem maybe? to not duplicate stateitem tests?
 		CreateTestConstants();
 		CreateTestGameState();
 

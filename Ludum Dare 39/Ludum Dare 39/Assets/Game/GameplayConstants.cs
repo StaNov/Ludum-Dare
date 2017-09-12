@@ -24,6 +24,17 @@ public class GameplayConstants : ScriptableObject
 
 		throw new Exception("NO ACTION FOUND!");
 	}
+
+	public static GameplayConstants EmptyConstants()
+	{
+		var result = ScriptableObject.CreateInstance<GameplayConstants>();
+
+		result.InitialValues = new StatsDifference();
+		result.ChangePerMinute = new StatsDifference();
+		result.PlayerActions = new PlayerAction[0];
+
+		return result;
+	}
 }
 
 [Serializable]
