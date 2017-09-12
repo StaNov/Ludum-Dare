@@ -32,7 +32,7 @@ public class GameState
 	// TODO public T GetStateItemValue<T>(StateItemType type)
 	public float GetStateItemValue(StateItemType type)
 	{
-		return _items[type].GetValue();
+		return _items[type].GetValue<float>();
 	}
 	
 	public int Money { get; private set; }

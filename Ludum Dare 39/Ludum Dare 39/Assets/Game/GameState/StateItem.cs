@@ -22,7 +22,7 @@ public enum StateItemType
 
 public interface StateItem
 {
-	float GetValue();
+	T GetValue<T>();
 	bool IsGameOverBecauseOfThis();
 	bool DifferenceHasZeroEffect(StatsDifference difference);
 	void ApplyDifferenceByTime(float deltaTime);
@@ -77,9 +77,14 @@ public class StateItemFloat : StateItem
 		return _getDifferenceValue(difference) == 0;
 	}
 
-	public float GetValue()
+	public T GetValue<T>()
 	{
-		return Value;
+		if (typeof(T) != typeof(float))
+		{
+			throw new Exception("You are trying to get value of type " + typeof(T) + ", but this StateItem is of type " + typeof(float) + "."); // float -> generic
+		}
+
+		return (T) Convert.ChangeType(Value, typeof(T));
 	}
 
 	public float Value
