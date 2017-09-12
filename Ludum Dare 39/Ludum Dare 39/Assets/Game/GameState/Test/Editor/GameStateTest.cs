@@ -1,6 +1,7 @@
 using UnityEngine;
 using NUnit.Framework;
 
+// TODO test only stuff related to state, not to items
 // TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
 public class GameStateTest
 {
@@ -98,55 +99,6 @@ public class GameStateTest
 
 		TestGameState.ApplyTime(1);
 		Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
-	}
-
-	[Test]
-	public void EnergyTopClampedProperly()
-	{
-		int initialMaxEnergy = 80;
-
-		CreateTestConstants();
-		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
-		TestConstants.InitialValues.MyEnergy = initialMaxEnergy - 5;
-		TestConstants.ChangePerMinute.MyEnergy = 10 * 60;
-		CreateTestGameState();
-
-		TestGameState.ApplyTime(1);
-		Assert.AreEqual(initialMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyEnergy));
-	}
-
-	[Test]
-	public void MaxEnergyTopClampedProperly()
-	{
-		int initialMaxEnergy = 123;
-
-		// TODO no it is not clean this way, max maxenergy is not setable dynamically, but 100 hardcoded in GameState
-		float maxMaxEnergy = 100;
-
-		CreateTestConstants();
-		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
-		TestConstants.ChangePerMinute.MyMaxEnergy = 10 * 60;
-		CreateTestGameState();
-
-		TestGameState.ApplyTime(1);
-		Assert.AreEqual(maxMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyMaxEnergy));
-	}
-
-	[Test]
-	public void MaxEnergyBottomClampedProperly()
-	{
-		int initialMaxEnergy = -999;
-
-		// TODO no it is not clean this way, min maxenergy is not setable dynamically, but 0 hardcoded in GameState
-		float minMaxEnergy = 0;
-
-		CreateTestConstants();
-		TestConstants.InitialValues.MyMaxEnergy = initialMaxEnergy;
-		TestConstants.ChangePerMinute.MyMaxEnergy = -10 * 60;
-		CreateTestGameState();
-
-		TestGameState.ApplyTime(1);
-		Assert.AreEqual(minMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyMaxEnergy));
 	}
 
 	[Test]
