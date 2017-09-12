@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class StateItemTest {
 
+	private GameplayConstants TestConstants;
+
+	private void Setup()
+	{
+		TestConstants = GameplayConstants.CreateEmptyConstants();
+	}
+
 	[Test]
 	public void NotGameOverAfterInitialization()
 	{
-		GameplayConstants constants = GameplayConstants.CreateEmptyConstants();
-		constants.InitialValues.MyFood = 10;
+		Setup();
+		TestConstants.InitialValues.MyFood = 10;
 
-		StateItem item = new StateItemFloat(0, 100, constants, (d) => d.MyFood, () => true);
+		StateItem item = new StateItemFloat(0, 100, TestConstants, (d) => d.MyFood, () => true);
 
 		Assert.False(item.IsGameOverBecauseOfThis());
 	}
