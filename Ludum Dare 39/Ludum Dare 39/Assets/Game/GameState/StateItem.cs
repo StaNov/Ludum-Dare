@@ -1,7 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+public interface StateItem
+{
+	T GetValue<T>();
+	bool IsGameOverBecauseOfThis();
+	bool DifferenceHasZeroEffect(StatsDifference difference);
+	void ApplyDifferenceByTime(float deltaTime);
+	void ApplyDifference(StatsDifference difference, float multiplier = 1);
+}
 
 public enum StateItemType
 {
@@ -19,13 +23,3 @@ public enum StateItemType
 	MySalary,
 	PartnerSalary
 }
-
-public interface StateItem
-{
-	T GetValue<T>();
-	bool IsGameOverBecauseOfThis();
-	bool DifferenceHasZeroEffect(StatsDifference difference);
-	void ApplyDifferenceByTime(float deltaTime);
-	void ApplyDifference(StatsDifference difference, float multiplier = 1);
-}
-
