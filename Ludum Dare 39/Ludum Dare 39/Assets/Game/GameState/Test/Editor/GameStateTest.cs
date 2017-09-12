@@ -11,7 +11,7 @@ public class GameStateTest
 
 	private static GameplayConstants CreateTestingGameplayConstants()
 	{
-		var result = GameplayConstants.EmptyConstants();
+		var result = GameplayConstants.CreateEmptyConstants();
 		result.InitialValues = new StatsDifference
 		{
 			Age = 1,

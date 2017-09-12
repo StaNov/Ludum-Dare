@@ -25,7 +25,7 @@ public class GameplayConstants : ScriptableObject
 		throw new Exception("NO ACTION FOUND!");
 	}
 
-	public static GameplayConstants EmptyConstants()
+	public static GameplayConstants CreateEmptyConstants()
 	{
 		var result = ScriptableObject.CreateInstance<GameplayConstants>();
 
