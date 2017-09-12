@@ -15,23 +15,24 @@ public class GameState
 		_constants = constants;
 		_items = new Dictionary<StateItemType, StateItem>();
 
-		_items.Add(StateItemType.Age, new StateItem(0, 99999, constants, (d) => d.Age, () => true));
-		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => GetStateItemValue(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
-		_items.Add(StateItemType.MyFood, new StateItem(0, 100, constants, (d) => d.MyFood, () => true));
-		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, constants, (d) => d.MyHappiness, () => true));
-		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, constants, (d) => d.MyHealth, () => true));
-		_items.Add(StateItemType.FamilyFood, new StateItem(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHappiness, new StateItem(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
-		_items.Add(StateItemType.FamilyHealth, new StateItem(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
+		_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, () => true));
+		_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
+		_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
+		_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, () => true));
+		_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, () => true));
+		_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, () => true));
+		_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
+		_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
 		Money = constants.InitialValues.Money;
 		MoneyPerWorkshift = constants.InitialValues.MoneyPerWorkshift;
 		MoneyPerPartnersWorkshift = constants.InitialValues.MoneyPerPartnersWorkshift;
 	}
 
+	// TODO public T GetStateItemValue<T>(StateItemType type)
 	public float GetStateItemValue(StateItemType type)
 	{
-		return _items[type].Value;
+		return _items[type].GetValue();
 	}
 	
 	public int Money { get; private set; }

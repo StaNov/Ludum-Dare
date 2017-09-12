@@ -20,7 +20,16 @@ public enum StateItemType
 	PartnerSalary
 }
 
-public class StateItem
+public interface StateItem
+{
+	float GetValue();
+	bool IsGameOverBecauseOfThis();
+	bool DifferenceHasZeroEffect(StatsDifference difference);
+	void ApplyDifferenceByTime(float deltaTime);
+	void ApplyDifference(StatsDifference difference, float multiplier = 1);
+}
+
+public class StateItemFloat : StateItem
 {
 	private float _value;
 	private float _minValue;
@@ -29,14 +38,14 @@ public class StateItem
 	private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 	private float _changePerMinute;
 
-	public StateItem(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
+	public StateItemFloat(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
 		this(minValue, () => maxValue, constants, getDifferenceValue, shouldBeUpdated)
 	{ }
 
 	// TODO create builder
 	// TODO redesign the arguments needed in constructor
 	// TODO pass gamestate to differenceHasZeroEffect or shouldBeUpdated?
-	public StateItem(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
+	public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
 	{
 		_minValue = minValue;
 		_maxValue = getMaxValue;
@@ -66,6 +75,11 @@ public class StateItem
 	public bool DifferenceHasZeroEffect(StatsDifference difference)
 	{
 		return _getDifferenceValue(difference) == 0;
+	}
+
+	public float GetValue()
+	{
+		return Value;
 	}
 
 	public float Value
