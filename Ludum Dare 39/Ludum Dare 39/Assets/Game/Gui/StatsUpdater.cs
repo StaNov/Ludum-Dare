@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class StatsUpdater : MonoBehaviour
@@ -20,6 +20,6 @@ public class StatsUpdater : MonoBehaviour
 		MoneyPerWorkshift.text = Mathf.FloorToInt(State.State.MoneyPerWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
 		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.State.MoneyPerPartnersWorkshift) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
 		FoodSupplies.text = Mathf.FloorToInt(State.State.FoodSupplies) + EffectSuffixCreator.Create(effect.FoodSupplies);
-		Age.text = Mathf.FloorToInt(State.State.Age).ToString();
+		Age.text = Mathf.FloorToInt(State.State.GetStateItemValue(StateItemType.Age)).ToString();
 	}
 }

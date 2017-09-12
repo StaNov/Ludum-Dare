@@ -59,7 +59,7 @@ public class GameStateTest
 		TestConstants.InitialValues.MyEnergy = initialEnergy;
 		CreateTestGameState();
 
-		Assert.AreEqual(initialEnergy, TestGameState.MyEnergy);
+		Assert.AreEqual(initialEnergy, TestGameState.GetStateItemValue(StateItemType.MyEnergy));
 	}
 
 	[Test]
@@ -73,7 +73,7 @@ public class GameStateTest
 		CreateTestGameState();
 
 		TestGameState.ApplyTime(1);
-		Assert.Less(initialAge + 1, TestGameState.Age);
+		Assert.Less(initialAge + 1, TestGameState.GetStateItemValue(StateItemType.Age));
 	}
 
 	[Test]
@@ -112,7 +112,7 @@ public class GameStateTest
 		CreateTestGameState();
 
 		TestGameState.ApplyTime(1);
-		Assert.AreEqual(initialMaxEnergy, TestGameState.MyEnergy);
+		Assert.AreEqual(initialMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyEnergy));
 	}
 
 	[Test]
@@ -129,7 +129,7 @@ public class GameStateTest
 		CreateTestGameState();
 
 		TestGameState.ApplyTime(1);
-		Assert.AreEqual(maxMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(maxMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyMaxEnergy));
 	}
 
 	[Test]
@@ -146,7 +146,7 @@ public class GameStateTest
 		CreateTestGameState();
 
 		TestGameState.ApplyTime(1);
-		Assert.AreEqual(minMaxEnergy, TestGameState.MyMaxEnergy);
+		Assert.AreEqual(minMaxEnergy, TestGameState.GetStateItemValue(StateItemType.MyMaxEnergy));
 	}
 
 	[Test]
@@ -166,7 +166,7 @@ public class GameStateTest
 		
 		TestGameState.RunAction(TestActionType);
 		TestGameState.ApplyTime(3);
-		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.MyFood, 0.01);
+		Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.GetStateItemValue(StateItemType.MyFood), 0.01);
 	}
 
 	[Test]
@@ -184,7 +184,7 @@ public class GameStateTest
 		CreateTestGameState();
 		
 		TestGameState.RunAction(TestActionType);
-		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.MyEnergy, 0.01);
+		Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.GetStateItemValue(StateItemType.MyEnergy), 0.01);
 	}
 
 	[Test]
@@ -202,7 +202,7 @@ public class GameStateTest
 
 		TestGameState.StartFamily();
 		TestGameState.ApplyTime(2);
-		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.FamilyFood);
+		Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 
 	[Test]
@@ -224,7 +224,7 @@ public class GameStateTest
 		TestGameState.StartFamily();
 		TestGameState.RunAction(TestActionType);
 		TestGameState.ApplyTime(effectDuration + 1);
-		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.FamilyFood);
+		Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 
 	[Test]
@@ -245,7 +245,7 @@ public class GameStateTest
 		TestGameState.StartFamily();
 		TestGameState.RunAction(TestActionType);
 		TestGameState.ApplyTime(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 
 	[Test]
@@ -262,7 +262,7 @@ public class GameStateTest
 		CreateTestGameState();
 
 		TestGameState.ApplyTime(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 
 	[Test]
@@ -280,7 +280,7 @@ public class GameStateTest
 
 		TestGameState.RunAction(TestActionType);
 		TestGameState.ApplyTime(1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 
 	[Test]
@@ -300,6 +300,6 @@ public class GameStateTest
 
 		TestGameState.RunAction(TestActionType);
 		TestGameState.ApplyTime(effectDuration + 1);
-		Assert.AreEqual(initialFamilyFood, TestGameState.FamilyFood);
+		Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
 }

@@ -22,14 +22,15 @@ public class NeedsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		MyMaxEnergy.UpdateValue(State.State.MyMaxEnergy, Mathf.CeilToInt(State.State.MyMaxEnergy), effect.MyMaxEnergy);
-		MyEnergy.UpdateValue(State.State.MyEnergy, Mathf.CeilToInt(State.State.MyEnergy), effect.MyEnergy, State.State.MyMaxEnergy);
-		MyFood.UpdateValue(State.State.MyFood, Mathf.CeilToInt(State.State.MyFood), effect.MyFood);
-		MyHappiness.UpdateValue(State.State.MyHappiness, Mathf.CeilToInt(State.State.MyHappiness), effect.MyHappiness);
-		MyHealth.UpdateValue(State.State.MyHealth, Mathf.CeilToInt(State.State.MyHealth), effect.MyHealth);
-		FamilyFood.UpdateValue(State.State.FamilyFood, Mathf.CeilToInt(State.State.FamilyFood), effect.FamilyFood);
-		FamilyHappiness.UpdateValue(State.State.FamilyHappiness, Mathf.CeilToInt(State.State.FamilyHappiness), effect.FamilyHappiness);
-		FamilyHealth.UpdateValue(State.State.FamilyHealth, Mathf.CeilToInt(State.State.FamilyHealth), effect.FamilyHealth);
+		// TODO display values push down?
+		MyMaxEnergy.UpdateValue(State.State.GetStateItemValue(StateItemType.MyMaxEnergy), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.MyMaxEnergy)), effect.MyMaxEnergy);
+		MyEnergy.UpdateValue(State.State.GetStateItemValue(StateItemType.MyEnergy), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.MyEnergy)), effect.MyEnergy, State.State.GetStateItemValue(StateItemType.MyMaxEnergy));
+		MyFood.UpdateValue(State.State.GetStateItemValue(StateItemType.MyFood), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.MyFood)), effect.MyFood);
+		MyHappiness.UpdateValue(State.State.GetStateItemValue(StateItemType.MyHappiness), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.MyHappiness)), effect.MyHappiness);
+		MyHealth.UpdateValue(State.State.GetStateItemValue(StateItemType.MyHealth), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.MyHealth)), effect.MyHealth);
+		FamilyFood.UpdateValue(State.State.GetStateItemValue(StateItemType.FamilyFood), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.FamilyFood)), effect.FamilyFood);
+		FamilyHappiness.UpdateValue(State.State.GetStateItemValue(StateItemType.FamilyHappiness), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.FamilyHappiness)), effect.FamilyHappiness);
+		FamilyHealth.UpdateValue(State.State.GetStateItemValue(StateItemType.FamilyHealth), Mathf.CeilToInt(State.State.GetStateItemValue(StateItemType.FamilyHealth)), effect.FamilyHealth);
 	}
 }
 

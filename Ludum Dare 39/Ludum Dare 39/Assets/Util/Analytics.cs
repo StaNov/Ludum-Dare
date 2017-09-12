@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +47,7 @@ public class Analytics : MonoBehaviour
 				"GameOver",
 				new Dictionary<string, object>
 				{
-					{"Score", Mathf.FloorToInt(State.State.Age)},
+					{"Score", Mathf.FloorToInt(State.State.GetStateItemValue(StateItemType.Age))},
 					{"GameOverReason", State.State.GameOver.ToString()},
 					{"PlayingTimeOneGame", Mathf.FloorToInt(Time.timeSinceLevelLoad)},
 					{"PlayingTimeTotal", PlayTimeTotal},

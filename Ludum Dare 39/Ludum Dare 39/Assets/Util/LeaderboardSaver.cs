@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class LeaderboardSaver : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class LeaderboardSaver : MonoBehaviour
 			StartCoroutine(ReusableLeaderboardManager.SaveNewRecord(
 				"http://games.stanov.cz/ludum-dare-39/callLeaderboardSave.php",
 				PlayerNameManager.PlayerName,
-				Mathf.FloorToInt(State.State.Age)));
+				Mathf.FloorToInt(State.State.GetStateItemValue(StateItemType.Age))));
 			
 			_recordSaved = true;
 		}

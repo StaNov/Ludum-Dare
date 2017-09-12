@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
@@ -44,24 +44,24 @@ public class MusicPlayer : MonoBehaviour
 
 	private bool IsInDanger()
 	{
-		return State.State.MyEnergy < DangerLimit
-			|| State.State.MyFood < DangerLimit
-			|| State.State.MyHealth < DangerLimit
-			|| State.State.MyHappiness < DangerLimit
-			|| State.State.FamilyHappiness < DangerLimit
-			|| State.State.FamilyHealth < DangerLimit
-			|| State.State.FamilyFood < DangerLimit;
+		return State.State.GetStateItemValue(StateItemType.MyEnergy) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.MyFood) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.MyHealth) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.MyHappiness) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.FamilyHappiness) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.FamilyHealth) < DangerLimit
+			|| State.State.GetStateItemValue(StateItemType.FamilyFood) < DangerLimit;
 	}
 
 	private bool IsOk()
 	{
-		return State.State.MyEnergy > OkLimit
-		       && State.State.MyFood > OkLimit
-		       && State.State.MyHealth > OkLimit
-		       && State.State.MyHappiness > OkLimit
-		       && State.State.FamilyHappiness > OkLimit
-		       && State.State.FamilyHealth > OkLimit
-		       && State.State.FamilyFood > OkLimit;
+		return State.State.GetStateItemValue(StateItemType.MyEnergy) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.MyFood) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.MyHealth) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.MyHappiness) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.FamilyHappiness) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.FamilyHealth) > OkLimit
+		       && State.State.GetStateItemValue(StateItemType.FamilyFood) > OkLimit;
 	}
 
 }

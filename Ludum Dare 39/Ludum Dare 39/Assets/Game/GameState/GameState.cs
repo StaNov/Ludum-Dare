@@ -17,7 +17,7 @@ public class GameState
 
 		_items.Add(StateItemType.Age, new StateItem(0, 99999, constants, (d) => d.Age, () => true));
 		_items.Add(StateItemType.MyMaxEnergy, new StateItem(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
-		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => MyMaxEnergy, constants, (d) => d.MyEnergy, () => true));
+		_items.Add(StateItemType.MyEnergy, new StateItem(0, () => GetStateItemValue(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
 		_items.Add(StateItemType.MyFood, new StateItem(0, 100, constants, (d) => d.MyFood, () => true));
 		_items.Add(StateItemType.MyHappiness, new StateItem(0, 100, constants, (d) => d.MyHappiness, () => true));
 		_items.Add(StateItemType.MyHealth, new StateItem(0, 100, constants, (d) => d.MyHealth, () => true));
@@ -33,16 +33,7 @@ public class GameState
 	{
 		return _items[type].Value;
 	}
-
-	public float Age { get { return _items[StateItemType.Age].Value; } }
-	public float MyEnergy { get { return _items[StateItemType.MyEnergy].Value; } }
-	public float MyMaxEnergy { get { return _items[StateItemType.MyMaxEnergy].Value; } }
-	public float MyFood { get { return _items[StateItemType.MyFood].Value; } }
-	public float MyHappiness { get { return _items[StateItemType.MyHappiness].Value; } }
-	public float MyHealth { get { return _items[StateItemType.MyHealth].Value; } }
-	public float FamilyFood { get { return _items[StateItemType.FamilyFood].Value; } }
-	public float FamilyHappiness { get { return _items[StateItemType.FamilyHappiness].Value; } }
-	public float FamilyHealth { get { return _items[StateItemType.FamilyHealth].Value; } }
+	
 	public int Money { get; private set; }
 	public int MoneyPerWorkshift { get; private set; }
 	public int MoneyPerPartnersWorkshift { get; private set; }
