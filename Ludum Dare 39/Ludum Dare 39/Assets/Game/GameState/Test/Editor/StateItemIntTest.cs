@@ -57,14 +57,14 @@ public class StateItemIntTest {
 	}
 
 	[Test]
-	public void ApplyDifferenceMultiplier()
+	public void ApplyDifferenceWithMultiplierGivesTheSameResult()
 	{
 		CreateTestConstants();
 		CreateTestItem();
 
 		TestItem.ApplyDifference(new StatsDifference { Money = 10 }, 2);
 
-		Assert.AreEqual(20, TestItem.GetValue<int>());
+		Assert.AreEqual(10, TestItem.GetValue<int>());
 	}
 
 	[Test]

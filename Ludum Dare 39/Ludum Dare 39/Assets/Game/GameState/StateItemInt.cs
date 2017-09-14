@@ -7,8 +7,7 @@ public class StateItemInt : StateItemGeneric<int>
 
 	public override void ApplyDifference(StatsDifference difference, float multiplier = 1)
 	{
-		float differenceFloat = GetDifferenceValue(difference) * multiplier;
-		Value += Mathf.RoundToInt(differenceFloat);
+		Value += GetDifferenceValue(difference);
 	}
 
 	public override bool DifferenceHasZeroEffect(StatsDifference difference)
