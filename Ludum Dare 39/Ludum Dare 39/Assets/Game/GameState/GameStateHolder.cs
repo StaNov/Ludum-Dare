@@ -7,7 +7,7 @@ public class GameStateHolder : MonoBehaviour
 
 	public GameplayConstants Constants;
 
-	// TODO return only the values we need to expose
+	// TODO make protected methods that should be executed only inside of package
 	public GameState State { get { return _state; } }
 
 	// TODO move to button logic

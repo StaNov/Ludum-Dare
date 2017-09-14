@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class StateItemFloat : StateItem
+public class StateItemFloat : StateItemGeneric<float>
 {
-	private float _value;
 	private float _minValue;
 	private Func<float> _maxValue;
 	private Func<StatsDifference, float> _getDifferenceValue;
@@ -16,7 +15,6 @@ public class StateItemFloat : StateItem
 
 	// TODO create builder
 	// TODO redesign the arguments needed in constructor
-	// TODO pass gamestate to differenceHasZeroEffect or shouldBeUpdated?
 	public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
 	{
 		_minValue = minValue;
@@ -27,50 +25,33 @@ public class StateItemFloat : StateItem
 		_shouldBeUpdated = shouldBeUpdated;
 	}
 
-	public void ApplyDifferenceByTime(float deltaTime)
+	public override void ApplyDifferenceByTime(float deltaTime)
 	{
 		float deltaTimeInMinutes = deltaTime / 60;
 
 		Value += _changePerMinute * deltaTimeInMinutes;
 	}
 
-	public void ApplyDifference(StatsDifference difference, float multiplier = 1)
+	public override void ApplyDifference(StatsDifference difference, float multiplier = 1)
 	{
 		Value += _getDifferenceValue(difference) * multiplier;
 	}
 
-	public bool IsGameOverBecauseOfThis()
+	public override bool IsGameOverBecauseOfThis()
 	{
-		return _value <= 0;
+		return Value <= 0;
 	}
 
-	public bool DifferenceHasZeroEffect(StatsDifference difference)
+	public override bool DifferenceHasZeroEffect(StatsDifference difference)
 	{
 		return _getDifferenceValue(difference) == 0;
 	}
 
-	public T GetValue<T>()
+	protected override float OnSetValue(float originalValue, float newValue)
 	{
-		if (typeof(T) != typeof(float))
-		{
-			throw new Exception("You are trying to get value of type " + typeof(T) + ", but this StateItem is of type " + typeof(float) + "."); // float -> generic
-		}
+		if (!_shouldBeUpdated())
+			return originalValue;
 
-		return (T)Convert.ChangeType(Value, typeof(T));
-	}
-
-	public float Value
-	{
-		get
-		{
-			return _value;
-		}
-		private set
-		{
-			if (_shouldBeUpdated())
-			{
-				_value = Mathf.Clamp(value, _minValue, _maxValue());
-			}
-		}
+		return Mathf.Clamp(newValue, _minValue, _maxValue());
 	}
 }
