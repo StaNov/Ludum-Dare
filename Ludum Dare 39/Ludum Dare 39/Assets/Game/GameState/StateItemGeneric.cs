@@ -3,6 +3,13 @@ using System;
 public abstract class StateItemGeneric<T> : StateItem
 {
 	private T _value;
+	protected Func<StatsDifference, T> GetDifferenceValue;
+
+	public StateItemGeneric(GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue)
+	{
+		GetDifferenceValue = getDifferenceValue;
+		Value = GetDifferenceValue(constants.InitialValues);
+	}
 
 	// private maybe?
 	protected T Value

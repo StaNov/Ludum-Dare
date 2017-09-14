@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class StateItemFloat : StateItemGeneric<float>
 {
-	private float _minValue;
-	private Func<float> _maxValue;
-	private Func<StatsDifference, float> _getDifferenceValue;
+	private float _minValue = float.MinValue;
+	private Func<float> _maxValue = () => float.MaxValue;
 	private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 	private float _changePerMinute;
 
@@ -15,14 +14,14 @@ public class StateItemFloat : StateItemGeneric<float>
 
 	// TODO create builder
 	// TODO redesign the arguments needed in constructor
-	public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated)
+	public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
+		base(constants, getDifferenceValue)
 	{
 		_minValue = minValue;
 		_maxValue = getMaxValue;
-		_getDifferenceValue = getDifferenceValue;
-		_changePerMinute = _getDifferenceValue(constants.ChangePerMinute);
-		Value = _getDifferenceValue(constants.InitialValues);
+		_changePerMinute = GetDifferenceValue(constants.ChangePerMinute);
 		_shouldBeUpdated = shouldBeUpdated;
+		Value = Value; // to do the clamping
 	}
 
 	public override void ApplyDifferenceByTime(float deltaTime)
@@ -34,7 +33,7 @@ public class StateItemFloat : StateItemGeneric<float>
 
 	public override void ApplyDifference(StatsDifference difference, float multiplier = 1)
 	{
-		Value += _getDifferenceValue(difference) * multiplier;
+		Value += GetDifferenceValue(difference) * multiplier;
 	}
 
 	public override bool IsGameOverBecauseOfThis()
@@ -44,7 +43,7 @@ public class StateItemFloat : StateItemGeneric<float>
 
 	public override bool DifferenceHasZeroEffect(StatsDifference difference)
 	{
-		return _getDifferenceValue(difference) == 0;
+		return GetDifferenceValue(difference) == 0;
 	}
 
 	protected override float OnSetValue(float originalValue, float newValue)
