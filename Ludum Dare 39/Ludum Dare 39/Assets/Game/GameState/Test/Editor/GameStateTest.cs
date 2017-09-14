@@ -254,4 +254,18 @@ public class GameStateTest
 		TestGameState.ApplyTime(effectDuration + 1);
 		Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
 	}
+
+	[Test]
+	public void MoneyProperlyInitialized()
+	{
+		int initialMoney = 50;
+
+		CreateTestConstants();
+
+		TestConstants.InitialValues.Money = initialMoney;
+
+		CreateTestGameState();
+		
+		Assert.AreEqual(initialMoney, TestGameState.GetStateItemValue<int>(StateItemType.Money));
+	}
 }

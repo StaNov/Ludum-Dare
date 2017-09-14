@@ -24,15 +24,21 @@ public class GameState
 		_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
 		_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
 		_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
-		Money = constants.InitialValues.Money;
-		MoneyPerWorkshift = constants.InitialValues.MoneyPerWorkshift;
-		MoneyPerPartnersWorkshift = constants.InitialValues.MoneyPerPartnersWorkshift;
+		_items.Add(StateItemType.Money, new StateItemInt(constants, (d) => d.Money));
+		_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
+		_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
+		_items.Add(StateItemType.FoodSupplies, new StateItemInt(constants, (d) => d.FoodSupplies));
 	}
 
-	// TODO public T GetStateItemValue<T>(StateItemType type)
+	// TODO delete
 	public float GetStateItemValue(StateItemType type)
 	{
-		return _items[type].GetValue<float>();
+		return GetStateItemValue<float>(type);
+	}
+
+	public T GetStateItemValue<T>(StateItemType type)
+	{
+		return _items[type].GetValue<T>();
 	}
 	
 	public int Money { get; private set; }
