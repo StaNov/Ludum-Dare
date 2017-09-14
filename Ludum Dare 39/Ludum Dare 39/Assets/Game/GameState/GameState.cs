@@ -15,6 +15,7 @@ public class GameState
 		_constants = constants;
 		_items = new Dictionary<StateItemType, StateItem>();
 
+		// TODO move to State Factory
 		_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, () => true));
 		_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
 		_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
@@ -41,10 +42,10 @@ public class GameState
 		return _items[type].GetValue<T>();
 	}
 	
-	public int Money { get; private set; }
-	public int MoneyPerWorkshift { get; private set; }
-	public int MoneyPerPartnersWorkshift { get; private set; }
-	public int FoodSupplies { get; private set; }
+	public int Money { get { return GetStateItemValue<int>(StateItemType.Money); } private set { ((StateItemInt)_items[StateItemType.Money]).Value = value; } }
+	public int MoneyPerWorkshift { get { return GetStateItemValue<int>(StateItemType.MySalary); } private set { ((StateItemInt)_items[StateItemType.MySalary]).Value = value; } }
+	public int MoneyPerPartnersWorkshift { get { return GetStateItemValue<int>(StateItemType.PartnerSalary); } private set { ((StateItemInt)_items[StateItemType.PartnerSalary]).Value = value; } }
+	public int FoodSupplies { get { return GetStateItemValue<int>(StateItemType.FoodSupplies); } private set { ((StateItemInt)_items[StateItemType.FoodSupplies]).Value = value; } }
 	public bool IsFamilyActive { get; private set; }
 
 	public CurrentAction CurrentPlayerAction { get; private set; }
@@ -159,8 +160,7 @@ public class GameState
 
 	private void UpdateAfterAction(PlayerAction action)
 	{
-		UpdateStatsOneTime(action.EffectAfter);
-
+		// TODO push down to ItemInt class
 		switch (action.Type)
 		{
 			case PlayerActionType.GoToWork:
@@ -170,17 +170,14 @@ public class GameState
 				Money += MoneyPerPartnersWorkshift;
 				break;
 		}
+
+		UpdateStatsOneTime(action.EffectAfter);
 	}
 
 	private void UpdateStatsOneTime(StatsDifference difference)
 	{
 		foreach (var item in _items)
 			item.Value.ApplyDifference(difference);
-
-		Money += difference.Money;
-		FoodSupplies += difference.FoodSupplies;
-		MoneyPerWorkshift += difference.MoneyPerWorkshift;
-		MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
 	}
 
 	[Serializable]

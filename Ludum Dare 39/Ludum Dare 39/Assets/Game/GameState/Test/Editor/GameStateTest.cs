@@ -268,4 +268,49 @@ public class GameStateTest
 		
 		Assert.AreEqual(initialMoney, TestGameState.GetStateItemValue<int>(StateItemType.Money));
 	}
+
+	[Test]
+	public void MoneyProperlyAppliedBeforeAction()
+	{
+		int initialMoney = 50;
+		int differenceBeforeAction = -20;
+
+		CreateTestConstants();
+
+		TestConstants.InitialValues.Money = initialMoney;
+		TestConstants.PlayerActions[0].EffectBefore.Money = differenceBeforeAction;
+
+		CreateTestGameState();
+
+		TestGameState.RunAction(TestActionType);
+
+		Assert.AreEqual(initialMoney + differenceBeforeAction, TestGameState.GetStateItemValue<int>(StateItemType.Money));
+	}
+
+	[Test]
+	public void MoneyProperlyAppliedAfterAction()
+	{
+		int initialMoney = 50;
+		int differenceAfterAction = -20;
+		int actionDuration = 1;
+
+		CreateTestConstants();
+
+		TestConstants.InitialValues.Money = initialMoney;
+		TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
+		TestConstants.PlayerActions[0].EffectAfter.Money = differenceAfterAction;
+
+		CreateTestGameState();
+
+		TestGameState.RunAction(TestActionType);
+
+		Assert.AreEqual(initialMoney, TestGameState.GetStateItemValue<int>(StateItemType.Money));
+
+		TestGameState.ApplyTime(actionDuration);
+
+		Assert.AreEqual(initialMoney + differenceAfterAction, TestGameState.GetStateItemValue<int>(StateItemType.Money));
+	}
+
+	// TODO money is added by salary
+	// TODO salary is increased after player comes from work
 }

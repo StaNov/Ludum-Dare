@@ -11,8 +11,8 @@ public abstract class StateItemGeneric<T> : StateItem
 		Value = GetDifferenceValue(constants.InitialValues);
 	}
 
-	// private maybe?
-	protected T Value
+	// TODO make protected for sure, private maybe?
+	public T Value
 	{
 		get
 		{
