@@ -24,17 +24,6 @@ public abstract class StateItemGeneric<T> : StateItem
 		}
 	}
 
-	protected virtual T OnSetValue(T originalValue, T newValue)
-	{
-		return newValue;
-	}
-
-	public abstract void ApplyDifference(StatsDifference difference, float multiplier = 1);
-
-	public virtual void ApplyDifferenceByTime(float deltaTime) { }
-
-	public virtual bool DifferenceHasZeroEffect(StatsDifference difference) { return false; }
-
 	public V GetValue<V>()
 	{
 		if (typeof(V) != typeof(T))
@@ -42,8 +31,19 @@ public abstract class StateItemGeneric<T> : StateItem
 			throw new Exception("You are trying to get value of type " + typeof(V) + ", but this StateItem is of type " + typeof(T) + ".");
 		}
 
-		return (V) Convert.ChangeType(Value, typeof(V));
+		return (V)Convert.ChangeType(Value, typeof(V));
 	}
 
-	public abstract bool IsGameOverBecauseOfThis();
+	protected virtual T OnSetValue(T originalValue, T newValue)
+	{
+		return newValue;
+	}
+
+	public abstract void ApplyDifference(StatsDifference difference, float multiplier = 1);
+
+	public abstract bool DifferenceHasZeroEffect(StatsDifference difference);
+
+	public virtual void ApplyDifferenceByTime(float deltaTime) { }
+
+	public virtual bool IsGameOverBecauseOfThis() { return false; }
 }
