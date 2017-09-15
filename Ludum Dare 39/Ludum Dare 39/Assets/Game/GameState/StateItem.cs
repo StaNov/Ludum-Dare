@@ -4,7 +4,7 @@ public interface StateItem
 	bool IsGameOverBecauseOfThis();
 	bool DifferenceHasZeroEffect(StatsDifference difference);
 	void ApplyDifferenceByTime(float deltaTime);
-	void ApplyDifference(StatsDifference difference, float multiplier = 1);
+	void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1);
 }
 
 public enum StateItemType

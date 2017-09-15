@@ -51,7 +51,7 @@ public class StateItemIntTest {
 		CreateTestConstants();
 		CreateTestItem();
 
-		TestItem.ApplyDifference(new StatsDifference { Money = 10 });
+		TestItem.ApplyDifferenceByAction(new StatsDifference { Money = 10 }, new PlayerAction());
 
 		Assert.AreEqual(10, TestItem.GetValue<int>());
 	}
@@ -62,7 +62,7 @@ public class StateItemIntTest {
 		CreateTestConstants();
 		CreateTestItem();
 
-		TestItem.ApplyDifference(new StatsDifference { Money = 10 }, 2);
+		TestItem.ApplyDifferenceByAction(new StatsDifference { Money = 10 }, new PlayerAction(), 2);
 
 		Assert.AreEqual(10, TestItem.GetValue<int>());
 	}

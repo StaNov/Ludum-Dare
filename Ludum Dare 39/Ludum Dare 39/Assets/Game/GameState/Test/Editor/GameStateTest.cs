@@ -6,6 +6,7 @@ using NUnit.Framework;
 public class GameStateTest
 {
 	private const PlayerActionType TestActionType = PlayerActionType.Eat;
+	private const PlayerActionType TestActionTypeWork = PlayerActionType.GoToWork;
 
 	private GameState TestGameState;
 	private GameplayConstants TestConstants;
@@ -311,6 +312,27 @@ public class GameStateTest
 		Assert.AreEqual(initialMoney + differenceAfterAction, TestGameState.GetStateItemValue<int>(StateItemType.Money));
 	}
 
-	// TODO money is added by salary
-	// TODO salary is increased after player comes from work
+	[Test]
+	public void MoneyAddedAfterWork()
+	{
+		int initialMoney = 10;
+		int initialSalary = 20;
+		int salaryIncreaseAfterWorkshift = 30;
+		int actionDuration = 1;
+
+		CreateTestConstants();
+
+		TestConstants.InitialValues.Money = initialMoney;
+		TestConstants.InitialValues.MoneyPerWorkshift = initialSalary;
+		TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
+		TestConstants.PlayerActions[0].Type = TestActionTypeWork;
+		TestConstants.PlayerActions[0].EffectAfter.MoneyPerWorkshift = salaryIncreaseAfterWorkshift; // just to make sure it gets added after money is raised by previous salary
+
+		CreateTestGameState();
+
+		TestGameState.RunAction(TestActionTypeWork);
+		TestGameState.ApplyTime(actionDuration);
+
+		Assert.AreEqual(initialMoney + initialSalary, TestGameState.GetStateItemValue<int>(StateItemType.Money));
+	}
 }

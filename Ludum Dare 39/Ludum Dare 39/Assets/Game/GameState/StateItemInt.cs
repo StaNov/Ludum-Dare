@@ -5,7 +5,7 @@ public class StateItemInt : StateItemGeneric<int>
 {
 	public StateItemInt(GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue) : base(constants, getDifferenceValue) { }
 
-	public override void ApplyDifference(StatsDifference difference, float multiplier = 1)
+	public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
 	{
 		Value += GetDifferenceValue(difference);
 	}

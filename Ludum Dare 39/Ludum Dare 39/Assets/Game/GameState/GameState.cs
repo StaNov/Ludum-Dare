@@ -25,7 +25,7 @@ public class GameState
 		_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
 		_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
 		_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
-		_items.Add(StateItemType.Money, new StateItemInt(constants, (d) => d.Money));
+		_items.Add(StateItemType.Money, new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary), () => GetStateItemValue<int>(StateItemType.PartnerSalary)));
 		_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
 		_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
 		_items.Add(StateItemType.FoodSupplies, new StateItemInt(constants, (d) => d.FoodSupplies));
@@ -59,7 +59,7 @@ public class GameState
 				if (item.Value.IsGameOverBecauseOfThis())
 					return item.Key;
 
-			// TODO delete
+			// TODO delete when no game over when no money or food
 			if (Money < 0)
 				return StateItemType.Money;
 			if (FoodSupplies < 0)
@@ -105,7 +105,7 @@ public class GameState
 			foreach (var item in _items)
 			{
 				float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
-				item.Value.ApplyDifference(action.Action.EffectDuring, deltaTimeByDuration);
+				item.Value.ApplyDifferenceByAction(action.Action.EffectDuring, action.Action, deltaTimeByDuration);
 			}
 
 			if (action.RemainingTime <= 0)
@@ -155,29 +155,18 @@ public class GameState
 
 	private void UpdateBeforeAction(PlayerAction action)
 	{
-		UpdateStatsOneTime(action.EffectBefore);
+		UpdateStatsOneTime(action.EffectBefore, action);
 	}
 
 	private void UpdateAfterAction(PlayerAction action)
 	{
-		// TODO push down to ItemInt class
-		switch (action.Type)
-		{
-			case PlayerActionType.GoToWork:
-				Money += MoneyPerWorkshift;
-				break;
-			case PlayerActionType.PartnerGoesToWork:
-				Money += MoneyPerPartnersWorkshift;
-				break;
-		}
-
-		UpdateStatsOneTime(action.EffectAfter);
+		UpdateStatsOneTime(action.EffectAfter, action);
 	}
 
-	private void UpdateStatsOneTime(StatsDifference difference)
+	private void UpdateStatsOneTime(StatsDifference difference, PlayerAction action)
 	{
 		foreach (var item in _items)
-			item.Value.ApplyDifference(difference);
+			item.Value.ApplyDifferenceByAction(difference, action);
 	}
 
 	[Serializable]

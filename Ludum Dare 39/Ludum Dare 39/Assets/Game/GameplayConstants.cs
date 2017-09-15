@@ -156,7 +156,20 @@ public static class ExtensionMethods
 				return false;
 		}
 	}
-	
+
+	public static bool IsWorkAction(this PlayerActionType type)
+	{
+		switch (type)
+		{
+			case PlayerActionType.GoToWork:
+			case PlayerActionType.PartnerGoesToWork:
+				return true;
+
+			default:
+				return false;
+		}
+	}
+
 	public static string Localized(this PlayerActionType type)
 	{
 		switch(type)

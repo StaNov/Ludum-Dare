@@ -62,7 +62,7 @@ public class StateItemFloatTest {
 		CreateTestConstants();
 		CreateTestItem();
 
-		TestItem.ApplyDifference(new StatsDifference { MyFood = 10 });
+		TestItem.ApplyDifferenceByAction(new StatsDifference { MyFood = 10 }, new PlayerAction());
 
 		Assert.AreEqual(10, TestItem.GetValue<float>());
 	}
@@ -73,7 +73,7 @@ public class StateItemFloatTest {
 		CreateTestConstants();
 		CreateTestItem();
 
-		TestItem.ApplyDifference(new StatsDifference { MyFood = 10 }, 2);
+		TestItem.ApplyDifferenceByAction(new StatsDifference { MyFood = 10 }, new PlayerAction(), 2);
 
 		Assert.AreEqual(20, TestItem.GetValue<float>());
 	}

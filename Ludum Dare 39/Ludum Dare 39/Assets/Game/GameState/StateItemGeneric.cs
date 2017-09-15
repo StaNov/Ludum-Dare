@@ -39,7 +39,7 @@ public abstract class StateItemGeneric<T> : StateItem
 		return newValue;
 	}
 
-	public abstract void ApplyDifference(StatsDifference difference, float multiplier = 1);
+	public abstract void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1);
 
 	public abstract bool DifferenceHasZeroEffect(StatsDifference difference);
 

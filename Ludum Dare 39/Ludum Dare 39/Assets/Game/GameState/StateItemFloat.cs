@@ -31,7 +31,7 @@ public class StateItemFloat : StateItemGeneric<float>
 		Value += _changePerMinute * deltaTimeInMinutes;
 	}
 
-	public override void ApplyDifference(StatsDifference difference, float multiplier = 1)
+	public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
 	{
 		Value += GetDifferenceValue(difference) * multiplier;
 	}
