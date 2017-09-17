@@ -2,12 +2,10 @@
 set -e
 
 BASE_URL=http://beta.unity3d.com/download
-HASH=472613c02cf7
-VERSION=2017.1.0f3
 
 download() {
   file=$1
-  url="$BASE_URL/$HASH/$package"
+  url="$BASE_URL/$INSTALLER_HASH/$package"
 
   echo "Downloading from $url: "
   curl -o UnityInstallFileFolder/`basename "$package"` "$url"
@@ -27,4 +25,4 @@ install() {
   sudo installer -dumplog -package UnityInstallFileFolder/`basename "$package"` -target /
 }
 
-install "MacEditorInstaller/Unity-$VERSION.pkg"
+install "MacEditorInstaller/Unity-$INSTALLER_VERSION.pkg"
