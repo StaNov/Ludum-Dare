@@ -1,29 +1,32 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-public class GameStateHolder : MonoBehaviour
+namespace GameOfLife.GameState
 {
-	private GameState _state;
+	using UnityEngine;
+	using UnityEngine.EventSystems;
 
-	public GameplayConstants Constants;
-
-	// TODO make protected methods that should be executed only inside of package
-	public GameState State { get { return _state; } }
-
-	// TODO move to button logic
-	public void RunAction()
+	public class GameStateHolder : MonoBehaviour
 	{
-		string actionName = EventSystem.current.currentSelectedGameObject.name;
-		_state.RunAction(actionName);
-	}
+		private GameState _state;
 
-	private void Start()
-	{
-		_state = new GameState(Constants);
-	}
+		public GameplayConstants Constants;
 
-	private void FixedUpdate()
-	{
-		_state.ApplyTime(Time.deltaTime);
+		// TODO make protected methods that should be executed only inside of package
+		public GameState State { get { return _state; } }
+
+		// TODO move to button logic
+		public void RunAction()
+		{
+			string actionName = EventSystem.current.currentSelectedGameObject.name;
+			_state.RunAction(actionName);
+		}
+
+		private void Start()
+		{
+			_state = new GameState(Constants);
+		}
+
+		private void FixedUpdate()
+		{
+			_state.ApplyTime(Time.deltaTime);
+		}
 	}
 }

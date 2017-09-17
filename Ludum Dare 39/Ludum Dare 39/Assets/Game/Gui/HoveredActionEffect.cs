@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using GameOfLife.GameState;
 
 public class HoveredActionEffect : MonoBehaviour
 {
