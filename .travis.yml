@@ -3,7 +3,7 @@ language: objective-c
 os: osx
 
 env:
-  - PROJECT_DIR="$(pwd)/Ludum Dare 39/Ludum Dare 39" INSTALLER_HASH="472613c02cf7" INSTALLER_VERSION="2017.1.0f3"
+  - PROJECT_DIR="$(pwd)/Ludum Dare 39/Ludum Dare 39" INSTALLER_HASH="5d30cf096e79" INSTALLER_VERSION="2017.1.1f1"
 
 before_install:
   - chmod a+x ./Travis/*
