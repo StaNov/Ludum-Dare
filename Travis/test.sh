@@ -1,14 +1,13 @@
 #! /bin/sh
 set -e
 
-project="GameOfLife"
 TEST_RESULTS_PATH="$(pwd)/Build/testResults.xml"
 TEST_PLATFORM=$1
 RUN_TESTS_FOLD_NAME="runTests_$TEST_PLATFORM"
 
 # collapsible logs: https://github.com/travis-ci/travis-ci/issues/2285
 echo -en "travis_fold:start:$RUN_TESTS_FOLD_NAME\r"
-echo "===== Running tests in $TEST_PLATFORM =====\n\n"
+echo "===== Running tests in $TEST_PLATFORM ====="
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -runTests \
   -testPlatform $TEST_PLATFORM \
@@ -23,7 +22,7 @@ EXIT_CODE=$?
 echo -en "travis_fold:end:$RUN_TESTS_FOLD_NAME\r"
 
 if [ -f "$TEST_RESULTS_PATH" ]; then
-  echo "===== Test results of $TEST_PLATFORM =====\n\n";
+  echo "===== Test results of $TEST_PLATFORM =====\n";
   cat "$TEST_RESULTS_PATH";
 else
   echo "\n\n===== Test results of $TEST_PLATFORM do not exist! =====\n\n";
