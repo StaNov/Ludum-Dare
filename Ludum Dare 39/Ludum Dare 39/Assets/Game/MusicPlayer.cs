@@ -45,24 +45,24 @@ public class MusicPlayer : MonoBehaviour
 
 	private bool IsInDanger()
 	{
-		return State.State.GetStateItemValue(StateItemType.MyEnergy) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.MyFood) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.MyHealth) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.MyHappiness) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.FamilyHappiness) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.FamilyHealth) < DangerLimit
-			|| State.State.GetStateItemValue(StateItemType.FamilyFood) < DangerLimit;
+		return State.State.GetStateItemValue<float>(StateItemType.MyEnergy) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.MyFood) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.MyHealth) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.MyHappiness) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.FamilyHappiness) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.FamilyHealth) < DangerLimit
+			|| State.State.GetStateItemValue<float>(StateItemType.FamilyFood) < DangerLimit;
 	}
 
 	private bool IsOk()
 	{
-		return State.State.GetStateItemValue(StateItemType.MyEnergy) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.MyFood) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.MyHealth) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.MyHappiness) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.FamilyHappiness) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.FamilyHealth) > OkLimit
-		       && State.State.GetStateItemValue(StateItemType.FamilyFood) > OkLimit;
+		return State.State.GetStateItemValue<float>(StateItemType.MyEnergy) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.MyFood) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.MyHealth) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.MyHappiness) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.FamilyHappiness) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.FamilyHealth) > OkLimit
+		       && State.State.GetStateItemValue<float>(StateItemType.FamilyFood) > OkLimit;
 	}
 
 }

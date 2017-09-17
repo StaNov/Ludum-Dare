@@ -48,7 +48,7 @@ public class Analytics : MonoBehaviour
 				"GameOver",
 				new Dictionary<string, object>
 				{
-					{"Score", Mathf.FloorToInt(State.State.GetStateItemValue(StateItemType.Age))},
+					{"Score", Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age))},
 					{"GameOverReason", State.State.GameOver.ToString()},
 					{"PlayingTimeOneGame", Mathf.FloorToInt(Time.timeSinceLevelLoad)},
 					{"PlayingTimeTotal", PlayTimeTotal},

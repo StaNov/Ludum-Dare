@@ -19,7 +19,7 @@ namespace GameOfLife.GameState.Internal
 			// TODO move to State Factory
 			_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, () => true));
 			_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
-			_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
+			_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
 			_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, () => true));
 			_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, () => true));
 			_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, () => true));
@@ -30,12 +30,6 @@ namespace GameOfLife.GameState.Internal
 			_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
 			_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
 			_items.Add(StateItemType.FoodSupplies, new StateItemInt(constants, (d) => d.FoodSupplies));
-		}
-
-		// TODO delete
-		public float GetStateItemValue(StateItemType type)
-		{
-			return GetStateItemValue<float>(type);
 		}
 
 		public T GetStateItemValue<T>(StateItemType type)

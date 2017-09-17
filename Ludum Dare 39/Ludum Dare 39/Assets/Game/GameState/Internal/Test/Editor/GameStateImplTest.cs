@@ -61,7 +61,7 @@ namespace GameOfLife.GameState.Internal
 			TestConstants.InitialValues.MyEnergy = initialEnergy;
 			CreateTestGameState();
 
-			Assert.AreEqual(initialEnergy, TestGameState.GetStateItemValue(StateItemType.MyEnergy));
+			Assert.AreEqual(initialEnergy, TestGameState.GetStateItemValue<float>(StateItemType.MyEnergy));
 		}
 
 		[Test]
@@ -75,7 +75,7 @@ namespace GameOfLife.GameState.Internal
 			CreateTestGameState();
 
 			TestGameState.ApplyTime(1);
-			Assert.Less(initialAge + 1, TestGameState.GetStateItemValue(StateItemType.Age));
+			Assert.Less(initialAge + 1, TestGameState.GetStateItemValue<float>(StateItemType.Age));
 		}
 
 		[Test]
@@ -120,7 +120,7 @@ namespace GameOfLife.GameState.Internal
 
 			TestGameState.RunAction(TestActionType);
 			TestGameState.ApplyTime(3);
-			Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.GetStateItemValue(StateItemType.MyFood), 0.01);
+			Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.GetStateItemValue<float>(StateItemType.MyFood), 0.01);
 		}
 
 		[Test]
@@ -138,7 +138,7 @@ namespace GameOfLife.GameState.Internal
 			CreateTestGameState();
 
 			TestGameState.RunAction(TestActionType);
-			Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.GetStateItemValue(StateItemType.MyEnergy), 0.01);
+			Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.GetStateItemValue<float>(StateItemType.MyEnergy), 0.01);
 		}
 
 		[Test]
@@ -156,7 +156,7 @@ namespace GameOfLife.GameState.Internal
 
 			TestGameState.StartFamily();
 			TestGameState.ApplyTime(2);
-			Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]
@@ -178,7 +178,7 @@ namespace GameOfLife.GameState.Internal
 			TestGameState.StartFamily();
 			TestGameState.RunAction(TestActionType);
 			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]
@@ -199,7 +199,7 @@ namespace GameOfLife.GameState.Internal
 			TestGameState.StartFamily();
 			TestGameState.RunAction(TestActionType);
 			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]
@@ -216,7 +216,7 @@ namespace GameOfLife.GameState.Internal
 			CreateTestGameState();
 
 			TestGameState.ApplyTime(1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]
@@ -234,7 +234,7 @@ namespace GameOfLife.GameState.Internal
 
 			TestGameState.RunAction(TestActionType);
 			TestGameState.ApplyTime(1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]
@@ -254,7 +254,7 @@ namespace GameOfLife.GameState.Internal
 
 			TestGameState.RunAction(TestActionType);
 			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue(StateItemType.FamilyFood));
+			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood));
 		}
 
 		[Test]

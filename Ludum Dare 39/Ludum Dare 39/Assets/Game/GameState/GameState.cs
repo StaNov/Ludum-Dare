@@ -8,7 +8,6 @@ namespace GameOfLife.GameState
 
 		void RunAction(string actionName);
 		void ApplyTime(float deltaTime);
-		float GetStateItemValue(StateItemType type);
 		T GetStateItemValue<T>(StateItemType type);
 		void StartFamily();
 	}

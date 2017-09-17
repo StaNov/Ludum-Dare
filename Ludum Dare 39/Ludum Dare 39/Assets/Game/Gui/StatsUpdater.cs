@@ -21,6 +21,6 @@ public class StatsUpdater : MonoBehaviour
 		MoneyPerWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.MySalary)) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
 		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.PartnerSalary)) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
 		FoodSupplies.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.FoodSupplies)) + EffectSuffixCreator.Create(effect.FoodSupplies);
-		Age.text = Mathf.FloorToInt(State.State.GetStateItemValue(StateItemType.Age)).ToString();
+		Age.text = Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age)).ToString();
 	}
 }
