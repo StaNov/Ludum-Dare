@@ -3,6 +3,7 @@ namespace GameOfLife.GameState
 	public interface StateItem
 	{
 		T GetValue<T>();
+		bool UpdateIfFamilyNotActive();
 		bool IsGameOverBecauseOfThis();
 		bool DifferenceHasZeroEffect(StatsDifference difference);
 		void ApplyDifferenceByTime(float deltaTime);

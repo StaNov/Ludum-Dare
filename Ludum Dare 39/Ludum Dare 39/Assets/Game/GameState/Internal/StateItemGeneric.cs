@@ -5,12 +5,14 @@ namespace GameOfLife.GameState.Internal
 	public abstract class StateItemGeneric<T> : StateItem
 	{
 		private T _value;
+		private bool _updateIfFamilyNotActive;
 		protected Func<StatsDifference, T> GetDifferenceValue;
 
-		public StateItemGeneric(GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue)
+		public StateItemGeneric(GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue, bool updateIfFamilyNotActive)
 		{
 			GetDifferenceValue = getDifferenceValue;
 			Value = GetDifferenceValue(constants.InitialValues);
+			_updateIfFamilyNotActive = updateIfFamilyNotActive;
 		}
 
 		// TODO make protected for sure, private maybe?
@@ -34,6 +36,11 @@ namespace GameOfLife.GameState.Internal
 			}
 
 			return (V)Convert.ChangeType(Value, typeof(V));
+		}
+
+		public bool UpdateIfFamilyNotActive()
+		{
+			return _updateIfFamilyNotActive;
 		}
 
 		protected virtual T OnSetValue(T originalValue, T newValue)

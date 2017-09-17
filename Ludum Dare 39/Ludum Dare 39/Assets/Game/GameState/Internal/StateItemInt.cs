@@ -4,7 +4,8 @@ namespace GameOfLife.GameState.Internal
 
 	public class StateItemInt : StateItemGeneric<int>
 	{
-		public StateItemInt(GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue) : base(constants, getDifferenceValue) { }
+		public StateItemInt(GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue)
+			: base(constants, getDifferenceValue, true) { }
 
 		public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
 		{

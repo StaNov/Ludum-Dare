@@ -18,7 +18,7 @@ namespace GameOfLife.GameState.Internal
 
 		private void CreateTestItem()
 		{
-			TestItem = new StateItemFloat(MinValue, MaxValue, TestConstants, (d) => d.MyFood, () => true);
+			TestItem = new StateItemFloat(MinValue, MaxValue, TestConstants, (d) => d.MyFood, true);
 		}
 
 		[Test]
@@ -144,7 +144,7 @@ namespace GameOfLife.GameState.Internal
 			TestConstants.InitialValues.MyFood = 1234;
 
 			// TODO can be done cleaner, create two items as fields?
-			TestItem = new StateItemFloat(MinValue, () => MaxValue, TestConstants, (d) => d.MyFood, () => true);
+			TestItem = new StateItemFloat(MinValue, () => MaxValue, TestConstants, (d) => d.MyFood, true);
 
 			Assert.AreEqual(MaxValue, TestItem.GetValue<float>());
 		}

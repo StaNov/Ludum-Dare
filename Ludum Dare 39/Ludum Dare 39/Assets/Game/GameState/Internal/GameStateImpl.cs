@@ -7,8 +7,6 @@ namespace GameOfLife.GameState.Internal
 	{
 		private Dictionary<StateItemType, StateItem> _items;
 		private Dictionary<string, PlayerAction> _actions;
-
-		// TODO convert to bool StateItem
 		private bool _isFamilyActive = false;
 
 		public GameStateImpl(GameplayConstants constants)
@@ -20,15 +18,15 @@ namespace GameOfLife.GameState.Internal
 			_actions = constants.GetPlayerActions();
 
 			// TODO move to State Factory
-			_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, () => true));
-			_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, () => true));
-			_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, () => true));
-			_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, () => true));
-			_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, () => true));
-			_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, () => true));
-			_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => _isFamilyActive));
-			_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => _isFamilyActive));
-			_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => _isFamilyActive));
+			_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, true));
+			_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, true));
+			_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, true));
+			_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, true));
+			_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, true));
+			_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, true));
+			_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, false));
+			_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, false));
+			_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, false));
 			_items.Add(StateItemType.Money, new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary), () => GetStateItemValue<int>(StateItemType.PartnerSalary)));
 			_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
 			_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
@@ -83,7 +81,8 @@ namespace GameOfLife.GameState.Internal
 		{
 			foreach (var item in _items)
 				if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
-					&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring)))
+					&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring))
+					&& ShouldItemBeUpdated(item.Value))
 					item.Value.ApplyDifferenceByTime(deltaTime);
 		}
 
@@ -95,10 +94,11 @@ namespace GameOfLife.GameState.Internal
 				action.RemainingTime -= deltaTime;
 
 				foreach (var item in _items)
-				{
-					float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
-					item.Value.ApplyDifferenceByAction(action.Action.EffectDuring, action.Action, deltaTimeByDuration);
-				}
+					if (ShouldItemBeUpdated(item.Value))
+					{
+						float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
+						item.Value.ApplyDifferenceByAction(action.Action.EffectDuring, action.Action, deltaTimeByDuration);
+					}
 
 				if (action.RemainingTime <= 0)
 				{
@@ -158,7 +158,13 @@ namespace GameOfLife.GameState.Internal
 		private void UpdateStatsOneTime(StatsDifference difference, PlayerAction action)
 		{
 			foreach (var item in _items)
-				item.Value.ApplyDifferenceByAction(difference, action);
+				if (ShouldItemBeUpdated(item.Value))
+					item.Value.ApplyDifferenceByAction(difference, action);
+		}
+
+		private bool ShouldItemBeUpdated(StateItem item)
+		{
+			return _isFamilyActive || item.UpdateIfFamilyNotActive();
 		}
 	}
 }

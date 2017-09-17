@@ -7,22 +7,20 @@ namespace GameOfLife.GameState.Internal
 	{
 		private float _minValue = float.MinValue;
 		private Func<float> _maxValue = () => float.MaxValue;
-		private Func<bool> _shouldBeUpdated = () => true; // initial values can be initialized
 		private float _changePerMinute;
 
-		public StateItemFloat(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
-			this(minValue, () => maxValue, constants, getDifferenceValue, shouldBeUpdated)
+		public StateItemFloat(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
+			this(minValue, () => maxValue, constants, getDifferenceValue, updateIfFamilyNotActive)
 		{ }
 
 		// TODO create builder
 		// TODO redesign the arguments needed in constructor
-		public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, Func<bool> shouldBeUpdated) :
-			base(constants, getDifferenceValue)
+		public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
+			base(constants, getDifferenceValue, updateIfFamilyNotActive)
 		{
 			_minValue = minValue;
 			_maxValue = getMaxValue;
 			_changePerMinute = GetDifferenceValue(constants.ChangePerMinute);
-			_shouldBeUpdated = shouldBeUpdated;
 			Value = Value; // to do the clamping
 		}
 
@@ -48,11 +46,9 @@ namespace GameOfLife.GameState.Internal
 			return GetDifferenceValue(difference) == 0;
 		}
 
+		// TODO original value may be deleted i guess
 		protected override float OnSetValue(float originalValue, float newValue)
 		{
-			if (!_shouldBeUpdated())
-				return originalValue;
-
 			return Mathf.Clamp(newValue, _minValue, _maxValue());
 		}
 	}
