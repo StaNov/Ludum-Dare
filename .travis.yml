@@ -14,7 +14,8 @@ install:
 script:
   - ./Travis/test.sh editmode
   - ./Travis/test.sh playmode
-  - ./Travis/build.sh
+#  When building, it says "2017-09-17 20:06:12.943 Unity[3375:8109] NSDocumentController Info.plist warning: The values of CFBundleTypeRole entries must be 'Editor', 'Viewer', 'None', or 'Shell'." :(
+#  - ./Travis/build.sh
   
 cache:
   directories:
