@@ -12,8 +12,7 @@ echo "===== Building Windows player ====="
   -silent-crashes \
   -logFile \
   -projectPath "$PROJECT_DIR" \
-  -buildWindowsPlayer "$(pwd)/Build/windows/build.exe" \
-  -quit
+  -buildWindowsPlayer "$(pwd)/Build/windows/build.exe"
 
 EXIT_CODE=$?
 echo -en "travis_fold:end:$BUILD_FOLD_NAME\r"
