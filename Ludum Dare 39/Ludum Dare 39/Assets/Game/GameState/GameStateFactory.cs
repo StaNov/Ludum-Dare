@@ -1,12 +1,12 @@
 namespace GameOfLife.GameState
 {
-	using System.Collections;
-	using System.Collections.Generic;
-	using UnityEngine;
+	using Internal;
 
-	public class GameStateFactory
+	public static class GameStateFactory
 	{
-
-		
+		public static GameState CreateGameState(GameplayConstants constants)
+		{
+			return new GameStateImpl(constants);
+		}
 	}
 }

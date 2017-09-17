@@ -21,7 +21,7 @@ namespace GameOfLife.GameState
 
 		private void Start()
 		{
-			_state = new GameState(Constants);
+			_state = GameStateFactory.CreateGameState(Constants);
 		}
 
 		private void FixedUpdate()

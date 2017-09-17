@@ -1,16 +1,15 @@
-namespace GameOfLife.GameState
+namespace GameOfLife.GameState.Internal
 {
-	using UnityEngine;
 	using NUnit.Framework;
 
 	// TODO test only stuff related to state, not to items
 	// TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
-	public class GameStateTest
+	public class GameStateImplTest
 	{
 		private const PlayerActionType TestActionType = PlayerActionType.Eat;
 		private const PlayerActionType TestActionTypeWork = PlayerActionType.GoToWork;
 
-		private GameState TestGameState;
+		private GameStateImpl TestGameState;
 		private GameplayConstants TestConstants;
 
 		private static GameplayConstants CreateTestingGameplayConstants()
@@ -50,7 +49,7 @@ namespace GameOfLife.GameState
 
 		private void CreateTestGameState()
 		{
-			TestGameState = new GameState(TestConstants);
+			TestGameState = new GameStateImpl(TestConstants);
 		}
 
 		[Test]

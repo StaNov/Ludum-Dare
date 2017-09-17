@@ -16,7 +16,7 @@ public class CurrentActionUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		GameState.CurrentAction action = IsPartner ? State.State.CurrentPartnerAction : State.State.CurrentPlayerAction;
+		CurrentAction action = IsPartner ? State.State.CurrentPartnerAction : State.State.CurrentPlayerAction;
 
 		if (IsPartner && State.State.CurrentPlayerAction != null &&
 		    (State.State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld
