@@ -8,6 +8,9 @@ namespace GameOfLife.GameState.Internal
 		private Dictionary<StateItemType, StateItem> _items;
 		private Dictionary<string, PlayerAction> _actions;
 
+		// TODO convert to bool StateItem
+		private bool _isFamilyActive = false;
+
 		public GameStateImpl(GameplayConstants constants)
 		{
 			CurrentPlayerAction = null;
@@ -23,9 +26,9 @@ namespace GameOfLife.GameState.Internal
 			_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, () => true));
 			_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, () => true));
 			_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, () => true));
-			_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => IsFamilyActive));
-			_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => IsFamilyActive));
-			_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => IsFamilyActive));
+			_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, () => _isFamilyActive));
+			_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, () => _isFamilyActive));
+			_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, () => _isFamilyActive));
 			_items.Add(StateItemType.Money, new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary), () => GetStateItemValue<int>(StateItemType.PartnerSalary)));
 			_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
 			_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
@@ -36,8 +39,6 @@ namespace GameOfLife.GameState.Internal
 		{
 			return _items[type].GetValue<T>();
 		}
-		
-		public bool IsFamilyActive { get; private set; }
 
 		public CurrentAction CurrentPlayerAction { get; private set; }
 		public CurrentAction CurrentPartnerAction { get; private set; }
@@ -62,7 +63,7 @@ namespace GameOfLife.GameState.Internal
 
 		public void StartFamily()
 		{
-			IsFamilyActive = true;
+			_isFamilyActive = true;
 		}
 
 		public void ApplyTime(float deltaTime)
