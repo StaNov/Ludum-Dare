@@ -1,5 +1,6 @@
 using GameOfLife.GameState;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
@@ -9,21 +10,16 @@ public class GameplayConstants : ScriptableObject
 	public StatsDifference ChangePerMinute;
 	public PlayerAction[] PlayerActions;
 
-	public PlayerAction GetPlayerAction(string typeString)
+	public Dictionary<string, PlayerAction> GetPlayerActions()
 	{
-		PlayerActionType type = (PlayerActionType) Enum.Parse(typeof(PlayerActionType), typeString);
-		return GetPlayerAction(type);
-	}
-	
-	public PlayerAction GetPlayerAction(PlayerActionType type)
-	{
+		var result = new Dictionary<string, PlayerAction>();
+
 		foreach (var action in PlayerActions)
 		{
-			if (type == action.Type)
-				return action;
+			result.Add(action.Type.ToString(), action);
 		}
 
-		throw new Exception("NO ACTION FOUND!");
+		return result;
 	}
 
 	public static GameplayConstants CreateEmptyConstants()

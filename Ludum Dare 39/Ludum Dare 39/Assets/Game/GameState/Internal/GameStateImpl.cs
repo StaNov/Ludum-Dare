@@ -6,15 +6,15 @@ namespace GameOfLife.GameState.Internal
 	public class GameStateImpl : GameState
 	{
 		private Dictionary<StateItemType, StateItem> _items;
-		private GameplayConstants _constants;
+		private Dictionary<string, PlayerAction> _actions;
 
 		public GameStateImpl(GameplayConstants constants)
 		{
 			CurrentPlayerAction = null;
 			CurrentPartnerAction = null;
-
-			_constants = constants;
+			
 			_items = new Dictionary<StateItemType, StateItem>();
+			_actions = constants.GetPlayerActions();
 
 			// TODO move to State Factory
 			_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, () => true));
@@ -127,7 +127,7 @@ namespace GameOfLife.GameState.Internal
 
 		public void RunAction(string actionName)
 		{
-			PlayerAction action = _constants.GetPlayerAction(actionName);
+			PlayerAction action = _actions[actionName];
 			RunAction(action);
 		}
 
