@@ -50,12 +50,12 @@ public class HoveredActionEffect : MonoBehaviour
 
 		if (action.Type == PlayerActionType.GoToWork)
 		{
-			result.Money = State.State.MoneyPerWorkshift;
+			result.Money = State.State.GetStateItemValue<int>(StateItemType.MySalary);
 		}
 		
 		if (action.Type == PlayerActionType.PartnerGoesToWork)
 		{
-			result.Money = State.State.MoneyPerPartnersWorkshift;
+			result.Money = State.State.GetStateItemValue<int>(StateItemType.PartnerSalary);
 		}
 
 		return result;

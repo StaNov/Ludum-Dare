@@ -42,11 +42,7 @@ namespace GameOfLife.GameState.Internal
 		{
 			return _items[type].GetValue<T>();
 		}
-
-		public int Money { get { return GetStateItemValue<int>(StateItemType.Money); } private set { ((StateItemInt)_items[StateItemType.Money]).Value = value; } }
-		public int MoneyPerWorkshift { get { return GetStateItemValue<int>(StateItemType.MySalary); } private set { ((StateItemInt)_items[StateItemType.MySalary]).Value = value; } }
-		public int MoneyPerPartnersWorkshift { get { return GetStateItemValue<int>(StateItemType.PartnerSalary); } private set { ((StateItemInt)_items[StateItemType.PartnerSalary]).Value = value; } }
-		public int FoodSupplies { get { return GetStateItemValue<int>(StateItemType.FoodSupplies); } private set { ((StateItemInt)_items[StateItemType.FoodSupplies]).Value = value; } }
+		
 		public bool IsFamilyActive { get; private set; }
 
 		public CurrentAction CurrentPlayerAction { get; private set; }
@@ -61,9 +57,9 @@ namespace GameOfLife.GameState.Internal
 						return item.Key;
 
 				// TODO delete when no game over when no money or food
-				if (Money < 0)
+				if (GetStateItemValue<int>(StateItemType.Money) < 0)
 					return StateItemType.Money;
-				if (FoodSupplies < 0)
+				if (GetStateItemValue<int>(StateItemType.FoodSupplies) < 0)
 					return StateItemType.FoodSupplies;
 
 				return null;
