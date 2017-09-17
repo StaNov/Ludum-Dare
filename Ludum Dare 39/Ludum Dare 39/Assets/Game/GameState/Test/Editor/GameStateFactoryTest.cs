@@ -8,7 +8,7 @@ namespace GameOfLife.GameState {
 		public void Test()
 		{
 			// TODO
-			// GameStateFactory.CreateGameState(ScriptableObject.CreateInstance<GameplayConstants>());
+			GameStateFactory.CreateGameState(GameplayConstants.CreateEmptyConstants());
 		}
 	}
 }
