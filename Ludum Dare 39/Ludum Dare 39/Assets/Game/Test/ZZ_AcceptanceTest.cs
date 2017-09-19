@@ -4,18 +4,72 @@ namespace GameOfLife.GameState
 	using UnityEngine.TestTools;
 	using System.Collections;
 	using UnityEngine.SceneManagement;
+	using NUnit.Framework;
 
 	public class ZZ_AcceptanceTest
 	{
 		private GameState _gameState;
 
-		[UnityTest]
-		public IEnumerator AcceptanceTest()
+		private IEnumerator Setup()
 		{
+			Time.timeScale = 10;
 			SceneManager.LoadScene("Game");
 			yield return null;
 			_gameState = Object.FindObjectOfType<GameStateHolder>().State;
-			yield break;
+		}
+
+		[UnityTest]
+		public IEnumerator AttributesAreLoweredByTime()
+		{
+			yield return Setup();
+			yield return new WaitForSeconds(7);
+
+			foreach (StateItemType type in new StateItemType[] { StateItemType.MyEnergy, StateItemType.MyFood, StateItemType.MyHappiness, StateItemType.MyHealth, StateItemType.MyMaxEnergy })
+				Assert.Less(_gameState.GetStateItemValue<float>(type), 99);
+		}
+
+		[UnityTest]
+		public IEnumerator FamilyAttributesAreFullAfterStartFamily()
+		{
+			yield return Setup();
+			yield return new WaitForSeconds(7);
+
+			_gameState.StartFamily();
+
+			foreach (StateItemType type in new StateItemType[] { StateItemType.FamilyFood, StateItemType.FamilyHappiness, StateItemType.FamilyHealth })
+				Assert.AreEqual(_gameState.GetStateItemValue<float>(type), 100f, 0.01f);
+		}
+
+		[UnityTest]
+		public IEnumerator LearnNewSkillsMakesSalaryGreater()
+		{
+			yield return Setup();
+			_gameState.RunAction(PlayerActionType.LearnNewStuffForWork.ToString());
+
+			yield return new WaitForSeconds(11);
+
+			Assert.Greater(_gameState.GetStateItemValue<int>(StateItemType.MySalary), 0);
+		}
+
+		[UnityTest]
+		public IEnumerator MoreMoneyWhenBothGoToWork()
+		{
+			yield return Setup();
+			yield return null;
+			_gameState.StartFamily(); // TODO redo graphics so it gets displayed here?
+
+			_gameState.RunAction(PlayerActionType.GoToWork.ToString());
+			_gameState.RunAction(PlayerActionType.PartnerGoesToWork.ToString());
+
+			yield return new WaitForSeconds(15);
+
+			Assert.Greater(_gameState.GetStateItemValue<int>(StateItemType.Money), 0);
+
+			_gameState.RunAction(PlayerActionType.GoShopping.ToString());
+
+			yield return new WaitForSeconds(10);
+
+			Assert.Greater(_gameState.GetStateItemValue<int>(StateItemType.FoodSupplies), 0);
 		}
 	}
 }
