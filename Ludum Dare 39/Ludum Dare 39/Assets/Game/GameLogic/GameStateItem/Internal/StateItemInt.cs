@@ -1,4 +1,4 @@
-namespace GameOfLife.GameState.Internal
+namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
 	using System;
 

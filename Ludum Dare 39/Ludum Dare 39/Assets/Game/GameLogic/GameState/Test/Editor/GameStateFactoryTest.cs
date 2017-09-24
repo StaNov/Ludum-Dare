@@ -1,4 +1,4 @@
-namespace GameOfLife.GameState {
+namespace GameOfLife.GameLogic.GameState {
 	using NUnit.Framework;
 	using UnityEngine;
 

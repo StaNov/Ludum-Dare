@@ -1,4 +1,4 @@
-using GameOfLife.GameState;
+using GameOfLife.GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
 

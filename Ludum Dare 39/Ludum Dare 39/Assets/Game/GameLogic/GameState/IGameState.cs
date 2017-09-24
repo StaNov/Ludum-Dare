@@ -1,6 +1,6 @@
-namespace GameOfLife.GameState
+namespace GameOfLife.GameLogic.GameState
 {
-	public interface GameState
+	public interface IGameState
 	{
 		StateItemType? GameOver { get; }
 		CurrentAction CurrentPartnerAction { get; }

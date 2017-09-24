@@ -1,14 +1,16 @@
-namespace GameOfLife.GameState
+namespace GameOfLife
 {
 	using UnityEngine;
 	using UnityEngine.TestTools;
 	using System.Collections;
 	using UnityEngine.SceneManagement;
 	using NUnit.Framework;
+    using GameOfLife.GameLogic;
+    using GameOfLife.GameLogic.GameState;
 
-	public class ZZ_AcceptanceTest
+    public class ZZ_AcceptanceTest
 	{
-		private GameState _gameState;
+		private IGameState _gameState;
 
 		private IEnumerator Setup()
 		{

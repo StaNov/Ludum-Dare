@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.GameState
+﻿namespace GameOfLife.GameLogic
 {
 	// TODO move to some game-specific location?
 	public enum StateItemType

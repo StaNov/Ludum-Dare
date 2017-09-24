@@ -1,10 +1,9 @@
-namespace GameOfLife.GameState.Internal
+namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using NUnit.Framework;
+    using NUnit.Framework;
 
 	public class StateItemFloatTest
 	{
-
 		private GameplayConstants TestConstants;
 		private StateItem TestItem;
 

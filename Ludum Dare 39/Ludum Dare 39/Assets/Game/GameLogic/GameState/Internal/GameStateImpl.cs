@@ -1,9 +1,12 @@
-namespace GameOfLife.GameState.Internal
+namespace GameOfLife.GameLogic.GameState.Internal
 {
-	using System.Collections.Generic;
+    // TODO redo to factory visible from outside this internal!
+    using GameStateItem.Internal;
+    using GameStateItem;
+    using System.Collections.Generic;
 	using UnityEngine;
 
-	public class GameStateImpl : GameState
+	public class GameStateImpl : IGameState
 	{
 		private Dictionary<StateItemType, StateItem> _items;
 		private Dictionary<string, PlayerAction> _actions;

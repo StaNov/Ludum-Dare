@@ -1,4 +1,4 @@
-namespace GameOfLife.GameState.Internal
+namespace GameOfLife.GameLogic.GameState.Internal
 {
 	using NUnit.Framework;
 

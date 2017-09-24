@@ -1,4 +1,4 @@
-namespace GameOfLife.GameState
+namespace GameOfLife.GameLogic.GameStateItem
 {
 	public interface StateItem
 	{
