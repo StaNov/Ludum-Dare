@@ -2,7 +2,7 @@ namespace GameOfLife.GameLogic.GameState
 {
 	public interface IGameState
 	{
-		StateItemType? GameOver { get; }
+		string GameOver { get; }
 		CurrentAction CurrentPartnerAction { get; }
 		CurrentAction CurrentPlayerAction { get; }
 

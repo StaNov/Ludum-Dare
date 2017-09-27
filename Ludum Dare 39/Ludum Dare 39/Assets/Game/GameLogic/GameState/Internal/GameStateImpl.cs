@@ -37,19 +37,19 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		public CurrentAction CurrentPlayerAction { get; private set; }
 		public CurrentAction CurrentPartnerAction { get; private set; }
 
-		public StateItemType? GameOver
+		public string GameOver
 		{
 			get
 			{
 				foreach (var item in _items)
 					if (item.Value.IsGameOverBecauseOfThis())
-						return (StateItemType) Enum.Parse(typeof(StateItemType), item.Key);
+						return item.Key;
 
 				// TODO delete when no game over when no money or food
 				if (GetStateItemValue<int>(StateItemType.Money.ToString()) < 0)
-					return StateItemType.Money;
+					return StateItemType.Money.ToString();
 				if (GetStateItemValue<int>(StateItemType.FoodSupplies.ToString()) < 0)
-					return StateItemType.FoodSupplies;
+					return StateItemType.FoodSupplies.ToString();
 
 				return null;
 			}

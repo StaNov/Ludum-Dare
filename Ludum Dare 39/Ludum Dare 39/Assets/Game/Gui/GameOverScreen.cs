@@ -25,7 +25,12 @@ public class GameOverScreen : MonoBehaviour
 		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age.ToString())).ToString());
 	}
 
-	private string GetGameOverReason(StateItemType? reason)
+    private string GetGameOverReason(string reason)
+    {
+        return GetGameOverReason((StateItemType) Enum.Parse(typeof(StateItemType), reason));
+    }
+
+    private string GetGameOverReason(StateItemType? reason)
 	{
 		switch (reason)
 		{

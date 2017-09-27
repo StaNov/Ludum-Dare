@@ -102,7 +102,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			CreateTestGameState();
 
 			TestGameState.ApplyTime(1);
-			Assert.AreEqual(StateItemType.MyEnergy, TestGameState.GameOver);
+			Assert.AreEqual(StateItemType.MyEnergy.ToString(), TestGameState.GameOver);
 		}
 
 		[Test]
