@@ -9,6 +9,7 @@ namespace GameOfLife
     using GameOfLife.GameLogic.GameState;
 
     // TODO add test for hovering over a button
+    // TODO add test for showed game over screen
     public class ZZ_AcceptanceTest
 	{
 		private IGameState _gameState;
