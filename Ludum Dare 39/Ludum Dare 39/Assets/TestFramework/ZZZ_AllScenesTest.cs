@@ -12,7 +12,7 @@ public class ZZZ_AllScenesTest : AbstractTest
 
 	// Those values are tweaked so it loads each scene.
 	// Too big wait time seems to cause not loading second scene.
-	private const float TimeScale = 20;
+	private const float TimeScale = 99;
 	private const float WaitSecondsEachScene = 10;
 
 	protected override void BeforeClass()

@@ -14,7 +14,7 @@ namespace GameOfLife
 
 		private IEnumerator Setup()
 		{
-			Time.timeScale = 10;
+			Time.timeScale = 99;
 			SceneManager.LoadScene("Game");
 			yield return null;
 			_gameState = Object.FindObjectOfType<GameStateHolder>().State;
