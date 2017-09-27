@@ -13,28 +13,13 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		private Dictionary<string, PlayerAction> _actions;
 		private bool _isFamilyActive = false;
 
-		public GameStateImpl(GameplayConstants constants)
+		public GameStateImpl(Dictionary<string, StateItem> items, Dictionary<string, PlayerAction> actions)
 		{
 			CurrentPlayerAction = null;
 			CurrentPartnerAction = null;
 			
-			_items = new Dictionary<string, StateItem>();
-			_actions = constants.GetPlayerActions();
-
-			// TODO move to State Factory
-			_items.Add(StateItemType.Age.ToString(), new StateItemFloat(0, 99999, constants, (d) => d.Age, true));
-			_items.Add(StateItemType.MyMaxEnergy.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, true));
-			_items.Add(StateItemType.MyEnergy.ToString(), new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString()), constants, (d) => d.MyEnergy, true));
-			_items.Add(StateItemType.MyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyFood, true));
-			_items.Add(StateItemType.MyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, true));
-			_items.Add(StateItemType.MyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHealth, true));
-			_items.Add(StateItemType.FamilyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, false));
-			_items.Add(StateItemType.FamilyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, false));
-			_items.Add(StateItemType.FamilyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, false));
-			_items.Add(StateItemType.Money.ToString(), new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary.ToString()), () => GetStateItemValue<int>(StateItemType.PartnerSalary.ToString())));
-			_items.Add(StateItemType.MySalary.ToString(), new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
-			_items.Add(StateItemType.PartnerSalary.ToString(), new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
-			_items.Add(StateItemType.FoodSupplies.ToString(), new StateItemInt(constants, (d) => d.FoodSupplies));
+			_items = items;
+			_actions = actions;
 		}
 
 		public T GetStateItemValue<T>(string type)
@@ -113,11 +98,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			}
 
 			return action;
-		}
-
-		public void RunAction(PlayerActionType type)
-		{
-			RunAction(type.ToString());
 		}
 
 		public void RunAction(string actionName)
