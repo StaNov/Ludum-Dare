@@ -30,7 +30,7 @@ namespace GameOfLife.GameLogic.GameState
             items.Add(partnerSalary);
             items.Add(new StateItemInt(StateItemType.FoodSupplies.ToString(), constants, (d) => d.FoodSupplies));
 
-            Dictionary<string, PlayerAction> actions = constants.GetPlayerActions();
+            List<PlayerAction> actions = constants.GetPlayerActions();
 
             return new GameStateImpl(items, actions);
 		}

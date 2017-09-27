@@ -11,7 +11,10 @@ public class StatsAffector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	private void Start()
 	{
-		_actions = Constants.GetPlayerActions();
+        _actions = new Dictionary<string, PlayerAction>();
+
+        foreach (var action in Constants.GetPlayerActions())
+            _actions.Add(action.GetName(), action);
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)

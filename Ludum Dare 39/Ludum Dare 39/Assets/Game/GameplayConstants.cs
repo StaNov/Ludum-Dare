@@ -10,16 +10,9 @@ public class GameplayConstants : ScriptableObject
 	public StatsDifference ChangePerMinute;
 	public PlayerAction[] PlayerActions;
 
-	public Dictionary<string, PlayerAction> GetPlayerActions()
+	public List<PlayerAction> GetPlayerActions()
 	{
-		var result = new Dictionary<string, PlayerAction>();
-
-		foreach (var action in PlayerActions)
-		{
-			result.Add(action.Type.ToString(), action);
-		}
-
-		return result;
+        return new List<PlayerAction>(PlayerActions);
 	}
 
 	public static GameplayConstants CreateEmptyConstants()
@@ -85,6 +78,7 @@ public class StatsDifference : ICloneable
 	}
 }
 
+// TODO redesign to interface somewhere
 [Serializable]
 public class PlayerAction
 {
@@ -93,6 +87,11 @@ public class PlayerAction
 	public StatsDifference EffectBefore;
 	public StatsDifference EffectDuring;
 	public StatsDifference EffectAfter;
+
+    public string GetName()
+    {
+        return Type.ToString();
+    }
 }
 
 public enum PlayerActionType
