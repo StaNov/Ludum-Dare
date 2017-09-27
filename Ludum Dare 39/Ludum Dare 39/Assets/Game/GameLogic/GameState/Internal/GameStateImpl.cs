@@ -106,7 +106,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			RunAction(action);
 		}
 
-		public void RunAction(PlayerAction action)
+		private void RunAction(PlayerAction action)
 		{
 			bool isPartnersAction = action.Type.IsPartnersAction();
 
