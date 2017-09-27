@@ -9,14 +9,14 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 		private Func<float> _maxValue = () => float.MaxValue;
 		private float _changePerMinute;
 
-		public StateItemFloat(float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
-			this(minValue, () => maxValue, constants, getDifferenceValue, updateIfFamilyNotActive)
+		public StateItemFloat(string name, float minValue, float maxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
+			this(name, minValue, () => maxValue, constants, getDifferenceValue, updateIfFamilyNotActive)
 		{ }
 
 		// TODO create builder
 		// TODO redesign the arguments needed in constructor
-		public StateItemFloat(float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
-			base(constants, getDifferenceValue, updateIfFamilyNotActive)
+		public StateItemFloat(string name, float minValue, Func<float> getMaxValue, GameplayConstants constants, Func<StatsDifference, float> getDifferenceValue, bool updateIfFamilyNotActive) :
+			base(name, constants, getDifferenceValue, updateIfFamilyNotActive)
 		{
 			_minValue = minValue;
 			_maxValue = getMaxValue;

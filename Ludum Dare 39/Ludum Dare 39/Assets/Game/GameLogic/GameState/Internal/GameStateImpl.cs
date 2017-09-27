@@ -13,14 +13,18 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		private Dictionary<string, PlayerAction> _actions;
 		private bool _isFamilyActive = false;
 
-		public GameStateImpl(Dictionary<string, StateItem> items, Dictionary<string, PlayerAction> actions)
+		public GameStateImpl(List<StateItem> items, Dictionary<string, PlayerAction> actions)
 		{
 			CurrentPlayerAction = null;
 			CurrentPartnerAction = null;
-			
-			_items = items;
+
+            _items = new Dictionary<string, StateItem>();
+
+            foreach (var item in items)
+                _items.Add(item.GetName(), item);
+
 			_actions = actions;
-		}
+        }
 
 		public T GetStateItemValue<T>(string type)
 		{

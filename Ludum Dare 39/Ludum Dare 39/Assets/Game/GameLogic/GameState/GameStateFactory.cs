@@ -10,25 +10,25 @@ namespace GameOfLife.GameLogic.GameState
 	{
 		public static IGameState CreateGameState(GameplayConstants constants)
         {
-            Dictionary<string, StateItem> items = new Dictionary<string, StateItem>();
+            List<StateItem> items = new List<StateItem>();
 
-            StateItemFloat myMaxEnergy = new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, true);
-            StateItemInt mySalary = new StateItemInt(constants, (d) => d.MoneyPerWorkshift);
-            StateItemInt partnerSalary = new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift);
+            StateItemFloat myMaxEnergy = new StateItemFloat(StateItemType.MyMaxEnergy.ToString(), 0, 100, constants, (d) => d.MyMaxEnergy, true);
+            StateItemInt mySalary = new StateItemInt(StateItemType.MySalary.ToString(), constants, (d) => d.MoneyPerWorkshift);
+            StateItemInt partnerSalary = new StateItemInt(StateItemType.PartnerSalary.ToString(), constants, (d) => d.MoneyPerPartnersWorkshift);
 
-            items.Add(StateItemType.Age.ToString(), new StateItemFloat(0, 99999, constants, (d) => d.Age, true));
-            items.Add(StateItemType.MyMaxEnergy.ToString(), myMaxEnergy);
-            items.Add(StateItemType.MyEnergy.ToString(), new StateItemFloat(0, () => myMaxEnergy.GetValue<float>(), constants, (d) => d.MyEnergy, true));
-            items.Add(StateItemType.MyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyFood, true));
-            items.Add(StateItemType.MyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, true));
-            items.Add(StateItemType.MyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHealth, true));
-            items.Add(StateItemType.FamilyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, false));
-            items.Add(StateItemType.FamilyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, false));
-            items.Add(StateItemType.FamilyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, false));
-            items.Add(StateItemType.Money.ToString(), new StateItemMoney(constants, (d) => d.Money, () => mySalary.GetValue<int>(), () => partnerSalary.GetValue<int>()));
-            items.Add(StateItemType.MySalary.ToString(), mySalary);
-            items.Add(StateItemType.PartnerSalary.ToString(), partnerSalary);
-            items.Add(StateItemType.FoodSupplies.ToString(), new StateItemInt(constants, (d) => d.FoodSupplies));
+            items.Add(new StateItemFloat(StateItemType.Age.ToString(), 0, 99999, constants, (d) => d.Age, true));
+            items.Add(myMaxEnergy);
+            items.Add(new StateItemFloat(StateItemType.MyEnergy.ToString(), 0, () => myMaxEnergy.GetValue<float>(), constants, (d) => d.MyEnergy, true));
+            items.Add(new StateItemFloat(StateItemType.MyFood.ToString(), 0, 100, constants, (d) => d.MyFood, true));
+            items.Add(new StateItemFloat(StateItemType.MyHappiness.ToString(), 0, 100, constants, (d) => d.MyHappiness, true));
+            items.Add(new StateItemFloat(StateItemType.MyHealth.ToString(), 0, 100, constants, (d) => d.MyHealth, true));
+            items.Add(new StateItemFloat(StateItemType.FamilyFood.ToString(), 0, 100, constants, (d) => d.FamilyFood, false));
+            items.Add(new StateItemFloat(StateItemType.FamilyHappiness.ToString(), 0, 100, constants, (d) => d.FamilyHappiness, false));
+            items.Add(new StateItemFloat(StateItemType.FamilyHealth.ToString(), 0, 100, constants, (d) => d.FamilyHealth, false));
+            items.Add(new StateItemMoney(StateItemType.Money.ToString(), constants, (d) => d.Money, () => mySalary.GetValue<int>(), () => partnerSalary.GetValue<int>()));
+            items.Add(mySalary);
+            items.Add(partnerSalary);
+            items.Add(new StateItemInt(StateItemType.FoodSupplies.ToString(), constants, (d) => d.FoodSupplies));
 
             Dictionary<string, PlayerAction> actions = constants.GetPlayerActions();
 

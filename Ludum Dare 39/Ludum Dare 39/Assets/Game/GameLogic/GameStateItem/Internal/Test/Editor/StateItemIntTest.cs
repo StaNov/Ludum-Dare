@@ -18,7 +18,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 
 		private void CreateTestItem()
 		{
-			TestItem = new StateItemInt(TestConstants, (d) => d.Money);
+			TestItem = new StateItemInt("test", TestConstants, (d) => d.Money);
 		}
 
 		[Test]

@@ -4,12 +4,14 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 
 	public abstract class StateItemGeneric<T> : StateItem
 	{
+        private string _name;
 		private T _value;
 		private bool _updateIfFamilyNotActive;
 		protected Func<StatsDifference, T> GetDifferenceValue;
 
-		public StateItemGeneric(GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue, bool updateIfFamilyNotActive)
+		public StateItemGeneric(string name, GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue, bool updateIfFamilyNotActive)
 		{
+            _name = name;
 			GetDifferenceValue = getDifferenceValue;
 			Value = GetDifferenceValue(constants.InitialValues);
 			_updateIfFamilyNotActive = updateIfFamilyNotActive;
@@ -27,6 +29,11 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 				_value = OnSetValue(_value, value);
 			}
 		}
+
+        public string GetName()
+        {
+            return _name;
+        }
 
 		public V GetValue<V>()
 		{

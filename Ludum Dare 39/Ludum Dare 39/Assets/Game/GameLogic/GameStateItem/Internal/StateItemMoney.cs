@@ -7,8 +7,8 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 		private Func<int> _getPlayerSalary;
 		private Func<int> _getPartnerSalary;
 
-		public StateItemMoney(GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue, Func<int> getPlayerSalary, Func<int> getPartnerSalary)
-			: base(constants, getDifferenceValue)
+		public StateItemMoney(string name, GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue, Func<int> getPlayerSalary, Func<int> getPartnerSalary)
+			: base(name, constants, getDifferenceValue)
 		{
 			_getPlayerSalary = getPlayerSalary;
 			_getPartnerSalary = getPartnerSalary;
