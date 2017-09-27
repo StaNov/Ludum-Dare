@@ -5,10 +5,11 @@ namespace GameOfLife.GameLogic.GameState.Internal
     using GameStateItem;
     using System.Collections.Generic;
 	using UnityEngine;
+    using System;
 
-	public class GameStateImpl : IGameState
+    public class GameStateImpl : IGameState
 	{
-		private Dictionary<StateItemType, StateItem> _items;
+		private Dictionary<string, StateItem> _items;
 		private Dictionary<string, PlayerAction> _actions;
 		private bool _isFamilyActive = false;
 
@@ -17,26 +18,26 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			CurrentPlayerAction = null;
 			CurrentPartnerAction = null;
 			
-			_items = new Dictionary<StateItemType, StateItem>();
+			_items = new Dictionary<string, StateItem>();
 			_actions = constants.GetPlayerActions();
 
 			// TODO move to State Factory
-			_items.Add(StateItemType.Age, new StateItemFloat(0, 99999, constants, (d) => d.Age, true));
-			_items.Add(StateItemType.MyMaxEnergy, new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, true));
-			_items.Add(StateItemType.MyEnergy, new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy), constants, (d) => d.MyEnergy, true));
-			_items.Add(StateItemType.MyFood, new StateItemFloat(0, 100, constants, (d) => d.MyFood, true));
-			_items.Add(StateItemType.MyHappiness, new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, true));
-			_items.Add(StateItemType.MyHealth, new StateItemFloat(0, 100, constants, (d) => d.MyHealth, true));
-			_items.Add(StateItemType.FamilyFood, new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, false));
-			_items.Add(StateItemType.FamilyHappiness, new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, false));
-			_items.Add(StateItemType.FamilyHealth, new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, false));
-			_items.Add(StateItemType.Money, new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary), () => GetStateItemValue<int>(StateItemType.PartnerSalary)));
-			_items.Add(StateItemType.MySalary, new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
-			_items.Add(StateItemType.PartnerSalary, new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
-			_items.Add(StateItemType.FoodSupplies, new StateItemInt(constants, (d) => d.FoodSupplies));
+			_items.Add(StateItemType.Age.ToString(), new StateItemFloat(0, 99999, constants, (d) => d.Age, true));
+			_items.Add(StateItemType.MyMaxEnergy.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyMaxEnergy, true));
+			_items.Add(StateItemType.MyEnergy.ToString(), new StateItemFloat(0, () => GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString()), constants, (d) => d.MyEnergy, true));
+			_items.Add(StateItemType.MyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyFood, true));
+			_items.Add(StateItemType.MyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHappiness, true));
+			_items.Add(StateItemType.MyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.MyHealth, true));
+			_items.Add(StateItemType.FamilyFood.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyFood, false));
+			_items.Add(StateItemType.FamilyHappiness.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHappiness, false));
+			_items.Add(StateItemType.FamilyHealth.ToString(), new StateItemFloat(0, 100, constants, (d) => d.FamilyHealth, false));
+			_items.Add(StateItemType.Money.ToString(), new StateItemMoney(constants, (d) => d.Money, () => GetStateItemValue<int>(StateItemType.MySalary.ToString()), () => GetStateItemValue<int>(StateItemType.PartnerSalary.ToString())));
+			_items.Add(StateItemType.MySalary.ToString(), new StateItemInt(constants, (d) => d.MoneyPerWorkshift));
+			_items.Add(StateItemType.PartnerSalary.ToString(), new StateItemInt(constants, (d) => d.MoneyPerPartnersWorkshift));
+			_items.Add(StateItemType.FoodSupplies.ToString(), new StateItemInt(constants, (d) => d.FoodSupplies));
 		}
 
-		public T GetStateItemValue<T>(StateItemType type)
+		public T GetStateItemValue<T>(string type)
 		{
 			return _items[type].GetValue<T>();
 		}
@@ -50,12 +51,12 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			{
 				foreach (var item in _items)
 					if (item.Value.IsGameOverBecauseOfThis())
-						return item.Key;
+						return (StateItemType) Enum.Parse(typeof(StateItemType), item.Key);
 
 				// TODO delete when no game over when no money or food
-				if (GetStateItemValue<int>(StateItemType.Money) < 0)
+				if (GetStateItemValue<int>(StateItemType.Money.ToString()) < 0)
 					return StateItemType.Money;
-				if (GetStateItemValue<int>(StateItemType.FoodSupplies) < 0)
+				if (GetStateItemValue<int>(StateItemType.FoodSupplies.ToString()) < 0)
 					return StateItemType.FoodSupplies;
 
 				return null;

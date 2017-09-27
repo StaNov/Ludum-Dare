@@ -22,7 +22,7 @@ public class GameOverScreen : MonoBehaviour
 		Reason.text = GetGameOverReason(State.State.GameOver);
 		
 		Panel.SetActive(true);
-		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age)).ToString());
+		ResultYears.text = ResultYears.text.Replace("XXX", Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age.ToString())).ToString());
 	}
 
 	private string GetGameOverReason(StateItemType? reason)

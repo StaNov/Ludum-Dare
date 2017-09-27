@@ -13,7 +13,7 @@ public class LeaderboardSaver : MonoBehaviour
 			StartCoroutine(ReusableLeaderboardManager.SaveNewRecord(
 				"http://games.stanov.cz/ludum-dare-39/callLeaderboardSave.php",
 				PlayerNameManager.PlayerName,
-				Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age))));
+				Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age.ToString()))));
 			
 			_recordSaved = true;
 		}
