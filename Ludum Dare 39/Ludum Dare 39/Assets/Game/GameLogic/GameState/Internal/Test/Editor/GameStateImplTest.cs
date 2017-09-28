@@ -19,10 +19,12 @@ namespace GameOfLife.GameLogic.GameState.Internal
             public string Name;
             public bool GameOverBecauseOfThis;
             public bool UpdateIfFamilyNotActiveLocal = true;
+            public bool ApplyDifferenceByActionCalled { get; private set; }
+            public bool ApplyDifferenceByTimeCalled { get; private set; }
 
-            public virtual void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1) { }
+            public virtual void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1) { ApplyDifferenceByActionCalled = true; }
                     
-            public virtual void ApplyDifferenceByTime(float deltaTime) { }
+            public virtual void ApplyDifferenceByTime(float deltaTime) { ApplyDifferenceByTimeCalled = true; }
                     
             public virtual bool DifferenceHasZeroEffect(StatsDifference difference) { return true; }
                     
@@ -100,7 +102,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
             PlayerActionType partnerAction = PlayerActionType.PartnerFeedsFamily;
 
             CreateTestInputs();
-            // TODO remove dependency on PlayerActionType
+            // TODO remove dependency on PlayerActionType, redo to string
             _testActions.Add(new TestAction { Type = partnerAction });
             CreateTestGameState();
 
@@ -127,6 +129,110 @@ namespace GameOfLife.GameLogic.GameState.Internal
             CreateTestGameState();
 
             Assert.AreEqual("test", _testGameState.GameOver);
+        }
+
+        [Test]
+        public void ApplyDifferenceByTime_Called_PlayerItem()
+        {
+            var testItem = new TestItem { Name = "test" };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+            
+            _testGameState.ApplyTime(1);
+
+            Assert.IsTrue(testItem.ApplyDifferenceByTimeCalled);
+        }
+
+        [Test]
+        public void ApplyDifferenceByTime_NotCalled_FamilyItem()
+        {
+            var testItem = new TestItem { Name = "test", UpdateIfFamilyNotActiveLocal = false };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+
+            _testGameState.ApplyTime(1);
+
+            Assert.IsFalse(testItem.ApplyDifferenceByTimeCalled);
+        }
+
+        [Test]
+        public void ApplyDifferenceByTime_Called_FamilyItem_FamilyStarted()
+        {
+            var testItem = new TestItem { Name = "test", UpdateIfFamilyNotActiveLocal = false };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+
+            _testGameState.StartFamily();
+            _testGameState.ApplyTime(1);
+
+            Assert.IsTrue(testItem.ApplyDifferenceByTimeCalled);
+        }
+
+        [Test]
+        public void ApplyDifferenceByAction_Called_PlayerItem()
+        {
+            var testItem = new TestItem { Name = "test" };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+
+            _testGameState.RunAction(testActionType.ToString());
+
+            Assert.IsTrue(testItem.ApplyDifferenceByActionCalled);
+        }
+
+        [Test]
+        public void ApplyDifferenceByAction_NotCalled_FamilyItem_FamilyNotStarted()
+        {
+            var testItem = new TestItem { Name = "test", UpdateIfFamilyNotActiveLocal = false };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+
+            _testGameState.RunAction(testActionType.ToString());
+
+            Assert.IsFalse(testItem.ApplyDifferenceByActionCalled);
+        }
+
+        [Test]
+        public void ApplyDifferenceByAction_Called_FamilyItem_FamilyStarted()
+        {
+            var testItem = new TestItem { Name = "test", UpdateIfFamilyNotActiveLocal = false };
+            var testActionType = PlayerActionType.DoHobby;
+
+            CreateTestInputs();
+            _testItems.Add(testItem);
+            // TODO remove dependency on PlayerActionType, redo to string
+            _testActions.Add(new TestAction { Type = testActionType });
+            CreateTestGameState();
+
+            _testGameState.StartFamily();
+            _testGameState.RunAction(testActionType.ToString());
+
+            Assert.IsTrue(testItem.ApplyDifferenceByActionCalled);
         }
 
         /*[Test]
