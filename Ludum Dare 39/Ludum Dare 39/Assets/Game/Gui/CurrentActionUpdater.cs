@@ -1,5 +1,6 @@
 using GameOfLife.GameLogic;
 using GameOfLife.GameLogic.GameState;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,18 +18,19 @@ public class CurrentActionUpdater : MonoBehaviour
 	
 	void Update ()
 	{
-		CurrentAction action = IsPartner ? State.State.CurrentPartnerAction : State.State.CurrentPlayerAction;
+		KeyValuePair<string, float>? action = IsPartner ? State.State.GetCurrentPartnerAction() : State.State.GetCurrentPlayerAction();
 
-		if (IsPartner && State.State.CurrentPlayerAction != null &&
-		    (State.State.CurrentPlayerAction.Action.Type == PlayerActionType.GoToAquaWorld
-		     || State.State.CurrentPlayerAction.Action.Type == PlayerActionType.SpendTimeWithFamily))
+        // TODO move logic to GameState
+		if (IsPartner && State.State.GetCurrentPlayerAction() != null &&
+		    (State.State.GetCurrentPlayerAction().Value.Key == PlayerActionType.GoToAquaWorld.ToString()
+		     || State.State.GetCurrentPlayerAction().Value.Key == PlayerActionType.SpendTimeWithFamily.ToString()))
 		{
-			action = State.State.CurrentPlayerAction;
+			action = State.State.GetCurrentPlayerAction();
 		}
 		
-		ActionText.text = action == null ? "" : action.Action.Type.Localized();
+		ActionText.text = action == null ? "" : ((PlayerActionType) Enum.Parse(typeof(PlayerActionType), action.Value.Key)).Localized();
 		
-		Indicator.UpdateValue(action == null || action.Action.Type == PlayerActionType.None ? 0 : 1 - action.RemainingTime / action.Action.DurationInSeconds, 0, 0, 1);
+		Indicator.UpdateValue(action == null || action.Value.Key == PlayerActionType.None.ToString() ? 0 : action.Value.Value, 0, 0, 1);
 
 		if (lastFrameActionPerforming && action == null)
 		{

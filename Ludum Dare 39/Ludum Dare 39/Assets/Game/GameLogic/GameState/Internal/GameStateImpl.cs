@@ -13,7 +13,10 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		private Dictionary<string, PlayerAction> _actions;
 		private bool _isFamilyActive = false;
 
-		public GameStateImpl(List<StateItem> items, List<PlayerAction> actions)
+        private CurrentAction CurrentPlayerAction;
+        private CurrentAction CurrentPartnerAction;
+
+        public GameStateImpl(List<StateItem> items, List<PlayerAction> actions)
 		{
 			CurrentPlayerAction = null;
 			CurrentPartnerAction = null;
@@ -34,8 +37,23 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			return _items[type].GetValue<T>();
 		}
 
-		public CurrentAction CurrentPlayerAction { get; private set; }
-		public CurrentAction CurrentPartnerAction { get; private set; }
+        public KeyValuePair<string, float>? GetCurrentPlayerAction()
+        {
+            return GetCurrentAction(CurrentPlayerAction);
+        }
+
+        public KeyValuePair<string, float>? GetCurrentPartnerAction()
+        {
+            return GetCurrentAction(CurrentPartnerAction);
+        }
+
+        private KeyValuePair<string, float>? GetCurrentAction(CurrentAction action)
+        {
+            if (action == null)
+                return null;
+
+            return new KeyValuePair<string, float>(action.Action.GetName(), 1 - (action.RemainingTime / action.Action.DurationInSeconds));
+        }
 
 		public string GameOver
 		{

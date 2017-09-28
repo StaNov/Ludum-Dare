@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+
 namespace GameOfLife.GameLogic.GameState
 {
 	public interface IGameState
 	{
 		string GameOver { get; }
-		CurrentAction CurrentPartnerAction { get; }
-		CurrentAction CurrentPlayerAction { get; }
+        KeyValuePair<string, float>? GetCurrentPlayerAction();
+        KeyValuePair<string, float>? GetCurrentPartnerAction();
 
 		void RunAction(string actionName);
 		void ApplyTime(float deltaTime);
