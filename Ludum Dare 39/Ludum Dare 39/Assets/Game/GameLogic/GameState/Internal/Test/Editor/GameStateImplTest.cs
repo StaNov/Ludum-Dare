@@ -1,93 +1,86 @@
 namespace GameOfLife.GameLogic.GameState.Internal
 {
 	using NUnit.Framework;
-
-    // TODO remove dependency on StateItemType
-	// TODO test only stuff related to state, not to items
-	// TODO redo tests for mock objects afterwards - with constant max value, with dynamic max value etc...
+    using System.Collections.Generic;
+    using GameStateItem;
+    using System;
+    
 	public class GameStateImplTest
 	{
 		private const PlayerActionType TestActionType = PlayerActionType.Eat;
 		private const PlayerActionType TestActionTypeWork = PlayerActionType.GoToWork;
 
-		private IGameState TestGameState;
-		private GameplayConstants TestConstants;
+		private IGameState _testGameState;
+		private List<StateItem> _testItems;
+        private List<PlayerAction> _testActions;
 
-		private static GameplayConstants CreateTestingGameplayConstants()
+        private class TestItem : StateItem
+        {
+            public string Name;
+
+            public virtual void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1) { }
+                    
+            public virtual void ApplyDifferenceByTime(float deltaTime) { }
+                    
+            public virtual bool DifferenceHasZeroEffect(StatsDifference difference) { return true; }
+                    
+            public virtual string GetName() { return Name; }
+                    
+            public virtual T GetValue<T>() { return default(T); }
+                    
+            public virtual bool IsGameOverBecauseOfThis() { return false; }
+                    
+            public virtual bool UpdateIfFamilyNotActive() { return true; }
+        }
+
+        private class TestAction : PlayerAction
+        {
+
+        }
+
+		private void CreateTestInputs()
 		{
-			var result = GameplayConstants.CreateEmptyConstants();
-			result.InitialValues = new StatsDifference
-			{
-				Age = 1,
-				Money = 9999,
-				MyMaxEnergy = 9999,
-				MyEnergy = 100,
-				MyHappiness = 100,
-				MyHealth = 100,
-				FamilyFood = 100,
-				FamilyHappiness = 100,
-				FamilyHealth = 100,
-				FoodSupplies = 99,
-				MyFood = 99
-			};
-			result.PlayerActions = new PlayerAction[1];
-			result.PlayerActions[0] = new PlayerAction
-			{
-				Type = TestActionType,
-				DurationInSeconds = 1,
-				EffectBefore = new StatsDifference(),
-				EffectDuring = new StatsDifference(),
-				EffectAfter = new StatsDifference()
-			};
-
-			return result;
-		}
-
-		private void CreateTestConstants()
-		{
-			TestConstants = CreateTestingGameplayConstants();
+			_testItems = new List<StateItem>();
+            _testActions = new List<PlayerAction>();
 		}
 
 		private void CreateTestGameState()
 		{
-            // TODO remove GameStateFactory dependency
-			TestGameState = GameStateFactory.CreateGameState(TestConstants);
+			_testGameState = new GameStateImpl(_testItems, _testActions);
 		}
 
 		[Test]
-		public void EnergyIsInitializedAfterSceneLoad()
+		public void ItemIsGettableFromStateAfterCreation()
 		{
-			int initialEnergy = 99;
+			CreateTestInputs();
+			_testItems.Add(new TestItem { Name = "test"});
+            CreateTestGameState();
 
-			CreateTestConstants();
-			TestConstants.InitialValues.MyEnergy = initialEnergy;
-			CreateTestGameState();
-
-			Assert.AreEqual(initialEnergy, TestGameState.GetStateItemValue<float>(StateItemType.MyEnergy.ToString()));
+			Assert.AreEqual(default(int), _testGameState.GetStateItemValue<int>("test"));
 		}
 
-		[Test]
+		/*[Test]
 		public void AgeIsGreaterAfterSomeTime()
 		{
 			int initialAge = 10;
 
-			CreateTestConstants();
-			TestConstants.InitialValues.Age = initialAge;
-			TestConstants.ChangePerMinute.Age = 11111;
+			CreateTestInputs();
+			_testItems.InitialValues.Age = initialAge;
+			_testItems.ChangePerMinute.Age = 11111;
 			CreateTestGameState();
 
-			TestGameState.ApplyTime(1);
-			Assert.Less(initialAge + 1, TestGameState.GetStateItemValue<float>(StateItemType.Age.ToString()));
+			_testGameState.ApplyTime(1);
+			Assert.Less(initialAge + 1, _testGameState.GetStateItemValue<float>(StateItemType.Age.ToString()));
 		}
 
 		[Test]
 		public void NotGameOverAfterInitialization()
 		{
 			// TODO create specific stateitem maybe? to not duplicate stateitem tests?
-			CreateTestConstants();
+			CreateTestInputs();
 			CreateTestGameState();
 
-			Assert.IsNull(TestGameState.GameOver);
+			Assert.IsNull(_testGameState.GameOver);
 		}
 
 		[Test]
@@ -96,13 +89,13 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int veryLowEnergy = 1;
 			int veryQuickEnergyDecrease = -5 * 60;
 
-			CreateTestConstants();
-			TestConstants.InitialValues.MyEnergy = veryLowEnergy;
-			TestConstants.ChangePerMinute.MyEnergy = veryQuickEnergyDecrease;
+			CreateTestInputs();
+			_testItems.InitialValues.MyEnergy = veryLowEnergy;
+			_testItems.ChangePerMinute.MyEnergy = veryQuickEnergyDecrease;
 			CreateTestGameState();
 
-			TestGameState.ApplyTime(1);
-			Assert.AreEqual(StateItemType.MyEnergy.ToString(), TestGameState.GameOver);
+			_testGameState.ApplyTime(1);
+			Assert.AreEqual(StateItemType.MyEnergy.ToString(), _testGameState.GameOver);
 		}
 
 		[Test]
@@ -112,17 +105,17 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int foodDecreaseByAction = 10;
 			int actionDuration = 2;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.MyFood = initialFood;
-			TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
-			TestConstants.PlayerActions[0].EffectDuring.MyFood = -foodDecreaseByAction;
+			_testItems.InitialValues.MyFood = initialFood;
+			_testItems.PlayerActions[0].DurationInSeconds = actionDuration;
+			_testItems.PlayerActions[0].EffectDuring.MyFood = -foodDecreaseByAction;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
-			TestGameState.ApplyTime(3);
-			Assert.AreEqual(initialFood - foodDecreaseByAction, TestGameState.GetStateItemValue<float>(StateItemType.MyFood.ToString()), 0.01);
+			_testGameState.RunAction(TestActionType.ToString());
+			_testGameState.ApplyTime(3);
+			Assert.AreEqual(initialFood - foodDecreaseByAction, _testGameState.GetStateItemValue<float>(StateItemType.MyFood.ToString()), 0.01);
 		}
 
 		[Test]
@@ -131,16 +124,16 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int initialEnergy = 90;
 			int energyDecreaseByAction = 10;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.MyEnergy = initialEnergy;
-			TestConstants.PlayerActions[0].DurationInSeconds = 10;
-			TestConstants.PlayerActions[0].EffectBefore.MyEnergy = -energyDecreaseByAction;
+			_testItems.InitialValues.MyEnergy = initialEnergy;
+			_testItems.PlayerActions[0].DurationInSeconds = 10;
+			_testItems.PlayerActions[0].EffectBefore.MyEnergy = -energyDecreaseByAction;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
-			Assert.AreEqual(initialEnergy - energyDecreaseByAction, TestGameState.GetStateItemValue<float>(StateItemType.MyEnergy.ToString()), 0.01);
+			_testGameState.RunAction(TestActionType.ToString());
+			Assert.AreEqual(initialEnergy - energyDecreaseByAction, _testGameState.GetStateItemValue<float>(StateItemType.MyEnergy.ToString()), 0.01);
 		}
 
 		[Test]
@@ -149,16 +142,16 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int initialFamilyFood = 50;
 			int familyFoodDecrease = 10 * 60;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.ChangePerMinute.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.StartFamily();
-			TestGameState.ApplyTime(2);
-			Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.StartFamily();
+			_testGameState.ApplyTime(2);
+			Assert.Greater(initialFamilyFood - familyFoodDecrease / 60, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -169,18 +162,18 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int effectDuration = 1;
 			int slowerDecreaseSoGreaterCanBeUsed = familyFoodDecrease / 2;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
-			TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.PlayerActions[0].DurationInSeconds = effectDuration;
+			_testItems.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.StartFamily();
-			TestGameState.RunAction(TestActionType.ToString());
-			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.StartFamily();
+			_testGameState.RunAction(TestActionType.ToString());
+			_testGameState.ApplyTime(effectDuration + 1);
+			Assert.Greater(initialFamilyFood - slowerDecreaseSoGreaterCanBeUsed / 60, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -190,18 +183,18 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int familyFoodDecrease = 10;
 			int effectDuration = 1;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
-			TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.PlayerActions[0].DurationInSeconds = effectDuration;
+			_testItems.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.StartFamily();
-			TestGameState.RunAction(TestActionType.ToString());
-			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.AreEqual(initialFamilyFood - familyFoodDecrease, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.StartFamily();
+			_testGameState.RunAction(TestActionType.ToString());
+			_testGameState.ApplyTime(effectDuration + 1);
+			Assert.AreEqual(initialFamilyFood - familyFoodDecrease, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -210,15 +203,15 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int initialFamilyFood = 50;
 			int familyFoodDecrease = 10 * 60;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.ChangePerMinute.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.ChangePerMinute.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.ApplyTime(1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.ApplyTime(1);
+			Assert.AreEqual(initialFamilyFood, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -227,16 +220,16 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int initialFamilyFood = 50;
 			int familyFoodDecrease = 10 * 60;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.PlayerActions[0].EffectDuring.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
-			TestGameState.ApplyTime(1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.RunAction(TestActionType.ToString());
+			_testGameState.ApplyTime(1);
+			Assert.AreEqual(initialFamilyFood, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -246,17 +239,17 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int familyFoodDecrease = 10;
 			int effectDuration = 1;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.FamilyFood = initialFamilyFood;
-			TestConstants.PlayerActions[0].DurationInSeconds = effectDuration;
-			TestConstants.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
+			_testItems.InitialValues.FamilyFood = initialFamilyFood;
+			_testItems.PlayerActions[0].DurationInSeconds = effectDuration;
+			_testItems.PlayerActions[0].EffectAfter.FamilyFood = -familyFoodDecrease;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
-			TestGameState.ApplyTime(effectDuration + 1);
-			Assert.AreEqual(initialFamilyFood, TestGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
+			_testGameState.RunAction(TestActionType.ToString());
+			_testGameState.ApplyTime(effectDuration + 1);
+			Assert.AreEqual(initialFamilyFood, _testGameState.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()));
 		}
 
 		[Test]
@@ -264,13 +257,13 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		{
 			int initialMoney = 50;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.Money = initialMoney;
+			_testItems.InitialValues.Money = initialMoney;
 
 			CreateTestGameState();
 
-			Assert.AreEqual(initialMoney, TestGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+			Assert.AreEqual(initialMoney, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
 		}
 
 		[Test]
@@ -279,16 +272,16 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int initialMoney = 50;
 			int differenceBeforeAction = -20;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.Money = initialMoney;
-			TestConstants.PlayerActions[0].EffectBefore.Money = differenceBeforeAction;
+			_testItems.InitialValues.Money = initialMoney;
+			_testItems.PlayerActions[0].EffectBefore.Money = differenceBeforeAction;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
+			_testGameState.RunAction(TestActionType.ToString());
 
-			Assert.AreEqual(initialMoney + differenceBeforeAction, TestGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+			Assert.AreEqual(initialMoney + differenceBeforeAction, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
 		}
 
 		[Test]
@@ -298,21 +291,21 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int differenceAfterAction = -20;
 			int actionDuration = 1;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.Money = initialMoney;
-			TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
-			TestConstants.PlayerActions[0].EffectAfter.Money = differenceAfterAction;
+			_testItems.InitialValues.Money = initialMoney;
+			_testItems.PlayerActions[0].DurationInSeconds = actionDuration;
+			_testItems.PlayerActions[0].EffectAfter.Money = differenceAfterAction;
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionType.ToString());
+			_testGameState.RunAction(TestActionType.ToString());
 
-			Assert.AreEqual(initialMoney, TestGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+			Assert.AreEqual(initialMoney, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
 
-			TestGameState.ApplyTime(actionDuration);
+			_testGameState.ApplyTime(actionDuration);
 
-			Assert.AreEqual(initialMoney + differenceAfterAction, TestGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+			Assert.AreEqual(initialMoney + differenceAfterAction, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
 		}
 
 		[Test]
@@ -323,20 +316,20 @@ namespace GameOfLife.GameLogic.GameState.Internal
 			int salaryIncreaseAfterWorkshift = 30;
 			int actionDuration = 1;
 
-			CreateTestConstants();
+			CreateTestInputs();
 
-			TestConstants.InitialValues.Money = initialMoney;
-			TestConstants.InitialValues.MoneyPerWorkshift = initialSalary;
-			TestConstants.PlayerActions[0].DurationInSeconds = actionDuration;
-			TestConstants.PlayerActions[0].Type = TestActionTypeWork;
-			TestConstants.PlayerActions[0].EffectAfter.MoneyPerWorkshift = salaryIncreaseAfterWorkshift; // just to make sure it gets added after money is raised by previous salary
+			_testItems.InitialValues.Money = initialMoney;
+			_testItems.InitialValues.MoneyPerWorkshift = initialSalary;
+			_testItems.PlayerActions[0].DurationInSeconds = actionDuration;
+			_testItems.PlayerActions[0].Type = TestActionTypeWork;
+			_testItems.PlayerActions[0].EffectAfter.MoneyPerWorkshift = salaryIncreaseAfterWorkshift; // just to make sure it gets added after money is raised by previous salary
 
 			CreateTestGameState();
 
-			TestGameState.RunAction(TestActionTypeWork.ToString());
-			TestGameState.ApplyTime(actionDuration);
+			_testGameState.RunAction(TestActionTypeWork.ToString());
+			_testGameState.ApplyTime(actionDuration);
 
-			Assert.AreEqual(initialMoney + initialSalary, TestGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+			Assert.AreEqual(initialMoney + initialSalary, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
+		}*/
 		}
 	}
-}
