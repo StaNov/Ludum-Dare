@@ -18,9 +18,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
         public GameStateImpl(List<StateItem> items, List<PlayerAction> actions)
 		{
-			CurrentPlayerAction = null;
-			CurrentPartnerAction = null;
-
             _items = new Dictionary<string, StateItem>();
 
             foreach (var item in items)
