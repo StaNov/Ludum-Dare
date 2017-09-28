@@ -9,7 +9,6 @@ namespace GameOfLife
     using GameOfLife.GameLogic.GameState;
 
     // TODO add test for hovering over a button
-    // TODO add test for showed game over screen
     public class ZZ_AcceptanceTest
 	{
 		private IGameState _gameState;
@@ -74,6 +73,15 @@ namespace GameOfLife
 			yield return new WaitForSeconds(10);
 
 			Assert.Greater(_gameState.GetStateItemValue<int>(StateItemType.FoodSupplies.ToString()), 0);
-		}
-	}
+        }
+
+        [UnityTest]
+        public IEnumerator GameOverAfterBuyingFoodWithoutMoney()
+        {
+            yield return Setup();
+            _gameState.RunAction(PlayerActionType.GoShopping.ToString());
+
+            Assert.AreEqual(StateItemType.Money.ToString(), _gameState.GameOver);
+        }
+    }
 }
