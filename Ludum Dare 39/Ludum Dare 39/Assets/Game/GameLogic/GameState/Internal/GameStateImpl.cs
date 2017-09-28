@@ -60,11 +60,10 @@ namespace GameOfLife.GameLogic.GameState.Internal
 					if (item.Value.IsGameOverBecauseOfThis())
 						return item.Key;
 
-				// TODO delete when no game over when no money or food
-				if (GetStateItemValue<int>(StateItemType.Money.ToString()) < 0)
-					return StateItemType.Money.ToString();
-				if (GetStateItemValue<int>(StateItemType.FoodSupplies.ToString()) < 0)
-					return StateItemType.FoodSupplies.ToString();
+                // TODO delete when no game over when no money or food
+                foreach (var type in new StateItemType[] { StateItemType.Money, StateItemType.FoodSupplies })
+				    if (_items.ContainsKey(type.ToString()) && GetStateItemValue<int>(type.ToString()) < 0)
+					    return type.ToString();
 
 				return null;
 			}

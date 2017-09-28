@@ -17,6 +17,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         private class TestItem : StateItem
         {
             public string Name;
+            public bool GameOverBecauseOfThis;
+            public bool UpdateIfFamilyNotActiveLocal = true;
 
             public virtual void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1) { }
                     
@@ -28,9 +30,9 @@ namespace GameOfLife.GameLogic.GameState.Internal
                     
             public virtual T GetValue<T>() { return default(T); }
                     
-            public virtual bool IsGameOverBecauseOfThis() { return false; }
+            public virtual bool IsGameOverBecauseOfThis() { return GameOverBecauseOfThis; }
                     
-            public virtual bool UpdateIfFamilyNotActive() { return true; }
+            public virtual bool UpdateIfFamilyNotActive() { return UpdateIfFamilyNotActiveLocal; }
         }
 
         private class TestAction : PlayerAction
@@ -57,9 +59,77 @@ namespace GameOfLife.GameLogic.GameState.Internal
             CreateTestGameState();
 
 			Assert.AreEqual(default(int), _testGameState.GetStateItemValue<int>("test"));
-		}
+        }
 
-		/*[Test]
+        [Test]
+        public void NoPlayerActionIsSetAfterCreation()
+        {
+            CreateTestInputs();
+            CreateTestGameState();
+
+            Assert.IsNull(_testGameState.GetCurrentPlayerAction());
+        }
+
+        [Test]
+        public void NoPartnerActionIsSetAfterCreation()
+        {
+            CreateTestInputs();
+            CreateTestGameState();
+
+            Assert.IsNull(_testGameState.GetCurrentPartnerAction());
+        }
+
+        [Test]
+        public void PlayerActionIsSetAfterRunningIt()
+        {
+            PlayerActionType playerAction = PlayerActionType.DoSport;
+
+            CreateTestInputs();
+            // TODO remove dependency on PlayerActionType
+            _testActions.Add(new TestAction { Type = playerAction });
+            CreateTestGameState();
+
+            _testGameState.RunAction(playerAction.ToString());
+
+            Assert.AreEqual(playerAction.ToString(), _testGameState.GetCurrentPlayerAction().Value.Key);
+        }
+
+        [Test]
+        public void PartnerActionIsSetAfterRunningIt()
+        {
+            PlayerActionType partnerAction = PlayerActionType.PartnerFeedsFamily;
+
+            CreateTestInputs();
+            // TODO remove dependency on PlayerActionType
+            _testActions.Add(new TestAction { Type = partnerAction });
+            CreateTestGameState();
+
+            _testGameState.RunAction(partnerAction.ToString());
+
+            Assert.AreEqual(partnerAction.ToString(), _testGameState.GetCurrentPartnerAction().Value.Key);
+        }
+
+        [Test]
+        public void GameOver_Null()
+        {
+            CreateTestInputs();
+            _testItems.Add(new TestItem { Name = "test" });
+            CreateTestGameState();
+
+            Assert.IsNull(_testGameState.GameOver);
+        }
+
+        [Test]
+        public void GameOver_NotNull()
+        {
+            CreateTestInputs();
+            _testItems.Add(new TestItem { Name = "test", GameOverBecauseOfThis = true });
+            CreateTestGameState();
+
+            Assert.AreEqual("test", _testGameState.GameOver);
+        }
+
+        /*[Test]
 		public void AgeIsGreaterAfterSomeTime()
 		{
 			int initialAge = 10;
@@ -331,5 +401,5 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
 			Assert.AreEqual(initialMoney + initialSalary, _testGameState.GetStateItemValue<int>(StateItemType.Money.ToString()));
 		}*/
-		}
+    }
 	}
