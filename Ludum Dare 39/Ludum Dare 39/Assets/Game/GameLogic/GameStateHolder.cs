@@ -5,29 +5,27 @@ namespace GameOfLife.GameLogic
     using GameState;
 
 	public class GameStateHolder : MonoBehaviour
-	{
-		private IGameState _state;
+    {
+        // TODO make protected methods that should be executed only inside of package
+        public IGameState State { get; private set; }
 
-		public GameplayConstants Constants;
-
-		// TODO make protected methods that should be executed only inside of package
-		public IGameState State { get { return _state; } }
-
-		// TODO move to button logic
-		public void RunAction()
-		{
-			string actionName = EventSystem.current.currentSelectedGameObject.name;
-			_state.RunAction(actionName);
-		}
+        public GameplayConstants Constants;
 
 		private void Start()
 		{
-			_state = GameStateFactory.CreateGameState(Constants);
+			State = GameStateFactory.CreateGameState(Constants);
 		}
 
 		private void FixedUpdate()
 		{
-			_state.ApplyTime(Time.deltaTime);
-		}
-	}
+			State.ApplyTime(Time.deltaTime);
+        }
+
+        // TODO move to button logic
+        public void RunAction()
+        {
+            string actionName = EventSystem.current.currentSelectedGameObject.name;
+            State.RunAction(actionName);
+        }
+    }
 }
