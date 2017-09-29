@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,11 +10,8 @@ using UnityEngine.TestTools;
 // SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings);
 public class ZZZ_AllScenesTest : AbstractTest
 {
-
-	// Those values are tweaked so it loads each scene.
-	// Too big wait time seems to cause not loading second scene.
 	private const float TimeScale = 99;
-	private const float WaitSecondsEachScene = 10;
+	private const float WaitSecondsEachScene = 60;
 
 	protected override void BeforeClass()
 	{
@@ -22,6 +20,7 @@ public class ZZZ_AllScenesTest : AbstractTest
 	}
 
 	[UnityTest]
+    [Timeout(int.MaxValue)]
 	public IEnumerator LoadEverySceneAndLetItGoForSomeTime () {
 		yield return Setup();
 
