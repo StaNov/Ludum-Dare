@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,21 @@ public static class ReusableLeaderboardManager {
 	public static IEnumerator GetLeaderboard(
 		string leaderboardId, 
 		string currentPlayerName, 
-		Action<int, string, int> forEachLine)
+		Action<int, string, int> forEachLine,
+        Action onError)
 	{
 		WWW www = new WWW("http://dreamlo.com/lb/" + leaderboardId + "/pipe/10");
 
 		while (! www.isDone)
 			yield return null;
 
-		List<Line> lines = ParseLines(www.text.Trim());
+        if (www.error != "")
+        {
+            onError();
+            yield break;
+        }
+
+        List<Line> lines = ParseLines(www.text.Trim());
 
 		if (! string.IsNullOrEmpty(currentPlayerName) && ! lines.Any(line => line.PlayerName.Equals(currentPlayerName)))
 		{

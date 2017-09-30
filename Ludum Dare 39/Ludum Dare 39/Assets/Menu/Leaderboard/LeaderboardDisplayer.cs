@@ -1,16 +1,17 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class LeaderboardDisplayer : MonoBehaviour
 {
 	public GameObject LinePrefab;
 	public GameObject LoadingText;
+    public GameObject ErrorText;
 
-	IEnumerator Start ()
+    IEnumerator Start ()
 	{
 		foreach (Transform child in transform)
 		{
-			if (child != LoadingText.transform)
+			if (child != LoadingText.transform && child != ErrorText.transform)
 				Destroy(child.gameObject);
 		}
 		
@@ -19,7 +20,8 @@ public class LeaderboardDisplayer : MonoBehaviour
 		yield return ReusableLeaderboardManager.GetLeaderboard(
 			"59875abbb0b05d1ad4be0123", 
 			PlayerNameManager.PlayerName,
-			InstantiateLine);
+			InstantiateLine,
+            () => ErrorText.SetActive(true));
 		
 		LoadingText.SetActive(false);
 	}
