@@ -30,32 +30,48 @@ public class GameplayConstants : ScriptableObject
 [Serializable]
 public class StatsDifference : ICloneable
 {
-	public int MyEnergy;
-	public int MyMaxEnergy;
-	public int MyFood;
-	public int MyHappiness;
-	public int MyHealth;
-	public int FamilyFood;
-	public int FamilyHappiness;
-	public int FamilyHealth;
-	public int Age;
-	public int Money;
-	public int MoneyPerWorkshift;
-	public int MoneyPerPartnersWorkshift;
-	public int FoodSupplies;
+    [SerializeField]
+	private int MyEnergy;
+    [SerializeField]
+    private int MyMaxEnergy;
+    [SerializeField]
+    private int MyFood;
+    [SerializeField]
+    private int MyHappiness;
+    [SerializeField]
+    private int MyHealth;
+    [SerializeField]
+    private int FamilyFood;
+    [SerializeField]
+    private int FamilyHappiness;
+    [SerializeField]
+    private int FamilyHealth;
+    [SerializeField]
+    private int Age;
+    [SerializeField]
+    private int Money;
+    [SerializeField]
+    private int MoneyPerWorkshift;
+    [SerializeField]
+    private int MoneyPerPartnersWorkshift;
+    [SerializeField]
+    private int FoodSupplies;
 	
 	public object Clone()
 	{
 		return MemberwiseClone();
 	}
 
-	// TODO redesign, load dynamically
-	public int GetStat(StateItemType type)
+    public int GetStat(string type)
+    {
+        StateItemType typeEnum = (StateItemType) Enum.Parse(typeof(StateItemType), type);
+        return GetStat(typeEnum);
+    }
+    
+	private int GetStat(StateItemType type)
 	{
 		switch (type)
 		{
-			case StateItemType.Age:
-				return Age;
 			case StateItemType.MyMaxEnergy:
 				return MyMaxEnergy;
 			case StateItemType.MyEnergy:
@@ -72,10 +88,48 @@ public class StatsDifference : ICloneable
 				return FamilyHappiness;
 			case StateItemType.FamilyHealth:
 				return FamilyHealth;
-			default:
+            case StateItemType.Age:
+                return Age;
+            case StateItemType.Money:
+                return Money;
+            case StateItemType.MySalary:
+                return MoneyPerWorkshift;
+            case StateItemType.PartnerSalary:
+                return MoneyPerPartnersWorkshift;
+            case StateItemType.FoodSupplies:
+                return FoodSupplies;
+            default:
 				throw new Exception("This type is not implemented in StatsDifference: " + type.ToString());
 		}
 	}
+
+    public void Plus(StatsDifference difference)
+    {
+        MyEnergy += difference.MyEnergy;
+        MyMaxEnergy += difference.MyMaxEnergy;
+        MyFood += difference.MyFood;
+        MyHappiness += difference.MyHappiness;
+        MyHealth += difference.MyHealth;
+        FamilyFood += difference.FamilyFood;
+        FamilyHappiness += difference.FamilyHappiness;
+        FamilyHealth += difference.FamilyHealth;
+        Money += difference.Money;
+        FoodSupplies += difference.FoodSupplies;
+        MoneyPerWorkshift += difference.MoneyPerWorkshift;
+        MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
+    }
+
+    // TODO redesign so this method doesn't have to exist
+    public void SetMoney(int money)
+    {
+        Money = money;
+    }
+
+    // TODO redesign so this method doesn't have to exist
+    public void SetMyFood(int food)
+    {
+        MyFood = food;
+    }
 }
 
 // TODO redesign to interface somewhere

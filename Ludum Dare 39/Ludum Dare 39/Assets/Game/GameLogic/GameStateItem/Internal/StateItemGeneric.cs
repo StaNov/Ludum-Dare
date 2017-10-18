@@ -7,18 +7,16 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
         private string _name;
 		private T _value;
 		private bool _updateIfFamilyNotActive;
-		protected Func<StatsDifference, T> GetDifferenceValue;
 
-		public StateItemGeneric(string name, GameplayConstants constants, Func<StatsDifference, T> getDifferenceValue, bool updateIfFamilyNotActive)
+		public StateItemGeneric(string name, T initialValue, bool updateIfFamilyNotActive)
 		{
             _name = name;
-			GetDifferenceValue = getDifferenceValue;
-			Value = GetDifferenceValue(constants.InitialValues);
+			Value = initialValue;
 			_updateIfFamilyNotActive = updateIfFamilyNotActive;
 		}
 
-		// TODO make protected for sure, private maybe?
-		public T Value
+		// TODO make private maybe?
+		protected T Value
 		{
 			get
 			{
@@ -59,7 +57,9 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 
 		public abstract bool DifferenceHasZeroEffect(StatsDifference difference);
 
-		public virtual void ApplyDifferenceByTime(float deltaTime) { }
+        protected abstract T GetDifferenceValue(StatsDifference difference);
+
+        public virtual void ApplyDifferenceByTime(float deltaTime) { }
 
 		public virtual bool IsGameOverBecauseOfThis() { return false; }
 	}

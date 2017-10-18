@@ -1,11 +1,9 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using System;
-
 	public class StateItemInt : StateItemGeneric<int>
 	{
-		public StateItemInt(string name, GameplayConstants constants, Func<StatsDifference, int> getDifferenceValue)
-			: base(name, constants, getDifferenceValue, true) { }
+		public StateItemInt(string name, int initialValue)
+			: base(name, initialValue, true) { }
 
 		public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
 		{
@@ -16,5 +14,10 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 		{
 			return GetDifferenceValue(difference) == 0;
 		}
-	}
+        
+        protected override int GetDifferenceValue(StatsDifference difference)
+        {
+            return difference.GetStat(GetName());
+        }
+    }
 }

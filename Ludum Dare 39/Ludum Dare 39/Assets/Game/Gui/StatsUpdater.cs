@@ -17,10 +17,10 @@ public class StatsUpdater : MonoBehaviour
 	{
 		StatsDifference effect = Effect.Effect;
 		
-		Money.text = State.State.GetStateItemValue<int>(StateItemType.Money.ToString()) + EffectSuffixCreator.Create(effect.Money);
-		MoneyPerWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.MySalary.ToString())) + EffectSuffixCreator.Create(effect.MoneyPerWorkshift);
-		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.PartnerSalary.ToString())) + EffectSuffixCreator.Create(effect.MoneyPerPartnersWorkshift);
-		FoodSupplies.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.FoodSupplies.ToString())) + EffectSuffixCreator.Create(effect.FoodSupplies);
+		Money.text = State.State.GetStateItemValue<int>(StateItemType.Money.ToString()) + EffectSuffixCreator.Create(effect.GetStat(StateItemType.Money.ToString()));
+		MoneyPerWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.MySalary.ToString())) + EffectSuffixCreator.Create(effect.GetStat(StateItemType.MySalary.ToString()));
+		MoneyPerPartnersWorkshift.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.PartnerSalary.ToString())) + EffectSuffixCreator.Create(effect.GetStat(StateItemType.PartnerSalary.ToString()));
+		FoodSupplies.text = Mathf.FloorToInt(State.State.GetStateItemValue<int>(StateItemType.FoodSupplies.ToString())) + EffectSuffixCreator.Create(effect.GetStat(StateItemType.FoodSupplies.ToString()));
 		Age.text = Mathf.FloorToInt(State.State.GetStateItemValue<float>(StateItemType.Age.ToString())).ToString();
 	}
 }

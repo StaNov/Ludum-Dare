@@ -22,16 +22,25 @@ public class NeedsUpdater : MonoBehaviour
 	private void Update ()
 	{
 		StatsDifference effect = Effect.Effect;
-		
-		// TODO display values push down?
-		MyMaxEnergy.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString())), effect.MyMaxEnergy);
-		MyEnergy.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyEnergy.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyEnergy.ToString())), effect.MyEnergy, State.State.GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString()));
-		MyFood.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyFood.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyFood.ToString())), effect.MyFood);
-		MyHappiness.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyHappiness.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyHappiness.ToString())), effect.MyHappiness);
-		MyHealth.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyHealth.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyHealth.ToString())), effect.MyHealth);
-		FamilyFood.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.FamilyFood.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.FamilyFood.ToString())), effect.FamilyFood);
-		FamilyHappiness.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.FamilyHappiness.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.FamilyHappiness.ToString())), effect.FamilyHappiness);
-		FamilyHealth.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.FamilyHealth.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.FamilyHealth.ToString())), effect.FamilyHealth);
+
+        foreach (var indicator in new KeyValuePair<StateIndicator, StateItemType>[] {
+            new KeyValuePair<StateIndicator, StateItemType> (MyEnergy, StateItemType.MyEnergy),
+            new KeyValuePair<StateIndicator, StateItemType> (MyMaxEnergy, StateItemType.MyMaxEnergy),
+            new KeyValuePair<StateIndicator, StateItemType> (MyFood, StateItemType.MyFood),
+            new KeyValuePair<StateIndicator, StateItemType> (MyHappiness, StateItemType.MyHappiness),
+            new KeyValuePair<StateIndicator, StateItemType> (MyHealth, StateItemType.MyHealth),
+            new KeyValuePair<StateIndicator, StateItemType> (FamilyFood, StateItemType.FamilyFood),
+            new KeyValuePair<StateIndicator, StateItemType> (FamilyHappiness, StateItemType.FamilyHappiness),
+            new KeyValuePair<StateIndicator, StateItemType> (FamilyHealth, StateItemType.FamilyHealth),
+            new KeyValuePair<StateIndicator, StateItemType> (MyEnergy, StateItemType.MyEnergy)
+        })
+        {
+            // TODO display values push down?
+            indicator.Key.UpdateValue(
+                State.State.GetStateItemValue<float>(indicator.Value.ToString()), 
+                Mathf.CeilToInt(State.State.GetStateItemValue<float>(indicator.Value.ToString())), 
+                effect.GetStat(indicator.Value.ToString()));
+        }
 	}
 }
 

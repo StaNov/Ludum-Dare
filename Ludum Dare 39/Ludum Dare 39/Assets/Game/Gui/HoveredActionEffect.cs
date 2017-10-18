@@ -34,28 +34,17 @@ public class HoveredActionEffect : MonoBehaviour
 		
 		foreach (StatsDifference difference in differences)
 		{
-			result.MyEnergy += difference.MyEnergy;
-			result.MyMaxEnergy += difference.MyMaxEnergy;
-			result.MyFood += difference.MyFood;
-			result.MyHappiness += difference.MyHappiness;
-			result.MyHealth += difference.MyHealth;
-			result.FamilyFood += difference.FamilyFood;
-			result.FamilyHappiness += difference.FamilyHappiness;
-			result.FamilyHealth += difference.FamilyHealth;
-			result.Money += difference.Money;
-			result.FoodSupplies += difference.FoodSupplies;
-			result.MoneyPerWorkshift += difference.MoneyPerWorkshift;
-			result.MoneyPerPartnersWorkshift += difference.MoneyPerPartnersWorkshift;
+            result.Plus(difference);
 		}
 
 		if (action.Type == PlayerActionType.GoToWork)
 		{
-			result.Money = State.State.GetStateItemValue<int>(StateItemType.MySalary.ToString());
+			result.SetMoney(State.State.GetStateItemValue<int>(StateItemType.MySalary.ToString()));
 		}
 		
 		if (action.Type == PlayerActionType.PartnerGoesToWork)
 		{
-			result.Money = State.State.GetStateItemValue<int>(StateItemType.PartnerSalary.ToString());
+			result.SetMoney(State.State.GetStateItemValue<int>(StateItemType.PartnerSalary.ToString()));
 		}
 
 		return result;
