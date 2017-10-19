@@ -31,8 +31,7 @@ public class NeedsUpdater : MonoBehaviour
             new KeyValuePair<StateIndicator, StateItemType> (MyHealth, StateItemType.MyHealth),
             new KeyValuePair<StateIndicator, StateItemType> (FamilyFood, StateItemType.FamilyFood),
             new KeyValuePair<StateIndicator, StateItemType> (FamilyHappiness, StateItemType.FamilyHappiness),
-            new KeyValuePair<StateIndicator, StateItemType> (FamilyHealth, StateItemType.FamilyHealth),
-            new KeyValuePair<StateIndicator, StateItemType> (MyEnergy, StateItemType.MyEnergy)
+            new KeyValuePair<StateIndicator, StateItemType> (FamilyHealth, StateItemType.FamilyHealth)
         })
         {
             // TODO display values push down?
@@ -40,6 +39,9 @@ public class NeedsUpdater : MonoBehaviour
                 State.State.GetStateItemValue<float>(indicator.Value.ToString()), 
                 Mathf.CeilToInt(State.State.GetStateItemValue<float>(indicator.Value.ToString())), 
                 effect.GetStat(indicator.Value.ToString()));
+
+            // TODO special indicator for MyEnergy
+            MyEnergy.UpdateValue(State.State.GetStateItemValue<float>(StateItemType.MyEnergy.ToString()), Mathf.CeilToInt(State.State.GetStateItemValue<float>(StateItemType.MyEnergy.ToString())), effect.GetStat(StateItemType.MyEnergy.ToString()), State.State.GetStateItemValue<float>(StateItemType.MyMaxEnergy.ToString()));
         }
 	}
 }
