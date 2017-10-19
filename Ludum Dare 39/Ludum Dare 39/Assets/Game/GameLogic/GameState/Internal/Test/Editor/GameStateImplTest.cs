@@ -178,7 +178,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void ApplyDifferenceByTime_Called_PlayerItem()
         {
             var testItem = new TestItem();
-            var testActionType = PlayerActionType.DoHobby;
 
             CreateTestInputs();
             _testItems.Add(testItem);
@@ -194,7 +193,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void ApplyDifferenceByTime_NotCalled_FamilyItem()
         {
             var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-            var testActionType = PlayerActionType.DoHobby;
 
             CreateTestInputs();
             _testItems.Add(testItem);
@@ -210,7 +208,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void ApplyDifferenceByTime_Called_FamilyItem_FamilyStarted()
         {
             var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-            var testActionType = PlayerActionType.DoHobby;
 
             CreateTestInputs();
             _testItems.Add(testItem);
