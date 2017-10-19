@@ -25,6 +25,16 @@ public class GameplayConstants : ScriptableObject
 
 		return result;
 	}
+
+    public int GetInitialValue(string itemType)
+    {
+        return InitialValues.GetStat(itemType);
+    }
+
+    public int GetChangePerMinute(string itemType)
+    {
+        return ChangePerMinute.GetStat(itemType);
+    }
 }
 
 [Serializable]

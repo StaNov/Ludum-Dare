@@ -37,12 +37,12 @@ namespace GameOfLife.GameLogic.GameState
 
         private static int InitValue(GameplayConstants constants, StateItemType type)
         {
-            return constants.InitialValues.GetStat(type.ToString());
+            return constants.GetInitialValue(type.ToString());
         }
 
         private static int PerMinute(GameplayConstants constants, StateItemType type)
         {
-            return constants.ChangePerMinute.GetStat(type.ToString());
+            return constants.GetChangePerMinute(type.ToString());
         }
     }
 }
