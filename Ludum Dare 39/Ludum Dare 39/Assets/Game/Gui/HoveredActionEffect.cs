@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using GameOfLife.GameLogic;
+using GameOfLife.GameLogic.GameStateAction;
 
 public class HoveredActionEffect : MonoBehaviour
 {
@@ -20,29 +17,29 @@ public class HoveredActionEffect : MonoBehaviour
 		get { return m_TimeToFinish; }
 	}
 
-	public void SetEffect(PlayerAction action)
+	public void SetEffect(StateAction action)
 	{
 		m_Effect = CreateSummaryEffect(action);
-		m_TimeToFinish = action.DurationInSeconds;
+		m_TimeToFinish = action.GetDurationInSeconds();
 	}
 
-	private StatsDifference CreateSummaryEffect(PlayerAction action)
+	private StatsDifference CreateSummaryEffect(StateAction action)
 	{
 		StatsDifference result = new StatsDifference();
 
-		var differences = new[] {action.EffectBefore, action.EffectDuring, action.EffectAfter};
+		var differences = new[] {action.GetEffectBefore(), action.GetEffectDuring(), action.GetEffectAfter()};
 		
 		foreach (StatsDifference difference in differences)
 		{
             result.Plus(difference);
 		}
 
-		if (action.Type == PlayerActionType.GoToWork)
+		if (action.GetName() == PlayerActionType.GoToWork.ToString())
 		{
 			result.SetMoney(State.State.GetStateItemValue<int>(StateItemType.MySalary.ToString()));
 		}
 		
-		if (action.Type == PlayerActionType.PartnerGoesToWork)
+		if (action.GetName() == PlayerActionType.PartnerGoesToWork.ToString())
 		{
 			result.SetMoney(State.State.GetStateItemValue<int>(StateItemType.PartnerSalary.ToString()));
 		}

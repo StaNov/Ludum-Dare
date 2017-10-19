@@ -1,6 +1,7 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using System;
+    using GameStateAction;
+    using System;
 	using UnityEngine;
 
 	public class StateItemFloat : StateItemGeneric<float>
@@ -31,7 +32,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			Value += _changePerMinute * deltaTimeInMinutes;
 		}
 
-		public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
+		public override void ApplyDifferenceByAction(StatsDifference difference, StateAction action, float multiplier = 1)
 		{
 			Value += GetDifferenceValue(difference) * multiplier;
 		}

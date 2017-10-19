@@ -1,6 +1,7 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using System;
+    using GameStateAction;
+    using System;
 
 	public class StateItemMoney : StateItemInt
 	{
@@ -14,15 +15,15 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			_getPartnerSalary = getPartnerSalary;
 		}
 
-		public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
+		public override void ApplyDifferenceByAction(StatsDifference difference, StateAction action, float multiplier = 1)
 		{
 			base.ApplyDifferenceByAction(difference, action, multiplier);
 
 			// TODO aaaaargh ugly comparison of objects to find out if it's after-action difference!
 			// maybe create methods UpdateBeforeAction and UpdateAfterAction in StateItem and make default implementation the same, just override it in money case
-			if (action.Type.IsWorkAction() && difference == action.EffectAfter)
+			if (action.IsWorkAction() && difference == action.GetEffectAfter())
 			{
-				Value += action.Type.IsPartnersAction() ? _getPartnerSalary() : _getPlayerSalary();
+				Value += action.IsPartnersAction() ? _getPartnerSalary() : _getPlayerSalary();
 			}
 		}
 	}

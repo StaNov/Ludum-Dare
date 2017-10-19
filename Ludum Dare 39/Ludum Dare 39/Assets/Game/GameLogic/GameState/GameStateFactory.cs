@@ -1,7 +1,8 @@
 namespace GameOfLife.GameLogic.GameState
 {
+    using GameStateAction;
     // TODO remove internal dependency, redo creating items to factory
-    using GameOfLife.GameLogic.GameStateItem.Internal;
+    using GameStateItem.Internal;
     using GameStateItem;
     using Internal;
     using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace GameOfLife.GameLogic.GameState
             items.Add(partnerSalary);
             items.Add(new StateItemInt(StateItemType.FoodSupplies.ToString(), InitValue(constants, StateItemType.FoodSupplies)));
 
-            List<PlayerAction> actions = constants.GetPlayerActions();
+            List<StateAction> actions = constants.GetPlayerActions();
 
             return new GameStateImpl(items, actions);
 		}

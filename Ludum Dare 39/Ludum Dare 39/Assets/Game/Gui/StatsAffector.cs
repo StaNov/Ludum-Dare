@@ -1,3 +1,4 @@
+using GameOfLife.GameLogic.GameStateAction;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,11 +8,11 @@ public class StatsAffector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public GameplayConstants Constants;
 	public HoveredActionEffect Effect;
 
-	private Dictionary<string, PlayerAction> _actions;
+	private Dictionary<string, StateAction> _actions;
 
 	private void Start()
 	{
-        _actions = new Dictionary<string, PlayerAction>();
+        _actions = new Dictionary<string, StateAction>();
 
         foreach (var action in Constants.GetPlayerActions())
             _actions.Add(action.GetName(), action);

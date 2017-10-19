@@ -1,6 +1,7 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using System;
+    using GameStateAction;
+    using System;
 
 	public abstract class StateItemGeneric<T> : StateItem
 	{
@@ -53,7 +54,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			return newValue;
 		}
 
-		public abstract void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1);
+		public abstract void ApplyDifferenceByAction(StatsDifference difference, StateAction action, float multiplier = 1);
 
 		public abstract bool DifferenceHasZeroEffect(StatsDifference difference);
 

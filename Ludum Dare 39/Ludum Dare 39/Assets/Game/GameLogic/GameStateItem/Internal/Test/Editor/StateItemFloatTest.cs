@@ -1,5 +1,7 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
+    // TODO remove
+    using GameOfLife.GameLogic.GameStateAction.Internal;
     using NUnit.Framework;
 
 	public class StateItemFloatTest
@@ -78,7 +80,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			Setup();
 			CreateTestItem();
 
-			TestItem.ApplyDifferenceByAction(NewDifferenceWithMyFoodValue(10), new PlayerAction());
+			TestItem.ApplyDifferenceByAction(NewDifferenceWithMyFoodValue(10), new StateActionImpl());
 
 			Assert.AreEqual(10, TestItem.GetValue<float>());
 		}
@@ -89,7 +91,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			Setup();
 			CreateTestItem();
 
-			TestItem.ApplyDifferenceByAction(NewDifferenceWithMyFoodValue(10), new PlayerAction(), 2);
+			TestItem.ApplyDifferenceByAction(NewDifferenceWithMyFoodValue(10), new StateActionImpl(), 2);
 
 			Assert.AreEqual(20, TestItem.GetValue<float>());
 		}

@@ -1,8 +1,9 @@
-using System.Collections.Generic;
-
 namespace GameOfLife.GameLogic.GameState
 {
-	public interface IGameState
+    using GameOfLife.GameLogic.GameStateAction;
+    using System.Collections.Generic;
+
+    public interface IGameState
 	{
 		string GameOver { get; }
         KeyValuePair<string, float>? GetCurrentPlayerAction();
@@ -16,7 +17,7 @@ namespace GameOfLife.GameLogic.GameState
 
 	public class CurrentAction
 	{
-		public PlayerAction Action;
+		public StateAction Action;
 		public float RemainingTime;
 	}
 }

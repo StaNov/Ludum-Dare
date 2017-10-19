@@ -1,6 +1,8 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	using NUnit.Framework;
+    // TODO decouple
+    using GameStateAction.Internal;
+    using NUnit.Framework;
 
 	public class StateItemIntTest
 	{
@@ -71,7 +73,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			Setup();
 			CreateTestItem();
 
-			TestItem.ApplyDifferenceByAction(NewDifferenceWithMoneyValue(10), new PlayerAction { });
+			TestItem.ApplyDifferenceByAction(NewDifferenceWithMoneyValue(10), new StateActionImpl());
 
 			Assert.AreEqual(10, TestItem.GetValue<int>());
 		}
@@ -82,7 +84,7 @@ namespace GameOfLife.GameLogic.GameStateItem.Internal
 			Setup();
 			CreateTestItem();
 
-			TestItem.ApplyDifferenceByAction(NewDifferenceWithMoneyValue(10), new PlayerAction(), 2);
+			TestItem.ApplyDifferenceByAction(NewDifferenceWithMoneyValue(10), new StateActionImpl(), 2);
 
 			Assert.AreEqual(10, TestItem.GetValue<int>());
 		}

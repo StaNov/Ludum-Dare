@@ -1,18 +1,39 @@
 using GameOfLife.GameLogic;
+using GameOfLife.GameLogic.GameStateAction;
+// TODO move to factory
+using GameOfLife.GameLogic.GameStateAction.Internal;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
+// [CreateAssetMenu(fileName = "GameplayConstants", menuName = "Create GameplayConstants", order = 1)]
 public class GameplayConstants : ScriptableObject
 {
 	public StatsDifference InitialValues;
 	public StatsDifference ChangePerMinute;
 	public PlayerAction[] PlayerActions;
 
-	public List<PlayerAction> GetPlayerActions()
+    // TODO move to StateAction factory
+	public List<StateAction> GetPlayerActions()
 	{
-        return new List<PlayerAction>(PlayerActions);
+        var result = new List<StateAction>();
+
+        foreach(var action in PlayerActions)
+        {
+            result.Add(new StateActionImpl
+            {
+                Name = action.GetName(),
+                DurationInSeconds = action.DurationInSeconds,
+                EffectBefore = action.EffectBefore,
+                EffectDuring = action.EffectDuring,
+                EffectAfter = action.EffectAfter,
+                ForBoth = action.Type.IsForBoth(),
+                PartnersAction = action.Type.IsPartnersAction(),
+                WorkAction = action.Type.IsWorkAction()
+            });
+        }
+
+        return result;
 	}
 
 	public static GameplayConstants CreateEmptyConstants()

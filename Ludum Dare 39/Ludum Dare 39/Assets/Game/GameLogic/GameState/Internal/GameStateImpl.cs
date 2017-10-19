@@ -1,29 +1,27 @@
 namespace GameOfLife.GameLogic.GameState.Internal
 {
-    // TODO redo to factory visible from outside this internal!
-    using GameStateItem.Internal;
+    using GameOfLife.GameLogic.GameStateAction;
     using GameStateItem;
     using System.Collections.Generic;
 	using UnityEngine;
-    using System;
 
     public class GameStateImpl : IGameState
 	{
 		private Dictionary<string, StateItem> _items;
-		private Dictionary<string, PlayerAction> _actions;
+		private Dictionary<string, StateAction> _actions;
 		private bool _isFamilyActive = false;
 
         private CurrentAction CurrentPlayerAction;
         private CurrentAction CurrentPartnerAction;
 
-        public GameStateImpl(List<StateItem> items, List<PlayerAction> actions)
+        public GameStateImpl(List<StateItem> items, List<StateAction> actions)
 		{
             _items = new Dictionary<string, StateItem>();
 
             foreach (var item in items)
                 _items.Add(item.GetName(), item);
 
-			_actions = new Dictionary<string, PlayerAction>();
+			_actions = new Dictionary<string, StateAction>();
 
             foreach (var action in actions)
                 _actions.Add(action.GetName(), action);
@@ -49,7 +47,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
             if (action == null)
                 return null;
 
-            return new KeyValuePair<string, float>(action.Action.GetName(), 1 - (action.RemainingTime / action.Action.DurationInSeconds));
+            return new KeyValuePair<string, float>(action.Action.GetName(), 1 - (action.RemainingTime / action.Action.GetDurationInSeconds()));
         }
 
 		public string GameOver
@@ -89,25 +87,25 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
 		private void UpdateByTime(float deltaTime)
 		{
-			foreach (var item in _items)
-				if ((CurrentPlayerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPlayerAction.Action.EffectDuring))
-					&& (CurrentPartnerAction == null || item.Value.DifferenceHasZeroEffect(CurrentPartnerAction.Action.EffectDuring))
-					&& ShouldItemBeUpdated(item.Value))
-					item.Value.ApplyDifferenceByTime(deltaTime);
+			foreach (var item in _items.Values)
+				if ((CurrentPlayerAction == null || item.DifferenceHasZeroEffect(CurrentPlayerAction.Action.GetEffectDuring()))
+					&& (CurrentPartnerAction == null || item.DifferenceHasZeroEffect(CurrentPartnerAction.Action.GetEffectDuring()))
+					&& ShouldItemBeUpdated(item))
+					item.ApplyDifferenceByTime(deltaTime);
 		}
 
 		private CurrentAction UpdateByAction(CurrentAction action, float deltaTime)
 		{
-			if (action != null && action.Action.Type != PlayerActionType.None)
+			if (action != null && action.Action.GetName() != null)
 			{
 				deltaTime = Mathf.Min(deltaTime, action.RemainingTime); // just the remaining time if smaller then deltaTime
 				action.RemainingTime -= deltaTime;
 
-				foreach (var item in _items)
-					if (ShouldItemBeUpdated(item.Value))
+				foreach (var item in _items.Values)
+					if (ShouldItemBeUpdated(item))
 					{
-						float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.DurationInSeconds;
-						item.Value.ApplyDifferenceByAction(action.Action.EffectDuring, action.Action, deltaTimeByDuration);
+						float deltaTimeByDuration = action == null ? 0 : deltaTime / action.Action.GetDurationInSeconds();
+						item.ApplyDifferenceByAction(action.Action.GetEffectDuring(), action.Action, deltaTimeByDuration);
 					}
 
 				if (action.RemainingTime <= 0)
@@ -123,25 +121,25 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
 		public void RunAction(string actionName)
 		{
-			PlayerAction action = _actions[actionName];
+			StateAction action = _actions[actionName];
 			RunAction(action);
 		}
 
-		private void RunAction(PlayerAction action)
+		private void RunAction(StateAction action)
 		{
-			bool isPartnersAction = action.Type.IsPartnersAction();
+			bool isPartnersAction = action.IsPartnersAction();
 
-			if (action.Type.IsForBoth() && CurrentPartnerAction != null && CurrentPartnerAction.Action.Type != PlayerActionType.None)
+			if (action.IsForBoth() && CurrentPartnerAction != null && CurrentPartnerAction.Action.GetName() != null /* TODOS maybe name is never null, delete condition, even elsewhere*/)
 			{
 				CurrentPartnerAction = null;
 			}
 
 			UpdateBeforeAction(action);
 
-			var currentAction = new CurrentAction
-			{
-				Action = action,
-				RemainingTime = action.DurationInSeconds
+            var currentAction = new CurrentAction
+            {
+                Action = action,
+                RemainingTime = action.GetDurationInSeconds()
 			};
 
 			if (!isPartnersAction)
@@ -150,21 +148,21 @@ namespace GameOfLife.GameLogic.GameState.Internal
 				CurrentPartnerAction = currentAction;
 		}
 
-		private void UpdateBeforeAction(PlayerAction action)
+		private void UpdateBeforeAction(StateAction action)
 		{
-			UpdateStatsOneTime(action.EffectBefore, action);
+			UpdateStatsOneTime(action.GetEffectBefore(), action);
 		}
 
-		private void UpdateAfterAction(PlayerAction action)
+		private void UpdateAfterAction(StateAction action)
 		{
-			UpdateStatsOneTime(action.EffectAfter, action);
+			UpdateStatsOneTime(action.GetEffectAfter(), action);
 		}
 
-		private void UpdateStatsOneTime(StatsDifference difference, PlayerAction action)
+		private void UpdateStatsOneTime(StatsDifference difference, StateAction action)
 		{
-			foreach (var item in _items)
-				if (ShouldItemBeUpdated(item.Value))
-					item.Value.ApplyDifferenceByAction(difference, action);
+			foreach (var item in _items.Values)
+				if (ShouldItemBeUpdated(item))
+					item.ApplyDifferenceByAction(difference, action);
 		}
 
 		private bool ShouldItemBeUpdated(StateItem item)

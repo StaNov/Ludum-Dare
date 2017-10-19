@@ -1,11 +1,13 @@
 namespace GameOfLife.GameLogic.GameStateItem.Internal
 {
-	public class StateItemInt : StateItemGeneric<int>
+    using GameOfLife.GameLogic.GameStateAction;
+
+    public class StateItemInt : StateItemGeneric<int>
 	{
 		public StateItemInt(string name, int initialValue)
 			: base(name, initialValue, true) { }
 
-		public override void ApplyDifferenceByAction(StatsDifference difference, PlayerAction action, float multiplier = 1)
+		public override void ApplyDifferenceByAction(StatsDifference difference, StateAction action, float multiplier = 1)
 		{
 			Value += GetDifferenceValue(difference);
 		}
