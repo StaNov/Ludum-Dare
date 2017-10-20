@@ -126,29 +126,34 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		}
 
 		private void RunAction(StateAction action)
-		{
-			bool isPartnersAction = action.IsPartnersAction();
-
-			if (action.IsForBoth() && CurrentPartnerAction != null && CurrentPartnerAction.Action.GetName() != null /* TODOS maybe name is never null, delete condition, even elsewhere*/)
-			{
-				CurrentPartnerAction = null;
-			}
-
-			UpdateBeforeAction(action);
+        {
+            if (CurrentPlayerActionIsForBoth())
+            {
+                CurrentPlayerAction = null;
+                CurrentPartnerAction = null;
+            }
+            
+            UpdateBeforeAction(action);
 
             var currentAction = new CurrentAction
             {
                 Action = action,
                 RemainingTime = action.GetDurationInSeconds()
-			};
+            };
 
-			if (!isPartnersAction)
-				CurrentPlayerAction = currentAction;
-			else
-				CurrentPartnerAction = currentAction;
-		}
+            if (!action.IsPartnersAction() || action.IsForBoth())
+                CurrentPlayerAction = currentAction;
 
-		private void UpdateBeforeAction(StateAction action)
+            if (action.IsPartnersAction() || action.IsForBoth())
+                CurrentPartnerAction = currentAction;
+        }
+
+        private bool CurrentPlayerActionIsForBoth()
+        {
+            return CurrentPlayerAction != null && CurrentPlayerAction.Action.IsForBoth();
+        }
+
+        private void UpdateBeforeAction(StateAction action)
 		{
 			UpdateStatsOneTime(action.GetEffectBefore(), action);
 		}

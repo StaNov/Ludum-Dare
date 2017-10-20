@@ -19,14 +19,6 @@ public class CurrentActionUpdater : MonoBehaviour
 	void Update ()
 	{
 		KeyValuePair<string, float>? action = IsPartner ? State.State.GetCurrentPartnerAction() : State.State.GetCurrentPlayerAction();
-
-        // TODO move logic to GameState
-		if (IsPartner && State.State.GetCurrentPlayerAction() != null &&
-		    (State.State.GetCurrentPlayerAction().Value.Key == PlayerActionType.GoToAquaWorld.ToString()
-		     || State.State.GetCurrentPlayerAction().Value.Key == PlayerActionType.SpendTimeWithFamily.ToString()))
-		{
-			action = State.State.GetCurrentPlayerAction();
-		}
 		
 		ActionText.text = action == null ? "" : ((PlayerActionType) Enum.Parse(typeof(PlayerActionType), action.Value.Key)).Localized();
 		

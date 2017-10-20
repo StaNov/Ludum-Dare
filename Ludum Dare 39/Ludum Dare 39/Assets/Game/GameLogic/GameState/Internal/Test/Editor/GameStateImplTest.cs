@@ -150,7 +150,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
         }
 
         [Test]
-        public void PlayerActionIsSetAfterRunningIt()
+        public void ActionIsSetAfterRunningIt_Player()
         {
             CreateTestGameState();
 
@@ -160,13 +160,25 @@ namespace GameOfLife.GameLogic.GameState.Internal
         }
 
         [Test]
-        public void PartnerActionIsSetAfterRunningIt()
+        public void ActionIsSetAfterRunningIt_Partner()
         {
             CreateTestGameState();
             _testAction.PartnersAction = true;
 
             _testGameState.RunAction(TestActionName);
 
+            Assert.AreEqual(TestActionName, _testGameState.GetCurrentPartnerAction().Value.Key);
+        }
+
+        [Test]
+        public void ActionIsSetAfterRunningIt_Both()
+        {
+            CreateTestGameState();
+            _testAction.ForBoth = true;
+
+            _testGameState.RunAction(TestActionName);
+
+            Assert.AreEqual(TestActionName, _testGameState.GetCurrentPlayerAction().Value.Key);
             Assert.AreEqual(TestActionName, _testGameState.GetCurrentPartnerAction().Value.Key);
         }
 
@@ -265,16 +277,63 @@ namespace GameOfLife.GameLogic.GameState.Internal
             Assert.AreEqual(3, _testItem.ApplyDifferenceByActionCalled);
         }
 
-        /*[Test]
-        public void ApplyDifferenceByAction_CalledThreeTimesAfterActionIsFinished() // before action, by action time, after action
+        [Test]
+        public void ActionIsReplacedWhenOneAlreadyRuns_Player()
+        {
+            ActionIsReplacedWhenOneAlreadyRuns(false);
+        }
+
+        [Test]
+        public void ActionIsReplacedWhenOneAlreadyRuns_Partner()
+        {
+            ActionIsReplacedWhenOneAlreadyRuns(true);
+        }
+        
+        private void ActionIsReplacedWhenOneAlreadyRuns(bool partner)
         {
             CreateTestGameState();
-            _testAction.DurationInSeconds = 1;
+
+            _testAction.PartnersAction = partner;
+            _testAction2.PartnersAction = partner;
 
             _testGameState.RunAction(TestActionName);
-            _testGameState.ApplyTime(10);
+            _testGameState.ApplyTime(1);
+            _testGameState.RunAction(TestActionName2);
 
-            Assert.AreEqual(3, _testItem.ApplyDifferenceByActionCalled);
-        }*/
+            var actualAction = partner ? _testGameState.GetCurrentPartnerAction() : _testGameState.GetCurrentPlayerAction();
+            Assert.AreEqual(TestActionName2, actualAction.Value.Key);
+        }
+
+        [Test]
+        public void ActionForBothIsReplaced_Player()
+        {
+            ActionForBothIsReplaced(false);
+        }
+
+        [Test]
+        public void ActionForBothIsReplaced_Partner()
+        {
+            ActionForBothIsReplaced(true);
+        }
+        
+        private void ActionForBothIsReplaced(bool partner)
+        {
+            CreateTestGameState();
+
+            _testAction.ForBoth = true;
+            _testAction2.PartnersAction = partner;
+
+            _testGameState.RunAction(TestActionName);
+            _testGameState.ApplyTime(1);
+            _testGameState.RunAction(TestActionName2);
+
+            var actualAction = partner ? _testGameState.GetCurrentPartnerAction() : _testGameState.GetCurrentPlayerAction();
+            var otherPersonAction = !partner ? _testGameState.GetCurrentPartnerAction() : _testGameState.GetCurrentPlayerAction();
+
+            Assert.AreEqual(TestActionName2, actualAction.Value.Key);
+            Assert.IsNull(otherPersonAction);
+        }
+
+        // TODO redesign "Action for both" and "partners action" to enum ActionType - players, partners, for both
     }
 }
