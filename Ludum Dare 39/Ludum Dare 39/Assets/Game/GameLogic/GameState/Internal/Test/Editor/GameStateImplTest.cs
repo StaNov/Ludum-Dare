@@ -9,22 +9,31 @@ namespace GameOfLife.GameLogic.GameState.Internal
     public class GameStateImplTest
     {
         private const string TestItemName = "testItem";
+        private const string TestItemName2 = "testItem2";
         private const string TestActionName = "testAction";
-		private const string TestActionNameWork = "testActionWork";
+        private const string TestActionName2 = "testAction2";
+        private const string TestActionNameWork = "testActionWork";
 
 		private IGameState _testGameState;
 		private List<StateItem> _testItems;
         private List<StateAction> _testActions;
         private TestItem _testItem;
+        private TestItem _testItem2;
         private TestAction _testAction;
+        private TestAction _testAction2;
 
         private class TestItem : StateItem
         {
-            public string Name = TestItemName;
+            public string Name;
             public bool GameOverBecauseOfThis = false;
             public bool UpdateIfFamilyNotActiveLocal = true;
             public int ApplyDifferenceByActionCalled { get; private set; }
             public bool ApplyDifferenceByTimeCalled { get; private set; }
+
+            public TestItem(string name)
+            {
+                Name = name;
+            }
 
             public virtual void ApplyDifferenceByAction(StatsDifference difference, StateAction action, float multiplier = 1) { ApplyDifferenceByActionCalled++; }
                     
@@ -43,7 +52,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
         private class TestAction : StateAction
         {
-            public string Name = TestActionName;
+            public string Name;
             public int DurationInSeconds = 10;
             public StatsDifference EffectBefore = new StatsDifference();
             public StatsDifference EffectDuring = new StatsDifference();
@@ -51,6 +60,11 @@ namespace GameOfLife.GameLogic.GameState.Internal
             public bool ForBoth = false;
             public bool PartnersAction = false;
             public bool WorkAction = false; // TODO add test for work action
+
+            public TestAction(string name)
+            {
+                Name = name;
+            }
 
             public int GetDurationInSeconds()
             {
@@ -95,14 +109,18 @@ namespace GameOfLife.GameLogic.GameState.Internal
 
 		private void CreateTestGameState()
         {
-            _testItem = new TestItem();
-            _testAction = new TestAction();
+            _testItem = new TestItem(TestItemName);
+            _testItem2 = new TestItem(TestItemName2);
+            _testAction = new TestAction(TestActionName);
+            _testAction2 = new TestAction(TestActionName2);
 
             _testItems = new List<StateItem>();
             _testActions = new List<StateAction>();
 
             _testItems.Add(_testItem);
+            _testItems.Add(_testItem2);
             _testActions.Add(_testAction);
+            _testActions.Add(_testAction2);
 
             _testGameState = new GameStateImpl(_testItems, _testActions);
 		}
@@ -247,6 +265,16 @@ namespace GameOfLife.GameLogic.GameState.Internal
             Assert.AreEqual(3, _testItem.ApplyDifferenceByActionCalled);
         }
 
-        // TODO maybe insert the test item and test action in setup by default
+        /*[Test]
+        public void ApplyDifferenceByAction_CalledThreeTimesAfterActionIsFinished() // before action, by action time, after action
+        {
+            CreateTestGameState();
+            _testAction.DurationInSeconds = 1;
+
+            _testGameState.RunAction(TestActionName);
+            _testGameState.ApplyTime(10);
+
+            Assert.AreEqual(3, _testItem.ApplyDifferenceByActionCalled);
+        }*/
     }
 }
