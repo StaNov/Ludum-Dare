@@ -15,6 +15,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		private IGameState _testGameState;
 		private List<StateItem> _testItems;
         private List<StateAction> _testActions;
+        private TestItem _testItem;
+        private TestAction _testAction;
 
         private class TestItem : StateItem
         {
@@ -95,21 +97,24 @@ namespace GameOfLife.GameLogic.GameState.Internal
 		{
 			_testItems = new List<StateItem>();
             _testActions = new List<StateAction>();
+            _testItem = new TestItem();
+            _testAction = new TestAction();
 		}
 
 		private void CreateTestGameState()
 		{
-			_testGameState = new GameStateImpl(_testItems, _testActions);
+            _testItems.Add(_testItem);
+            _testActions.Add(_testAction);
+            _testGameState = new GameStateImpl(_testItems, _testActions);
 		}
 
 		[Test]
 		public void ItemIsGettableFromStateAfterCreation()
 		{
 			CreateTestInputs();
-			_testItems.Add(new TestItem { Name = "test"});
             CreateTestGameState();
 
-			Assert.AreEqual(default(int), _testGameState.GetStateItemValue<int>("test"));
+			Assert.AreEqual(default(int), _testGameState.GetStateItemValue<int>(TestItemName));
         }
 
         [Test]
@@ -134,7 +139,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void PlayerActionIsSetAfterRunningIt()
         {
             CreateTestInputs();
-            _testActions.Add(new TestAction());
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
@@ -146,7 +150,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void PartnerActionIsSetAfterRunningIt()
         {
             CreateTestInputs();
-            _testActions.Add(new TestAction { PartnersAction = true });
+            _testAction.PartnersAction = true;
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
@@ -158,7 +162,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void GameOver_Null()
         {
             CreateTestInputs();
-            _testItems.Add(new TestItem());
             CreateTestGameState();
 
             Assert.IsNull(_testGameState.GameOver);
@@ -168,7 +171,7 @@ namespace GameOfLife.GameLogic.GameState.Internal
         public void GameOver_NotNull()
         {
             CreateTestInputs();
-            _testItems.Add(new TestItem { GameOverBecauseOfThis = true });
+            _testItem.GameOverBecauseOfThis = true;
             CreateTestGameState();
 
             Assert.AreEqual(TestItemName, _testGameState.GameOver);
@@ -177,109 +180,86 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByTime_Called_PlayerItem()
         {
-            var testItem = new TestItem();
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
             CreateTestGameState();
             
             _testGameState.ApplyTime(1);
 
-            Assert.IsTrue(testItem.ApplyDifferenceByTimeCalled);
+            Assert.IsTrue(_testItem.ApplyDifferenceByTimeCalled);
         }
 
         [Test]
         public void ApplyDifferenceByTime_NotCalled_FamilyItem()
         {
-            var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
 
             _testGameState.ApplyTime(1);
 
-            Assert.IsFalse(testItem.ApplyDifferenceByTimeCalled);
+            Assert.IsFalse(_testItem.ApplyDifferenceByTimeCalled);
         }
 
         [Test]
         public void ApplyDifferenceByTime_Called_FamilyItem_FamilyStarted()
         {
-            var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
 
             _testGameState.StartFamily();
             _testGameState.ApplyTime(1);
 
-            Assert.IsTrue(testItem.ApplyDifferenceByTimeCalled);
+            Assert.IsTrue(_testItem.ApplyDifferenceByTimeCalled);
         }
 
         [Test]
         public void ApplyDifferenceByAction_Called_PlayerItem()
         {
-            var testItem = new TestItem();
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
 
-            Assert.AreEqual(1, testItem.ApplyDifferenceByActionCalled);
+            Assert.AreEqual(1, _testItem.ApplyDifferenceByActionCalled);
         }
 
         [Test]
         public void ApplyDifferenceByAction_NotCalled_FamilyItem_FamilyNotStarted()
         {
-            var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
 
-            Assert.AreEqual(0, testItem.ApplyDifferenceByActionCalled);
+            Assert.AreEqual(0, _testItem.ApplyDifferenceByActionCalled);
         }
 
         [Test]
         public void ApplyDifferenceByAction_Called_FamilyItem_FamilyStarted()
         {
-            var testItem = new TestItem { UpdateIfFamilyNotActiveLocal = false };
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction());
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
 
             _testGameState.StartFamily();
             _testGameState.RunAction(TestActionName);
 
-            Assert.AreEqual(1, testItem.ApplyDifferenceByActionCalled);
+            Assert.AreEqual(1, _testItem.ApplyDifferenceByActionCalled);
         }
 
         [Test]
         public void ApplyDifferenceByAction_CalledThreeTimesAfterActionIsFinished() // before action, by action time, after action
         {
-            var testItem = new TestItem();
-
             CreateTestInputs();
-            _testItems.Add(testItem);
-            _testActions.Add(new TestAction { DurationInSeconds = 1 });
+            _testAction.DurationInSeconds = 1;
             CreateTestGameState();
             
             _testGameState.RunAction(TestActionName);
             _testGameState.ApplyTime(10);
 
-            Assert.AreEqual(3, testItem.ApplyDifferenceByActionCalled);
+            Assert.AreEqual(3, _testItem.ApplyDifferenceByActionCalled);
         }
 
         // TODO maybe insert the test item and test action in setup by default
