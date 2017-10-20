@@ -93,25 +93,23 @@ namespace GameOfLife.GameLogic.GameState.Internal
             }
         }
 
-        private void CreateTestInputs()
-		{
-			_testItems = new List<StateItem>();
-            _testActions = new List<StateAction>();
+		private void CreateTestGameState()
+        {
             _testItem = new TestItem();
             _testAction = new TestAction();
-		}
 
-		private void CreateTestGameState()
-		{
+            _testItems = new List<StateItem>();
+            _testActions = new List<StateAction>();
+
             _testItems.Add(_testItem);
             _testActions.Add(_testAction);
+
             _testGameState = new GameStateImpl(_testItems, _testActions);
 		}
 
 		[Test]
 		public void ItemIsGettableFromStateAfterCreation()
 		{
-			CreateTestInputs();
             CreateTestGameState();
 
 			Assert.AreEqual(default(int), _testGameState.GetStateItemValue<int>(TestItemName));
@@ -120,7 +118,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void NoPlayerActionIsSetAfterCreation()
         {
-            CreateTestInputs();
             CreateTestGameState();
 
             Assert.IsNull(_testGameState.GetCurrentPlayerAction());
@@ -129,7 +126,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void NoPartnerActionIsSetAfterCreation()
         {
-            CreateTestInputs();
             CreateTestGameState();
 
             Assert.IsNull(_testGameState.GetCurrentPartnerAction());
@@ -138,7 +134,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void PlayerActionIsSetAfterRunningIt()
         {
-            CreateTestInputs();
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
@@ -149,9 +144,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void PartnerActionIsSetAfterRunningIt()
         {
-            CreateTestInputs();
-            _testAction.PartnersAction = true;
             CreateTestGameState();
+            _testAction.PartnersAction = true;
 
             _testGameState.RunAction(TestActionName);
 
@@ -161,7 +155,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void GameOver_Null()
         {
-            CreateTestInputs();
             CreateTestGameState();
 
             Assert.IsNull(_testGameState.GameOver);
@@ -170,9 +163,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void GameOver_NotNull()
         {
-            CreateTestInputs();
-            _testItem.GameOverBecauseOfThis = true;
             CreateTestGameState();
+            _testItem.GameOverBecauseOfThis = true;
 
             Assert.AreEqual(TestItemName, _testGameState.GameOver);
         }
@@ -180,7 +172,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByTime_Called_PlayerItem()
         {
-            CreateTestInputs();
             CreateTestGameState();
             
             _testGameState.ApplyTime(1);
@@ -191,9 +182,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByTime_NotCalled_FamilyItem()
         {
-            CreateTestInputs();
-            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
 
             _testGameState.ApplyTime(1);
 
@@ -203,9 +193,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByTime_Called_FamilyItem_FamilyStarted()
         {
-            CreateTestInputs();
-            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
 
             _testGameState.StartFamily();
             _testGameState.ApplyTime(1);
@@ -216,7 +205,6 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByAction_Called_PlayerItem()
         {
-            CreateTestInputs();
             CreateTestGameState();
 
             _testGameState.RunAction(TestActionName);
@@ -227,9 +215,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByAction_NotCalled_FamilyItem_FamilyNotStarted()
         {
-            CreateTestInputs();
-            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
 
             _testGameState.RunAction(TestActionName);
 
@@ -239,9 +226,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByAction_Called_FamilyItem_FamilyStarted()
         {
-            CreateTestInputs();
-            _testItem.UpdateIfFamilyNotActiveLocal = false;
             CreateTestGameState();
+            _testItem.UpdateIfFamilyNotActiveLocal = false;
 
             _testGameState.StartFamily();
             _testGameState.RunAction(TestActionName);
@@ -252,9 +238,8 @@ namespace GameOfLife.GameLogic.GameState.Internal
         [Test]
         public void ApplyDifferenceByAction_CalledThreeTimesAfterActionIsFinished() // before action, by action time, after action
         {
-            CreateTestInputs();
-            _testAction.DurationInSeconds = 1;
             CreateTestGameState();
+            _testAction.DurationInSeconds = 1;
             
             _testGameState.RunAction(TestActionName);
             _testGameState.ApplyTime(10);
