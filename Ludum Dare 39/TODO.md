@@ -9,3 +9,4 @@
 * port na android
 * speciální eventy
   * plus postupné odemykání - dožij se aspoň 60 let, abys mohl eventy
+* poslat hru @kovarex :)
