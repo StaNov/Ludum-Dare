@@ -1,50 +1,15 @@
-print("""
-==================================================
-==================================================
+import texts
 
-        The Pond: An Unexpected Journey
-        
-  
-  Genre: Walking Simulator + Terminal Based Game
-  
+print(texts.intro_text)
 
-  Game by StaNov
+for step_text in texts.step_texts:
+    user_input = None
 
-  Created for Ludum Dare 41
+    while user_input != "step" and user_input != "s":
+        user_input = input("> ")
 
-  Theme: Combine 2 Incompatible Genres
-  
+    print("""
 ==================================================
 
-You stand by a big tree. It is a really beautiful one.
-
-On the horizon, you see an even more beautiful pond. You really feel like you want to swim a bit in it.
-
-It’s quite far, but you really want to touch the water. So you decided to go there.
-
-You can start your journey by typing “step”.
-""")
-
-user_input = None
-
-while user_input != "step" and user_input != "s":
-    user_input = input("> ")
-
-user_input = None
-
-print("""
-==================================================
-
-Congratulations! You took one step from the tree towards the pond.
-""")
-
-while user_input != "step" and user_input != "s":
-    user_input = input("> ")
-
-user_input = None
-
-print("""
-==================================================
-
-You took another step to the pond.
-""")
+{}
+""".format(step_text))
