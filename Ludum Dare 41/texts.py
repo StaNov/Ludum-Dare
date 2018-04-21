@@ -288,6 +288,7 @@ step_texts = [
 
     "Thanks for playing :)\n\n"
     "Here, you can have a kazoo interpretation of the victory theme from Final Fantasy VIII.\n\n"
+    "https://www.youtube.com/watch?v=6AAw_TnsZB0\n\n"
     "(hi, Joshua McLean!)\n\n"
     "And you can drop there a comment for the people who also got to the pond :)\n\n"
     "THE END!",
