@@ -67,7 +67,7 @@ step_texts = [
 
     "...",
 
-    "Well, it isn't."
+    "Well, it isn't.\n\n"
     "But people from Prague get angry when we say it to foreigners who don’t already know.",
 
     "Ha ha.",
@@ -184,7 +184,6 @@ step_texts = [
 """,
     "There you have some serious art!",
 
-
     "I also create some crazy kazoo soundtracks.",
 
     "But not this time, sorry.",
@@ -197,7 +196,6 @@ step_texts = [
     "So here we go.",
 
     "I created better games in the past, I can say that.",
-
 
     "You can say that.",
 
@@ -214,7 +212,7 @@ step_texts = [
     "Nah, as a good person, I found it for you:\n\n"
     "https://www.youtube.com/watch?v=eSGtSq_i7dk",
 
-    "I is 8 hours long. Just enough to finish this game.",
+    "It is 8 hours long. Just enough to finish this game.",
 
     "Just kidding!",
 
@@ -228,7 +226,7 @@ step_texts = [
 
     "Do you know how much did you practice the typing skills while playing this game?",
 
-    "And did you know that you can type only “s” instead of “steps”?",
+    "And did you know that you can type only “s” instead of “step”?",
 
     "Yea, I implemented it for debug reasons because I was too bored\n"
     "in the end of the development to type step step step again again again.",
