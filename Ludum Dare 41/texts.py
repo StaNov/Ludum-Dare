@@ -26,7 +26,7 @@ step_texts = [
     "So you decided to go there.\n\n"
     "You can start your journey by typing 'step'.",
 
-    "Congratulations! You took one step from the tree towards the pond.\n\nTry another one!",
+    "Congratulations! You took one step towards the pond.\n\nTry another one!",
 
     "You took another step to the pond.\n\nAh! The warm water is getting closer!\n\nGo on, you're doing great!",
 
@@ -43,7 +43,7 @@ step_texts = [
 
     "Right foot.",
 
-    "And pressing 'arrow up' doesn't repeat the command, sorry...",
+    "Pressing 'arrow up' doesn't repeat the command, sorry...",
 
     "Left foot.",
 
@@ -52,7 +52,7 @@ step_texts = [
     "Left foot.",
 
     "Aaaaaand... another left foot!\n\n"
-    "Because of all the joy of walking, you jumped to the air!\n\n"
+    "Because of all the joy of walking, you jumped into the air!\n\n"
     "Weee!",
 
     "Right foot.",
@@ -67,7 +67,8 @@ step_texts = [
 
     "...",
 
-    "Well, it’s not, but people from Prague get angry when we say it to foreigners who don’t already know.",
+    "Well, it isn't."
+    "But people from Prague get angry when we say it to foreigners who don’t already know.",
 
     "Ha ha.",
 
@@ -75,7 +76,7 @@ step_texts = [
 
     "It was in 1993.",
 
-    "There, that’s an interesting history thing you learnt today!",
+    "There, that’s an interesting history fact you learnt today!",
 
     "By the way, Czechia is the state where Kingdom Come Deliverance is placed and developed.",
 
@@ -96,9 +97,17 @@ step_texts = [
     "You slowly progress to the pond.\n\n"
     "But you don’t even mind that the journey is so long because you are so entertained by the narrative!",
 
-    "Did I mention the weather? It’s really beautiful. Sunny and warm.",
+    "And you don't need to think about what to type because you are doing it automatically!",
 
-    "The grass around you is completely fresh. As you can see.",
+    "Left foot.",
+
+    "Right foot.",
+
+    "Did I mention the weather?\n\n"
+    "It’s really beautiful. Sunny and warm.",
+
+    "The grass around you is completely green and fresh.\n\n"
+    "As you can see.",
 
     "Well, you could see it if this wasn’t a text game.\n\nJust pretend then.",
 
@@ -106,7 +115,7 @@ step_texts = [
 
     "Anyway...",
 
-    "Left foot.",
+    "Left foot!",
 
     "Right foot.",
 
@@ -200,7 +209,7 @@ step_texts = [
 
     "The summer breeze is touching your face.",
 
-    "For even better mood you can find a youtube video with that summer breeze sound.",
+    "For even better mood you can find a youtube video with the summer breeze sound.",
 
     "Nah, as a good person, I found it for you:\n\n"
     "https://www.youtube.com/watch?v=eSGtSq_i7dk",
@@ -217,13 +226,14 @@ step_texts = [
 
     "Right foot.",
 
-    "Do you know how well did you practice the typing skill while playing this game?",
+    "Do you know how much did you practice the typing skills while playing this game?",
 
-    "And did you know that you can type only “s” instead of “steps”?\n\n"
-    "Yea, I implemented it for debug reasons because I was too bored in the end of the development\n"
-    "to type step step step again again again.",
+    "And did you know that you can type only “s” instead of “steps”?",
 
-    "So now when you know it you can just run to the pond!",
+    "Yea, I implemented it for debug reasons because I was too bored\n"
+    "in the end of the development to type step step step again again again.",
+
+    "So now when you know it, you can just run to the pond!",
 
     "Left foot.",
     "Right foot.",
@@ -272,13 +282,13 @@ step_texts = [
 
     "You are so grateful that you didn’t stop in the middle of the road.",
 
-    "You bend your knees and jump into the water.",
+    "You bend your knees and jump into the water...",
 
     "The world is perfect.",
 
     "Thanks for playing :)\n\n"
     "Here, you can have a kazoo interpretation of the victory theme from Final Fantasy VIII.\n\n"
     "(hi, Joshua McLean!)\n\n"
-    "And you can drop there a comment for the people who also got to the pond :)\n\n",
+    "And you can drop there a comment for the people who also got to the pond :)\n\n"
     "THE END!",
 ]
