@@ -9,6 +9,8 @@ for step_text in texts.step_texts:
         user_input = input("> ")
 
     print("""
+
+
 ==================================================
 
 {}
