@@ -138,47 +138,147 @@ step_texts = [
 
     "If you played some of my older games, you know I also create shitty graphics for Ludum Dare games.",
 
-    "But today there is no time for that. So you can have a shitty ASCI picture of the road you are walking on.",
-    "Btw, the tree looked like this: (another ASCII art)",
+    "But today there is no time for that.\n\n"
+    "So you can have a shitty ASCI picture of the road you are walking on.",
+
+    """
+                      /  \\
+                     /    \\
+                    /      \\
+                   /    |   \\
+                  /    /     \\
+                 /    /       \\
+                /     |        \\
+""",
+
+    "It should have been seen from a perspective but it doesn't.\n\n"
+    "Nevermind then.",
+
+    "And by the way, the tree from the beginning looked like this:",
+    """
+                   ----------------
+                /                   \\
+            /      /       \\   \\       \\
+        |      /         /     \\     \\       \\
+        |         /           \\         \\
+           |    /       /     \\     \\     \\
+              \\    /   /     \\      \\  \\
+                     -----------
+                     |     |   |
+                     |     |   |
+                     |     |   |
+                     |    /    |
+                     |   /     |
+                     |   |     |
+                     |   |     |
+                     |   |     |
+""",
+    "There you have some serious art!",
+
+
     "I also create some crazy kazoo soundtracks.",
+
     "But not this time, sorry.",
+
     "This game was created only in three hours.",
-    "I didn’t want to participate at all, but when I saw the theme I was like “OMG OMG, it’s gonna be fun, I have to do it!”",
+
+    "I didn’t want to participate at all.\n\n"
+    "But when I saw the theme I was like “OMG OMG, it’s gonna be fun, I have to do it!”",
+
     "So here we go.",
+
     "I created better games in the past, I can say that.",
+
+
     "You can say that.",
+
     "But hey, you are almost there, so don’t stop now!",
+
     "Left foot.",
+
     "Right foot.",
+
     "The summer breeze is touching your face.",
-    "For even better mood you can find a youtube video with that.",
-    "Nah, i found it for you: https://www.youtube.com/watch?v=eSGtSq_i7dk",
+
+    "For even better mood you can find a youtube video with that summer breeze sound.",
+
+    "Nah, as a good person, I found it for you:\n\n"
+    "https://www.youtube.com/watch?v=eSGtSq_i7dk",
+
     "I is 8 hours long. Just enough to finish this game.",
-    "Just kidding :)",
+
+    "Just kidding!",
+
+    "(kappa)",
+
     "Alright, back to the grassy road you walk on.",
+
+    "Left foot.",
+
+    "Right foot.",
+
+    "Do you know how well did you practice the typing skill while playing this game?",
+
+    "And did you know that you can type only “s” instead of “steps”?\n\n"
+    "Yea, I implemented it for debug reasons because I was too bored in the end of the development\n"
+    "to type step step step again again again.",
+
+    "So now when you know it you can just run to the pond!",
+
     "Left foot.",
     "Right foot.",
-    "Do you know how well did you practice the typing skill while playing this game?",
-    "And did you know that you can type only “s” instead of “steps”? Yea, I implemented it for debug reasons because I was too bored in the end of the development to type step step step again again again.",
-    "So now when you know it you can just run to the pond!",
     "Left foot.",
-    "Right foot. (10x)",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+    "Left foot.",
+    "Right foot.",
+
     "SLOW DOWN!",
     "SLOW DOWN!!!",
     "SLOW DOWN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+
     "If you jump into the water like that you will get sick!",
-    "So…",
+
+    "So...",
+
     "Just a little bit of calm slow steps.",
+
+    "It really is almost the end, I promise.",
+
     "You can see the pond.",
+
     "You are almost there.",
+
     "You can feel the water in the air.",
+
     "The water is reflecting the sky.",
+
     "It is so beautiful.",
+
     "Only three steps and you will be swimming in it.",
+
     "You are so grateful that you didn’t stop in the middle of the road.",
-    "You bend your knee and jump into the water.",
+
+    "You bend your knees and jump into the water.",
+
     "The world is perfect.",
-    "Thanks for playing :) You can have a kazoo interpretation of the victory theme from Final Fantasy VIII. (hi, Joshua McLean!)",
-    "And you can drop there a comment for the people who also got to the pond :)",
-    "ASCII art the end?",
+
+    "Thanks for playing :)\n\n"
+    "Here, you can have a kazoo interpretation of the victory theme from Final Fantasy VIII.\n\n"
+    "(hi, Joshua McLean!)\n\n"
+    "And you can drop there a comment for the people who also got to the pond :)\n\n",
+    "THE END!",
 ]
