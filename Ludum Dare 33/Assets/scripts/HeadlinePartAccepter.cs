@@ -11,7 +11,7 @@ public class HeadlinePartAccepter : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag("headlineTakable")
-		    	&& transform.parent.FindChild("headlineTakable") == null
+		    	&& transform.parent.Find("headlineTakable") == null
 		    	&& col.GetComponent<TakableController>().takableId == takableToAccept) {
 
 			col.transform.SetParent(transform.parent);
