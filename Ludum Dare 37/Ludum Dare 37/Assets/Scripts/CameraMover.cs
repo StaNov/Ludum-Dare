@@ -44,13 +44,18 @@ public class CameraMover : MonoBehaviour {
 			yield return new WaitForSeconds(item.clip.length);
 		}
 
-		audioSource.clip = tutorialClip;
-		audioSource.Play();
+		if (tutorialClip != null)
+		{
+			audioSource.clip = tutorialClip;
+			audioSource.Play();
+		}
+
 		Subtitles.ShowText(tutorialSubtitle);
 		InGame = true;
 		camera.DOOrthoSize(CameraSizeInGame, 1);
 
-		yield return new WaitForSeconds(tutorialClip.length);
+		if (tutorialClip != null)
+			yield return new WaitForSeconds(tutorialClip.length);
 
 		PernicekCtrl.TurnedOn = true;
 
