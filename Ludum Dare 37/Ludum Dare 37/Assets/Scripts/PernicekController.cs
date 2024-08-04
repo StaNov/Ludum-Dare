@@ -8,8 +8,7 @@ public class PernicekController : MonoBehaviour {
 	public float MoveForce = 100;
 	public float MaxSpeed = 10;
 
-	public Transform LeftLeg;
-	public Transform RightLeg;
+	public Transform[] Legs;
 
 	public LayerMask GroundMask;
 
@@ -40,10 +39,15 @@ public class PernicekController : MonoBehaviour {
 
 		if (m_DesireJump) {
 			m_DesireJump = false;
-			var leftHit = Physics2D.Raycast(LeftLeg.position, Vector2.down, 0.1f, GroundMask);
-			var rightHit = Physics2D.Raycast(RightLeg.position, Vector2.down, 0.1f, GroundMask);
-			if (leftHit.collider != null || rightHit.collider != null) {
-				rb.AddForce(new Vector2(0, JumpForce));
+			foreach (var leg in Legs)
+			{
+				var legHit = Physics2D.Raycast(leg.position, Vector2.down, 0.1f, GroundMask);
+
+				if (legHit.collider != null)
+				{
+					rb.AddForce(new Vector2(0, JumpForce));
+					break;
+				}
 			}
 		}
 
